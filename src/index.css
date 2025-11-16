@@ -25,6 +25,11 @@ body {
   min-height: 100vh;
 }
 
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
 /* --------------------------------------------------------
    COLORS & TOKENS (RESTORED)
 --------------------------------------------------------- */

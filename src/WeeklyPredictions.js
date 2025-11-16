@@ -70,6 +70,7 @@ export default function WeeklyPredictions() {
       {/* Week Sections */}
       {weeks.map((week) => (
         <div key={week.week} className="mb-6 border rounded overflow-hidden">
+
           {/* Week Header */}
           <button
             onClick={() => setOpenWeek(openWeek === week.week ? null : week.week)}
@@ -79,43 +80,49 @@ export default function WeeklyPredictions() {
           </button>
 
           {openWeek === week.week && (
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b bg-gray-50">
-                  <th className="p-2 text-left">Date</th>
-                  <th className="p-2 text-left">Time</th>
-                  <th className="p-2 text-left">Matchup</th>
-                  <th className="p-2 text-left">Spread</th>
-                  <th className="p-2 text-left">Network</th>
-                  <th className="p-2 text-left">Predicted</th>
-                  <th className="p-2 text-left">Actual</th>
-                  <th className="p-2 text-left">% Error</th>
-                  <th className="p-2 text-left">Accuracy</th>
-                </tr>
-              </thead>
+            <>
+              {/* ---------- HORIZONTAL SCROLL CONTAINER ---------- */}
+              <div className="overflow-x-auto">
+                <table className="min-w-max w-full text-sm">
+                  <thead>
+                    <tr className="border-b bg-gray-50">
+                      <th className="p-2 text-left">Date</th>
+                      <th className="p-2 text-left">Time</th>
+                      <th className="p-2 text-left">Matchup</th>
+                      <th className="p-2 text-left">Spread</th>
+                      <th className="p-2 text-left">Network</th>
+                      <th className="p-2 text-left">Predicted</th>
+                      <th className="p-2 text-left">Actual</th>
+                      <th className="p-2 text-left">% Error</th>
+                      <th className="p-2 text-left">Accuracy</th>
+                    </tr>
+                  </thead>
 
-              <tbody>
-                {week.games.map((g, i) => (
-                  <tr key={i} className="border-b">
-                    <td className="p-2 whitespace-nowrap">{g.date}</td>
-                    <td className="p-2 whitespace-nowrap">{g.time_slot}</td>
-                    <td className="p-2">{g.matchup}</td>
-                    <td className="p-2">{g.spread}</td>
-                    <td className="p-2">{g.network}</td>
-                    <td className="p-2">{g.predicted}</td>
-                    <td className="p-2">{g.actual || ""}</td>
+                  <tbody>
+                    {week.games.map((g, i) => (
+                      <tr key={i} className="border-b">
+                        <td className="p-2 whitespace-nowrap">{g.date}</td>
+                        <td className="p-2 whitespace-nowrap">{g.time_slot}</td>
+                        <td className="p-2">{g.matchup}</td>
+                        <td className="p-2">{g.spread}</td>
+                        <td className="p-2">{g.network}</td>
+                        <td className="p-2">{g.predicted}</td>
+                        <td className="p-2">{g.actual || ""}</td>
 
-                    <td className={`p-2 ${colorClass(g.percent_error)}`}>
-                      {g.percent_error != null
-                        ? `${g.percent_error.toFixed(1)}%`
-                        : ""}
-                    </td>
+                        <td className={`p-2 ${colorClass(g.percent_error)}`}>
+                          {g.percent_error != null
+                            ? `${g.percent_error.toFixed(1)}%`
+                            : ""}
+                        </td>
 
-                    <td className="p-2">{g.accuracy}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                        <td className="p-2">{g.accuracy}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {/* ------------------------------------------------ */}
+            </>
           )}
         </div>
       ))}

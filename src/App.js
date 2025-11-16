@@ -26,9 +26,7 @@ export default function App() {
   const [brandLoading, setBrandLoading] = useState(false);
   const [brandError, setBrandError] = useState("");
 
-  // --------------------------------------------------------------------
   // Fetch Brand Rankings
-  // --------------------------------------------------------------------
   async function fetchBrandRankings(yearValue) {
     try {
       setBrandLoading(true);
@@ -48,9 +46,7 @@ export default function App() {
     }
   }
 
-  // --------------------------------------------------------------------
   // Initial Load
-  // --------------------------------------------------------------------
   useEffect(() => {
     fetch(`${BACKEND_BASE}/teams`)
       .then((res) => res.json())
@@ -63,9 +59,7 @@ export default function App() {
     fetchBrandRankings("all");
   }, []);
 
-  // --------------------------------------------------------------------
   // Prediction Handler
-  // --------------------------------------------------------------------
   async function handlePredict() {
     const body = {
       team1,
@@ -92,9 +86,7 @@ export default function App() {
     }
   }
 
-  // --------------------------------------------------------------------
   // Spread Input Validation
-  // --------------------------------------------------------------------
   function handleSpreadInput(val) {
     if (val === "") return setSpread("");
     if (!/^\d*\.?\d*$/.test(val)) return;
@@ -108,9 +100,6 @@ export default function App() {
     setSpread(val);
   }
 
-  // --------------------------------------------------------------------
-  // RENDER
-  // --------------------------------------------------------------------
   return (
     <div className="min-h-screen bg-main flex flex-col">
       <div className="flex-1 px-10 py-12">
@@ -123,8 +112,26 @@ export default function App() {
           Predict hypothetical TV audiences using a trained statistical model.
         </p>
 
-        {/* Tabs */}
-        <div className="flex space-x-6 mb-10 text-lg font-medium">
+        {/* ---------------------------------------------------------
+            Responsive Navigation
+        ---------------------------------------------------------- */}
+
+        {/* Mobile Dropdown */}
+        <div className="mb-10 md:hidden">
+          <select
+            value={activeTab}
+            onChange={(e) => setActiveTab(e.target.value)}
+            className="w-full p-3 bg-gray-100 border border-gray-300 rounded"
+          >
+            <option value="predictor">Game Predictor</option>
+            <option value="brands">Brand Rankings</option>
+            <option value="weekly">Weekly Predictions</option>
+            <option value="model">Model Explanation</option>
+          </select>
+        </div>
+
+        {/* Desktop Tabs */}
+        <div className="hidden md:flex space-x-6 mb-10 text-lg font-medium">
           {[
             ["predictor", "GAME PREDICTOR"],
             ["brands", "BRAND RANKINGS"],
@@ -144,14 +151,13 @@ export default function App() {
         </div>
 
         {/* ---------------------------------------------------------
-             TAB: GAME PREDICTOR
+            TAB: GAME PREDICTOR
         ---------------------------------------------------------- */}
         {activeTab === "predictor" && (
           <>
             <h2 className="text-3xl font-semibold mb-4">Game Predictor</h2>
 
             <div className="grid grid-cols-2 gap-8 mb-10">
-              {/* Team 1 */}
               <div>
                 <label>Team 1</label>
                 <select
@@ -170,7 +176,6 @@ export default function App() {
                 </select>
               </div>
 
-              {/* Team 2 */}
               <div>
                 <label>Team 2</label>
                 <select
@@ -190,7 +195,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Ranks */}
             <div className="grid grid-cols-2 gap-8 mb-10">
               <div>
                 <label>Team 1 Rank</label>
@@ -227,7 +231,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Spread */}
             <div className="mb-8">
               <label>Betting Spread</label>
               <input
@@ -240,7 +243,6 @@ export default function App() {
               />
             </div>
 
-            {/* Network */}
             <div className="mb-8">
               <label>Network</label>
               <select
@@ -261,7 +263,6 @@ export default function App() {
               </select>
             </div>
 
-            {/* Time Slot */}
             <div className="mb-8">
               <label>Time Slot (EST)</label>
               <select
@@ -283,7 +284,6 @@ export default function App() {
               </select>
             </div>
 
-            {/* Competing Tier 1 */}
             <div className="mb-8">
               <label>Major Competing Games</label>
               <input
@@ -301,12 +301,10 @@ export default function App() {
               />
             </div>
 
-            {/* Predict */}
             <button onClick={handlePredict} className="btn-primary">
               Predict Viewership
             </button>
 
-            {/* Output */}
             {prediction && (
               <div className="text-center mt-12">
                 <h2 className="text-3xl font-bold mb-2">

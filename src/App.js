@@ -329,6 +329,9 @@ export default function App() {
             <h2 className="text-3xl font-semibold mb-4">
               Brand Power Rankings
             </h2>
+            <p className="text-gray-500 italic mb-6">
+              Lift % shows how much a team increases expected TV viewership compared to a neutral baseline team.
+            </p>
 
             <div className="mb-6">
               <label className="mr-2">Select Year</label>
@@ -371,6 +374,16 @@ export default function App() {
                 </tbody>
               </table>
             )}
+            <p className="text-gray-500 text-sm mt-8 leading-relaxed max-w-3xl">
+              <strong>What is Lift %?</strong><br />
+              Lift % measures a team’s intrinsic drawing power on national television. The
+              model controls for network, time slot, rankings, rivalry status, competitiveness,
+              and competing games, isolating only the brand effect. A Lift % of +150%, for
+              example, means adding that team to a neutral baseline matchup would be expected
+              to increase viewership by 150% (i.e., multiply the audience by 2.5×). Higher Lift %
+              values therefore represent stronger national brands that consistently attract
+              larger TV audiences.
+            </p>
           </>
         )}
 

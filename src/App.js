@@ -197,7 +197,7 @@ export default function App() {
 
             <div className="grid grid-cols-2 gap-8 mb-10">
               <div>
-                <label>Team 1 Rank</label>
+                <label>Team 1 Rank (1-25)</label>
                 <input
                   value={rank1 === 0 ? "" : rank1}
                   onChange={(e) => {
@@ -214,7 +214,7 @@ export default function App() {
               </div>
 
               <div>
-                <label>Team 2 Rank</label>
+                <label>Team 2 Rank (1-25)</label>
                 <input
                   value={rank2 === 0 ? "" : rank2}
                   onChange={(e) => {
@@ -232,7 +232,7 @@ export default function App() {
             </div>
 
             <div className="mb-8">
-              <label>Betting Spread</label>
+              <label>Betting Spread (ex: "2.5")</label>
               <input
                 value={spread}
                 onChange={(e) => {
@@ -273,19 +273,32 @@ export default function App() {
                 }}
               >
                 <option value="">Select Time Slot</option>
-                <option value="Primetime (7:00p–9:00p)">Primetime</option>
+                <option value="Primetime (7:00p–9:00p)">Primetime (7:00p-9:00p EST)</option>
                 <option value="Sunday">Sunday</option>
                 <option value="Monday">Monday</option>
                 <option value="Weekday (Tue–Thu)">Weekday</option>
                 <option value="Friday">Friday</option>
-                <option value="Sat Early (11:00a–2:00p)">Sat Early</option>
-                <option value="Sat Mid (2:30p–6:30p)">Sat Mid</option>
-                <option value="Sat Late (9:30p–11:30p)">Sat Late</option>
+                <option value="Sat Early (11:00a–2:00p)">Sat Early (11:00a-2:00p EST)</option>
+                <option value="Sat Mid (2:30p–6:30p)">Sat Mid (2:30p-6:30p EST)</option>
+                <option value="Sat Late (9:30p–11:30p)">Sat Late (9:30p-12:00a EST)</option>
               </select>
             </div>
 
             <div className="mb-8">
-              <label>Major Competing Games</label>
+              <label className="flex items-center space-x-2">
+                <span>Major Competing Games</span>
+
+                {/* Info Button */}
+                <div className="relative group cursor-pointer">
+                  <span className="info-icon">i</span>
+
+                  {/* Tooltip */}
+                  <div className="absolute hidden group-hover:block bg-black text-white text-xs rounded p-2 w-64 -left-2 mt-1 shadow-lg z-50">
+                    A “major competing game” is another nationally relevant, high-profile matchup airing in the same time window that could pull viewers away from your game.
+                  </div>
+                </div>
+              </label>
+
               <input
                 value={compTier1 === 0 ? "" : compTier1}
                 onChange={(e) => {

@@ -30,6 +30,23 @@ body {
   scroll-behavior: smooth;
 }
 
+.info-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background-color: #ddd;
+  color: #333;
+  font-size: 12px;
+  text-align: center;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+.group:hover .info-icon {
+  background-color: #bbb;
+}
+
 /* --------------------------------------------------------
    COLORS & TOKENS (RESTORED)
 --------------------------------------------------------- */

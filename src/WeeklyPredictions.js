@@ -39,9 +39,6 @@ export default function WeeklyPredictions() {
   return (
     <div>
       <h2 className="text-3xl font-semibold mb-4">Weekly Predictions</h2>
-      <p className="text-gray-500 italic mb-6">
-        Automatically generates predictions for games missing viewership estimates.
-      </p>
 
       {/* Summary Metrics */}
       {metrics && (

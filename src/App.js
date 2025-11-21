@@ -340,10 +340,11 @@ export default function App() {
         {activeTab === "brands" && (
           <>
             <h2 className="text-3xl font-semibold mb-4">
-              Brand Power Rankings
+              Brand Pull Rankings
             </h2>
             <p className="text-gray-500 italic mb-6">
-              Lift % shows how much a team increases expected TV viewership compared to a neutral baseline team.
+              These rankings use Nielsen viewership data and supporting metadata from over 2,000 college football games since 2018. 
+              Lift % shows how much a team increases expected TV viewership independent of structural variables like network, time-slot, rankings, and competing games.
             </p>
 
             <div className="mb-6">

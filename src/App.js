@@ -344,7 +344,7 @@ export default function App() {
             </h2>
             <p className="text-gray-500 italic mb-6">
               These rankings use Nielsen viewership data and supporting metadata from over 2,000 college football games since 2018. 
-              Lift % shows how much a team increases expected TV viewership independent of structural variables like network, time-slot, rankings, and competing games.
+              Lift % shows how much a team increases expected TV viewership independent of structural variables like network, time-slot, opponent, rankings, and competing games.
             </p>
 
             <div className="mb-6">

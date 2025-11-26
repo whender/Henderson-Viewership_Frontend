@@ -284,6 +284,36 @@ export default function App() {
               </select>
             </div>
 
+            <div className="mb-8">
+              <label className="flex items-center space-x-2">
+                <span>Major Competing Games</span>
+
+                {/* Info Button */}
+                <div className="relative group cursor-pointer">
+                  <span className="info-icon">i</span>
+
+                  {/* Tooltip */}
+                  <div className="absolute hidden group-hover:block bg-black text-white text-xs rounded p-2 w-64 -left-2 mt-1 shadow-lg z-50">
+                    A “major competing game” is another nationally relevant, high-profile matchup airing in the same time window that could pull viewers away from your game.
+                  </div>
+                </div>
+              </label>
+
+              <input
+                value={compTier1 === 0 ? "" : compTier1}
+                onChange={(e) => {
+                  const v = e.target.value.trim();
+                  if (v === "") return setCompTier1(0);
+                  if (/^\d+$/.test(v)) {
+                    const n = Number(v);
+                    if (n >= 0 && n <= 10) setCompTier1(n);
+                  }
+                  setPrediction(null);
+                }}
+                placeholder="None"
+              />
+            </div>
+
             <button onClick={handlePredict} className="btn-primary">
               Predict Viewership
             </button>

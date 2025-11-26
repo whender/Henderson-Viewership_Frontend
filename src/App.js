@@ -457,7 +457,7 @@ export default function App() {
           Created by <span className="font-semibold">Will Henderson</span>
         </p>
         <p className="mt-1">
-          📧 wshenderson7@gmail.com • 𝕏 @willshenderson
+          📧 wshenderson7@gmail.com • 𝕏 @willshenderson7
         </p>
       </footer>
     </div>

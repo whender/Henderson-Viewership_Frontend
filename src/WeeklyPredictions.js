@@ -40,105 +40,112 @@ export default function WeeklyPredictions() {
     <div>
       <h2 className="text-3xl font-semibold mb-4">Weekly Predictions</h2>
 
-      {/* ------------------ Summary Metrics ------------------ */}
+      {/* === Summary Metrics (Pregame + Postgame) === */}
       {metrics && (
         <div className="grid grid-cols-2 gap-10 mb-10">
-          {/* Pregame Block */}
+          {/* Pregame */}
           <div>
             <h3 className="text-xl font-semibold mb-2">Pregame Model</h3>
             <div className="grid grid-cols-4 gap-6">
               <Metric label="Median % Error" value={`${metrics.pregame.median_error.toFixed(1)}%`} />
               <Metric label="Mean % Error" value={`${metrics.pregame.mean_error.toFixed(1)}%`} />
-              <Metric label="Within 10% Error" value={`${metrics.pregame.pct_within_10}%`} />
-              <Metric label="Within 25% Error" value={`${metrics.pregame.pct_within_25}%`} />
+              <Metric label="Within 10%" value={`${metrics.pregame.pct_within_10}%`} />
+              <Metric label="Within 25%" value={`${metrics.pregame.pct_within_25}%`} />
             </div>
           </div>
 
-          {/* Postgame Block */}
+          {/* Postgame */}
           <div>
             <h3 className="text-xl font-semibold mb-2">Postgame Model</h3>
             <div className="grid grid-cols-4 gap-6">
               <Metric label="Median % Error" value={`${metrics.postgame.median_error.toFixed(1)}%`} />
               <Metric label="Mean % Error" value={`${metrics.postgame.mean_error.toFixed(1)}%`} />
-              <Metric label="Within 10% Error" value={`${metrics.postgame.pct_within_10}%`} />
-              <Metric label="Within 25% Error" value={`${metrics.postgame.pct_within_25}%`} />
+              <Metric label="Within 10%" value={`${metrics.postgame.pct_within_10}%`} />
+              <Metric label="Within 25%" value={`${metrics.postgame.pct_within_25}%`} />
             </div>
           </div>
         </div>
       )}
 
-      {/* ------------------ Week Sections ------------------ */}
+      {/* === Week Sections === */}
       {weeks.map((week) => (
         <div key={week.week} className="mb-6 border rounded overflow-hidden">
+
+          {/* Week Header */}
           <button
-            onClick={() => setOpenWeek(openWeek === week.week ? null : week.week)}
+            onClick={() =>
+              setOpenWeek(openWeek === week.week ? null : week.week)
+            }
             className="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 font-semibold"
           >
             Week {week.week} {week.year ? `(${week.year})` : ""}
           </button>
 
           {openWeek === week.week && (
-            <>
-              <div className="overflow-x-auto">
-                <table className="min-w-max w-full text-sm">
-                  <thead>
-                    <tr className="border-b bg-gray-50">
-                      <th className="p-2 text-left">Date</th>
-                      <th className="p-2 text-left">Time</th>
-                      <th className="p-2 text-left">Matchup</th>
-                      <th className="p-2 text-left">Spread</th>
-                      <th className="p-2 text-left">Network</th>
-                      <th className="p-2 text-left">Pregame Pred</th>
-                      <th className="p-2 text-left">Postgame Pred</th>
-                      <th className="p-2 text-left">Actual</th>
-                      <th className="p-2 text-left">% Error (Pre)</th>
-                      <th className="p-2 text-left">Accuracy (Pre)</th>
-                      <th className="p-2 text-left">% Error (Post)</th>
-                      <th className="p-2 text-left">Accuracy (Post)</th>
+            <div className="overflow-x-auto">
+              <table className="min-w-max w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-gray-50">
+                    <th className="p-2 text-left">Date</th>
+                    <th className="p-2 text-left">Time</th>
+                    <th className="p-2 text-left">Matchup</th>
+                    <th className="p-2 text-left">Spread</th>
+                    <th className="p-2 text-left">Network</th>
+
+                    {/* Pregame */}
+                    <th className="p-2 text-left">Pregame Pred</th>
+                    <th className="p-2 text-left">% Error (Pre)</th>
+                    <th className="p-2 text-left">Accuracy (Pre)</th>
+
+                    {/* Postgame */}
+                    <th className="p-2 text-left">Postgame Pred</th>
+                    <th className="p-2 text-left">% Error (Post)</th>
+                    <th className="p-2 text-left">Accuracy (Post)</th>
+
+                    <th className="p-2 text-left">Actual</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {week.games.map((g, i) => (
+                    <tr key={i} className="border-b">
+                      <td className="p-2">{g.date}</td>
+                      <td className="p-2">{g.time_slot}</td>
+                      <td className="p-2">{g.matchup}</td>
+                      <td className="p-2">{g.spread}</td>
+                      <td className="p-2">{g.network}</td>
+
+                      {/* Pregame */}
+                      <td className="p-2">{g.predicted}</td>
+                      <td className={`p-2 ${colorClass(g.percent_error)}`}>
+                        {g.percent_error != null ? `${g.percent_error.toFixed(1)}%` : ""}
+                      </td>
+                      <td className="p-2">{g.accuracy}</td>
+
+                      {/* Postgame */}
+                      <td className="p-2">{g.post_predicted || ""}</td>
+                      <td className={`p-2 ${colorClass(g.post_percent_error)}`}>
+                        {g.post_percent_error != null
+                          ? `${g.post_percent_error.toFixed(1)}%`
+                          : ""}
+                      </td>
+                      <td className="p-2">{g.post_accuracy}</td>
+
+                      {/* Actual */}
+                      <td className="p-2">{g.actual || ""}</td>
                     </tr>
-                  </thead>
-
-                  <tbody>
-                    {week.games.map((g, i) => (
-                      <tr key={i} className="border-b">
-                        <td className="p-2">{g.date}</td>
-                        <td className="p-2">{g.time_slot}</td>
-                        <td className="p-2">{g.matchup}</td>
-                        <td className="p-2">{g.spread}</td>
-                        <td className="p-2">{g.network}</td>
-
-                        {/* Pregame */}
-                        <td className="p-2">{g.predicted}</td>
-
-                        {/* Postgame */}
-                        <td className="p-2">{g.post_predicted || ""}</td>
-
-                        <td className="p-2">{g.actual || ""}</td>
-
-                        <td className={`p-2 ${colorClass(g.percent_error)}`}>
-                          {g.percent_error != null ? `${g.percent_error.toFixed(1)}%` : ""}
-                        </td>
-
-                        <td className="p-2">{g.accuracy}</td>
-
-                        {/* Postgame error */}
-                        <td className={`p-2 ${colorClass(g.post_percent_error)}`}>
-                          {g.post_percent_error != null ? `${g.post_percent_error.toFixed(1)}%` : ""}
-                        </td>
-
-                        <td className="p-2">{g.post_accuracy}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       ))}
     </div>
   );
 }
+
+/* ================== Helper Components ================== */
 
 function Metric({ label, value }) {
   return (

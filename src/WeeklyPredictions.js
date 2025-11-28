@@ -42,12 +42,14 @@ export default function WeeklyPredictions() {
 
       {/* === Summary Metrics (Pregame + Postgame) === */}
       {metrics && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
 
           {/* Pregame */}
-          <div>
+          <div className="w-full">
             <h3 className="text-xl font-semibold mb-2">Pregame Model</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+
+            {/* inner metrics grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               <Metric label="Median % Error" value={`${metrics.pregame.median_error.toFixed(1)}%`} />
               <Metric label="Mean % Error" value={`${metrics.pregame.mean_error.toFixed(1)}%`} />
               <Metric label="Within 10%" value={`${metrics.pregame.pct_within_10}%`} />
@@ -56,9 +58,11 @@ export default function WeeklyPredictions() {
           </div>
 
           {/* Postgame */}
-          <div>
+          <div className="w-full">
             <h3 className="text-xl font-semibold mb-2">Postgame Model</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+
+            {/* inner metrics grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               <Metric label="Median % Error" value={`${metrics.postgame.median_error.toFixed(1)}%`} />
               <Metric label="Mean % Error" value={`${metrics.postgame.mean_error.toFixed(1)}%`} />
               <Metric label="Within 10%" value={`${metrics.postgame.pct_within_10}%`} />

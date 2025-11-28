@@ -42,7 +42,7 @@ export default function WeeklyPredictions() {
 
       {/* === Summary Metrics (Pregame + Postgame) === */}
       {metrics && (
-        <div className="grid grid-cols-2 gap-10 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
           {/* Pregame */}
           <div>
             <h3 className="text-xl font-semibold mb-2">Pregame Model</h3>

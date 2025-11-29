@@ -98,15 +98,12 @@ export default function WeeklyPredictions() {
 
                     {/* Pregame */}
                     <th className="p-2 text-left">Pregame Pred</th>
+                    <th className="p-2 text-left">Postgame Pred</th>
+                    <th className="p-2 text-left">Actual</th>
                     <th className="p-2 text-left">% Error (Pre)</th>
                     <th className="p-2 text-left">Accuracy (Pre)</th>
-
-                    {/* Postgame */}
-                    <th className="p-2 text-left">Postgame Pred</th>
                     <th className="p-2 text-left">% Error (Post)</th>
                     <th className="p-2 text-left">Accuracy (Post)</th>
-
-                    <th className="p-2 text-left">Actual</th>
                   </tr>
                 </thead>
 

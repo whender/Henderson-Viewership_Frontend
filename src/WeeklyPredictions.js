@@ -115,25 +115,19 @@ export default function WeeklyPredictions() {
                       <td className="p-2">{g.matchup}</td>
                       <td className="p-2">{g.spread}</td>
                       <td className="p-2">{g.network}</td>
-
-                      {/* Pregame */}
                       <td className="p-2">{g.predicted}</td>
+                      <td className="p-2">{g.post_predicted || ""}</td>
+                      <td className="p-2">{g.actual || ""}</td>
                       <td className={`p-2 ${colorClass(g.percent_error)}`}>
                         {g.percent_error != null ? `${g.percent_error.toFixed(1)}%` : ""}
                       </td>
                       <td className="p-2">{g.accuracy}</td>
-
-                      {/* Postgame */}
-                      <td className="p-2">{g.post_predicted || ""}</td>
                       <td className={`p-2 ${colorClass(g.post_percent_error)}`}>
                         {g.post_percent_error != null
                           ? `${g.post_percent_error.toFixed(1)}%`
                           : ""}
                       </td>
                       <td className="p-2">{g.post_accuracy}</td>
-
-                      {/* Actual */}
-                      <td className="p-2">{g.actual || ""}</td>
                     </tr>
                   ))}
                 </tbody>

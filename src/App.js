@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import WeeklyPredictions from "./WeeklyPredictions";
+import TeamProfiles from "./TeamProfiles";
+import ViewershipRankings from "./ViewershipRankings";
+import BACKEND_BASE from "./config";
+import { getTeamLogoUrl } from "./teamLogos";
 import "./App.css";
-
-const BACKEND_BASE = "https://henderson-viewership-backend.onrender.com";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("predictor");
@@ -22,6 +24,7 @@ export default function App() {
   // Brand Rankings
   const [brandYears, setBrandYears] = useState([]);
   const [brandYear, setBrandYear] = useState("all");
+  const [brandConference, setBrandConference] = useState("all");
   const [brandRows, setBrandRows] = useState([]);
   const [brandLoading, setBrandLoading] = useState(false);
   const [brandError, setBrandError] = useState("");
@@ -45,6 +48,19 @@ export default function App() {
       setBrandLoading(false);
     }
   }
+
+  const filteredBrandRows = brandRows.filter((row) =>
+    brandConference === "all" ? true : row.conference === brandConference
+  );
+  const brandConferenceOptions = [
+    "all",
+    ...new Set(
+      brandRows
+        .map((row) => row.conference)
+        .filter(Boolean)
+        .sort((a, b) => a.localeCompare(b))
+    ),
+  ];
 
   // Initial Load
   useEffect(() => {
@@ -125,6 +141,8 @@ export default function App() {
           >
             <option value="predictor">Game Predictor</option>
             <option value="brands">Brand Rankings</option>
+            <option value="viewership-rankings">Viewership Rankings</option>
+            <option value="profiles">Team Profiles</option>
             <option value="weekly">Weekly Predictions</option>
             <option value="model">Model Explanation</option>
           </select>
@@ -135,6 +153,8 @@ export default function App() {
           {[
             ["predictor", "GAME PREDICTOR"],
             ["brands", "BRAND RANKINGS"],
+            ["viewership-rankings", "VIEWERSHIP RANKINGS"],
+            ["profiles", "TEAM PROFILES"],
             ["weekly", "WEEKLY PREDICTIONS"],
             ["model", "MODEL EXPLANATION"],
           ].map(([key, label]) => (
@@ -324,6 +344,12 @@ export default function App() {
                   Predicted Viewers: {prediction}
                 </h2>
 
+                <div className="team-pill-row">
+                  {[team1, team2].filter(Boolean).map((team) => (
+                    <TeamPill key={team} team={team} />
+                  ))}
+                </div>
+
                 <p className="text-gray-600 text-lg">
                   {team1 && team2 ? `${team1} vs ${team2}` : ""}
                   {network ? ` | ${network}` : ""}
@@ -346,6 +372,9 @@ export default function App() {
               These rankings use Nielsen viewership data and supporting metadata from over 2,000 college football games since 2018. 
               Lift % shows how much a team increases expected TV viewership, compared to a neutral baseline team, independent of structural variables like network, time-slot, opponent, rankings, and competing games.
             </p>
+            <p className="text-gray-500 text-sm mb-6">
+              Data excludes postseason games.
+            </p>
 
             <div className="mb-6">
               <label className="mr-2">Select Year</label>
@@ -363,30 +392,50 @@ export default function App() {
               </select>
             </div>
 
+            <div className="mb-6">
+              <label className="mr-2">Conference</label>
+              <select
+                value={brandConference}
+                onChange={(e) => setBrandConference(e.target.value)}
+              >
+                {brandConferenceOptions.map((conference) => (
+                  <option key={conference} value={conference}>
+                    {conference === "all" ? "All Conferences" : conference}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             {brandLoading && <p>Loading…</p>}
             {brandError && <p className="text-red-600">{brandError}</p>}
 
             {!brandLoading && !brandError && (
-              <table>
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Team</th>
-                    <th>Lift (%)</th>
-                    <th>Games Used</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {brandRows.map((row) => (
-                    <tr key={row.team}>
-                      <td>{row.rank}</td>
-                      <td>{row.team}</td>
-                      <td>{row.viewership_lift_pct.toFixed(1)}</td>
-                      <td>{row.games_used}</td>
+              <div className="overflow-x-auto">
+                <table className="min-w-max w-full">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Team</th>
+                      <th>Conference</th>
+                      <th>Lift (%)</th>
+                      <th>Games Used</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {filteredBrandRows.map((row) => (
+                      <tr key={row.team}>
+                        <td>{row.rank}</td>
+                        <td>
+                          <TeamPill team={row.team} compact />
+                        </td>
+                        <td>{row.conference}</td>
+                        <td>{row.viewership_lift_pct.toFixed(1)}</td>
+                        <td>{row.games_used}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
             <p className="text-gray-500 text-sm mt-8 leading-relaxed max-w-3xl">
               <strong>What is Lift %?</strong><br />
@@ -400,6 +449,16 @@ export default function App() {
             </p>
           </>
         )}
+
+        {/* ---------------------------------------------------------
+             TAB: VIEWERSHIP RANKINGS
+        ---------------------------------------------------------- */}
+        {activeTab === "viewership-rankings" && <ViewershipRankings />}
+
+        {/* ---------------------------------------------------------
+             TAB: TEAM PROFILES
+        ---------------------------------------------------------- */}
+        {activeTab === "profiles" && <TeamProfiles teams={teams} />}
 
         {/* ---------------------------------------------------------
              TAB: WEEKLY PREDICTIONS
@@ -461,5 +520,16 @@ export default function App() {
         </p>
       </footer>
     </div>
+  );
+}
+
+function TeamPill({ team, compact = false }) {
+  const logoUrl = getTeamLogoUrl(team);
+
+  return (
+    <span className={`team-pill ${compact ? "team-pill-compact" : ""}`}>
+      {logoUrl && <img src={logoUrl} alt={`${team} logo`} className="team-logo" />}
+      <span>{team}</span>
+    </span>
   );
 }

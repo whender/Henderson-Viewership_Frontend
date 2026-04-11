@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-
-const BACKEND_BASE = "https://henderson-viewership-backend.onrender.com";
+import BACKEND_BASE from "./config";
+import { getTeamLogoUrl, parseMatchupTeams } from "./teamLogos";
 
 export default function WeeklyPredictions() {
   const [loading, setLoading] = useState(true);
@@ -95,8 +95,6 @@ export default function WeeklyPredictions() {
                     <th className="p-2 text-left">Matchup</th>
                     <th className="p-2 text-left">Spread</th>
                     <th className="p-2 text-left">Network</th>
-
-                    {/* Pregame */}
                     <th className="p-2 text-left">Pregame Pred</th>
                     <th className="p-2 text-left">Postgame Pred</th>
                     <th className="p-2 text-left">Actual</th>
@@ -112,7 +110,9 @@ export default function WeeklyPredictions() {
                     <tr key={i} className="border-b">
                       <td className="p-2">{g.date}</td>
                       <td className="p-2">{g.time_slot}</td>
-                      <td className="p-2">{g.matchup}</td>
+                      <td className="p-2">
+                        <MatchupCell matchup={g.matchup} />
+                      </td>
                       <td className="p-2">{g.spread}</td>
                       <td className="p-2">{g.network}</td>
                       <td className="p-2">{g.predicted}</td>
@@ -136,6 +136,36 @@ export default function WeeklyPredictions() {
           )}
         </div>
       ))}
+    </div>
+  );
+}
+
+function MatchupCell({ matchup }) {
+  const teams = parseMatchupTeams(matchup);
+
+  return (
+    <div className="matchup-cell">
+      {teams.length > 0 && (
+        <div className="matchup-logos">
+          {teams.map((team) => {
+            const logoUrl = getTeamLogoUrl(team);
+
+            if (!logoUrl) {
+              return null;
+            }
+
+            return (
+              <img
+                key={team}
+                src={logoUrl}
+                alt={`${team} logo`}
+                className="team-logo"
+              />
+            );
+          })}
+        </div>
+      )}
+      <span>{matchup}</span>
     </div>
   );
 }

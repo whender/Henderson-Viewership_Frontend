@@ -408,6 +408,8 @@ export default function TeamProfiles({ teams }) {
     network: "all",
     time_bucket: "all",
     rank_bucket: "all",
+    year_start: "all",
+    year_end: "all",
   });
   const [scenarioData, setScenarioData] = useState(null);
   const [scenarioLoading, setScenarioLoading] = useState(false);
@@ -450,6 +452,8 @@ export default function TeamProfiles({ teams }) {
           network: "all",
           time_bucket: "all",
           rank_bucket: "all",
+          year_start: "all",
+          year_end: "all",
         });
       } catch (err) {
         console.error("Team profile load error:", err);
@@ -515,6 +519,8 @@ export default function TeamProfiles({ teams }) {
           network: scenarioFilters.network,
           time_bucket: scenarioFilters.time_bucket,
           rank_bucket: scenarioFilters.rank_bucket,
+          year_start: scenarioFilters.year_start,
+          year_end: scenarioFilters.year_end,
           include_conf_champ: String(includeConfChamp),
         });
 
@@ -535,6 +541,9 @@ export default function TeamProfiles({ teams }) {
   }, [selectedTeam, compareTeam, scenarioFilters, includeConfChamp]);
 
   const view = buildProfileView(profile, selectedYear, includeConfChamp);
+  const scenarioYearOptions = view
+    ? ["all", ...view.summary.years_available.map((year) => String(year))]
+    : ["all"];
   const logoUrl = getTeamLogoUrl(profile?.team || selectedTeam);
   const compareLogoUrl = getTeamLogoUrl(compareTeam);
   const theme = buildPanelStyle(profile?.team || selectedTeam);
@@ -750,6 +759,42 @@ export default function TeamProfiles({ teams }) {
             </div>
 
             <div className="scenario-controls">
+              <ScenarioSelect
+                label="From Year"
+                value={scenarioFilters.year_start}
+                onChange={(value) =>
+                  setScenarioFilters((prev) => {
+                    const next = { ...prev, year_start: value };
+                    if (
+                      value !== "all" &&
+                      prev.year_end !== "all" &&
+                      Number(value) > Number(prev.year_end)
+                    ) {
+                      next.year_end = value;
+                    }
+                    return next;
+                  })
+                }
+                options={scenarioYearOptions}
+              />
+              <ScenarioSelect
+                label="To Year"
+                value={scenarioFilters.year_end}
+                onChange={(value) =>
+                  setScenarioFilters((prev) => {
+                    const next = { ...prev, year_end: value };
+                    if (
+                      value !== "all" &&
+                      prev.year_start !== "all" &&
+                      Number(value) < Number(prev.year_start)
+                    ) {
+                      next.year_start = value;
+                    }
+                    return next;
+                  })
+                }
+                options={scenarioYearOptions}
+              />
               <ScenarioSelect
                 label="Network"
                 value={scenarioFilters.network}

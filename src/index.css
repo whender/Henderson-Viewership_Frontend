@@ -357,6 +357,107 @@ td {
   z-index: 1;
 }
 
+.profile-brand-trend {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-brand-trend-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.profile-brand-trend-copy {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.profile-brand-trend-chart-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-brand-trend-chart-scroll {
+  width: 100%;
+}
+
+.profile-brand-trend-chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+.profile-brand-trend-gridline {
+  stroke: rgba(var(--team-primary-rgb, 17, 17, 17), 0.08);
+  stroke-width: 1;
+}
+
+.profile-brand-trend-axis {
+  stroke: rgba(var(--team-primary-rgb, 17, 17, 17), 0.16);
+  stroke-width: 1.5;
+}
+
+.profile-brand-trend-tick-label {
+  fill: var(--text-secondary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.profile-brand-trend-point-rank {
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.profile-brand-trend-point-year {
+  fill: var(--text-secondary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.profile-brand-trend-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 8px;
+}
+
+.profile-brand-trend-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+}
+
+.profile-brand-trend-legend-year {
+  color: var(--text-secondary);
+}
+
+.profile-brand-trend-legend-rank {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.profile-brand-trend-legend-lift {
+  color: var(--team-primary, var(--text-primary));
+  font-weight: 700;
+}
+
+.profile-brand-trend-mobile-list {
+  display: none;
+}
+
 .comparison-shell {
   display: grid;
   grid-template-columns: 1fr;
@@ -814,6 +915,65 @@ td {
   .profile-hero-subtitle {
     font-size: 13px;
     line-height: 1.3;
+  }
+
+  .profile-brand-trend-chart-wrap {
+    gap: 10px;
+  }
+
+  .profile-brand-trend-chart-scroll,
+  .profile-brand-trend-legend {
+    display: none;
+  }
+
+  .profile-brand-trend-mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .profile-brand-trend-mobile-item {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 8px 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid rgba(var(--team-primary-rgb, 17, 17, 17), 0.12);
+  }
+
+  .profile-brand-trend-mobile-item:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .profile-brand-trend-mobile-year {
+    color: var(--text-primary);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+
+  .profile-brand-trend-mobile-bar-shell {
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(var(--team-primary-rgb, 17, 17, 17), 0.1);
+    overflow: hidden;
+  }
+
+  .profile-brand-trend-mobile-bar {
+    height: 100%;
+    border-radius: 9999px;
+  }
+
+  .profile-brand-trend-mobile-metrics {
+    grid-column: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--text-primary);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82rem;
+    font-weight: 700;
   }
 
   .metric-card-modern {

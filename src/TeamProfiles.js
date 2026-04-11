@@ -28,6 +28,203 @@ function formatPercent(value) {
   return `${prefix}${value.toFixed(1)}%`;
 }
 
+function formatRank(value) {
+  if (value == null) {
+    return "N/A";
+  }
+
+  return `#${value}`;
+}
+
+function BrandTrendChart({ rows, team }) {
+  if (!Array.isArray(rows) || rows.length === 0) {
+    return null;
+  }
+
+  const theme = getTeamTheme(team);
+  const sortedRows = rows
+    .filter((row) => row?.year != null && row?.brand_rank != null)
+    .slice()
+    .sort((a, b) => a.year - b.year);
+
+  if (!sortedRows.length) {
+    return null;
+  }
+
+  const width = 720;
+  const height = 156;
+  const padding = { top: 14, right: 10, bottom: 34, left: 38 };
+  const rankValues = sortedRows.map((row) => row.brand_rank);
+  const minRank = Math.min(...rankValues);
+  const maxRank = Math.max(...rankValues);
+  const rankRange = Math.max(maxRank - minRank, 1);
+  const xStep =
+    sortedRows.length > 1
+      ? (width - padding.left - padding.right) / (sortedRows.length - 1)
+      : 0;
+
+  const points = sortedRows.map((row, index) => {
+    const x = padding.left + xStep * index;
+    const normalized =
+      rankRange === 0 ? 0.5 : (row.brand_rank - minRank) / rankRange;
+    const y =
+      padding.top +
+      (height - padding.top - padding.bottom) * normalized;
+
+    return { ...row, x, y };
+  });
+
+  const linePath = points
+    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
+    .join(" ");
+  const yTicks = [
+    minRank,
+    Math.round((minRank + maxRank) / 2),
+    maxRank,
+  ].filter((value, index, array) => array.indexOf(value) === index);
+
+  const getY = (rank) => {
+    const normalized = rankRange === 0 ? 0.5 : (rank - minRank) / rankRange;
+    return padding.top + (height - padding.top - padding.bottom) * normalized;
+  };
+
+  return (
+    <div className="profile-brand-trend-chart-wrap">
+      <div className="profile-brand-trend-chart-scroll">
+        <svg
+          viewBox={`0 0 ${width} ${height}`}
+          className="profile-brand-trend-chart"
+          role="img"
+          aria-label={`${team} brand rank trend by year`}
+        >
+          {yTicks.map((tick) => {
+            const y = getY(tick);
+            return (
+              <g key={`${team}-y-${tick}`}>
+                <line
+                  x1={padding.left}
+                  y1={y}
+                  x2={width - padding.right}
+                  y2={y}
+                  className="profile-brand-trend-gridline"
+                />
+                <line
+                  x1={padding.left - 3}
+                  y1={y}
+                  x2={padding.left}
+                  y2={y}
+                  className="profile-brand-trend-axis"
+                />
+                <text
+                  x={padding.left - 8}
+                  y={y + 3}
+                  textAnchor="end"
+                  className="profile-brand-trend-tick-label"
+                >
+                  #{tick}
+                </text>
+              </g>
+            );
+          })}
+          <line
+            x1={padding.left}
+            y1={padding.top}
+            x2={padding.left}
+            y2={height - padding.bottom}
+            className="profile-brand-trend-axis"
+          />
+          <line
+            x1={padding.left}
+            y1={height - padding.bottom}
+            x2={width - padding.right}
+            y2={height - padding.bottom}
+            className="profile-brand-trend-axis"
+          />
+          <path
+            d={linePath}
+            fill="none"
+            stroke={theme.primary}
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {points.map((point) => (
+            <g key={`${team}-${point.year}`}>
+              <line
+                x1={point.x}
+                y1={height - padding.bottom}
+                x2={point.x}
+                y2={height - padding.bottom + 3}
+                className="profile-brand-trend-axis"
+              />
+              <circle
+                cx={point.x}
+                cy={point.y}
+                r="3"
+                fill="#ffffff"
+                stroke={theme.primary}
+                strokeWidth="2"
+              />
+              <text
+                x={point.x}
+                y={point.y - 7}
+                textAnchor="middle"
+                className="profile-brand-trend-point-rank"
+                fill={theme.secondary}
+              >
+                {formatRank(point.brand_rank)}
+              </text>
+              <text
+                x={point.x}
+                y={height - 16}
+                textAnchor="middle"
+                className="profile-brand-trend-point-year"
+              >
+                {point.year}
+              </text>
+            </g>
+          ))}
+        </svg>
+      </div>
+
+      <div className="profile-brand-trend-legend">
+        {sortedRows.map((row) => (
+          <div className="profile-brand-trend-legend-item" key={`${team}-legend-${row.year}`}>
+            <span className="profile-brand-trend-legend-year">{row.year}</span>
+            <span className="profile-brand-trend-legend-rank">{formatRank(row.brand_rank)}</span>
+            <span className="profile-brand-trend-legend-lift">{formatPercent(row.viewership_lift_pct)}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="profile-brand-trend-mobile-list">
+        {sortedRows.map((row, index) => (
+          <div className="profile-brand-trend-mobile-item" key={`${team}-mobile-${row.year}`}>
+            <div className="profile-brand-trend-mobile-year">{row.year}</div>
+            <div className="profile-brand-trend-mobile-bar-shell" aria-hidden="true">
+              <div
+                className="profile-brand-trend-mobile-bar"
+                style={{
+                  width: `${
+                    rankRange === 0
+                      ? 100
+                      : ((maxRank - row.brand_rank) / rankRange) * 100
+                  }%`,
+                  backgroundColor: theme.primary,
+                }}
+              />
+            </div>
+            <div className="profile-brand-trend-mobile-metrics">
+              <span>{formatRank(row.brand_rank)}</span>
+              <span>{formatPercent(row.viewership_lift_pct)}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function hexToRgb(hex) {
   if (!hex || typeof hex !== "string" || !hex.startsWith("#")) {
     return "17, 17, 17";
@@ -474,6 +671,20 @@ export default function TeamProfiles({ teams }) {
                 }
               />
             </div>
+
+            {Array.isArray(profile.summary.brand_trend) && profile.summary.brand_trend.length > 0 && (
+              <div className="profile-brand-trend">
+                <div className="profile-brand-trend-header">
+                  <div>
+                    <div className="profile-hero-kicker">Brand Trend</div>
+                    <p className="profile-brand-trend-copy">
+                      Lower rank is better. Lift values below show the yearly estimated brand premium.
+                    </p>
+                  </div>
+                </div>
+                <BrandTrendChart rows={profile.summary.brand_trend} team={profile.team} />
+              </div>
+            )}
           </div>
 
           <div className="card mb-8">

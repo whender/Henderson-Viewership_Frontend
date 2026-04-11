@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Link, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import WeeklyPredictions from "./WeeklyPredictions";
 import TeamProfiles from "./TeamProfiles";
 import ViewershipRankings from "./ViewershipRankings";
@@ -6,10 +7,25 @@ import BACKEND_BASE from "./config";
 import { getTeamLogoUrl } from "./teamLogos";
 import "./App.css";
 
-export default function App() {
-  const [activeTab, setActiveTab] = useState("predictor");
+const NAV_ITEMS = [
+  ["predictor", "/predictor", "GAME PREDICTOR"],
+  ["brands", "/brands", "BRAND RANKINGS"],
+  ["viewership-rankings", "/viewership-rankings", "VIEWERSHIP RANKINGS"],
+  ["profiles", "/profiles", "TEAM PROFILES"],
+  ["weekly", "/weekly", "WEEKLY PREDICTIONS"],
+  ["model", "/model", "MODEL EXPLANATION"],
+];
 
-  // Predictor State
+function useActiveTab() {
+  const location = useLocation();
+  const active = NAV_ITEMS.find(([, path]) => location.pathname === path);
+  return active?.[0] || "predictor";
+}
+
+export default function App() {
+  const activeTab = useActiveTab();
+  const navigate = useNavigate();
+
   const [teams, setTeams] = useState([]);
   const [team1, setTeam1] = useState("");
   const [team2, setTeam2] = useState("");
@@ -21,7 +37,6 @@ export default function App() {
   const [prediction, setPrediction] = useState(null);
   const [compTier1, setCompTier1] = useState(0);
 
-  // Brand Rankings
   const [brandYears, setBrandYears] = useState([]);
   const [brandYear, setBrandYear] = useState("all");
   const [brandConference, setBrandConference] = useState("all");
@@ -29,14 +44,15 @@ export default function App() {
   const [brandLoading, setBrandLoading] = useState(false);
   const [brandError, setBrandError] = useState("");
 
-  // Fetch Brand Rankings
   async function fetchBrandRankings(yearValue) {
     try {
       setBrandLoading(true);
       setBrandError("");
 
       let url = `${BACKEND_BASE}/brand-rankings`;
-      if (yearValue !== "all") url += `?year=${yearValue}`;
+      if (yearValue !== "all") {
+        url += `?year=${yearValue}`;
+      }
 
       const res = await fetch(url);
       const data = await res.json();
@@ -49,20 +65,24 @@ export default function App() {
     }
   }
 
-  const filteredBrandRows = brandRows.filter((row) =>
-    brandConference === "all" ? true : row.conference === brandConference
+  const filteredBrandRows = useMemo(
+    () => brandRows.filter((row) => (brandConference === "all" ? true : row.conference === brandConference)),
+    [brandRows, brandConference]
   );
-  const brandConferenceOptions = [
-    "all",
-    ...new Set(
-      brandRows
-        .map((row) => row.conference)
-        .filter(Boolean)
-        .sort((a, b) => a.localeCompare(b))
-    ),
-  ];
 
-  // Initial Load
+  const brandConferenceOptions = useMemo(
+    () => [
+      "all",
+      ...new Set(
+        brandRows
+          .map((row) => row.conference)
+          .filter(Boolean)
+          .sort((a, b) => a.localeCompare(b))
+      ),
+    ],
+    [brandRows]
+  );
+
   useEffect(() => {
     fetch(`${BACKEND_BASE}/teams`)
       .then((res) => res.json())
@@ -75,7 +95,6 @@ export default function App() {
     fetchBrandRankings("all");
   }, []);
 
-  // Prediction Handler
   async function handlePredict() {
     const body = {
       team1,
@@ -102,7 +121,6 @@ export default function App() {
     }
   }
 
-  // Spread Input Validation
   function handleSpreadInput(val) {
     if (val === "") return setSpread("");
     if (!/^\d*\.?\d*$/.test(val)) return;
@@ -119,8 +137,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-main flex flex-col">
       <div className="flex-1 px-10 py-12">
-
-        {/* Title */}
         <h1 className="text-4xl font-semibold mb-2">
           Will Henderson — College Football Viewership Model
         </h1>
@@ -128,387 +144,93 @@ export default function App() {
           Predict hypothetical TV audiences using a trained statistical model.
         </p>
 
-        {/* ---------------------------------------------------------
-            Responsive Navigation
-        ---------------------------------------------------------- */}
-
-        {/* Mobile Dropdown */}
         <div className="mb-10 md:hidden">
           <select
             value={activeTab}
-            onChange={(e) => setActiveTab(e.target.value)}
+            onChange={(e) => {
+              const target = NAV_ITEMS.find(([key]) => key === e.target.value);
+              if (target) {
+                navigate(target[1]);
+              }
+            }}
             className="w-full p-3 bg-gray-100 border border-gray-300 rounded"
           >
-            <option value="predictor">Game Predictor</option>
-            <option value="brands">Brand Rankings</option>
-            <option value="viewership-rankings">Viewership Rankings</option>
-            <option value="profiles">Team Profiles</option>
-            <option value="weekly">Weekly Predictions</option>
-            <option value="model">Model Explanation</option>
+            {NAV_ITEMS.map(([key, , label]) => (
+              <option key={key} value={key}>
+                {label}
+              </option>
+            ))}
           </select>
         </div>
 
-        {/* Desktop Tabs */}
         <div className="hidden md:flex space-x-6 mb-10 text-lg font-medium">
-          {[
-            ["predictor", "GAME PREDICTOR"],
-            ["brands", "BRAND RANKINGS"],
-            ["viewership-rankings", "VIEWERSHIP RANKINGS"],
-            ["profiles", "TEAM PROFILES"],
-            ["weekly", "WEEKLY PREDICTIONS"],
-            ["model", "MODEL EXPLANATION"],
-          ].map(([key, label]) => (
-            <button
+          {NAV_ITEMS.map(([key, path, label]) => (
+            <Link
               key={key}
-              onClick={() => setActiveTab(key)}
-              className={
-                "tab-btn " + (activeTab === key ? "tab-btn-active" : "")
-              }
+              to={path}
+              className={"tab-btn " + (activeTab === key ? "tab-btn-active" : "")}
             >
               {label}
-            </button>
+            </Link>
           ))}
         </div>
 
-        {/* ---------------------------------------------------------
-            TAB: GAME PREDICTOR
-        ---------------------------------------------------------- */}
-        {activeTab === "predictor" && (
-          <>
-            <h2 className="text-3xl font-semibold mb-4">Game Predictor</h2>
-
-            <div className="grid grid-cols-2 gap-8 mb-10">
-              <div>
-                <label>Team 1</label>
-                <select
-                  value={team1}
-                  onChange={(e) => {
-                    setTeam1(e.target.value);
-                    setPrediction(null);
-                  }}
-                >
-                  <option value="">Select a team</option>
-                  {teams.map((t) => (
-                    <option key={t.value} value={t.value}>
-                      {t.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label>Team 2</label>
-                <select
-                  value={team2}
-                  onChange={(e) => {
-                    setTeam2(e.target.value);
-                    setPrediction(null);
-                  }}
-                >
-                  <option value="">Select a team</option>
-                  {teams.map((t) => (
-                    <option key={t.value} value={t.value}>
-                      {t.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-8 mb-10">
-              <div>
-                <label>Team 1 Rank (1-25)</label>
-                <input
-                  value={rank1 === 0 ? "" : rank1}
-                  onChange={(e) => {
-                    const v = e.target.value.trim();
-                    if (v === "") return setRank1(0);
-                    if (/^\d+$/.test(v)) {
-                      const n = Number(v);
-                      if (n >= 1 && n <= 25) setRank1(n);
-                    }
-                    setPrediction(null);
-                  }}
-                  placeholder="Unranked"
-                />
-              </div>
-
-              <div>
-                <label>Team 2 Rank (1-25)</label>
-                <input
-                  value={rank2 === 0 ? "" : rank2}
-                  onChange={(e) => {
-                    const v = e.target.value.trim();
-                    if (v === "") return setRank2(0);
-                    if (/^\d+$/.test(v)) {
-                      const n = Number(v);
-                      if (n >= 1 && n <= 25) setRank2(n);
-                    }
-                    setPrediction(null);
-                  }}
-                  placeholder="Unranked"
-                />
-              </div>
-            </div>
-
-            <div className="mb-8">
-              <label>Betting Spread (ex: "2.5")</label>
-              <input
-                value={spread}
-                onChange={(e) => {
-                  handleSpreadInput(e.target.value);
-                  setPrediction(null);
-                }}
-                placeholder="Enter spread"
+        <Routes>
+          <Route
+            path="/"
+            element={<Navigate to="/predictor" replace />}
+          />
+          <Route
+            path="/predictor"
+            element={
+              <PredictorPage
+                teams={teams}
+                team1={team1}
+                setTeam1={setTeam1}
+                team2={team2}
+                setTeam2={setTeam2}
+                rank1={rank1}
+                setRank1={setRank1}
+                rank2={rank2}
+                setRank2={setRank2}
+                spread={spread}
+                setSpread={setSpread}
+                handleSpreadInput={handleSpreadInput}
+                network={network}
+                setNetwork={setNetwork}
+                timeSlot={timeSlot}
+                setTimeSlot={setTimeSlot}
+                prediction={prediction}
+                setPrediction={setPrediction}
+                compTier1={compTier1}
+                setCompTier1={setCompTier1}
+                handlePredict={handlePredict}
               />
-            </div>
-
-            <div className="mb-8">
-              <label>Network</label>
-              <select
-                value={network}
-                onChange={(e) => {
-                  setNetwork(e.target.value);
-                  setPrediction(null);
-                }}
-              >
-                <option value="">Select Network</option>
-                {[
-                  "ABC", "CBS", "NBC", "FOX",
-                  "ESPN", "ESPN2", "ESPNU",
-                  "FS1", "FS2", "BTN", "CW", "NFLN", "ESPNNEWS",
-                ].map((n) => (
-                  <option key={n}>{n}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mb-8">
-              <label>Time Slot (EST)</label>
-              <select
-                value={timeSlot}
-                onChange={(e) => {
-                  setTimeSlot(e.target.value);
-                  setPrediction(null);
-                }}
-              >
-                <option value="">Select Time Slot</option>
-                <option value="Primetime (7:00p–9:00p)">Primetime (7:00p-9:00p EST)</option>
-                <option value="Sunday">Sunday</option>
-                <option value="Monday">Monday</option>
-                <option value="Weekday (Tue–Thu)">Weekday</option>
-                <option value="Friday">Friday</option>
-                <option value="Sat Early (11:00a–2:00p)">Sat Early (11:00a-2:00p EST)</option>
-                <option value="Sat Mid (2:30p–6:30p)">Sat Mid (2:30p-6:30p EST)</option>
-                <option value="Sat Late (9:30p–11:30p)">Sat Late (9:30p-12:00a EST)</option>
-              </select>
-            </div>
-
-            <div className="mb-8">
-              <label className="flex items-center space-x-2">
-                <span>Major Competing Games</span>
-
-                {/* Info Button */}
-                <div className="relative group cursor-pointer">
-                  <span className="info-icon">i</span>
-
-                  {/* Tooltip */}
-                  <div className="absolute hidden group-hover:block bg-black text-white text-xs rounded p-2 w-64 -left-2 mt-1 shadow-lg z-50">
-                    A “major competing game” is another nationally relevant, high-profile matchup airing in the same time window that could pull viewers away from your game.
-                  </div>
-                </div>
-              </label>
-
-              <input
-                value={compTier1 === 0 ? "" : compTier1}
-                onChange={(e) => {
-                  const v = e.target.value.trim();
-                  if (v === "") return setCompTier1(0);
-                  if (/^\d+$/.test(v)) {
-                    const n = Number(v);
-                    if (n >= 0 && n <= 10) setCompTier1(n);
-                  }
-                  setPrediction(null);
-                }}
-                placeholder="None"
+            }
+          />
+          <Route
+            path="/brands"
+            element={
+              <BrandRankingsPage
+                brandYear={brandYear}
+                setBrandYear={setBrandYear}
+                brandYears={brandYears}
+                brandConference={brandConference}
+                setBrandConference={setBrandConference}
+                brandConferenceOptions={brandConferenceOptions}
+                brandLoading={brandLoading}
+                brandError={brandError}
+                filteredBrandRows={filteredBrandRows}
+                fetchBrandRankings={fetchBrandRankings}
               />
-            </div>
-
-            <button onClick={handlePredict} className="btn-primary">
-              Predict Viewership
-            </button>
-
-            {prediction && (
-              <div className="text-center mt-12">
-                <h2 className="text-3xl font-bold mb-2">
-                  Predicted Viewers: {prediction}
-                </h2>
-
-                <div className="team-pill-row">
-                  {[team1, team2].filter(Boolean).map((team) => (
-                    <TeamPill key={team} team={team} />
-                  ))}
-                </div>
-
-                <p className="text-gray-600 text-lg">
-                  {team1 && team2 ? `${team1} vs ${team2}` : ""}
-                  {network ? ` | ${network}` : ""}
-                  {timeSlot ? ` | ${timeSlot}` : ""}
-                </p>
-              </div>
-            )}
-          </>
-        )}
-
-        {/* ---------------------------------------------------------
-             TAB: BRAND POWER
-        ---------------------------------------------------------- */}
-        {activeTab === "brands" && (
-          <>
-            <h2 className="text-3xl font-semibold mb-4">
-              Brand Pull Rankings
-            </h2>
-            <p className="text-gray-500 italic mb-6">
-              These rankings use Nielsen viewership data and supporting metadata from over 2,000 college football games since 2018. 
-              Lift % shows how much a team increases expected TV viewership, compared to a neutral baseline team, independent of structural variables like network, time-slot, opponent, rankings, and competing games.
-            </p>
-            <p className="text-gray-500 text-sm mb-6">
-              Data excludes postseason games.
-            </p>
-
-            <div className="mb-6">
-              <label className="mr-2">Select Year</label>
-              <select
-                value={brandYear}
-                onChange={(e) => {
-                  setBrandYear(e.target.value);
-                  fetchBrandRankings(e.target.value);
-                }}
-              >
-                <option value="all">All Years</option>
-                {brandYears.map((y) => (
-                  <option key={y}>{y}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="mb-6">
-              <label className="mr-2">Conference</label>
-              <select
-                value={brandConference}
-                onChange={(e) => setBrandConference(e.target.value)}
-              >
-                {brandConferenceOptions.map((conference) => (
-                  <option key={conference} value={conference}>
-                    {conference === "all" ? "All Conferences" : conference}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {brandLoading && <p>Loading…</p>}
-            {brandError && <p className="text-red-600">{brandError}</p>}
-
-            {!brandLoading && !brandError && (
-              <div className="overflow-x-auto">
-                <table className="min-w-max w-full">
-                  <thead>
-                    <tr>
-                      <th>Rank</th>
-                      <th>Team</th>
-                      <th>Conference</th>
-                      <th>Lift (%)</th>
-                      <th>Games Used</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredBrandRows.map((row) => (
-                      <tr key={row.team}>
-                        <td>{row.rank}</td>
-                        <td>
-                          <TeamPill team={row.team} compact />
-                        </td>
-                        <td>{row.conference}</td>
-                        <td>{row.viewership_lift_pct.toFixed(1)}</td>
-                        <td>{row.games_used}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-            <p className="text-gray-500 text-sm mt-8 leading-relaxed max-w-3xl">
-              <strong>What is Lift %?</strong><br />
-              Lift % measures a team’s intrinsic drawing power on national television. The
-              model controls for network, time slot, rankings, rivalry status, competitiveness,
-              and competing games, isolating only the brand effect. A Lift % of +150%, for
-              example, means adding that team to a neutral baseline matchup would be expected
-              to increase viewership by 150% (i.e., multiply the audience by 2.5×). Higher Lift %
-              values therefore represent stronger national brands that consistently attract
-              larger TV audiences.
-            </p>
-          </>
-        )}
-
-        {/* ---------------------------------------------------------
-             TAB: VIEWERSHIP RANKINGS
-        ---------------------------------------------------------- */}
-        {activeTab === "viewership-rankings" && <ViewershipRankings />}
-
-        {/* ---------------------------------------------------------
-             TAB: TEAM PROFILES
-        ---------------------------------------------------------- */}
-        {activeTab === "profiles" && <TeamProfiles teams={teams} />}
-
-        {/* ---------------------------------------------------------
-             TAB: WEEKLY PREDICTIONS
-        ---------------------------------------------------------- */}
-        {activeTab === "weekly" && <WeeklyPredictions />}
-
-        {/* ---------------------------------------------------------
-             TAB: MODEL EXPLANATION
-        ---------------------------------------------------------- */}
-        {activeTab === "model" && (
-          <div className="card" style={{ maxWidth: "860px", lineHeight: 1.6 }}>
-            <h2 className="text-3xl font-semibold mb-4">Model Explanation</h2>
-
-            <p className="text-gray-600 mb-4">
-              This viewership model uses several years of college football TV ratings
-              to estimate how many people would watch a hypothetical matchup.
-            </p>
-
-            <p className="text-gray-600 mb-4">
-              The core idea is simple: certain factors consistently influence TV
-              audiences. These include team brand power, rankings, network,
-              time slot, rivalry status, and the quality of competing games at the
-              same time. The model learns how much each of these variables has
-              historically moved viewership up or down.
-            </p>
-
-            <p className="text-gray-600 mb-4">
-              To do this accurately, the model uses a statistical technique called
-              “log-transformed regression,” which helps stabilize variance and
-              makes predictions more reliable. After the model makes a prediction
-              in log-space, a correction called “smearing” is applied so the
-              numbers match real-world viewer counts.
-            </p>
-
-            <p className="text-gray-600 mb-4">
-              Rankings and conferences help quantify team quality. Network
-              indicators represent the impact of national TV exposure. Time-slot
-              flags (e.g., Primetime, Friday, Saturday Early) capture when people
-              tend to watch more or less football. Rivalry indicators tell the model
-              when to expect major viewership spikes that don’t depend on record.
-            </p>
-
-            <p className="text-gray-600 mb-4">
-              Finally, the model calculates a confidence interval, offering a
-              reasonable upper and lower range to show uncertainty around each
-              prediction. While no model is perfect, this approach provides a
-              consistent, transparent, and data-driven way to forecast viewership.
-            </p>
-          </div>
-        )}
+            }
+          />
+          <Route path="/viewership-rankings" element={<ViewershipRankings />} />
+          <Route path="/profiles" element={<TeamProfiles teams={teams} />} />
+          <Route path="/weekly" element={<WeeklyPredictions />} />
+          <Route path="/model" element={<ModelExplanationPage />} />
+          <Route path="*" element={<Navigate to="/predictor" replace />} />
+        </Routes>
       </div>
 
       <footer className="mt-20 py-6 border-t text-center text-gray-600 text-sm">
@@ -519,6 +241,356 @@ export default function App() {
           📧 wshenderson7@gmail.com • 𝕏 @willshenderson7
         </p>
       </footer>
+    </div>
+  );
+}
+
+function PredictorPage({
+  teams,
+  team1,
+  setTeam1,
+  team2,
+  setTeam2,
+  rank1,
+  setRank1,
+  rank2,
+  setRank2,
+  spread,
+  handleSpreadInput,
+  network,
+  setNetwork,
+  timeSlot,
+  setTimeSlot,
+  prediction,
+  setPrediction,
+  compTier1,
+  setCompTier1,
+  handlePredict,
+}) {
+  return (
+    <>
+      <h2 className="text-3xl font-semibold mb-4">Game Predictor</h2>
+
+      <div className="grid grid-cols-2 gap-8 mb-10">
+        <div>
+          <label>Team 1</label>
+          <select
+            value={team1}
+            onChange={(e) => {
+              setTeam1(e.target.value);
+              setPrediction(null);
+            }}
+          >
+            <option value="">Select a team</option>
+            {teams.map((t) => (
+              <option key={t.value} value={t.value}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label>Team 2</label>
+          <select
+            value={team2}
+            onChange={(e) => {
+              setTeam2(e.target.value);
+              setPrediction(null);
+            }}
+          >
+            <option value="">Select a team</option>
+            {teams.map((t) => (
+              <option key={t.value} value={t.value}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-8 mb-10">
+        <div>
+          <label>Team 1 Rank (1-25)</label>
+          <input
+            value={rank1 === 0 ? "" : rank1}
+            onChange={(e) => {
+              const v = e.target.value.trim();
+              if (v === "") return setRank1(0);
+              if (/^\d+$/.test(v)) {
+                const n = Number(v);
+                if (n >= 1 && n <= 25) setRank1(n);
+              }
+              setPrediction(null);
+            }}
+            placeholder="Unranked"
+          />
+        </div>
+
+        <div>
+          <label>Team 2 Rank (1-25)</label>
+          <input
+            value={rank2 === 0 ? "" : rank2}
+            onChange={(e) => {
+              const v = e.target.value.trim();
+              if (v === "") return setRank2(0);
+              if (/^\d+$/.test(v)) {
+                const n = Number(v);
+                if (n >= 1 && n <= 25) setRank2(n);
+              }
+              setPrediction(null);
+            }}
+            placeholder="Unranked"
+          />
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <label>Betting Spread (ex: "2.5")</label>
+        <input
+          value={spread}
+          onChange={(e) => {
+            handleSpreadInput(e.target.value);
+            setPrediction(null);
+          }}
+          placeholder="Enter spread"
+        />
+      </div>
+
+      <div className="mb-8">
+        <label>Network</label>
+        <select
+          value={network}
+          onChange={(e) => {
+            setNetwork(e.target.value);
+            setPrediction(null);
+          }}
+        >
+          <option value="">Select Network</option>
+          {[
+            "ABC", "CBS", "NBC", "FOX",
+            "ESPN", "ESPN2", "ESPNU",
+            "FS1", "FS2", "BTN", "CW", "NFLN", "ESPNNEWS",
+          ].map((n) => (
+            <option key={n}>{n}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mb-8">
+        <label>Time Slot (EST)</label>
+        <select
+          value={timeSlot}
+          onChange={(e) => {
+            setTimeSlot(e.target.value);
+            setPrediction(null);
+          }}
+        >
+          <option value="">Select Time Slot</option>
+          <option value="Primetime (7:00p–9:00p)">Primetime (7:00p-9:00p EST)</option>
+          <option value="Sunday">Sunday</option>
+          <option value="Monday">Monday</option>
+          <option value="Weekday (Tue–Thu)">Weekday</option>
+          <option value="Friday">Friday</option>
+          <option value="Sat Early (11:00a–2:00p)">Sat Early (11:00a-2:00p EST)</option>
+          <option value="Sat Mid (2:30p–6:30p)">Sat Mid (2:30p-6:30p EST)</option>
+          <option value="Sat Late (9:30p–11:30p)">Sat Late (9:30p-12:00a EST)</option>
+        </select>
+      </div>
+
+      <div className="mb-8">
+        <label className="flex items-center space-x-2">
+          <span>Major Competing Games</span>
+          <div className="relative group cursor-pointer">
+            <span className="info-icon">i</span>
+            <div className="absolute hidden group-hover:block bg-black text-white text-xs rounded p-2 w-64 -left-2 mt-1 shadow-lg z-50">
+              A “major competing game” is another nationally relevant, high-profile matchup airing in the same time window that could pull viewers away from your game.
+            </div>
+          </div>
+        </label>
+
+        <input
+          value={compTier1 === 0 ? "" : compTier1}
+          onChange={(e) => {
+            const v = e.target.value.trim();
+            if (v === "") return setCompTier1(0);
+            if (/^\d+$/.test(v)) {
+              const n = Number(v);
+              if (n >= 0 && n <= 10) setCompTier1(n);
+            }
+            setPrediction(null);
+          }}
+          placeholder="None"
+        />
+      </div>
+
+      <button onClick={handlePredict} className="btn-primary">
+        Predict Viewership
+      </button>
+
+      {prediction && (
+        <div className="text-center mt-12">
+          <h2 className="text-3xl font-bold mb-2">
+            Predicted Viewers: {prediction}
+          </h2>
+
+          <div className="team-pill-row">
+            {[team1, team2].filter(Boolean).map((team) => (
+              <TeamPill key={team} team={team} />
+            ))}
+          </div>
+
+          <p className="text-gray-600 text-lg">
+            {team1 && team2 ? `${team1} vs ${team2}` : ""}
+            {network ? ` | ${network}` : ""}
+            {timeSlot ? ` | ${timeSlot}` : ""}
+          </p>
+        </div>
+      )}
+    </>
+  );
+}
+
+function BrandRankingsPage({
+  brandYear,
+  setBrandYear,
+  brandYears,
+  brandConference,
+  setBrandConference,
+  brandConferenceOptions,
+  brandLoading,
+  brandError,
+  filteredBrandRows,
+  fetchBrandRankings,
+}) {
+  return (
+    <>
+      <h2 className="text-3xl font-semibold mb-4">
+        Brand Pull Rankings
+      </h2>
+      <p className="text-gray-500 italic mb-6">
+        These rankings use Nielsen viewership data and supporting metadata from over 2,000 college football games since 2018.
+        Lift % shows how much a team increases expected TV viewership, compared to a neutral baseline team, independent of structural variables like network, time-slot, opponent, rankings, and competing games.
+      </p>
+      <p className="text-gray-500 text-sm mb-6">
+        Data excludes postseason games.
+      </p>
+
+      <div className="mb-6">
+        <label className="mr-2">Select Year</label>
+        <select
+          value={brandYear}
+          onChange={(e) => {
+            setBrandYear(e.target.value);
+            fetchBrandRankings(e.target.value);
+          }}
+        >
+          <option value="all">All Years</option>
+          {brandYears.map((y) => (
+            <option key={y}>{y}</option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mb-6">
+        <label className="mr-2">Conference</label>
+        <select
+          value={brandConference}
+          onChange={(e) => setBrandConference(e.target.value)}
+        >
+          {brandConferenceOptions.map((conference) => (
+            <option key={conference} value={conference}>
+              {conference === "all" ? "All Conferences" : conference}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {brandLoading && <p>Loading…</p>}
+      {brandError && <p className="text-red-600">{brandError}</p>}
+
+      {!brandLoading && !brandError && (
+        <div className="overflow-x-auto">
+          <table className="min-w-max w-full">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Team</th>
+                <th>Conference</th>
+                <th>Lift (%)</th>
+                <th>Games Used</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredBrandRows.map((row) => (
+                <tr key={row.team}>
+                  <td>{row.rank}</td>
+                  <td>
+                    <TeamPill team={row.team} compact />
+                  </td>
+                  <td>{row.conference}</td>
+                  <td>{row.viewership_lift_pct.toFixed(1)}</td>
+                  <td>{row.games_used}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <p className="text-gray-500 text-sm mt-8 leading-relaxed max-w-3xl">
+        <strong>What is Lift %?</strong><br />
+        Lift % measures a team’s intrinsic drawing power on national television. The
+        model controls for network, time slot, rankings, rivalry status, competitiveness,
+        and competing games, isolating only the brand effect. A Lift % of +150%, for
+        example, means adding that team to a neutral baseline matchup would be expected
+        to increase viewership by 150% (i.e., multiply the audience by 2.5×). Higher Lift %
+        values therefore represent stronger national brands that consistently attract
+        larger TV audiences.
+      </p>
+    </>
+  );
+}
+
+function ModelExplanationPage() {
+  return (
+    <div className="card" style={{ maxWidth: "860px", lineHeight: 1.6 }}>
+      <h2 className="text-3xl font-semibold mb-4">Model Explanation</h2>
+
+      <p className="text-gray-600 mb-4">
+        This viewership model uses several years of college football TV ratings
+        to estimate how many people would watch a hypothetical matchup.
+      </p>
+
+      <p className="text-gray-600 mb-4">
+        The core idea is simple: certain factors consistently influence TV
+        audiences. These include team brand power, rankings, network,
+        time slot, rivalry status, and the quality of competing games at the
+        same time. The model learns how much each of these variables has
+        historically moved viewership up or down.
+      </p>
+
+      <p className="text-gray-600 mb-4">
+        To do this accurately, the model uses a statistical technique called
+        “log-transformed regression,” which helps stabilize variance and
+        makes predictions more reliable. After the model makes a prediction
+        in log-space, a correction called “smearing” is applied so the
+        numbers match real-world viewer counts.
+      </p>
+
+      <p className="text-gray-600 mb-4">
+        Rankings and conferences help quantify team quality. Network
+        indicators represent the impact of national TV exposure. Time-slot
+        flags (e.g., Primetime, Friday, Saturday Early) capture when people
+        tend to watch more or less football. Rivalry indicators tell the model
+        when to expect major viewership spikes that don’t depend on record.
+      </p>
+
+      <p className="text-gray-600 mb-4">
+        Finally, the model calculates a confidence interval, offering a
+        reasonable upper and lower range to show uncertainty around each
+        prediction. While no model is perfect, this approach provides a
+        consistent, transparent, and data-driven way to forecast viewership.
+      </p>
     </div>
   );
 }

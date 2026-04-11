@@ -147,7 +147,8 @@ function buildProfileView(profile, selectedYear, includeConfChamp) {
     return null;
   }
 
-  const includedGames = profile.games.filter((game) => includeConfChamp || !game.conf_champ);
+  const games = Array.isArray(profile.games) ? profile.games : [];
+  const includedGames = games.filter((game) => includeConfChamp || !game.conf_champ);
   const filteredGames = includedGames.filter((game) =>
     selectedYear === "all" ? true : String(game.year) === selectedYear
   );
@@ -165,7 +166,7 @@ function buildProfileView(profile, selectedYear, includeConfChamp) {
     yearlyRows,
     summary,
     topGames,
-    hasConfChampGames: profile.games.some((game) => game.conf_champ),
+    hasConfChampGames: games.some((game) => game.conf_champ),
   };
 }
 
@@ -188,6 +189,9 @@ async function fetchProfile(team) {
   const response = await fetch(
     `${BACKEND_BASE}/team-profile?team=${encodeURIComponent(team)}`
   );
+  if (!response.ok) {
+    throw new Error(`Team profile request failed (${response.status})`);
+  }
   return response.json();
 }
 

@@ -492,6 +492,12 @@ function BrandRankingsPage({
         </select>
       </div>
 
+      <p className="text-gray-500 text-sm mb-6 max-w-3xl leading-relaxed">
+        Single-year brand estimates are noisier than the all-years ranking. Smaller samples,
+        unusual schedules, and one-season matchup context can move a team’s yearly lift more
+        than its long-run underlying brand strength.
+      </p>
+
       <div className="mb-6">
         <label className="mr-2">Conference</label>
         <select

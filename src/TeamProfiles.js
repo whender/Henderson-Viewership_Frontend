@@ -28,195 +28,83 @@ function formatPercent(value) {
   return `${prefix}${value.toFixed(1)}%`;
 }
 
-function formatRank(value) {
-  if (value == null) {
-    return "N/A";
-  }
-
-  return `#${value}`;
-}
-
-function BrandTrendChart({ rows, team }) {
+function YearlyOverperformanceTrend({ rows, team }) {
   if (!Array.isArray(rows) || rows.length === 0) {
     return null;
   }
 
   const theme = getTeamTheme(team);
   const sortedRows = rows
-    .filter((row) => row?.year != null && row?.brand_rank != null)
+    .filter((row) => row?.year != null)
     .slice()
-    .sort((a, b) => a.year - b.year);
+    .sort((a, b) => b.year - a.year);
 
   if (!sortedRows.length) {
     return null;
   }
 
-  const width = 720;
-  const height = 156;
-  const padding = { top: 14, right: 10, bottom: 34, left: 38 };
-  const rankValues = sortedRows.map((row) => row.brand_rank);
-  const minRank = Math.min(...rankValues);
-  const maxRank = Math.max(...rankValues);
-  const rankRange = Math.max(maxRank - minRank, 1);
-  const xStep =
-    sortedRows.length > 1
-      ? (width - padding.left - padding.right) / (sortedRows.length - 1)
-      : 0;
-
-  const points = sortedRows.map((row, index) => {
-    const x = padding.left + xStep * index;
-    const normalized =
-      rankRange === 0 ? 0.5 : (row.brand_rank - minRank) / rankRange;
-    const y =
-      padding.top +
-      (height - padding.top - padding.bottom) * normalized;
-
-    return { ...row, x, y };
-  });
-
-  const linePath = points
-    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`)
-    .join(" ");
-  const yTicks = [
-    minRank,
-    Math.round((minRank + maxRank) / 2),
-    maxRank,
-  ].filter((value, index, array) => array.indexOf(value) === index);
-
-  const getY = (rank) => {
-    const normalized = rankRange === 0 ? 0.5 : (rank - minRank) / rankRange;
-    return padding.top + (height - padding.top - padding.bottom) * normalized;
-  };
+  const overperformanceValues = sortedRows
+    .map((row) => row.overperformance_pct)
+    .filter((value) => value != null);
+  const maxPositiveOverperformance = overperformanceValues.length
+    ? Math.max(0, ...overperformanceValues)
+    : 0;
+  const maxNegativeUnderperformance = overperformanceValues.length
+    ? Math.min(0, ...overperformanceValues)
+    : 0;
 
   return (
-    <div className="profile-brand-trend-chart-wrap">
-      <div className="profile-brand-trend-chart-scroll">
-        <svg
-          viewBox={`0 0 ${width} ${height}`}
-          className="profile-brand-trend-chart"
-          role="img"
-          aria-label={`${team} brand rank trend by year`}
-        >
-          {yTicks.map((tick) => {
-            const y = getY(tick);
-            return (
-              <g key={`${team}-y-${tick}`}>
-                <line
-                  x1={padding.left}
-                  y1={y}
-                  x2={width - padding.right}
-                  y2={y}
-                  className="profile-brand-trend-gridline"
-                />
-                <line
-                  x1={padding.left - 3}
-                  y1={y}
-                  x2={padding.left}
-                  y2={y}
-                  className="profile-brand-trend-axis"
-                />
-                <text
-                  x={padding.left - 8}
-                  y={y + 3}
-                  textAnchor="end"
-                  className="profile-brand-trend-tick-label"
-                >
-                  #{tick}
-                </text>
-              </g>
-            );
-          })}
-          <line
-            x1={padding.left}
-            y1={padding.top}
-            x2={padding.left}
-            y2={height - padding.bottom}
-            className="profile-brand-trend-axis"
-          />
-          <line
-            x1={padding.left}
-            y1={height - padding.bottom}
-            x2={width - padding.right}
-            y2={height - padding.bottom}
-            className="profile-brand-trend-axis"
-          />
-          <path
-            d={linePath}
-            fill="none"
-            stroke={theme.primary}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          {points.map((point) => (
-            <g key={`${team}-${point.year}`}>
-              <line
-                x1={point.x}
-                y1={height - padding.bottom}
-                x2={point.x}
-                y2={height - padding.bottom + 3}
-                className="profile-brand-trend-axis"
-              />
-              <circle
-                cx={point.x}
-                cy={point.y}
-                r="3"
-                fill="#ffffff"
-                stroke={theme.primary}
-                strokeWidth="2"
-              />
-              <text
-                x={point.x}
-                y={point.y - 7}
-                textAnchor="middle"
-                className="profile-brand-trend-point-rank"
-                fill={theme.secondary}
-              >
-                {formatRank(point.brand_rank)}
-              </text>
-              <text
-                x={point.x}
-                y={height - 16}
-                textAnchor="middle"
-                className="profile-brand-trend-point-year"
-              >
-                {point.year}
-              </text>
-            </g>
-          ))}
-        </svg>
-      </div>
-
-      <div className="profile-brand-trend-legend">
+    <div className="profile-yearly-trend">
+      <div className="profile-yearly-trend-grid">
         {sortedRows.map((row) => (
-          <div className="profile-brand-trend-legend-item" key={`${team}-legend-${row.year}`}>
-            <span className="profile-brand-trend-legend-year">{row.year}</span>
-            <span className="profile-brand-trend-legend-rank">{formatRank(row.brand_rank)}</span>
-            <span className="profile-brand-trend-legend-lift">{formatPercent(row.viewership_lift_pct)}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="profile-brand-trend-mobile-list">
-        {sortedRows.map((row, index) => (
-          <div className="profile-brand-trend-mobile-item" key={`${team}-mobile-${row.year}`}>
-            <div className="profile-brand-trend-mobile-year">{row.year}</div>
-            <div className="profile-brand-trend-mobile-bar-shell" aria-hidden="true">
+          <div className="profile-yearly-trend-item" key={`${team}-${row.year}`}>
+            <div className="profile-yearly-trend-top">
+              <span className="profile-yearly-trend-year">{row.year}</span>
+              <span
+                className={`profile-yearly-trend-badge ${
+                  row.average_minus_expected > 0
+                    ? "profile-yearly-trend-badge-positive"
+                    : row.average_minus_expected < 0
+                      ? "profile-yearly-trend-badge-negative"
+                      : "profile-yearly-trend-badge-neutral"
+                }`}
+              >
+                {formatPercent(row.overperformance_pct)}
+              </span>
+            </div>
+            <div className="profile-yearly-trend-bar-shell" aria-hidden="true">
               <div
-                className="profile-brand-trend-mobile-bar"
+                className="profile-yearly-trend-bar"
                 style={{
                   width: `${
-                    rankRange === 0
-                      ? 100
-                      : ((maxRank - row.brand_rank) / rankRange) * 100
+                    row.overperformance_pct == null
+                      ? 0
+                      : row.overperformance_pct > 0 && maxPositiveOverperformance > 0
+                        ? Math.max(
+                            14,
+                            (row.overperformance_pct / maxPositiveOverperformance) * 100
+                          )
+                        : row.overperformance_pct < 0 && maxNegativeUnderperformance < 0
+                          ? Math.max(
+                              8,
+                              (1 - (Math.abs(row.overperformance_pct) / Math.abs(maxNegativeUnderperformance))) * 28
+                            )
+                          : 10
                   }%`,
-                  backgroundColor: theme.primary,
+                  backgroundColor:
+                    row.average_minus_expected > 0
+                      ? theme.primary
+                      : row.average_minus_expected < 0
+                        ? "#b42318"
+                        : "#98a2b3",
                 }}
               />
             </div>
-            <div className="profile-brand-trend-mobile-metrics">
-              <span>{formatRank(row.brand_rank)}</span>
-              <span>{formatPercent(row.viewership_lift_pct)}</span>
+            <div className="profile-yearly-trend-stats">
+              <span>Actual {formatMillions(row.average_viewers)}</span>
+              <span>Expected {formatMillions(row.expected_average_viewers)}</span>
+              <span>{formatDifference(row.average_minus_expected)}</span>
+              <span>{row.games_above_expected}/{row.games} above</span>
             </div>
           </div>
         ))}
@@ -256,7 +144,6 @@ function buildPanelStyle(team) {
     "--team-primary-rgb": primaryRgb,
     "--team-secondary": theme.secondary,
     borderColor: `rgba(${primaryRgb}, 0.22)`,
-    boxShadow: `0 18px 40px rgba(${primaryRgb}, 0.06)`,
   };
 }
 
@@ -279,17 +166,34 @@ function buildYearlyRows(games) {
       const peakGame = sortedGames[0];
       const lowGame = sortedGames[sortedGames.length - 1];
       const viewers = yearGames.map((game) => game.viewers).sort((a, b) => a - b);
+      const expectedViewers = yearGames
+        .map((game) => game.expected_viewers)
+        .filter((value) => value != null)
+        .sort((a, b) => a - b);
+      const deltas = yearGames
+        .map((game) => game.actual_minus_expected)
+        .filter((value) => value != null);
       const mid = Math.floor(viewers.length / 2);
       const median =
         viewers.length % 2 === 0
           ? (viewers[mid - 1] + viewers[mid]) / 2
           : viewers[mid];
+      const actualSum = yearGames.reduce((sum, game) => sum + (game.viewers ?? 0), 0);
+      const expectedSum = yearGames.reduce(
+        (sum, game) => sum + (game.expected_viewers ?? 0),
+        0
+      );
 
       return {
         year,
         games: yearGames.length,
-        average_viewers: yearGames.reduce((sum, game) => sum + game.viewers, 0) / yearGames.length,
+        average_viewers: actualSum / yearGames.length,
         median_viewers: median,
+        expected_average_viewers: expectedViewers.length ? expectedSum / expectedViewers.length : null,
+        average_minus_expected: expectedViewers.length ? (actualSum / yearGames.length) - (expectedSum / expectedViewers.length) : null,
+        overperformance_pct:
+          expectedSum > 0 ? ((actualSum / expectedSum) - 1) * 100 : null,
+        games_above_expected: deltas.filter((value) => value > 0).length,
         peak_viewers: peakGame.viewers,
         peak_matchup: peakGame.matchup,
         peak_network: peakGame.network,
@@ -307,6 +211,10 @@ function buildSummary(team, games, yearlyRows) {
       years_available: [],
       average_viewers: null,
       median_viewers: null,
+      expected_average_viewers: null,
+      average_minus_expected: null,
+      overperformance_pct: null,
+      games_above_expected: 0,
       peak_viewers: null,
       peak_matchup: null,
       latest_year: null,
@@ -318,6 +226,12 @@ function buildSummary(team, games, yearlyRows) {
     .slice()
     .sort((a, b) => b.viewers - a.viewers || b.year - a.year);
   const viewers = games.map((game) => game.viewers).sort((a, b) => a - b);
+  const expectedValues = games
+    .map((game) => game.expected_viewers)
+    .filter((value) => value != null);
+  const deltaValues = games
+    .map((game) => game.actual_minus_expected)
+    .filter((value) => value != null);
   const mid = Math.floor(viewers.length / 2);
   const median =
     viewers.length % 2 === 0
@@ -325,13 +239,20 @@ function buildSummary(team, games, yearlyRows) {
       : viewers[mid];
   const latestYear = Math.max(...yearlyRows.map((row) => row.year));
   const latestYearRow = yearlyRows.find((row) => row.year === latestYear);
+  const actualSum = games.reduce((sum, game) => sum + (game.viewers ?? 0), 0);
+  const expectedSum = games.reduce((sum, game) => sum + (game.expected_viewers ?? 0), 0);
 
   return {
     team,
     games: games.length,
     years_available: yearlyRows.map((row) => row.year).sort((a, b) => a - b),
-    average_viewers: games.reduce((sum, game) => sum + game.viewers, 0) / games.length,
+    average_viewers: actualSum / games.length,
     median_viewers: median,
+    expected_average_viewers: expectedValues.length ? expectedSum / expectedValues.length : null,
+    average_minus_expected:
+      expectedValues.length ? (actualSum / games.length) - (expectedSum / expectedValues.length) : null,
+    overperformance_pct: expectedSum > 0 ? ((actualSum / expectedSum) - 1) * 100 : null,
+    games_above_expected: deltaValues.filter((value) => value > 0).length,
     peak_viewers: sortedByViewers[0].viewers,
     peak_matchup: sortedByViewers[0].matchup,
     latest_year: latestYear,
@@ -661,37 +582,43 @@ export default function TeamProfiles({ teams }) {
             <div className="profile-metrics">
               <MetricCard
                 label="Typical FBS Expected"
-                value={formatMillions(profile.summary.expected_average_viewers)}
+                value={formatMillions(view.summary.expected_average_viewers)}
               />
               <MetricCard
                 label="Above / Below Expected"
-                value={formatDifference(profile.summary.average_minus_expected)}
+                value={formatDifference(view.summary.average_minus_expected)}
               />
               <MetricCard
                 label="Over / Under Expected"
-                value={formatPercent(profile.summary.overperformance_pct)}
+                value={formatPercent(view.summary.overperformance_pct)}
               />
               <MetricCard
                 label="Games Above Expected"
                 value={
-                  profile.summary.games != null
-                    ? `${profile.summary.games_above_expected}/${profile.summary.games}`
+                  view.summary.games != null
+                    ? `${view.summary.games_above_expected}/${view.summary.games}`
                     : "N/A"
                 }
               />
             </div>
 
-            {Array.isArray(profile.summary.brand_trend) && profile.summary.brand_trend.length > 0 && (
-              <div className="profile-brand-trend">
-                <div className="profile-brand-trend-header">
+            {Array.isArray(view.yearlyRows) && view.yearlyRows.length > 0 && (
+              <div className="profile-yearly-trend-section">
+                <div className="profile-yearly-trend-header">
                   <div>
-                    <div className="profile-hero-kicker">Brand Trend</div>
-                    <p className="profile-brand-trend-copy">
-                      Lower rank is better. Lift values below show the yearly estimated brand premium.
+                    <div className="profile-hero-kicker">Yearly Actual Vs Typical FBS Expected</div>
+                    <p className="profile-yearly-trend-copy">
+                      For each season, this compares the team's actual average viewership to the
+                      average viewership expected for those same games if the team were replaced by
+                      a typical FBS team facing the same opponents in the same windows and contexts.
+                    </p>
+                    <p className="profile-yearly-trend-note">
+                      Positive values mean the team drew more viewers than a typical FBS team would
+                      be expected to draw in that schedule context. Negative values mean it drew less.
                     </p>
                   </div>
                 </div>
-                <BrandTrendChart rows={profile.summary.brand_trend} team={profile.team} />
+                <YearlyOverperformanceTrend rows={view.yearlyRows} team={profile.team} />
               </div>
             )}
           </div>

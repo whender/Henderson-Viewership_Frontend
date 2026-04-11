@@ -242,6 +242,7 @@ const TEAM_COLOR_THEMES = {
   "245": { primary: "#500000", secondary: "#ffffff" },
   "248": { primary: "#c8102e", secondary: "#ffffff" },
   "249": { primary: "#068f33", secondary: "#ffffff" },
+  "251": { primary: "#bf5700", secondary: "#ffffff" },
   "252": { primary: "#0047ba", secondary: "#002e5d" },
   "254": { primary: "#be0000", secondary: "#ffffff" },
   "256": { primary: "#450084", secondary: "#cbb677" },

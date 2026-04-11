@@ -921,6 +921,44 @@ td {
     gap: 10px;
   }
 
+  .card,
+  .comparison-select-card,
+  .scenario-summary-card,
+  .metric-card-modern,
+  .scenario-select-block {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .card,
+  .scenario-summary-card {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .comparison-select-card,
+  .scenario-select-block,
+  .metric-card-modern {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .scenario-shell,
+  .profile-hero-shell {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+
+  .profile-hero-shell::before {
+    width: 4px;
+  }
+
   .simulator-team-logo {
     width: 76px;
     height: 76px;

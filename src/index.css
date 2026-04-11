@@ -955,6 +955,15 @@ td {
     margin-right: -4px;
   }
 
+  .scenario-shell {
+    background: transparent;
+    box-shadow: none;
+    border-top: 0;
+    border-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .profile-hero-shell::before {
     width: 4px;
   }

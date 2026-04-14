@@ -28,12 +28,47 @@ function formatPercent(value) {
   return `${prefix}${value.toFixed(1)}%`;
 }
 
+function formatAxisMillions(value) {
+  if (value == null) {
+    return "0";
+  }
+
+  return value >= 1000 ? `${(value / 1000).toFixed(1)}M` : `${Math.round(value)}K`;
+}
+
+function getNiceAxisMax(value) {
+  if (!value || value <= 0) {
+    return 1000;
+  }
+
+  const targetMillions = value / 1000;
+
+  if (targetMillions <= 1) {
+    return 1000;
+  }
+  if (targetMillions <= 2) {
+    return 2000;
+  }
+  if (targetMillions <= 3) {
+    return 3000;
+  }
+  if (targetMillions <= 4) {
+    return 4000;
+  }
+  if (targetMillions <= 5) {
+    return 5000;
+  }
+
+  return Math.ceil(targetMillions / 2) * 2000;
+}
+
 function YearlyOverperformanceTrend({ rows, team }) {
   if (!Array.isArray(rows) || rows.length === 0) {
     return null;
   }
 
   const theme = getTeamTheme(team);
+  const primaryRgb = hexToRgb(theme.primary);
   const sortedRows = rows
     .filter((row) => row?.year != null)
     .slice()
@@ -43,71 +78,98 @@ function YearlyOverperformanceTrend({ rows, team }) {
     return null;
   }
 
-  const overperformanceValues = sortedRows
-    .map((row) => row.overperformance_pct)
-    .filter((value) => value != null);
-  const maxPositiveOverperformance = overperformanceValues.length
-    ? Math.max(0, ...overperformanceValues)
-    : 0;
-  const maxNegativeUnderperformance = overperformanceValues.length
-    ? Math.min(0, ...overperformanceValues)
-    : 0;
+  const maxAudience = sortedRows.reduce((maxValue, row) => {
+    const candidates = [row.average_viewers, row.expected_average_viewers].filter(
+      (value) => value != null
+    );
+    return candidates.length ? Math.max(maxValue, ...candidates) : maxValue;
+  }, 0);
+  const axisMax = getNiceAxisMax(maxAudience);
+  const axisTicks = Array.from({ length: 5 }, (_, index) => {
+    const value = (axisMax / 4) * index;
+    return {
+      value,
+      label: formatAxisMillions(value),
+      left: `${(index / 4) * 100}%`,
+    };
+  });
 
   return (
     <div className="profile-yearly-trend">
-      <div className="profile-yearly-trend-grid">
-        {sortedRows.map((row) => (
-          <div className="profile-yearly-trend-item" key={`${team}-${row.year}`}>
-            <div className="profile-yearly-trend-top">
-              <span className="profile-yearly-trend-year">{row.year}</span>
-              <span
-                className={`profile-yearly-trend-badge ${
-                  row.average_minus_expected > 0
-                    ? "profile-yearly-trend-badge-positive"
-                    : row.average_minus_expected < 0
-                      ? "profile-yearly-trend-badge-negative"
-                      : "profile-yearly-trend-badge-neutral"
-                }`}
-              >
-                {formatPercent(row.overperformance_pct)}
-              </span>
-            </div>
-            <div className="profile-yearly-trend-bar-shell" aria-hidden="true">
-              <div
-                className="profile-yearly-trend-bar"
-                style={{
-                  width: `${
-                    row.overperformance_pct == null
-                      ? 0
-                      : row.overperformance_pct > 0 && maxPositiveOverperformance > 0
-                        ? Math.max(
-                            14,
-                            (row.overperformance_pct / maxPositiveOverperformance) * 100
-                          )
-                        : row.overperformance_pct < 0 && maxNegativeUnderperformance < 0
-                          ? Math.max(
-                              8,
-                              (1 - (Math.abs(row.overperformance_pct) / Math.abs(maxNegativeUnderperformance))) * 28
-                            )
-                          : 10
-                  }%`,
-                  backgroundColor:
-                    row.average_minus_expected > 0
-                      ? theme.primary
-                      : row.average_minus_expected < 0
-                        ? "#b42318"
-                        : "#98a2b3",
-                }}
-              />
-            </div>
-            <div className="profile-yearly-trend-stats">
-              <span>Actual {formatMillions(row.average_viewers)}</span>
-              <span>Expected {formatMillions(row.expected_average_viewers)}</span>
-              <span>{formatDifference(row.average_minus_expected)}</span>
-              <span>{row.games_above_expected}/{row.games} above</span>
-            </div>
-          </div>
+      <div className="profile-yearly-trend-legend" aria-hidden="true">
+        <span className="profile-yearly-trend-legend-item">
+          <span className="profile-yearly-trend-legend-swatch profile-yearly-trend-legend-swatch-expected" />
+          Expected
+        </span>
+        <span className="profile-yearly-trend-legend-item">
+          <span
+            className="profile-yearly-trend-legend-swatch profile-yearly-trend-legend-swatch-actual"
+            style={{ backgroundColor: `rgba(${primaryRgb}, 0.72)`, boxShadow: `0 0 0 1px rgba(${primaryRgb}, 0.28)` }}
+          />
+          Actual
+        </span>
+      </div>
+      <div className="profile-yearly-trend-axis" aria-hidden="true">
+        {axisTicks.map((tick) => (
+          <span
+            key={`${team}-axis-${tick.value}`}
+            className="profile-yearly-trend-axis-tick"
+            style={{ left: tick.left }}
+          >
+            {tick.label}
+          </span>
         ))}
+      </div>
+      <div className="profile-yearly-trend-grid">
+        {sortedRows.map((row) => {
+          const expectedWidth =
+            row.expected_average_viewers != null && axisMax > 0
+              ? (row.expected_average_viewers / axisMax) * 100
+              : 0;
+          const actualWidth =
+            row.average_viewers != null && axisMax > 0
+              ? (row.average_viewers / axisMax) * 100
+              : 0;
+
+          return (
+            <div className="profile-yearly-trend-item" key={`${team}-${row.year}`}>
+              <div className="profile-yearly-trend-top">
+                <span className="profile-yearly-trend-year">{row.year}</span>
+                <span
+                  className={`profile-yearly-trend-badge ${
+                    row.average_minus_expected > 0
+                      ? "profile-yearly-trend-badge-positive"
+                      : row.average_minus_expected < 0
+                        ? "profile-yearly-trend-badge-negative"
+                        : "profile-yearly-trend-badge-neutral"
+                  }`}
+                >
+                  {formatPercent(row.overperformance_pct)}
+                </span>
+              </div>
+              <div className="profile-yearly-trend-bar-shell" aria-hidden="true">
+                <div
+                  className="profile-yearly-trend-bar profile-yearly-trend-bar-expected"
+                  style={{ width: `${expectedWidth}%` }}
+                />
+                <div
+                  className="profile-yearly-trend-bar profile-yearly-trend-bar-actual profile-yearly-trend-bar-top"
+                  style={{
+                    width: `${actualWidth}%`,
+                    backgroundColor: `rgba(${primaryRgb}, 0.72)`,
+                    boxShadow: `0 0 0 1px rgba(${primaryRgb}, 0.28)`,
+                  }}
+                />
+              </div>
+              <div className="profile-yearly-trend-stats">
+                <span>Actual {formatMillions(row.average_viewers)}</span>
+                <span>Expected {formatMillions(row.expected_average_viewers)}</span>
+                <span>{formatDifference(row.average_minus_expected)}</span>
+                <span>{row.games_above_expected}/{row.games} above</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -609,8 +671,9 @@ export default function TeamProfiles({ teams }) {
                     <div className="profile-hero-kicker">Yearly Actual Vs Typical FBS Expected</div>
                     <p className="profile-yearly-trend-copy">
                       For each season, this compares the team's actual average viewership to the
-                      average viewership expected for those same games if the team were replaced by
-                      a typical FBS team facing the same opponents in the same windows and contexts.
+                      average viewership expected for those same games if that team were replaced by
+                      a typical FBS team, while holding the opponent, network, time slot, rankings,
+                      and other game context fixed.
                     </p>
                     <p className="profile-yearly-trend-note">
                       Positive values mean the team drew more viewers than a typical FBS team would

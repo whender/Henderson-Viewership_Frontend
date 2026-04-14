@@ -32,6 +32,7 @@ export default function ViewershipRankings() {
     rank_bucket: "all",
     opponent: "all",
     min_games: "1",
+    include_conf_champ: true,
   });
   const [data, setData] = useState({
     rows: [],
@@ -51,8 +52,12 @@ export default function ViewershipRankings() {
         setError("");
 
         const params = new URLSearchParams({
-          ...filters,
           min_games: filters.min_games === "" ? "1" : filters.min_games,
+          network: filters.network,
+          time_bucket: filters.time_bucket,
+          rank_bucket: filters.rank_bucket,
+          opponent: filters.opponent,
+          include_conf_champ: String(filters.include_conf_champ),
         });
         const res = await fetch(`${BACKEND_BASE}/team-viewership-rankings?${params.toString()}`);
         const payload = await res.json();
@@ -115,6 +120,21 @@ export default function ViewershipRankings() {
             inputMode="numeric"
           />
         </div>
+      </div>
+      <div className="mt-3">
+        <label className="team-profile-toggle">
+          <input
+            type="checkbox"
+            checked={filters.include_conf_champ}
+            onChange={(e) =>
+              setFilters((prev) => ({
+                ...prev,
+                include_conf_champ: e.target.checked,
+              }))
+            }
+          />
+          Include conference championship games
+        </label>
       </div>
 
       {loading && <p>Loading…</p>}

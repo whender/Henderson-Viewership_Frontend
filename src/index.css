@@ -392,10 +392,70 @@ td {
   gap: 10px;
 }
 
+.profile-yearly-trend-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  color: var(--text-secondary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+}
+
+.profile-yearly-trend-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.profile-yearly-trend-legend-swatch {
+  width: 18px;
+  height: 8px;
+  border-radius: 9999px;
+}
+
+.profile-yearly-trend-legend-swatch-expected {
+  background-color: rgba(255, 255, 255, 0.94);
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--team-primary, #111111) 0 1px,
+    transparent 1px 4px
+  );
+  border: 1px solid rgba(var(--team-primary-rgb, 17, 17, 17), 0.3);
+}
+
+.profile-yearly-trend-legend-swatch-actual {
+  background: var(--team-primary, #111111);
+}
+
 .profile-yearly-trend-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+}
+
+.profile-yearly-trend-axis {
+  position: relative;
+  height: 16px;
+  margin-top: -2px;
+}
+
+.profile-yearly-trend-axis-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  color: var(--text-tertiary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.profile-yearly-trend-axis-tick:first-child {
+  transform: translateX(0);
+}
+
+.profile-yearly-trend-axis-tick:last-child {
+  transform: translateX(-100%);
 }
 
 .profile-yearly-trend-item {
@@ -453,15 +513,38 @@ td {
 }
 
 .profile-yearly-trend-bar-shell {
-  height: 7px;
+  position: relative;
+  height: 10px;
   border-radius: 9999px;
-  background: rgba(var(--team-primary-rgb, 17, 17, 17), 0.1);
+  background: rgba(var(--team-primary-rgb, 17, 17, 17), 0.06);
   overflow: hidden;
+  isolation: isolate;
 }
 
 .profile-yearly-trend-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
   height: 100%;
   border-radius: 9999px;
+}
+
+.profile-yearly-trend-bar-expected {
+  background-color: rgba(255, 255, 255, 0.94);
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--team-primary, #111111) 0 1px,
+    transparent 1px 4px
+  );
+  border: 1px solid rgba(var(--team-primary-rgb, 17, 17, 17), 0.3);
+}
+
+.profile-yearly-trend-bar-actual {
+  border-radius: 9999px;
+}
+
+.profile-yearly-trend-bar-top {
+  z-index: 1;
 }
 
 .profile-yearly-trend-stats {
@@ -967,7 +1050,7 @@ td {
   }
 
   .profile-yearly-trend-bar-shell {
-    height: 6px;
+    height: 12px;
   }
 
   .profile-yearly-trend-stats {

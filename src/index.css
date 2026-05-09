@@ -23,6 +23,7 @@ body {
   font-family: "Space Grotesk", sans-serif;
   background-color: #ffffff;        /* ← restored */
   color: #111111;                   /* ← restored */
+  overflow-x: hidden;
 }
 
 .min-h-screen {
@@ -30,8 +31,21 @@ body {
 }
 
 .overflow-x-auto {
+  max-width: 100%;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+}
+
+.brand-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.brand-rankings-table {
+  width: 100%;
+  min-width: 820px;
 }
 
 .info-icon {
@@ -161,6 +175,45 @@ td,
   background-color: #d93737;
 }
 
+.dashboard-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.sport-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #f3f4f6;
+  flex: 0 0 auto;
+}
+
+.sport-toggle button {
+  border: 0;
+  border-radius: calc(var(--radius) - 2px);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 10px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sport-toggle button:hover {
+  color: var(--text-primary);
+}
+
+.sport-toggle .sport-toggle-active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
 /* --------------------------------------------------------
    TABS
 --------------------------------------------------------- */
@@ -231,6 +284,23 @@ td {
   font-weight: 500;
 }
 
+.team-profile-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.team-profile-link:hover span:last-child {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.comparison-page > .profile-hero-shell,
+.comparison-page > .card,
+.comparison-page > .team-profile-sections {
+  display: none;
+}
+
 .team-logo {
   width: 28px;
   height: 28px;
@@ -258,6 +328,99 @@ td {
   gap: 10px;
   margin-bottom: 24px;
   font-weight: 600;
+}
+
+.basketball-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+.basketball-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(130px, 1fr));
+  gap: 10px;
+  min-width: 280px;
+}
+
+.basketball-metric {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #f9fafb;
+  padding: 12px;
+}
+
+.basketball-metric span {
+  display: block;
+  color: var(--text-secondary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.basketball-metric strong {
+  display: block;
+  color: var(--text-primary);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+}
+
+.basketball-tab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.basketball-tab {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #f3f4f6;
+  color: var(--text-secondary);
+  padding: 9px 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 600;
+}
+
+.basketball-tab-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.basketball-profile-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.basketball-model-card {
+  max-width: 900px;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .dashboard-topbar {
+    flex-direction: column;
+  }
+
+  .sport-toggle {
+    margin-bottom: 24px;
+  }
+
+  .basketball-header,
+  .basketball-profile-heading {
+    flex-direction: column;
+  }
+
+  .basketball-metrics {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 .team-profile-toggle input {
@@ -684,11 +847,18 @@ td {
 }
 
 .scenario-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) minmax(180px, 240px);
+  align-items: start;
   gap: 18px;
-  flex-wrap: wrap;
+}
+
+.scenario-title-block {
+  text-align: center;
+}
+
+.scenario-corner-select {
+  width: 100%;
 }
 
 .scenario-compare-select {
@@ -726,12 +896,139 @@ td {
   color: var(--text-secondary);
 }
 
+.brand-filter-card {
+  display: flex;
+  min-height: 58px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.brand-filter-card:hover,
+.brand-filter-card:focus-within {
+  border-color: rgba(15, 23, 42, 0.24);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.brand-filter-label {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.brand-filter-select {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+.brand-deion-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.brand-deion-toggle:hover {
+  border-color: rgba(15, 23, 42, 0.24);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.brand-deion-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.brand-deion-switch {
+  position: relative;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: #d7dde5;
+  transition: background 160ms ease;
+}
+
+.brand-deion-switch span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.22);
+  transition: transform 160ms ease;
+}
+
+.brand-deion-toggle-active {
+  border-color: rgba(37, 99, 235, 0.35);
+  background: rgba(239, 246, 255, 0.92);
+}
+
+.brand-deion-toggle-active .brand-deion-switch {
+  background: #2563eb;
+}
+
+.brand-deion-toggle-active .brand-deion-switch span {
+  transform: translateX(20px);
+}
+
+.brand-deion-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.1;
+}
+
+.brand-deion-copy span {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.brand-deion-copy small {
+  color: var(--text-secondary);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
 .comparison-select-card {
   min-width: 210px;
   padding: 14px;
   border: 1px solid var(--border);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.92);
+}
+
+.simulator-select-card {
+  width: min(100%, 280px);
+  min-width: 0;
 }
 
 .simulator-team-row {
@@ -761,9 +1058,18 @@ td {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   gap: 10px;
   min-width: 0;
+}
+
+.simulator-team-identity {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .simulator-showcase-logo {
@@ -1121,6 +1427,8 @@ td {
   }
 
   .scenario-header {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
 
@@ -1129,6 +1437,24 @@ td {
     width: 100%;
     padding: 12px;
     border-radius: 14px;
+  }
+
+  .scenario-title-block {
+    order: -1;
+    grid-column: 1 / -1;
+    width: 100%;
+    text-align: left;
+  }
+
+  .scenario-title-block h3 {
+    margin-bottom: 0;
+    font-size: 1.35rem;
+    line-height: 1.05;
+  }
+
+  .comparison-select-label {
+    margin-bottom: 6px;
+    font-size: 10px;
   }
 
   .scenario-controls {

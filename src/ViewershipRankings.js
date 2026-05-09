@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import BACKEND_BASE from "./config";
 import { getTeamLogoUrl } from "./teamLogos";
 
@@ -158,7 +159,10 @@ export default function ViewershipRankings() {
                 <tr key={row.team}>
                   <td>{row.rank}</td>
                   <td>
-                    <span className="team-pill team-pill-compact">
+                    <Link
+                      to={`/profiles?team=${encodeURIComponent(row.team)}&sport=football`}
+                      className="team-pill team-pill-compact team-profile-link"
+                    >
                       {getTeamLogoUrl(row.team) && (
                         <img
                           src={getTeamLogoUrl(row.team)}
@@ -167,7 +171,7 @@ export default function ViewershipRankings() {
                         />
                       )}
                       <span>{row.team}</span>
-                    </span>
+                    </Link>
                   </td>
                   <td>{row.conference}</td>
                   <td>{row.games}</td>

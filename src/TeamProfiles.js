@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import BACKEND_BASE from "./config";
 import { getTeamLogoUrl, getTeamTheme } from "./teamLogos";
 
@@ -375,7 +376,17 @@ async function fetchProfile(team) {
   return response.json();
 }
 
-export default function TeamProfiles({ teams }) {
+function resolveTeamValue(rawTeam, teams) {
+  if (!rawTeam) {
+    return "";
+  }
+  const decodedTeam = rawTeam.trim();
+  const match = teams.find((team) => team.value === decodedTeam || team.label === decodedTeam);
+  return match ? match.value : decodedTeam;
+}
+
+export default function TeamProfiles({ teams, comparisonOnly = false }) {
+  const location = useLocation();
   const [selectedTeam, setSelectedTeam] = useState("");
   const [compareTeam, setCompareTeam] = useState("");
   const [selectedYear, setSelectedYear] = useState("all");
@@ -398,6 +409,14 @@ export default function TeamProfiles({ teams }) {
   const [scenarioLoading, setScenarioLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const requestedTeam = resolveTeamValue(params.get("team") || "", teams);
+    if (requestedTeam && requestedTeam !== selectedTeam) {
+      setSelectedTeam(requestedTeam);
+    }
+  }, [location.search, teams, selectedTeam]);
 
   useEffect(() => {
     if (!selectedTeam && teams.length > 0) {
@@ -564,16 +583,20 @@ export default function TeamProfiles({ teams }) {
     : [];
 
   return (
-    <div>
-      <h2 className="text-3xl font-semibold mb-4">Team Profiles</h2>
+    <div className={comparisonOnly ? "comparison-page" : ""}>
+      <h2 className="text-3xl font-semibold mb-4">
+        {comparisonOnly ? "Team Comparison" : "Team Profiles"}
+      </h2>
       <p className="text-gray-600 mb-3 max-w-4xl">
-        Explore one team at a time, then use a cleaner comparison module to stack it
-        against another program under the same conditions.
+        {comparisonOnly
+          ? "Compare two programs under the same TV conditions, then drill into shared opponents and direct matchups."
+          : "Explore one team at a time, then use the linked profile pages from rankings tables."}
       </p>
       <p className="text-gray-500 text-sm mb-6 max-w-4xl">
         Data excludes postseason games.
       </p>
 
+      {!comparisonOnly && (
       <div className="mb-6">
         <label className="mr-2">Select Team</label>
         <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
@@ -585,6 +608,7 @@ export default function TeamProfiles({ teams }) {
           ))}
         </select>
       </div>
+      )}
 
       {hasConfChampGames && (
         <label className="team-profile-toggle">
@@ -612,7 +636,7 @@ export default function TeamProfiles({ teams }) {
                 />
               )}
               <div>
-                <div className="profile-hero-kicker">Team Profile</div>
+                <div className="profile-hero-kicker">{comparisonOnly ? "Primary Team" : "Team Profile"}</div>
                 <h3 className="profile-hero-title">{profile.team}</h3>
                 <p className="profile-hero-subtitle">
                   {view.summary.games} tracked games across {view.summary.years_available.length} seasons
@@ -693,18 +717,28 @@ export default function TeamProfiles({ teams }) {
             </p>
           </div>
 
+          {comparisonOnly && (
           <div className="scenario-shell scenario-shell-premium mb-8">
             <div className="scenario-header">
-              <div>
+              <div className="comparison-select-card scenario-corner-select">
+                <label className="comparison-select-label">Team 1</label>
+                <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
+                  <option value="">Select a team</option>
+                  {teams
+                    .filter((team) => team.value !== compareTeam)
+                    .map((team) => (
+                      <option key={team.value} value={team.value}>
+                        {team.label}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="scenario-title-block">
                 <div className="profile-hero-kicker">Comparison</div>
                 <h3 className="text-2xl font-semibold mb-1">Scenario Simulator</h3>
-                <p className="text-gray-600">
-                  Compare {profile.team} to another team with the same filters, then
-                  drill into shared opponents and direct matchups.
-                </p>
               </div>
-              <div className="comparison-select-card">
-                <label className="comparison-select-label">Compare To</label>
+              <div className="comparison-select-card scenario-corner-select">
+                <label className="comparison-select-label">Team 2</label>
                 <select value={compareTeam} onChange={(e) => setCompareTeam(e.target.value)}>
                   <option value="">Select a team</option>
                   {teams
@@ -720,30 +754,34 @@ export default function TeamProfiles({ teams }) {
 
             <div className="simulator-showcase">
               <div className="simulator-team-display">
-                {logoUrl && (
-                  <img src={logoUrl} alt={`${profile.team} logo`} className="simulator-showcase-logo" />
-                )}
-                <div className="simulator-showcase-name">{profile.team}</div>
-                <div className="simulator-showcase-meta">
-                  Rank {profile.summary.brand_rank != null ? `#${profile.summary.brand_rank}` : "N/A"}
+                <div className="simulator-team-identity">
+                  {logoUrl && (
+                    <img src={logoUrl} alt={`${profile.team} logo`} className="simulator-showcase-logo" />
+                  )}
+                  <div className="simulator-showcase-name">{profile.team}</div>
+                  <div className="simulator-showcase-meta">
+                    Rank {profile.summary.brand_rank != null ? `#${profile.summary.brand_rank}` : "N/A"}
+                  </div>
                 </div>
               </div>
 
               <div className="simulator-versus-badge">vs</div>
 
               <div className="simulator-team-display">
-                {compareLogoUrl && (
-                  <img
-                    src={compareLogoUrl}
-                    alt={`${compareTeam} logo`}
-                    className="simulator-showcase-logo"
-                  />
-                )}
-                <div className="simulator-showcase-name">{compareTeam || "Select team"}</div>
-                <div className="simulator-showcase-meta">
-                  Rank {compareProfile?.summary?.brand_rank != null
-                    ? `#${compareProfile.summary.brand_rank}`
+                <div className="simulator-team-identity">
+                  {compareLogoUrl && (
+                    <img
+                      src={compareLogoUrl}
+                      alt={`${compareTeam} logo`}
+                      className="simulator-showcase-logo"
+                    />
+                  )}
+                  <div className="simulator-showcase-name">{compareTeam || "Select team"}</div>
+                  <div className="simulator-showcase-meta">
+                    Rank {compareProfile?.summary?.brand_rank != null
+                      ? `#${compareProfile.summary.brand_rank}`
                     : "N/A"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -975,6 +1013,7 @@ export default function TeamProfiles({ teams }) {
               </div>
             )}
           </div>
+          )}
 
           <div className="team-profile-sections">
             <div className="team-profile-section">

@@ -3,6 +3,12 @@ import { Link, Navigate, Route, Routes, useLocation, useNavigate } from "react-r
 import WeeklyPredictions from "./WeeklyPredictions";
 import TeamProfiles from "./TeamProfiles";
 import ViewershipRankings from "./ViewershipRankings";
+import {
+  BasketballModelExplanation,
+  BasketballPredictor,
+  BasketballProfiles,
+  BasketballViewershipRankings,
+} from "./BasketballDashboard";
 import BACKEND_BASE from "./config";
 import { getTeamLogoUrl } from "./teamLogos";
 import "./App.css";
@@ -11,27 +17,44 @@ const NAV_ITEMS = [
   ["predictor", "/predictor", "GAME PREDICTOR"],
   ["brands", "/brands", "BRAND RANKINGS"],
   ["viewership-rankings", "/viewership-rankings", "VIEWERSHIP RANKINGS"],
-  ["profiles", "/profiles", "TEAM PROFILES"],
+  ["comparison", "/comparison", "COMPARISON"],
   ["weekly", "/weekly", "WEEKLY PREDICTIONS"],
   ["model", "/model", "MODEL EXPLANATION"],
 ];
 
+const SPORT_COPY = {
+  football: {
+    label: "College Football",
+    title: "Will Henderson — College Football Viewership Model",
+    description: "Predict hypothetical TV audiences using a trained statistical model.",
+  },
+  basketball: {
+    label: "College Basketball",
+    title: "Will Henderson — College Basketball Viewership Model",
+    description: "Predict hypothetical TV audiences using the basketball version of the same model framework.",
+  },
+};
+
 function useActiveTab() {
   const location = useLocation();
-  const active = NAV_ITEMS.find(([, path]) => location.pathname === path);
-  return active?.[0] || "predictor";
+  const active = NAV_ITEMS.find(([, path]) => (
+    location.pathname === path || (path !== "/" && location.pathname.startsWith(`${path}/`))
+  ));
+  return active?.[0] || "";
 }
 
 export default function App() {
   const activeTab = useActiveTab();
   const navigate = useNavigate();
+  const [sport, setSport] = useState(() => localStorage.getItem("henderson-viewership-sport") || "football");
+  const isBasketball = sport === "basketball";
+  const sportCopy = SPORT_COPY[sport] || SPORT_COPY.football;
 
   const [teams, setTeams] = useState([]);
   const [team1, setTeam1] = useState("");
   const [team2, setTeam2] = useState("");
   const [rank1, setRank1] = useState(0);
   const [rank2, setRank2] = useState(0);
-  const [spread, setSpread] = useState("");
   const [network, setNetwork] = useState("");
   const [timeSlot, setTimeSlot] = useState("");
   const [prediction, setPrediction] = useState(null);
@@ -39,24 +62,52 @@ export default function App() {
 
   const [brandYears, setBrandYears] = useState([]);
   const [brandYear, setBrandYear] = useState("all");
+  const [brandScope, setBrandScope] = useState("combined");
+  const [brandControlDeion, setBrandControlDeion] = useState(false);
   const [brandConference, setBrandConference] = useState("all");
   const [brandRows, setBrandRows] = useState([]);
+  const [brandMetadata, setBrandMetadata] = useState(null);
   const [brandLoading, setBrandLoading] = useState(false);
   const [brandError, setBrandError] = useState("");
+  const [basketballTeams, setBasketballTeams] = useState([]);
+  const [basketballFilters, setBasketballFilters] = useState(null);
+  const [basketballMetadata, setBasketballMetadata] = useState(null);
 
-  async function fetchBrandRankings(yearValue) {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedSport = params.get("sport");
+    if (requestedSport === "football" || requestedSport === "basketball") {
+      setSport(requestedSport);
+      localStorage.setItem("henderson-viewership-sport", requestedSport);
+    }
+  }, [activeTab]);
+
+  function handleSportChange(nextSport) {
+    setSport(nextSport);
+    localStorage.setItem("henderson-viewership-sport", nextSport);
+  }
+
+  async function fetchBrandRankings(
+    yearValue = brandYear,
+    scopeValue = brandScope,
+    controlDeionValue = brandControlDeion
+  ) {
     try {
       setBrandLoading(true);
       setBrandError("");
 
-      let url = `${BACKEND_BASE}/brand-rankings`;
+      const params = new URLSearchParams({ scope: scopeValue });
+      if (controlDeionValue && scopeValue !== "basketball") {
+        params.set("control_deion", "true");
+      }
       if (yearValue !== "all") {
-        url += `?year=${yearValue}`;
+        params.set("year", yearValue);
       }
 
-      const res = await fetch(url);
+      const res = await fetch(`${BACKEND_BASE}/brand-rankings?${params.toString()}`);
       const data = await res.json();
       setBrandRows(data.rows || []);
+      setBrandMetadata(data.metadata || null);
     } catch (err) {
       console.error("Brand load error:", err);
       setBrandError("Failed to load brand rankings.");
@@ -93,6 +144,18 @@ export default function App() {
       .then((data) => setBrandYears(data.years || []));
 
     fetchBrandRankings("all");
+
+    fetch(`${BACKEND_BASE}/cbb/teams`)
+      .then((res) => res.json())
+      .then((data) => setBasketballTeams(data.teams || []));
+
+    fetch(`${BACKEND_BASE}/cbb/filters`)
+      .then((res) => res.json())
+      .then(setBasketballFilters);
+
+    fetch(`${BACKEND_BASE}/cbb/metadata`)
+      .then((res) => res.json())
+      .then(setBasketballMetadata);
   }, []);
 
   async function handlePredict() {
@@ -101,7 +164,6 @@ export default function App() {
       team2,
       rank1,
       rank2,
-      spread: spread === "" ? 0 : Number(spread),
       network,
       time_slot: timeSlot,
       comp_tier1: compTier1,
@@ -121,28 +183,32 @@ export default function App() {
     }
   }
 
-  function handleSpreadInput(val) {
-    if (val === "") return setSpread("");
-    if (!/^\d*\.?\d*$/.test(val)) return;
-    if (val.endsWith(".")) return setSpread(val);
-    if (/^\d+\.$/.test(val)) return setSpread(val.slice(0, -1));
-    if (val.includes(".")) {
-      const parts = val.split(".");
-      if (parts[1] !== "5") return;
-      return setSpread(val);
-    }
-    setSpread(val);
-  }
-
   return (
     <div className="min-h-screen bg-main flex flex-col">
       <div className="flex-1 px-10 py-12">
-        <h1 className="text-4xl font-semibold mb-2">
-          Will Henderson — College Football Viewership Model
-        </h1>
-        <p className="text-gray-600 mb-8">
-          Predict hypothetical TV audiences using a trained statistical model.
-        </p>
+        <div className="dashboard-topbar">
+          <div>
+            <h1 className="text-4xl font-semibold mb-2">
+              {sportCopy.title}
+            </h1>
+            <p className="text-gray-600 mb-8">
+              {sportCopy.description}
+            </p>
+          </div>
+
+          <div className="sport-toggle" aria-label="Sport selector">
+            {["football", "basketball"].map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => handleSportChange(option)}
+                className={sport === option ? "sport-toggle-active" : ""}
+              >
+                {SPORT_COPY[option].label.replace("College ", "")}
+              </button>
+            ))}
+          </div>
+        </div>
 
         <div className="mb-10 md:hidden">
           <select
@@ -155,6 +221,7 @@ export default function App() {
             }}
             className="w-full p-3 bg-gray-100 border border-gray-300 rounded"
           >
+            {!activeTab && <option value="">Team Profile</option>}
             {NAV_ITEMS.map(([key, , label]) => (
               <option key={key} value={key}>
                 {label}
@@ -183,29 +250,30 @@ export default function App() {
           <Route
             path="/predictor"
             element={
-              <PredictorPage
-                teams={teams}
-                team1={team1}
-                setTeam1={setTeam1}
-                team2={team2}
-                setTeam2={setTeam2}
-                rank1={rank1}
-                setRank1={setRank1}
-                rank2={rank2}
-                setRank2={setRank2}
-                spread={spread}
-                setSpread={setSpread}
-                handleSpreadInput={handleSpreadInput}
-                network={network}
-                setNetwork={setNetwork}
-                timeSlot={timeSlot}
-                setTimeSlot={setTimeSlot}
-                prediction={prediction}
-                setPrediction={setPrediction}
-                compTier1={compTier1}
-                setCompTier1={setCompTier1}
-                handlePredict={handlePredict}
-              />
+              isBasketball ? (
+                <BasketballPredictor teams={basketballTeams} filters={basketballFilters} />
+              ) : (
+                <PredictorPage
+                  teams={teams}
+                  team1={team1}
+                  setTeam1={setTeam1}
+                  team2={team2}
+                  setTeam2={setTeam2}
+                  rank1={rank1}
+                  setRank1={setRank1}
+                  rank2={rank2}
+                  setRank2={setRank2}
+                  network={network}
+                  setNetwork={setNetwork}
+                  timeSlot={timeSlot}
+                  setTimeSlot={setTimeSlot}
+                  prediction={prediction}
+                  setPrediction={setPrediction}
+                  compTier1={compTier1}
+                  setCompTier1={setCompTier1}
+                  handlePredict={handlePredict}
+                />
+              )
             }
           />
           <Route
@@ -215,6 +283,11 @@ export default function App() {
                 brandYear={brandYear}
                 setBrandYear={setBrandYear}
                 brandYears={brandYears}
+                brandScope={brandScope}
+                setBrandScope={setBrandScope}
+                brandControlDeion={brandControlDeion}
+                setBrandControlDeion={setBrandControlDeion}
+                brandMetadata={brandMetadata}
                 brandConference={brandConference}
                 setBrandConference={setBrandConference}
                 brandConferenceOptions={brandConferenceOptions}
@@ -225,10 +298,20 @@ export default function App() {
               />
             }
           />
-          <Route path="/viewership-rankings" element={<ViewershipRankings />} />
-          <Route path="/profiles" element={<TeamProfiles teams={teams} />} />
-          <Route path="/weekly" element={<WeeklyPredictions />} />
-          <Route path="/model" element={<ModelExplanationPage />} />
+          <Route
+            path="/viewership-rankings"
+            element={isBasketball ? <BasketballViewershipRankings filters={basketballFilters} /> : <ViewershipRankings />}
+          />
+          <Route
+            path="/profiles"
+            element={isBasketball ? <BasketballProfiles teams={basketballTeams} /> : <TeamProfiles teams={teams} />}
+          />
+          <Route
+            path="/comparison"
+            element={isBasketball ? <BasketballProfiles teams={basketballTeams} comparisonOnly /> : <TeamProfiles teams={teams} comparisonOnly />}
+          />
+          <Route path="/weekly" element={isBasketball ? <BasketballWeeklyPage /> : <WeeklyPredictions />} />
+          <Route path="/model" element={isBasketball ? <BasketballModelExplanation metadata={basketballMetadata} /> : <ModelExplanationPage />} />
           <Route path="*" element={<Navigate to="/predictor" replace />} />
         </Routes>
       </div>
@@ -255,8 +338,6 @@ function PredictorPage({
   setRank1,
   rank2,
   setRank2,
-  spread,
-  handleSpreadInput,
   network,
   setNetwork,
   timeSlot,
@@ -343,18 +424,6 @@ function PredictorPage({
             placeholder="Unranked"
           />
         </div>
-      </div>
-
-      <div className="mb-8">
-        <label>Betting Spread (ex: "2.5")</label>
-        <input
-          value={spread}
-          onChange={(e) => {
-            handleSpreadInput(e.target.value);
-            setPrediction(null);
-          }}
-          placeholder="Enter spread"
-        />
       </div>
 
       <div className="mb-8">
@@ -455,6 +524,11 @@ function BrandRankingsPage({
   brandYear,
   setBrandYear,
   brandYears,
+  brandScope,
+  setBrandScope,
+  brandControlDeion,
+  setBrandControlDeion,
+  brandMetadata,
   brandConference,
   setBrandConference,
   brandConferenceOptions,
@@ -466,23 +540,124 @@ function BrandRankingsPage({
   return (
     <>
       <h2 className="text-3xl font-semibold mb-4">
-        Brand Pull Rankings
+        Media Rights Brand Rankings
       </h2>
       <p className="text-gray-500 italic mb-6">
-        These rankings use Nielsen viewership data and supporting metadata from over 2,000 college football games since 2018.
-        Lift % shows how much a team increases expected TV viewership, compared to a neutral baseline team, independent of structural variables like network, time-slot, opponent, rankings, and competing games.
+        The main ranking combines football and men’s basketball brand pull into a media-rights index.
+        Football receives 85% of the weight and basketball receives 15%, with each sport normalized
+        from its shrinkage-adjusted team effect.
       </p>
       <p className="text-gray-500 text-sm mb-6">
-        Data excludes postseason games.
+        Combined index: 100 is average; each 15 points is roughly one standard deviation of combined media-rights brand value.
       </p>
 
+      <div className="scenario-controls mb-6">
+        <label className="brand-filter-card">
+          <span className="brand-filter-label">Ranking</span>
+          <select
+            className="brand-filter-select"
+            value={brandScope}
+            onChange={(e) => {
+              const nextScope = e.target.value;
+              setBrandScope(nextScope);
+              setBrandConference("all");
+              if (nextScope !== "football") {
+                setBrandYear("all");
+                fetchBrandRankings("all", nextScope, brandControlDeion);
+              } else {
+                fetchBrandRankings(brandYear, nextScope, brandControlDeion);
+              }
+            }}
+          >
+            <option value="combined">Combined Media Index</option>
+            <option value="football">Football Only</option>
+            <option value="basketball">Basketball Only</option>
+          </select>
+        </label>
+        {brandScope === "football" && (
+          <label className="brand-filter-card">
+            <span className="brand-filter-label">Year</span>
+            <select
+              className="brand-filter-select"
+              value={brandYear}
+              onChange={(e) => {
+                setBrandYear(e.target.value);
+                fetchBrandRankings(e.target.value, brandScope, brandControlDeion);
+              }}
+            >
+              <option value="all">All Years</option>
+              {brandYears.map((y) => (
+                <option key={y}>{y}</option>
+              ))}
+            </select>
+          </label>
+        )}
+        <label className="brand-filter-card">
+          <span className="brand-filter-label">Conference</span>
+          <select
+            className="brand-filter-select"
+            value={brandConference}
+            onChange={(e) => setBrandConference(e.target.value)}
+          >
+            {brandConferenceOptions.map((conference) => (
+              <option key={conference} value={conference}>
+                {conference === "all" ? "All Conferences" : conference}
+              </option>
+            ))}
+          </select>
+        </label>
+        {brandScope !== "basketball" && brandYear === "all" && (
+          <label className={`brand-deion-toggle ${brandControlDeion ? "brand-deion-toggle-active" : ""}`}>
+            <input
+              type="checkbox"
+              checked={brandControlDeion}
+              onChange={(e) => {
+                const nextValue = e.target.checked;
+                setBrandControlDeion(nextValue);
+                fetchBrandRankings(brandYear, brandScope, nextValue);
+              }}
+            />
+            <span className="brand-deion-switch" aria-hidden="true">
+              <span />
+            </span>
+            <span className="brand-deion-copy">
+              <span>Colorado Deion Control</span>
+              <small>{brandControlDeion ? "Adjusted" : "Included"}</small>
+            </span>
+          </label>
+        )}
+      </div>
+
+      {brandMetadata?.scope === "combined" && (
+        <p className="text-gray-500 text-sm mb-6 max-w-3xl leading-relaxed">
+          Weights: {(brandMetadata.football_weight * 100).toFixed(0)}% football /
+          {" "}{(brandMetadata.basketball_weight * 100).toFixed(0)}% men’s basketball.
+          Schools without football data receive the bottom football score in the combined index.
+        </p>
+      )}
+      {brandMetadata?.control_deion && (
+        <p className="text-gray-500 text-sm mb-6 max-w-3xl leading-relaxed">
+          Colorado’s football brand score is adjusted to remove the weighted Deion-era lift
+          estimated by the football model.
+        </p>
+      )}
+
+      {brandScope === "football" && (
+        <p className="text-gray-500 text-sm mb-6 max-w-3xl leading-relaxed">
+          Single-year brand estimates are noisier than the all-years ranking. Smaller samples,
+          unusual schedules, and one-season matchup context can move a team’s yearly lift more
+          than its long-run underlying brand strength.
+        </p>
+      )}
+
+      {/*
       <div className="mb-6">
         <label className="mr-2">Select Year</label>
         <select
           value={brandYear}
           onChange={(e) => {
             setBrandYear(e.target.value);
-            fetchBrandRankings(e.target.value);
+            fetchBrandRankings(e.target.value, brandScope);
           }}
         >
           <option value="all">All Years</option>
@@ -491,40 +666,33 @@ function BrandRankingsPage({
           ))}
         </select>
       </div>
-
-      <p className="text-gray-500 text-sm mb-6 max-w-3xl leading-relaxed">
-        Single-year brand estimates are noisier than the all-years ranking. Smaller samples,
-        unusual schedules, and one-season matchup context can move a team’s yearly lift more
-        than its long-run underlying brand strength.
-      </p>
-
-      <div className="mb-6">
-        <label className="mr-2">Conference</label>
-        <select
-          value={brandConference}
-          onChange={(e) => setBrandConference(e.target.value)}
-        >
-          {brandConferenceOptions.map((conference) => (
-            <option key={conference} value={conference}>
-              {conference === "all" ? "All Conferences" : conference}
-            </option>
-          ))}
-        </select>
-      </div>
+      */}
 
       {brandLoading && <p>Loading…</p>}
       {brandError && <p className="text-red-600">{brandError}</p>}
 
       {!brandLoading && !brandError && (
-        <div className="overflow-x-auto">
-          <table className="min-w-max w-full">
+        <div className="brand-table-wrap">
+          <table className="brand-rankings-table">
             <thead>
               <tr>
                 <th>Rank</th>
                 <th>Team</th>
                 <th>Conference</th>
-                <th>Lift (%)</th>
-                <th>Games Used</th>
+                {brandScope === "combined" ? (
+                  <>
+                    <th>Media Index</th>
+                    <th>Football</th>
+                    <th>Basketball</th>
+                    <th>Primary Driver</th>
+                    <th>Games</th>
+                  </>
+                ) : (
+                  <>
+                    <th>Lift (%)</th>
+                    <th>Games Used</th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -532,11 +700,27 @@ function BrandRankingsPage({
                 <tr key={row.team}>
                   <td>{row.rank}</td>
                   <td>
-                    <TeamPill team={row.team} compact />
+                    <TeamPill
+                      team={row.team}
+                      compact
+                      profileSport={getProfileSportForBrandRow(row, brandScope)}
+                    />
                   </td>
                   <td>{row.conference}</td>
-                  <td>{row.viewership_lift_pct.toFixed(1)}</td>
-                  <td>{row.games_used}</td>
+                  {brandScope === "combined" ? (
+                    <>
+                      <td>{row.media_brand_index?.toFixed(1)}</td>
+                      <td>{formatLiftCell(row.football_lift_pct)}</td>
+                      <td>{formatLiftCell(row.basketball_lift_pct)}</td>
+                      <td>{row.primary_driver}</td>
+                      <td>{row.football_games} FB / {row.basketball_games} CBB</td>
+                    </>
+                  ) : (
+                    <>
+                      <td>{Number(row.viewership_lift_pct || 0).toFixed(1)}</td>
+                      <td>{row.games_used}</td>
+                    </>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -544,16 +728,33 @@ function BrandRankingsPage({
         </div>
       )}
       <p className="text-gray-500 text-sm mt-8 leading-relaxed max-w-3xl">
-        <strong>What is Lift %?</strong><br />
-        Lift % measures a team’s intrinsic drawing power on national television. The
-        model controls for network, time slot, rankings, rivalry status, competitiveness,
-        and competing games, isolating only the brand effect. A Lift % of +150%, for
-        example, means adding that team to a neutral baseline matchup would be expected
-        to increase viewership by 150% (i.e., multiply the audience by 2.5×). Higher Lift %
-        values therefore represent stronger national brands that consistently attract
-        larger TV audiences.
+        <strong>How to read this:</strong><br />
+        The combined score is meant to approximate media-rights brand value, where football
+        drives most of the economics and basketball adds secondary value. The sport-only views
+        still show each model’s isolated lift against its own sport baseline.
       </p>
     </>
+  );
+}
+
+function formatLiftCell(liftPct) {
+  if (liftPct == null) return "No data";
+  return `${Number(liftPct).toFixed(1)}%`;
+}
+
+function BasketballWeeklyPage() {
+  return (
+    <div className="card" style={{ maxWidth: "860px", lineHeight: 1.6 }}>
+      <h2 className="text-3xl font-semibold mb-4">Weekly Predictions</h2>
+      <p className="text-gray-600 mb-4">
+        The basketball model is active, but weekly basketball schedule predictions
+        are not wired to a schedule feed yet.
+      </p>
+      <p className="text-gray-600">
+        Use the Game Predictor tab for individual basketball matchups, or switch
+        back to football to view the existing weekly football predictions.
+      </p>
+    </div>
   );
 }
 
@@ -601,13 +802,35 @@ function ModelExplanationPage() {
   );
 }
 
-function TeamPill({ team, compact = false }) {
-  const logoUrl = getTeamLogoUrl(team);
+function getProfileSportForBrandRow(row, brandScope) {
+  if (brandScope === "basketball") {
+    return "basketball";
+  }
+  if (brandScope === "football") {
+    return "football";
+  }
+  return (row.football_games || 0) > 0 ? "football" : "basketball";
+}
 
-  return (
-    <span className={`team-pill ${compact ? "team-pill-compact" : ""}`}>
+function TeamPill({ team, compact = false, profileSport = null }) {
+  const logoUrl = getTeamLogoUrl(team);
+  const content = (
+    <>
       {logoUrl && <img src={logoUrl} alt={`${team} logo`} className="team-logo" />}
       <span>{team}</span>
-    </span>
+    </>
   );
+
+  if (profileSport) {
+    return (
+      <Link
+        to={`/profiles?team=${encodeURIComponent(team)}&sport=${profileSport}`}
+        className={`team-pill team-profile-link ${compact ? "team-pill-compact" : ""}`}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return <span className={`team-pill ${compact ? "team-pill-compact" : ""}`}>{content}</span>;
 }

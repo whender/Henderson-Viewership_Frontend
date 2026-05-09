@@ -160,7 +160,7 @@ export default function ViewershipRankings() {
                   <td>{row.rank}</td>
                   <td>
                     <Link
-                      to={`/profiles?team=${encodeURIComponent(row.team)}&sport=football`}
+                      to={`/teams/football/${encodeURIComponent(row.team)}`}
                       className="team-pill team-pill-compact team-profile-link"
                     >
                       {getTeamLogoUrl(row.team) && (

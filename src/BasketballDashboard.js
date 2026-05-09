@@ -647,7 +647,7 @@ export function BasketballViewershipRankings({ filters }) {
                   <td>{row.rank}</td>
                   <td>
                     <Link
-                      to={`/profiles?team=${encodeURIComponent(row.team)}&sport=basketball`}
+                      to={`/teams/basketball/${encodeURIComponent(row.team)}`}
                       className="team-pill team-pill-compact team-profile-link"
                     >
                       <TeamPill team={row.team} compact />
@@ -674,7 +674,7 @@ function resolveBasketballTeamValue(rawTeam, teams) {
   return match ? match.value : decodedTeam;
 }
 
-export function BasketballProfiles({ teams, comparisonOnly = false }) {
+export function BasketballProfiles({ teams, comparisonOnly = false, initialTeam = "", profileOnly = false }) {
   const location = useLocation();
   const [team, setTeam] = useState("");
   const [compareTeam, setCompareTeam] = useState("");
@@ -694,17 +694,23 @@ export function BasketballProfiles({ teams, comparisonOnly = false }) {
   });
 
   useEffect(() => {
+    const requestedInitialTeam = resolveBasketballTeamValue(initialTeam, teams);
+    if (requestedInitialTeam && requestedInitialTeam !== team) {
+      setTeam(requestedInitialTeam);
+      return;
+    }
+
     const params = new URLSearchParams(location.search);
     const requestedTeam = resolveBasketballTeamValue(params.get("team") || "", teams);
     if (requestedTeam && requestedTeam !== team) {
       setTeam(requestedTeam);
     }
-  }, [location.search, teams, team]);
+  }, [initialTeam, location.search, teams, team]);
 
   useEffect(() => {
-    if (!team && teams.length > 0) setTeam(teams[0].value);
+    if (!team && !profileOnly && teams.length > 0) setTeam(teams[0].value);
     if (!compareTeam && teams.length > 1) setCompareTeam(teams[1].value);
-  }, [teams, team, compareTeam]);
+  }, [teams, team, compareTeam, profileOnly]);
 
   useEffect(() => {
     if (!team) return;
@@ -810,18 +816,18 @@ export function BasketballProfiles({ teams, comparisonOnly = false }) {
   return (
     <div className={comparisonOnly ? "comparison-page" : ""}>
       <h2 className="text-3xl font-semibold mb-4">
-        {comparisonOnly ? "Team Comparison" : "Team Profiles"}
+        {comparisonOnly ? "Team Comparison" : profile?.team ? `${profile.team} Profile` : "Team Profile"}
       </h2>
       <p className="text-gray-600 mb-3 max-w-4xl">
         {comparisonOnly
           ? "Compare two basketball programs under the same conditions."
-          : "Explore one basketball team at a time from the ranking links."}
+          : "A dedicated basketball team page for viewership history and actual-versus-expected performance."}
       </p>
       <p className="text-gray-500 text-sm mb-6 max-w-4xl">
         Data is filtered to men’s college basketball games.
       </p>
 
-      {!comparisonOnly && (
+      {!comparisonOnly && !profileOnly && (
       <div className="mb-6">
         <label className="mr-2">Select Team</label>
         <select value={team} onChange={(event) => setTeam(event.target.value)}>

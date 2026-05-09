@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
 import WeeklyPredictions from "./WeeklyPredictions";
 import TeamProfiles from "./TeamProfiles";
 import ViewershipRankings from "./ViewershipRankings";
@@ -46,6 +46,7 @@ function useActiveTab() {
 export default function App() {
   const activeTab = useActiveTab();
   const navigate = useNavigate();
+  const location = useLocation();
   const [sport, setSport] = useState(() => localStorage.getItem("henderson-viewership-sport") || "football");
   const isBasketball = sport === "basketball";
   const sportCopy = SPORT_COPY[sport] || SPORT_COPY.football;
@@ -85,6 +86,11 @@ export default function App() {
   function handleSportChange(nextSport) {
     setSport(nextSport);
     localStorage.setItem("henderson-viewership-sport", nextSport);
+
+    const teamPageMatch = location.pathname.match(/^\/teams\/(?:football|basketball)\/(.+)$/);
+    if (teamPageMatch) {
+      navigate(`/teams/${nextSport}/${teamPageMatch[1]}`);
+    }
   }
 
   async function fetchBrandRankings(
@@ -221,7 +227,7 @@ export default function App() {
             }}
             className="w-full p-3 bg-gray-100 border border-gray-300 rounded"
           >
-            {!activeTab && <option value="">Team Profile</option>}
+            {!activeTab && <option value="">TEAM PAGE</option>}
             {NAV_ITEMS.map(([key, , label]) => (
               <option key={key} value={key}>
                 {label}
@@ -303,8 +309,14 @@ export default function App() {
             element={isBasketball ? <BasketballViewershipRankings filters={basketballFilters} /> : <ViewershipRankings />}
           />
           <Route
-            path="/profiles"
-            element={isBasketball ? <BasketballProfiles teams={basketballTeams} /> : <TeamProfiles teams={teams} />}
+            path="/teams/:profileSport/:teamId"
+            element={
+              <TeamProfileRoute
+                footballTeams={teams}
+                basketballTeams={basketballTeams}
+                setSport={setSport}
+              />
+            }
           />
           <Route
             path="/comparison"
@@ -812,6 +824,23 @@ function getProfileSportForBrandRow(row, brandScope) {
   return (row.football_games || 0) > 0 ? "football" : "basketball";
 }
 
+function TeamProfileRoute({ footballTeams, basketballTeams, setSport }) {
+  const { profileSport, teamId } = useParams();
+  const decodedTeam = decodeURIComponent(teamId || "");
+  const resolvedSport = profileSport === "basketball" ? "basketball" : "football";
+
+  useEffect(() => {
+    setSport(resolvedSport);
+    localStorage.setItem("henderson-viewership-sport", resolvedSport);
+  }, [resolvedSport, setSport]);
+
+  if (resolvedSport === "basketball") {
+    return <BasketballProfiles teams={basketballTeams} initialTeam={decodedTeam} profileOnly />;
+  }
+
+  return <TeamProfiles teams={footballTeams} initialTeam={decodedTeam} profileOnly />;
+}
+
 function TeamPill({ team, compact = false, profileSport = null }) {
   const logoUrl = getTeamLogoUrl(team);
   const content = (
@@ -824,7 +853,7 @@ function TeamPill({ team, compact = false, profileSport = null }) {
   if (profileSport) {
     return (
       <Link
-        to={`/profiles?team=${encodeURIComponent(team)}&sport=${profileSport}`}
+        to={`/teams/${profileSport}/${encodeURIComponent(team)}`}
         className={`team-pill team-profile-link ${compact ? "team-pill-compact" : ""}`}
       >
         {content}

@@ -385,7 +385,7 @@ function resolveTeamValue(rawTeam, teams) {
   return match ? match.value : decodedTeam;
 }
 
-export default function TeamProfiles({ teams, comparisonOnly = false }) {
+export default function TeamProfiles({ teams, comparisonOnly = false, initialTeam = "", profileOnly = false }) {
   const location = useLocation();
   const [selectedTeam, setSelectedTeam] = useState("");
   const [compareTeam, setCompareTeam] = useState("");
@@ -411,21 +411,27 @@ export default function TeamProfiles({ teams, comparisonOnly = false }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    const requestedInitialTeam = resolveTeamValue(initialTeam, teams);
+    if (requestedInitialTeam && requestedInitialTeam !== selectedTeam) {
+      setSelectedTeam(requestedInitialTeam);
+      return;
+    }
+
     const params = new URLSearchParams(location.search);
     const requestedTeam = resolveTeamValue(params.get("team") || "", teams);
     if (requestedTeam && requestedTeam !== selectedTeam) {
       setSelectedTeam(requestedTeam);
     }
-  }, [location.search, teams, selectedTeam]);
+  }, [initialTeam, location.search, teams, selectedTeam]);
 
   useEffect(() => {
-    if (!selectedTeam && teams.length > 0) {
+    if (!selectedTeam && !profileOnly && teams.length > 0) {
       setSelectedTeam(teams[0].value);
     }
     if (!compareTeam && teams.length > 1) {
       setCompareTeam(teams[1].value);
     }
-  }, [teams, selectedTeam, compareTeam]);
+  }, [teams, selectedTeam, compareTeam, profileOnly]);
 
   useEffect(() => {
     if (!selectedTeam) {
@@ -585,18 +591,18 @@ export default function TeamProfiles({ teams, comparisonOnly = false }) {
   return (
     <div className={comparisonOnly ? "comparison-page" : ""}>
       <h2 className="text-3xl font-semibold mb-4">
-        {comparisonOnly ? "Team Comparison" : "Team Profiles"}
+        {comparisonOnly ? "Team Comparison" : profile?.team ? `${profile.team} Profile` : "Team Profile"}
       </h2>
       <p className="text-gray-600 mb-3 max-w-4xl">
         {comparisonOnly
           ? "Compare two programs under the same TV conditions, then drill into shared opponents and direct matchups."
-          : "Explore one team at a time, then use the linked profile pages from rankings tables."}
+          : "A dedicated team page for viewership history, brand pull, and actual-versus-expected performance."}
       </p>
       <p className="text-gray-500 text-sm mb-6 max-w-4xl">
         Data excludes postseason games.
       </p>
 
-      {!comparisonOnly && (
+      {!comparisonOnly && !profileOnly && (
       <div className="mb-6">
         <label className="mr-2">Select Team</label>
         <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>

@@ -3,6 +3,7 @@ import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } fr
 import WeeklyPredictions from "./WeeklyPredictions";
 import TeamProfiles from "./TeamProfiles";
 import ViewershipRankings from "./ViewershipRankings";
+import RealignmentSimulator from "./RealignmentSimulator";
 import {
   BasketballModelExplanation,
   BasketballPredictor,
@@ -14,13 +15,53 @@ import { getTeamLogoUrl } from "./teamLogos";
 import "./App.css";
 
 const NAV_ITEMS = [
+  ["home", "/", "HOME"],
   ["predictor", "/predictor", "GAME PREDICTOR"],
   ["brands", "/brands", "BRAND RANKINGS"],
   ["viewership-rankings", "/viewership-rankings", "VIEWERSHIP RANKINGS"],
   ["comparison", "/comparison", "COMPARISON"],
+  ["realignment", "/realignment", "REALIGNMENT SIM"],
   ["weekly", "/weekly", "WEEKLY PREDICTIONS"],
+  ["articles", "/articles", "ARTICLES"],
   ["model", "/model", "MODEL EXPLANATION"],
 ];
+
+const TOOL_NAV_KEYS = new Set([
+  "predictor",
+  "brands",
+  "viewership-rankings",
+  "comparison",
+  "realignment",
+  "weekly",
+  "model",
+]);
+
+const FOOTBALL_TOOL_NAV_KEYS = [
+  "predictor",
+  "brands",
+  "viewership-rankings",
+  "comparison",
+  "realignment",
+  "weekly",
+  "model",
+];
+
+const BASKETBALL_TOOL_NAV_KEYS = [
+  "predictor",
+  "brands",
+  "viewership-rankings",
+  "comparison",
+  "model",
+];
+
+const NAV_ITEM_BY_KEY = Object.fromEntries(
+  NAV_ITEMS.map((item) => [item[0], item])
+);
+
+const TOOL_NAV_ITEMS_BY_SPORT = {
+  football: FOOTBALL_TOOL_NAV_KEYS.map((key) => NAV_ITEM_BY_KEY[key]),
+  basketball: BASKETBALL_TOOL_NAV_KEYS.map((key) => NAV_ITEM_BY_KEY[key]),
+};
 
 const SPORT_COPY = {
   football: {
@@ -73,6 +114,14 @@ export default function App() {
   const [basketballTeams, setBasketballTeams] = useState([]);
   const [basketballFilters, setBasketballFilters] = useState(null);
   const [basketballMetadata, setBasketballMetadata] = useState(null);
+  const [homeBrandRows, setHomeBrandRows] = useState([]);
+  const [homeViewershipRows, setHomeViewershipRows] = useState([]);
+  const [navMenuOpen, setNavMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pageCopy = activeTab === "home" ? {
+    title: "Will Henderson - Viewership Model",
+    description: "Viewership tools, rankings, profiles, and conference analysis.",
+  } : sportCopy;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -81,7 +130,12 @@ export default function App() {
       setSport(requestedSport);
       localStorage.setItem("henderson-viewership-sport", requestedSport);
     }
-  }, [activeTab]);
+  }, [activeTab, location.search]);
+
+  useEffect(() => {
+    setNavMenuOpen(false);
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   function handleSportChange(nextSport) {
     setSport(nextSport);
@@ -151,6 +205,11 @@ export default function App() {
 
     fetchBrandRankings("all");
 
+    fetch(`${BACKEND_BASE}/brand-rankings?scope=combined`)
+      .then((res) => res.json())
+      .then((data) => setHomeBrandRows(data.rows || []))
+      .catch((err) => console.error("Home brand preview load error:", err));
+
     fetch(`${BACKEND_BASE}/cbb/teams`)
       .then((res) => res.json())
       .then((data) => setBasketballTeams(data.teams || []));
@@ -162,6 +221,19 @@ export default function App() {
     fetch(`${BACKEND_BASE}/cbb/metadata`)
       .then((res) => res.json())
       .then(setBasketballMetadata);
+
+    const params = new URLSearchParams({
+      min_games: "1",
+      network: "all",
+      time_bucket: "all",
+      rank_bucket: "all",
+      opponent: "all",
+      include_conf_champ: "false",
+    });
+    fetch(`${BACKEND_BASE}/team-viewership-rankings?${params.toString()}`)
+      .then((res) => res.json())
+      .then((data) => setHomeViewershipRows((data.rows || []).slice(0, 5)))
+      .catch((err) => console.error("Home viewership preview load error:", err));
   }, []);
 
   async function handlePredict() {
@@ -195,63 +267,55 @@ export default function App() {
         <div className="dashboard-topbar">
           <div>
             <h1 className="text-4xl font-semibold mb-2">
-              {sportCopy.title}
+              {pageCopy.title}
             </h1>
             <p className="text-gray-600 mb-8">
-              {sportCopy.description}
+              {pageCopy.description}
             </p>
           </div>
-
-          <div className="sport-toggle" aria-label="Sport selector">
-            {["football", "basketball"].map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => handleSportChange(option)}
-                className={sport === option ? "sport-toggle-active" : ""}
-              >
-                {SPORT_COPY[option].label.replace("College ", "")}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-10 md:hidden">
-          <select
-            value={activeTab}
-            onChange={(e) => {
-              const target = NAV_ITEMS.find(([key]) => key === e.target.value);
-              if (target) {
-                navigate(target[1]);
-              }
-            }}
-            className="w-full p-3 bg-gray-100 border border-gray-300 rounded"
+          <button
+            type="button"
+            className="mobile-menu-button md:hidden"
+            aria-label="Open menu"
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen(true)}
           >
-            {!activeTab && <option value="">TEAM PAGE</option>}
-            {NAV_ITEMS.map(([key, , label]) => (
-              <option key={key} value={key}>
-                {label}
-              </option>
-            ))}
-          </select>
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
 
-        <div className="hidden md:flex space-x-6 mb-10 text-lg font-medium">
-          {NAV_ITEMS.map(([key, path, label]) => (
-            <Link
-              key={key}
-              to={path}
-              className={"tab-btn " + (activeTab === key ? "tab-btn-active" : "")}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
+        <MobileDashboardMenu
+          open={mobileMenuOpen}
+          activeTab={activeTab}
+          sport={sport}
+          onClose={() => setMobileMenuOpen(false)}
+          onSportChange={handleSportChange}
+          footballTeams={teams}
+          basketballTeams={basketballTeams}
+        />
+
+        <DashboardNav
+          activeTab={activeTab}
+          sport={sport}
+          onSportChange={handleSportChange}
+          footballTeams={teams}
+          basketballTeams={basketballTeams}
+          navMenuOpen={navMenuOpen}
+          setNavMenuOpen={setNavMenuOpen}
+        />
 
         <Routes>
           <Route
             path="/"
-            element={<Navigate to="/predictor" replace />}
+            element={
+              <HomePage
+                sport={sport}
+                brandRows={homeBrandRows}
+                viewershipRows={homeViewershipRows}
+              />
+            }
           />
           <Route
             path="/predictor"
@@ -322,9 +386,14 @@ export default function App() {
             path="/comparison"
             element={isBasketball ? <BasketballProfiles teams={basketballTeams} comparisonOnly /> : <TeamProfiles teams={teams} comparisonOnly />}
           />
+          <Route
+            path="/realignment"
+            element={isBasketball ? <BasketballRealignmentPage /> : <RealignmentSimulator teams={teams} />}
+          />
           <Route path="/weekly" element={isBasketball ? <BasketballWeeklyPage /> : <WeeklyPredictions />} />
+          <Route path="/articles" element={<ArticlesPage />} />
           <Route path="/model" element={isBasketball ? <BasketballModelExplanation metadata={basketballMetadata} /> : <ModelExplanationPage />} />
-          <Route path="*" element={<Navigate to="/predictor" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
 
@@ -336,6 +405,401 @@ export default function App() {
           📧 wshenderson7@gmail.com • 𝕏 @willshenderson7
         </p>
       </footer>
+    </div>
+  );
+}
+
+function DashboardNav({
+  activeTab,
+  sport,
+  onSportChange,
+  footballTeams,
+  basketballTeams,
+  navMenuOpen,
+  setNavMenuOpen,
+}) {
+  const navigate = useNavigate();
+  const toolsActive = TOOL_NAV_KEYS.has(activeTab);
+  const handleToolClick = (nextSport) => {
+    onSportChange(nextSport);
+    setNavMenuOpen(false);
+  };
+  const teamOptionsBySport = {
+    football: footballTeams || [],
+    basketball: basketballTeams || [],
+  };
+  const handleTeamSelect = (nextSport, team) => {
+    if (!team) return;
+    onSportChange(nextSport);
+    setNavMenuOpen(false);
+    navigate(`/teams/${nextSport}/${encodeURIComponent(team)}`);
+  };
+
+  return (
+    <nav className="dashboard-nav hidden md:flex" aria-label="Dashboard navigation">
+      <Link
+        to="/"
+        className={"dashboard-nav-link " + (activeTab === "home" ? "dashboard-nav-link-active" : "")}
+      >
+        Home
+      </Link>
+
+      <div className="dashboard-menu-wrap">
+        <button
+          type="button"
+          className={"dashboard-nav-link dashboard-menu-trigger " + (toolsActive ? "dashboard-nav-link-active" : "")}
+          onClick={() => setNavMenuOpen((open) => !open)}
+          aria-expanded={navMenuOpen}
+          aria-haspopup="menu"
+        >
+          Tools
+          <span className="dashboard-menu-caret" aria-hidden="true" />
+        </button>
+
+        {navMenuOpen && (
+          <div className="dashboard-menu" role="menu">
+            {["football", "basketball"].map((sportKey) => (
+              <div className="dashboard-menu-section" key={sportKey}>
+                <div className="dashboard-menu-section-title">
+                  {SPORT_COPY[sportKey].label}
+                </div>
+                <div className="dashboard-team-select-block">
+                  <label>Team Profiles</label>
+                  <select
+                    value=""
+                    onChange={(event) => handleTeamSelect(sportKey, event.target.value)}
+                  >
+                    <option value="">Select a team</option>
+                    {teamOptionsBySport[sportKey].map((team) => (
+                      <option key={team.value} value={team.value}>
+                        {team.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {TOOL_NAV_ITEMS_BY_SPORT[sportKey].map(([key, path, label]) => (
+                  <Link
+                    key={`${sportKey}-${key}`}
+                    to={path}
+                    role="menuitem"
+                    onClick={() => handleToolClick(sportKey)}
+                    className={
+                      "dashboard-menu-item "
+                      + (activeTab === key && sport === sportKey ? "dashboard-menu-item-active" : "")
+                    }
+                  >
+                    <span>{label}</span>
+                    <span>{navItemDescription(key, sportKey)}</span>
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <Link
+        to="/articles"
+        className={"dashboard-nav-link " + (activeTab === "articles" ? "dashboard-nav-link-active" : "")}
+      >
+        Articles
+      </Link>
+    </nav>
+  );
+}
+
+function MobileDashboardMenu({
+  open,
+  activeTab,
+  sport,
+  onClose,
+  onSportChange,
+  footballTeams,
+  basketballTeams,
+}) {
+  const navigate = useNavigate();
+  const [expandedSport, setExpandedSport] = useState(sport || "football");
+  const teamOptionsBySport = {
+    football: footballTeams || [],
+    basketball: basketballTeams || [],
+  };
+
+  useEffect(() => {
+    if (open) {
+      setExpandedSport(sport || "football");
+    }
+  }, [open, sport]);
+
+  const handleToolClick = (sportKey) => {
+    onSportChange(sportKey);
+    onClose();
+  };
+
+  const handleTeamSelect = (sportKey, team) => {
+    if (!team) return;
+    onSportChange(sportKey);
+    navigate(`/teams/${sportKey}/${encodeURIComponent(team)}`);
+    onClose();
+  };
+
+  return (
+    <div className={`mobile-drawer-shell ${open ? "mobile-drawer-shell-open" : ""}`} aria-hidden={!open}>
+      <button
+        type="button"
+        className="mobile-drawer-backdrop"
+        aria-label="Close menu"
+        onClick={onClose}
+      />
+      <aside className="mobile-drawer" aria-label="Mobile navigation">
+        <div className="mobile-drawer-header">
+          <div>
+            <span>Menu</span>
+            <strong>Viewership Model</strong>
+          </div>
+          <button type="button" className="mobile-drawer-close" onClick={onClose} aria-label="Close menu">
+            Close
+          </button>
+        </div>
+
+        <div className="mobile-drawer-main-links">
+          <Link
+            to="/"
+            className={"mobile-drawer-link " + (activeTab === "home" ? "mobile-drawer-link-active" : "")}
+            onClick={onClose}
+          >
+            Home
+          </Link>
+          <Link
+            to="/articles"
+            className={"mobile-drawer-link " + (activeTab === "articles" ? "mobile-drawer-link-active" : "")}
+            onClick={onClose}
+          >
+            Articles
+          </Link>
+        </div>
+
+        {["football", "basketball"].map((sportKey) => {
+          const expanded = expandedSport === sportKey;
+          return (
+            <section className="mobile-sport-section" key={sportKey}>
+              <button
+                type="button"
+                className="mobile-sport-trigger"
+                aria-expanded={expanded}
+                onClick={() => setExpandedSport(expanded ? "" : sportKey)}
+              >
+                <span>{SPORT_COPY[sportKey].label}</span>
+                <span className={`mobile-sport-caret ${expanded ? "mobile-sport-caret-open" : ""}`} />
+              </button>
+
+              {expanded && (
+                <div className="mobile-sport-panel">
+                  <label className="mobile-team-select-label">Team Profiles</label>
+                  <select
+                    value=""
+                    onChange={(event) => handleTeamSelect(sportKey, event.target.value)}
+                  >
+                    <option value="">Select a team</option>
+                    {teamOptionsBySport[sportKey].map((team) => (
+                      <option key={team.value} value={team.value}>
+                        {team.label}
+                      </option>
+                    ))}
+                  </select>
+
+                  <div className="mobile-feature-list">
+                    {TOOL_NAV_ITEMS_BY_SPORT[sportKey].map(([key, path, label]) => (
+                      <Link
+                        key={`${sportKey}-${key}`}
+                        to={path}
+                        onClick={() => handleToolClick(sportKey)}
+                        className={
+                          "mobile-feature-link "
+                          + (activeTab === key && sport === sportKey ? "mobile-feature-link-active" : "")
+                        }
+                      >
+                        <span>{label}</span>
+                        <small>{navItemDescription(key, sportKey)}</small>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          );
+        })}
+      </aside>
+    </div>
+  );
+}
+
+function navItemDescription(key, sportKey = "football") {
+  const descriptions = {
+    predictor: "Single-game projections",
+    brands: "Media-rights brand value",
+    "viewership-rankings": "Team audience tables",
+    comparison: "Team profile comparison",
+    realignment: "Conference schedule simulation",
+    weekly: "Weekly game projections",
+    model: "Model explanation",
+  };
+  return descriptions[key] || "";
+}
+
+function HomePage({ sport, brandRows, viewershipRows }) {
+  const brandPreviewRows = (brandRows || []).slice(0, 5);
+  const quickLinks = [
+    {
+      title: "Game Predictor",
+      description: "Project a hypothetical matchup by team, rank, network, window, and competing games.",
+      path: "/predictor",
+      meta: sport === "basketball" ? "Basketball active" : "Football active",
+    },
+    {
+      title: "Brand Rankings",
+      description: "Compare football, basketball, and combined media-rights brand value.",
+      path: "/brands",
+      meta: "Media index",
+    },
+    {
+      title: "Viewership Rankings",
+      description: "Rank teams by average and median audiences under selected TV conditions.",
+      path: "/viewership-rankings",
+      meta: "Filterable table",
+    },
+    {
+      title: "Comparison",
+      description: "Compare two team profiles side by side using the active sport.",
+      path: "/comparison",
+      meta: sport === "basketball" ? "Basketball active" : "Football active",
+    },
+    {
+      title: "Realignment Simulator",
+      description: "Edit conference memberships and simulate schedules, TV slots, and projected viewers.",
+      path: "/realignment",
+      meta: "Football model",
+    },
+  ];
+
+  return (
+    <div className="home-page">
+      <section className="home-hero">
+        <div>
+          <p className="home-kicker">Dashboard Home</p>
+          <h2>Viewership tools, rankings, and conference simulations in one place.</h2>
+        </div>
+        <div className="home-hero-actions">
+          <Link to="/realignment" className="btn-primary">Open Realignment</Link>
+          <Link to="/brands" className="btn-secondary">View Rankings</Link>
+        </div>
+      </section>
+
+      <section className="home-grid">
+        <div className="home-panel home-panel-large">
+          <div className="home-panel-header">
+            <div>
+              <p className="home-kicker">Preview</p>
+              <h3>Combined Brand Rankings</h3>
+            </div>
+            <Link to="/brands" className="home-panel-link">Full rankings</Link>
+          </div>
+          <div className="home-ranking-list">
+            {brandPreviewRows.length ? brandPreviewRows.map((row) => (
+              <div className="home-ranking-row" key={row.team}>
+                <span className="home-ranking-rank">{row.rank}</span>
+                <TeamPill
+                  team={row.team}
+                  compact
+                  profileSport={getProfileSportForBrandRow(row, "combined")}
+                />
+                <span className="home-ranking-value">
+                  {row.media_brand_index != null
+                    ? row.media_brand_index.toFixed(1)
+                    : formatLiftCell(row.viewership_lift_pct)}
+                </span>
+              </div>
+            )) : (
+              <p className="text-gray-600">Loading brand rankings…</p>
+            )}
+          </div>
+        </div>
+
+        <div className="home-panel">
+          <div className="home-panel-header">
+            <div>
+              <p className="home-kicker">Preview</p>
+              <h3>Football Viewership</h3>
+            </div>
+            <Link to="/viewership-rankings" className="home-panel-link">Open table</Link>
+          </div>
+          <div className="home-ranking-list">
+            {viewershipRows.length ? viewershipRows.map((row) => (
+              <div className="home-ranking-row" key={row.team}>
+                <span className="home-ranking-rank">{row.rank}</span>
+                <TeamPill team={row.team} compact profileSport="football" />
+                <span className="home-ranking-value">
+                  {formatHomeViewers(row.average_viewers)}
+                </span>
+              </div>
+            )) : (
+              <p className="text-gray-600">Loading viewership rankings…</p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section className="home-grid home-grid-secondary">
+        <div className="home-panel home-panel-large">
+          <div className="home-panel-header">
+            <div>
+              <p className="home-kicker">Start</p>
+              <h3>Quick Links</h3>
+            </div>
+          </div>
+          <div className="home-link-grid">
+            {quickLinks.map((item) => (
+              <Link to={item.path} className="home-link-card" key={item.title}>
+                <span className="home-link-meta">{item.meta}</span>
+                <strong>{item.title}</strong>
+                <span>{item.description}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="home-panel">
+          <div className="home-panel-header">
+            <div>
+              <p className="home-kicker">Articles</p>
+              <h3>Notebook</h3>
+            </div>
+            <Link to="/articles" className="home-panel-link">Open</Link>
+          </div>
+          <p className="home-article-empty">
+            No articles published yet.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function formatHomeViewers(value) {
+  const number = Number(value || 0);
+  if (!number) return "No data";
+  return `${(number / 1000).toFixed(2)}M`;
+}
+
+function ArticlesPage() {
+  return (
+    <div className="articles-page">
+      <div className="home-panel articles-empty-panel">
+        <p className="home-kicker">Articles</p>
+        <h2>Notebook</h2>
+        <p className="text-gray-600">
+          No articles published yet.
+        </p>
+      </div>
     </div>
   );
 }
@@ -765,6 +1229,17 @@ function BasketballWeeklyPage() {
       <p className="text-gray-600">
         Use the Game Predictor tab for individual basketball matchups, or switch
         back to football to view the existing weekly football predictions.
+      </p>
+    </div>
+  );
+}
+
+function BasketballRealignmentPage() {
+  return (
+    <div className="card" style={{ maxWidth: "860px", lineHeight: 1.6 }}>
+      <h2 className="text-3xl font-semibold mb-4">Conference Realignment Simulator</h2>
+      <p className="text-gray-600">
+        The realignment simulator is currently wired to the football viewership model.
       </p>
     </div>
   );

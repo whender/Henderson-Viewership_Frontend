@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import BACKEND_BASE from "./config";
 import { getTeamLogoUrl, getTeamTheme } from "./teamLogos";
 
@@ -16,8 +16,9 @@ const DEFAULT_FILTERS = {
   time_slot: "all",
   stage: "all",
   season: "all",
-  opponent: "all",
-  min_games: "1",
+  conference: "all",
+  team: "all",
+  rank_bucket: "all",
   include_tournament: true,
 };
 
@@ -38,6 +39,10 @@ function formatPercent(value) {
   if (value == null) return "N/A";
   const prefix = value >= 0 ? "+" : "";
   return `${prefix}${value.toFixed(1)}%`;
+}
+
+function rankLabel(rank) {
+  return Number(rank || 0) > 0 ? `#${rank}` : "UR";
 }
 
 function hexToRgb(hex) {
@@ -582,10 +587,9 @@ export function BasketballViewershipRankings({ filters }) {
       setLoading(true);
       const params = new URLSearchParams({
         ...rankingFilters,
-        min_games: rankingFilters.min_games || "1",
         include_tournament: String(rankingFilters.include_tournament),
       });
-      const res = await fetch(`${BACKEND_BASE}/cbb/viewership-rankings?${params.toString()}`);
+      const res = await fetch(`${BACKEND_BASE}/cbb/game-viewership-rankings?${params.toString()}`);
       const data = await res.json();
       setRows(data.rows || []);
       setAvailableFilters(data.available_filters || filters || {});
@@ -600,7 +604,8 @@ export function BasketballViewershipRankings({ filters }) {
     <div>
       <h2 className="text-3xl font-semibold mb-4">Viewership Rankings</h2>
       <p className="text-gray-600 mb-6 max-w-4xl">
-        Rank teams by average and median viewership under the basketball TV conditions you choose.
+        Rank every rated men&apos;s college basketball game by viewership, then filter
+        by season, network, team, rankings, stage, and TV window.
       </p>
 
       <div className="scenario-controls mb-6">
@@ -608,15 +613,9 @@ export function BasketballViewershipRankings({ filters }) {
         <SelectBlock label="Time Slot" value={rankingFilters.time_slot} onChange={(value) => setRankingFilters((prev) => ({ ...prev, time_slot: value }))} options={optionSets.time_slots || ["all"]} />
         <SelectBlock label="Stage" value={rankingFilters.stage} onChange={(value) => setRankingFilters((prev) => ({ ...prev, stage: value }))} options={optionSets.stages || ["all"]} />
         <SelectBlock label="Season" value={rankingFilters.season} onChange={(value) => setRankingFilters((prev) => ({ ...prev, season: value }))} options={optionSets.seasons || ["all"]} />
-        <SelectBlock label="Opponent" value={rankingFilters.opponent} onChange={(value) => setRankingFilters((prev) => ({ ...prev, opponent: value }))} options={optionSets.opponents || ["all"]} />
-        <div className="scenario-select-block">
-          <label className="scenario-select-label">Minimum Games</label>
-          <input
-            value={rankingFilters.min_games}
-            onChange={(event) => setRankingFilters((prev) => ({ ...prev, min_games: event.target.value.replace(/[^\d]/g, "") }))}
-            inputMode="numeric"
-          />
-        </div>
+        <SelectBlock label="Conference" value={rankingFilters.conference} onChange={(value) => setRankingFilters((prev) => ({ ...prev, conference: value }))} options={optionSets.conferences || ["all"]} />
+        <SelectBlock label="Team" value={rankingFilters.team} onChange={(value) => setRankingFilters((prev) => ({ ...prev, team: value }))} options={optionSets.teams || optionSets.opponents || ["all"]} />
+        <SelectBlock label="Rankings" value={rankingFilters.rank_bucket} onChange={(value) => setRankingFilters((prev) => ({ ...prev, rank_bucket: value }))} options={optionSets.rank_buckets || ["all"]} />
       </div>
       <label className="team-profile-toggle">
         <input
@@ -634,29 +633,35 @@ export function BasketballViewershipRankings({ filters }) {
             <thead>
               <tr>
                 <th>Rank</th>
-                <th>Team</th>
-                <th>Games</th>
-                <th>Average Viewership</th>
-                <th>Median Viewership</th>
-                <th>Peak Viewership</th>
+                <th>Date</th>
+                <th>Season</th>
+                <th>Matchup</th>
+                <th>Network</th>
+                <th>Time Slot</th>
+                <th>Stage</th>
+                <th>Rankings</th>
+                <th>Viewership</th>
               </tr>
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.team}>
+                <tr key={`${row.rank}-${row.season}-${row.date}-${row.matchup}`}>
                   <td>{row.rank}</td>
+                  <td>{row.date}</td>
+                  <td>{row.season}</td>
                   <td>
-                    <Link
-                      to={`/teams/basketball/${encodeURIComponent(row.team)}`}
-                      className="team-pill team-pill-compact team-profile-link"
-                    >
-                      <TeamPill team={row.team} compact />
-                    </Link>
+                    <span className="matchup-cell">
+                      <span className="matchup-logos">
+                        <TeamPill team={row.team1} compact />
+                        <TeamPill team={row.team2} compact />
+                      </span>
+                    </span>
                   </td>
-                  <td>{row.games}</td>
-                  <td>{formatViewers(row.average_viewers)}</td>
-                  <td>{formatViewers(row.median_viewers)}</td>
-                  <td>{formatViewers(row.peak_viewers)}</td>
+                  <td>{row.network}</td>
+                  <td>{row.time_slot || "N/A"}</td>
+                  <td>{row.stage || "N/A"}</td>
+                  <td>{rankLabel(row.team1_rank)} / {rankLabel(row.team2_rank)}</td>
+                  <td>{formatViewers(row.viewers)}</td>
                 </tr>
               ))}
             </tbody>

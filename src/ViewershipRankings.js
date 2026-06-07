@@ -28,11 +28,12 @@ function FilterSelect({ label, value, onChange, options }) {
 
 export default function ViewershipRankings() {
   const [filters, setFilters] = useState({
+    season: "all",
+    conference: "all",
     network: "all",
     time_bucket: "all",
     rank_bucket: "all",
-    opponent: "all",
-    min_games: "1",
+    team: "all",
     include_conf_champ: true,
   });
   const [data, setData] = useState({
@@ -53,19 +54,20 @@ export default function ViewershipRankings() {
         setError("");
 
         const params = new URLSearchParams({
-          min_games: filters.min_games === "" ? "1" : filters.min_games,
+          season: filters.season,
+          conference: filters.conference,
           network: filters.network,
           time_bucket: filters.time_bucket,
           rank_bucket: filters.rank_bucket,
-          opponent: filters.opponent,
+          team: filters.team,
           include_conf_champ: String(filters.include_conf_champ),
         });
-        const res = await fetch(`${BACKEND_BASE}/team-viewership-rankings?${params.toString()}`);
+        const res = await fetch(`${BACKEND_BASE}/game-viewership-rankings?${params.toString()}`);
         const payload = await res.json();
         setData(payload);
       } catch (err) {
         console.error("Viewership rankings load error:", err);
-        setError("Failed to load team viewership rankings.");
+        setError("Failed to load game viewership rankings.");
       } finally {
         setLoading(false);
       }
@@ -78,14 +80,26 @@ export default function ViewershipRankings() {
     <div>
       <h2 className="text-3xl font-semibold mb-4">Viewership Rankings</h2>
       <p className="text-gray-600 mb-3 max-w-4xl">
-        Rank every FBS team by average and median viewership under the exact TV
-        conditions you choose.
+        Rank every rated college football game by viewership, then filter the board
+        by season, network, team, rankings, and TV window.
       </p>
       <p className="text-gray-500 text-sm mb-6 max-w-4xl">
-        Data excludes postseason games.
+        Conference championship games can be included or removed with the filter below.
       </p>
 
       <div className="scenario-controls mb-6">
+        <FilterSelect
+          label="Season"
+          value={filters.season}
+          onChange={(value) => setFilters((prev) => ({ ...prev, season: value }))}
+          options={data.available_filters?.seasons || ["all"]}
+        />
+        <FilterSelect
+          label="Conference"
+          value={filters.conference}
+          onChange={(value) => setFilters((prev) => ({ ...prev, conference: value }))}
+          options={data.available_filters?.conferences || ["all"]}
+        />
         <FilterSelect
           label="Network"
           value={filters.network}
@@ -105,22 +119,11 @@ export default function ViewershipRankings() {
           options={data.available_filters?.rank_buckets || ["all"]}
         />
         <FilterSelect
-          label="Opponent"
-          value={filters.opponent}
-          onChange={(value) => setFilters((prev) => ({ ...prev, opponent: value }))}
-          options={data.available_filters?.opponents || ["all"]}
+          label="Team"
+          value={filters.team}
+          onChange={(value) => setFilters((prev) => ({ ...prev, team: value }))}
+          options={data.available_filters?.teams || ["all"]}
         />
-        <div className="scenario-select-block">
-          <label className="scenario-select-label">Minimum Games</label>
-          <input
-            value={filters.min_games}
-            onChange={(e) => {
-              const value = e.target.value.replace(/[^\d]/g, "");
-              setFilters((prev) => ({ ...prev, min_games: value }));
-            }}
-            inputMode="numeric"
-          />
-        </div>
       </div>
       <div className="mt-3">
         <label className="team-profile-toggle">
@@ -147,36 +150,51 @@ export default function ViewershipRankings() {
             <thead>
               <tr>
                 <th>Rank</th>
-                <th>Team</th>
-                <th>Conference</th>
-                <th>Games</th>
-                <th>Average Viewership</th>
-                <th>Median Viewership</th>
+                <th>Date</th>
+                <th>Season</th>
+                <th>Matchup</th>
+                <th>Network</th>
+                <th>Time Slot</th>
+                <th>Rankings</th>
+                <th>Viewership</th>
               </tr>
             </thead>
             <tbody>
               {data.rows?.map((row) => (
-                <tr key={row.team}>
+                <tr key={`${row.rank}-${row.season}-${row.date}-${row.matchup}`}>
                   <td>{row.rank}</td>
+                  <td>{row.date}</td>
+                  <td>{row.season}</td>
                   <td>
-                    <Link
-                      to={`/teams/football/${encodeURIComponent(row.team)}`}
-                      className="team-pill team-pill-compact team-profile-link"
-                    >
-                      {getTeamLogoUrl(row.team) && (
-                        <img
-                          src={getTeamLogoUrl(row.team)}
-                          alt={`${row.team} logo`}
-                          className="team-logo"
-                        />
-                      )}
-                      <span>{row.team}</span>
-                    </Link>
+                    <span className="matchup-cell">
+                      <span className="matchup-logos">
+                        {[row.team1, row.team2].map((team) => (
+                          getTeamLogoUrl(team) ? (
+                            <img
+                              key={team}
+                              src={getTeamLogoUrl(team)}
+                              alt={`${team} logo`}
+                              className="team-logo"
+                            />
+                          ) : null
+                        ))}
+                      </span>
+                      <span>
+                        <Link to={`/teams/football/${encodeURIComponent(row.team1)}`} className="team-profile-link">
+                          {row.team1}
+                        </Link>
+                        {" vs "}
+                        <Link to={`/teams/football/${encodeURIComponent(row.team2)}`} className="team-profile-link">
+                          {row.team2}
+                        </Link>
+                        {row.conference_championship && <span className="game-badge">Conf Champ</span>}
+                      </span>
+                    </span>
                   </td>
-                  <td>{row.conference}</td>
-                  <td>{row.games}</td>
-                  <td>{formatMillions(row.average_viewers)}</td>
-                  <td>{formatMillions(row.median_viewers)}</td>
+                  <td>{row.network}</td>
+                  <td>{row.raw_time_slot || row.time_slot}</td>
+                  <td>{row.rank_bucket}</td>
+                  <td>{formatMillions(row.viewers)}</td>
                 </tr>
               ))}
             </tbody>

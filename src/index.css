@@ -368,6 +368,14 @@ td,
   font-weight: 800;
 }
 
+.home-ranking-team {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
 .home-ranking-value {
   color: var(--text-primary);
   font-size: 13px;

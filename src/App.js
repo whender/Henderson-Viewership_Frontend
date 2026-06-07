@@ -223,14 +223,15 @@ export default function App() {
       .then(setBasketballMetadata);
 
     const params = new URLSearchParams({
-      min_games: "1",
+      season: "all",
+      conference: "all",
       network: "all",
       time_bucket: "all",
       rank_bucket: "all",
-      opponent: "all",
+      team: "all",
       include_conf_champ: "false",
     });
-    fetch(`${BACKEND_BASE}/team-viewership-rankings?${params.toString()}`)
+    fetch(`${BACKEND_BASE}/game-viewership-rankings?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => setHomeViewershipRows((data.rows || []).slice(0, 5)))
       .catch((err) => console.error("Home viewership preview load error:", err));
@@ -737,11 +738,11 @@ function HomePage({ sport, brandRows, viewershipRows }) {
           </div>
           <div className="home-ranking-list">
             {viewershipRows.length ? viewershipRows.map((row) => (
-              <div className="home-ranking-row" key={row.team}>
+              <div className="home-ranking-row" key={`${row.rank}-${row.matchup}`}>
                 <span className="home-ranking-rank">{row.rank}</span>
-                <TeamPill team={row.team} compact profileSport="football" />
+                <span className="home-ranking-team">{row.matchup}</span>
                 <span className="home-ranking-value">
-                  {formatHomeViewers(row.average_viewers)}
+                  {formatHomeViewers(row.viewers)}
                 </span>
               </div>
             )) : (

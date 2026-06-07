@@ -312,6 +312,10 @@ export default function RealignmentSimulator({ teams }) {
     () => leagueRows.filter((row) => row.conference === conference),
     [leagueRows, conference]
   );
+  const selectedLeagueTeamStats = useMemo(
+    () => buildTeamStats(selectedLeagueRows),
+    [selectedLeagueRows]
+  );
   const displayedRows = isLeagueResult ? selectedLeagueRows : isSuperleagueResult ? superleagueRows : expandedRows;
   const expandedTopRows = useMemo(
     () => displayedRows
@@ -877,7 +881,10 @@ export default function RealignmentSimulator({ teams }) {
               {isLeagueResult ? `${conference} Week-by-Week Schedule` : isSuperleagueResult ? "Superleague Slate: Top 40 Games" : "Expanded Conference Slate: Top 40 Games"}
             </h3>
             {isLeagueResult ? (
-              <ScheduleGrid rows={selectedLeagueRows} />
+              <>
+                <ScheduleGrid rows={selectedLeagueRows} />
+                <TeamStatsTable rows={selectedLeagueTeamStats} />
+              </>
             ) : (
               <ScheduleTable rows={expandedTopRows} />
             )}
@@ -998,6 +1005,108 @@ function ScheduleGrid({ rows }) {
             ))}
           </Fragment>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function buildTeamStats(rows) {
+  const stats = new Map();
+  const ensureTeam = (team) => {
+    if (!stats.has(team)) {
+      stats.set(team, {
+        team,
+        scheduled_games: 0,
+        tv_games: 0,
+        unrated_games: 0,
+        total_viewers: 0,
+        average_viewers: 0,
+        best_game_viewers: 0,
+        best_game: "",
+      });
+    }
+    return stats.get(team);
+  };
+
+  (rows || []).forEach((row) => {
+    [row.team1, row.team2].filter(Boolean).forEach((team) => {
+      const teamRow = ensureTeam(team);
+      teamRow.scheduled_games += 1;
+
+      if (row.nationally_rated) {
+        const viewers = Number(row.predicted_viewers || 0);
+        teamRow.tv_games += 1;
+        teamRow.total_viewers += viewers;
+        if (viewers > teamRow.best_game_viewers) {
+          teamRow.best_game_viewers = viewers;
+          teamRow.best_game = row.matchup || `${row.team1} vs ${row.team2}`;
+        }
+      } else {
+        teamRow.unrated_games += 1;
+      }
+    });
+  });
+
+  return Array.from(stats.values())
+    .map((row) => ({
+      ...row,
+      average_viewers: row.tv_games ? row.total_viewers / row.tv_games : 0,
+    }))
+    .sort((a, b) => {
+      if (b.total_viewers !== a.total_viewers) return b.total_viewers - a.total_viewers;
+      if (b.average_viewers !== a.average_viewers) return b.average_viewers - a.average_viewers;
+      return a.team.localeCompare(b.team);
+    });
+}
+
+function TeamStatsTable({ rows }) {
+  if (!rows?.length) {
+    return null;
+  }
+
+  return (
+    <div className="mt-6">
+      <h4 className="text-lg font-semibold mb-3">Team Viewership Stats</h4>
+      <div className="brand-table-wrap">
+        <table className="brand-rankings-table realignment-table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>TV Games</th>
+              <th>Scheduled</th>
+              <th>Unrated</th>
+              <th>Total</th>
+              <th>Average</th>
+              <th>Top Game</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.team}>
+                <td>
+                  <span className="realignment-team-stat-team">
+                    {getTeamLogoUrl(row.team) && (
+                      <img
+                        alt={`${row.team} logo`}
+                        className="realignment-team-stat-logo"
+                        src={getTeamLogoUrl(row.team)}
+                      />
+                    )}
+                    <span>{row.team}</span>
+                  </span>
+                </td>
+                <td>{row.tv_games}</td>
+                <td>{row.scheduled_games}</td>
+                <td>{row.unrated_games}</td>
+                <td>{formatViewers(row.total_viewers)}</td>
+                <td>{formatViewers(row.average_viewers)}</td>
+                <td>
+                  {row.best_game ? `${row.best_game} (${formatViewers(row.best_game_viewers)})` : "No rated games"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

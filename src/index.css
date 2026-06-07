@@ -891,6 +891,21 @@ td {
   flex: 0 0 auto;
 }
 
+.realignment-team-stat-team {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 150px;
+  white-space: nowrap;
+}
+
+.realignment-team-stat-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
 .matchup-cell {
   display: flex;
   align-items: center;

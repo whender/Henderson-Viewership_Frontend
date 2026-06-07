@@ -11,17 +11,6 @@ const BASKETBALL_TABS = [
   ["model", "MODEL"],
 ];
 
-const DEFAULT_FILTERS = {
-  network: "all",
-  time_slot: "all",
-  stage: "all",
-  season: "all",
-  conference: "all",
-  team: "all",
-  rank_bucket: "all",
-  include_tournament: true,
-};
-
 function formatViewers(value) {
   if (value == null) return "N/A";
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(2)}M`;
@@ -39,10 +28,6 @@ function formatPercent(value) {
   if (value == null) return "N/A";
   const prefix = value >= 0 ? "+" : "";
   return `${prefix}${value.toFixed(1)}%`;
-}
-
-function rankLabel(rank) {
-  return Number(rank || 0) > 0 ? `#${rank}` : "UR";
 }
 
 function hexToRgb(hex) {
@@ -576,30 +561,8 @@ export function BasketballTeamEffects() {
   );
 }
 
-export function BasketballViewershipRankings({ filters }) {
-  const [rankingFilters, setRankingFilters] = useState(DEFAULT_FILTERS);
-  const [rows, setRows] = useState([]);
-  const [availableFilters, setAvailableFilters] = useState(filters || {});
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    async function loadRows() {
-      setLoading(true);
-      const params = new URLSearchParams({
-        ...rankingFilters,
-        include_tournament: String(rankingFilters.include_tournament),
-      });
-      const res = await fetch(`${BACKEND_BASE}/cbb/game-viewership-rankings?${params.toString()}`);
-      const data = await res.json();
-      setRows(data.rows || []);
-      setAvailableFilters(data.available_filters || filters || {});
-      setLoading(false);
-    }
-    loadRows();
-  }, [rankingFilters, filters]);
-
-  const optionSets = useMemo(() => availableFilters || filters || {}, [availableFilters, filters]);
-
+export function BasketballViewershipRankings() {
+  /*
   return (
     <div>
       <h2 className="text-3xl font-semibold mb-4">Viewership Rankings</h2>
@@ -668,6 +631,16 @@ export function BasketballViewershipRankings({ filters }) {
           </table>
         </div>
       )}
+    </div>
+  );
+  */
+
+  return (
+    <div className="scenario-summary-card">
+      <h2 className="text-3xl font-semibold mb-4">Viewership Rankings</h2>
+      <p className="text-gray-600">
+        Basketball viewership rankings are being fixed.
+      </p>
     </div>
   );
 }

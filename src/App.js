@@ -255,7 +255,10 @@ export default function App() {
       });
 
       const data = await res.json();
-      setPrediction(data.prediction_formatted);
+      setPrediction({
+        formatted: data.prediction_formatted,
+        warnings: data.warnings || [],
+      });
     } catch (err) {
       console.error("Prediction error:", err);
     }
@@ -976,7 +979,7 @@ function PredictorPage({
       {prediction && (
         <div className="text-center mt-12">
           <h2 className="text-3xl font-bold mb-2">
-            Predicted Viewers: {prediction}
+            Predicted Viewers: {prediction.formatted || prediction}
           </h2>
 
           <div className="team-pill-row">
@@ -990,6 +993,14 @@ function PredictorPage({
             {network ? ` | ${network}` : ""}
             {timeSlot ? ` | ${timeSlot}` : ""}
           </p>
+
+          {Array.isArray(prediction.warnings) && prediction.warnings.length > 0 && (
+            <div className="prediction-warning">
+              {prediction.warnings.map((warning) => (
+                <p key={warning}>{warning}</p>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </>

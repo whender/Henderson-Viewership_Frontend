@@ -784,6 +784,23 @@ td,
   font-weight: 500;
 }
 
+.prediction-warning {
+  max-width: 760px;
+  margin: 18px auto 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(239, 68, 68, 0.34);
+  border-radius: var(--radius);
+  background: rgba(239, 68, 68, 0.06);
+  color: #991b1b;
+  font-size: 14px;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.prediction-warning p {
+  margin: 0;
+}
+
 .tab-btn {
   padding-bottom: 8px;
   border-bottom: 2px solid transparent;

@@ -4,7 +4,6 @@ import { getTeamLogoUrl } from "./teamLogos";
 
 const CONFERENCE_OPTIONS = ["Big 10", "SEC", "Big 12", "ACC"];
 const RANKING_POLICIES = [
-  ["brand_tiers", "Brand-Tier Rankings"],
   ["espn_2026_preseason", "ESPN 2026 Preseason"],
   ["final_ap_2021_2025", "Final AP 2021-2025"],
   ["unranked", "All Unranked"],
@@ -45,7 +44,7 @@ export default function RealignmentSimulator({ teams }) {
     Utah: DEFAULT_PROTECTED_OPPONENTS,
   });
   const [gamesPerTeam, setGamesPerTeam] = useState(9);
-  const [rankingPolicy, setRankingPolicy] = useState("brand_tiers");
+  const [rankingPolicy, setRankingPolicy] = useState("espn_2026_preseason");
   const [superleagueTeams, setSuperleagueTeams] = useState([]);
   const [simulation, setSimulation] = useState(null);
   const [conferenceTeams, setConferenceTeams] = useState([]);

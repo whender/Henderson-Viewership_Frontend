@@ -31,6 +31,30 @@ function formatSignedViewers(value) {
   return `${sign}${formatViewers(number)}`;
 }
 
+function formatSignedPercent(value) {
+  if (value == null || Number.isNaN(Number(value))) {
+    return "N/A";
+  }
+  const number = Number(value);
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${number.toFixed(1)}%`;
+}
+
+function formatSignedNumber(value) {
+  const number = Number(value || 0);
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${number}`;
+}
+
+function formatSignedRatio(value) {
+  if (value == null || Number.isNaN(Number(value))) {
+    return "N/A";
+  }
+  const number = Number(value);
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${number.toFixed(2)}`;
+}
+
 function rankLabel(rank) {
   return rank > 0 ? `#${rank}` : "UR";
 }
@@ -376,6 +400,8 @@ export default function RealignmentSimulator({ teams }) {
   );
   const superleagueSummary = simulation?.slate?.summary || {};
   const selectedLeagueSummary = simulation?.conference_summaries?.[conference] || {};
+  const selectedMembershipChange = simulation?.conference_membership_changes?.[conference] || {};
+  const selectedLeagueDistribution = simulation?.conference_distribution_metrics?.[conference] || [];
   const selectedConferenceTeams = leagueTeamsByConference[conference] || [];
   const selectedConferenceProtectedCount = new Set(
     selectedConferenceTeams.flatMap((team) => (leagueProtectedMatchupsByTeam[team] || [])
@@ -748,6 +774,10 @@ export default function RealignmentSimulator({ teams }) {
                 <MetricCard label={`${conference} TV Games`} value={selectedLeagueSummary.nationally_rated_games || selectedLeagueSummary.games || 0} />
                 <MetricCard label={`${conference} Scheduled`} value={selectedLeagueSummary.scheduled_games || selectedLeagueSummary.games || 0} />
                 <MetricCard label={`${conference} Teams`} value={selectedLeagueSummary.teams || selectedConferenceTeams.length || 0} />
+                <MetricCard
+                  label="Membership Change"
+                  value={`${formatSignedNumber(selectedMembershipChange.team_delta)} teams (${formatSignedPercent(selectedMembershipChange.pct_delta)})`}
+                />
               </>
             ) : isSuperleagueResult ? (
               <>
@@ -767,40 +797,43 @@ export default function RealignmentSimulator({ teams }) {
           </div>
 
           {isLeagueResult ? (
-            <div className="scenario-summary-card mt-6">
-              <h3 className="text-xl font-semibold mb-4">Conference Summaries</h3>
-              <div className="brand-table-wrap">
-                <table className="brand-rankings-table realignment-table">
-                  <thead>
-                    <tr>
-                      <th>Conference</th>
-                      <th>Teams</th>
-                      <th>TV Games</th>
-                      <th>Scheduled</th>
-                      <th>Unrated</th>
-                      <th>Total</th>
-                      <th>Average</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {editableConferences.map((option) => {
-                      const summary = simulation?.conference_summaries?.[option] || {};
-                      return (
-                        <tr key={option}>
-                          <td>{option === conference ? `${option} (selected)` : option}</td>
-                          <td>{summary.teams || 0}</td>
-                          <td>{summary.nationally_rated_games || summary.games || 0}</td>
-                          <td>{summary.scheduled_games || summary.games || 0}</td>
-                          <td>{summary.unrated_games || 0}</td>
-                          <td>{formatViewers(summary.total_viewers)}</td>
-                          <td>{formatViewers(summary.average_viewers)}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+            <>
+              <div className="scenario-summary-card mt-6">
+                <h3 className="text-xl font-semibold mb-4">Conference Summaries</h3>
+                <div className="brand-table-wrap">
+                  <table className="brand-rankings-table realignment-table">
+                    <thead>
+                      <tr>
+                        <th>Conference</th>
+                        <th>Teams</th>
+                        <th>TV Games</th>
+                        <th>Scheduled</th>
+                        <th>Unrated</th>
+                        <th>Total</th>
+                        <th>Average</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {editableConferences.map((option) => {
+                        const summary = simulation?.conference_summaries?.[option] || {};
+                        return (
+                          <tr key={option}>
+                            <td>{option === conference ? `${option} (selected)` : option}</td>
+                            <td>{summary.teams || 0}</td>
+                            <td>{summary.nationally_rated_games || summary.games || 0}</td>
+                            <td>{summary.scheduled_games || summary.games || 0}</td>
+                            <td>{summary.unrated_games || 0}</td>
+                            <td>{formatViewers(summary.total_viewers)}</td>
+                            <td>{formatViewers(summary.average_viewers)}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
+              <DistributionMetricsTable conference={conference} rows={selectedLeagueDistribution} />
+            </>
           ) : isSuperleagueResult ? (
             <div className="scenario-expected-grid mt-6">
               <SummaryCard
@@ -1056,6 +1089,44 @@ function buildTeamStats(rows) {
       if (b.average_viewers !== a.average_viewers) return b.average_viewers - a.average_viewers;
       return a.team.localeCompare(b.team);
     });
+}
+
+function DistributionMetricsTable({ conference, rows }) {
+  if (!rows?.length) {
+    return null;
+  }
+
+  return (
+    <div className="scenario-summary-card mt-6">
+      <h3 className="text-xl font-semibold mb-4">{conference} Viewership Distribution</h3>
+      <div className="brand-table-wrap">
+        <table className="brand-rankings-table realignment-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Current</th>
+              <th>Original</th>
+              <th>Viewer Delta</th>
+              <th>% Change</th>
+              <th>Membership Elasticity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.key}>
+                <td>{row.label}</td>
+                <td>{formatViewers(row.current_viewers)}</td>
+                <td>{formatViewers(row.baseline_viewers)}</td>
+                <td>{formatSignedViewers(row.viewer_delta)}</td>
+                <td>{formatSignedPercent(row.pct_delta)}</td>
+                <td>{formatSignedRatio(row.membership_elasticity)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
 function TeamStatsTable({ rows }) {

@@ -117,6 +117,8 @@ export default function App() {
   const [basketballMetadata, setBasketballMetadata] = useState(null);
   const [homeBrandRows, setHomeBrandRows] = useState([]);
   const [homeViewershipRows, setHomeViewershipRows] = useState([]);
+  const [homeArticle, setHomeArticle] = useState(null);
+  const [homeArticleLoading, setHomeArticleLoading] = useState(true);
   const [navMenuOpen, setNavMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pageCopy = activeTab === "home" ? {
@@ -236,6 +238,15 @@ export default function App() {
       .then((res) => res.json())
       .then((data) => setHomeViewershipRows((data.rows || []).slice(0, 5)))
       .catch((err) => console.error("Home viewership preview load error:", err));
+
+    fetch(`${BACKEND_BASE}/articles`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load published articles.");
+        return res.json();
+      })
+      .then((data) => setHomeArticle((data.articles || [])[0] || null))
+      .catch((err) => console.error("Home article preview load error:", err))
+      .finally(() => setHomeArticleLoading(false));
   }, []);
 
   async function handlePredict() {
@@ -319,6 +330,8 @@ export default function App() {
                 sport={sport}
                 brandRows={homeBrandRows}
                 viewershipRows={homeViewershipRows}
+                article={homeArticle}
+                articleLoading={homeArticleLoading}
               />
             }
           />
@@ -654,7 +667,7 @@ function navItemDescription(key, sportKey = "football") {
   return descriptions[key] || "";
 }
 
-function HomePage({ sport, brandRows, viewershipRows }) {
+function HomePage({ sport, brandRows, viewershipRows, article: homeArticle, articleLoading: homeArticleLoading }) {
   const brandPreviewRows = (brandRows || []).slice(0, 5);
   const quickLinks = [
     {
@@ -783,9 +796,18 @@ function HomePage({ sport, brandRows, viewershipRows }) {
             </div>
             <Link to="/articles" className="home-panel-link">Open</Link>
           </div>
-          <p className="home-article-empty">
-            No articles published yet.
-          </p>
+          {homeArticleLoading ? (
+            <p className="home-article-empty">Loading latest article…</p>
+          ) : homeArticle ? (
+            <Link to={`/articles/${homeArticle.slug}`} className="home-article-preview">
+              {homeArticle.date && <time>{homeArticle.date}</time>}
+              <strong>{homeArticle.title}</strong>
+              {homeArticle.description && <span>{homeArticle.description}</span>}
+              <span className="home-article-read">Read article</span>
+            </Link>
+          ) : (
+            <p className="home-article-empty">No articles published yet.</p>
+          )}
         </div>
       </section>
     </div>

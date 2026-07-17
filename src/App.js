@@ -1190,8 +1190,6 @@ function BrandRankingsPage({
                 ) : (
                   <>
                     <th>Lift (%)</th>
-                    {brandScope === "football" && <th>Tier</th>}
-                    {brandScope === "football" && <th>Rank Range</th>}
                     <th>Games Used</th>
                   </>
                 )}
@@ -1220,8 +1218,6 @@ function BrandRankingsPage({
                   ) : (
                     <>
                       <td>{Number(row.viewership_lift_pct || 0).toFixed(1)}</td>
-                      {brandScope === "football" && <td><BrandTier row={row} /></td>}
-                      {brandScope === "football" && <td><BrandRankRange row={row} /></td>}
                       <td>{row.games_used}</td>
                     </>
                   )}
@@ -1238,48 +1234,6 @@ function BrandRankingsPage({
         still show each model’s isolated lift against its own sport baseline.
       </p>
     </>
-  );
-}
-
-function BrandTier({ row }) {
-  if (!row.brand_tier_label) {
-    return <span className="brand-tier-empty">No tier</span>;
-  }
-  const tier = Number(row.brand_tier);
-  const tierText = Number.isFinite(tier) ? `T${tier}` : "Tier";
-  return (
-    <span className="brand-tier" title={row.brand_tier_label}>
-      <span className="brand-tier-code">{tierText}</span>
-      <span className="brand-tier-label">{row.brand_tier_label}</span>
-    </span>
-  );
-}
-
-function BrandRankRange({ row }) {
-  const ceiling = Number(row.brand_rank_ceiling);
-  const floor = Number(row.brand_rank_floor);
-  if (!Number.isFinite(ceiling) || !Number.isFinite(floor)) {
-    return <span className="brand-range-empty">No data</span>;
-  }
-  const low = Number(row.brand_range_low_pct);
-  const high = Number(row.brand_range_high_pct);
-  const titleParts = [
-    `Rank ceiling: #${ceiling}`,
-    `Rank floor: #${floor}`,
-    `Lift range: ${Number.isFinite(low) ? low.toFixed(1) : "N/A"}% to ${Number.isFinite(high) ? high.toFixed(1) : "N/A"}%`,
-  ];
-  if (row.median_abs_pct_error != null) {
-    titleParts.push(`Holdout median error: ${Number(row.median_abs_pct_error).toFixed(1)}%`);
-  }
-
-  return (
-    <span className="brand-range" title={titleParts.join(" | ")}>
-      <span className="brand-range-ceiling">#{ceiling.toFixed(0)}</span>
-      <span>&nbsp;</span>
-      <span className="brand-range-divider">/</span>
-      <span>&nbsp;</span>
-      <span className="brand-range-floor">#{floor.toFixed(0)}</span>
-    </span>
   );
 }
 

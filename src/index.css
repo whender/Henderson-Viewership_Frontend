@@ -45,62 +45,7 @@ body {
 
 .brand-rankings-table {
   width: 100%;
-  min-width: 1080px;
-}
-
-.brand-tier,
-.brand-tier-empty,
-.brand-range,
-.brand-range-empty {
-  color: var(--text-primary);
-  font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.brand-tier {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.brand-tier-code {
-  color: var(--text-secondary);
-}
-
-.brand-tier-label {
-  color: var(--text-primary);
-}
-
-.brand-tier-empty {
-  color: var(--text-secondary);
-}
-
-.brand-range {
-  display: inline-flex;
-  align-items: baseline;
-  min-width: 88px;
-}
-
-.brand-range-ceiling,
-.brand-range-floor,
-.brand-range-divider {
-  display: inline-block;
-}
-
-.brand-range-ceiling {
-  color: #16a34a;
-}
-
-.brand-range-floor {
-  color: #dc2626;
-}
-
-.brand-range-divider,
-.brand-range-empty {
-  color: var(--text-secondary);
+  min-width: 760px;
 }
 
 .info-icon {

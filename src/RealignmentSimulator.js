@@ -6,6 +6,7 @@ const CONFERENCE_OPTIONS = ["Big 10", "SEC", "Big 12", "ACC"];
 const RANKING_POLICIES = [
   ["espn_2026_preseason", "ESPN 2026 Preseason"],
   ["final_ap_2021_2025", "Final AP 2021-2025"],
+  ["custom", "Custom Top 25"],
   ["unranked", "All Unranked"],
 ];
 const DEFAULT_PROTECTED_OPPONENTS = ["USC", "Washington", "Oregon", "UCLA"];
@@ -15,6 +16,7 @@ const SCHEDULE_TIME_SLOT_ORDER = [
   "Sat Mid (2:30p-6:30p)",
   "Primetime (7:00p-9:00p)",
   "Sat Late (9:30p-Later)",
+  "Weekday",
   "No national TV window",
 ];
 
@@ -62,6 +64,7 @@ function rankLabel(rank) {
 export default function RealignmentSimulator({ teams }) {
   const [simMode, setSimMode] = useState("realignment");
   const [conference, setConference] = useState("Big 10");
+  const [leagueView, setLeagueView] = useState("overview");
   const [expansionTeam, setExpansionTeam] = useState("Utah");
   const [expansionTeam2, setExpansionTeam2] = useState("");
   const [protectedOpponentsByTeam, setProtectedOpponentsByTeam] = useState({
@@ -69,6 +72,7 @@ export default function RealignmentSimulator({ teams }) {
   });
   const [gamesPerTeam, setGamesPerTeam] = useState(9);
   const [rankingPolicy, setRankingPolicy] = useState("espn_2026_preseason");
+  const [customRankingTeams, setCustomRankingTeams] = useState(() => Array(25).fill(""));
   const [superleagueTeams, setSuperleagueTeams] = useState([]);
   const [simulation, setSimulation] = useState(null);
   const [conferenceTeams, setConferenceTeams] = useState([]);
@@ -111,6 +115,14 @@ export default function RealignmentSimulator({ teams }) {
     ),
     [expansionTeams, protectedOpponentsByTeam]
   );
+  const customRankingsPayload = useMemo(
+    () => Object.fromEntries(
+      customRankingTeams
+        .map((team, idx) => [team, idx + 1])
+        .filter(([team]) => Boolean(team))
+    ),
+    [customRankingTeams]
+  );
 
   const runSimulation = useCallback(async () => {
     try {
@@ -137,6 +149,7 @@ export default function RealignmentSimulator({ teams }) {
             teams: superleagueTeams,
             games_per_team: Number(gamesPerTeam),
             ranking_policy: rankingPolicy,
+            custom_rankings: rankingPolicy === "custom" ? customRankingsPayload : {},
           }
             : isLeagueEditor
               ? {
@@ -144,6 +157,7 @@ export default function RealignmentSimulator({ teams }) {
                 protected_matchups_by_team: leagueProtectedMatchupsByTeam,
                 games_per_team: Number(gamesPerTeam),
                 ranking_policy: rankingPolicy,
+                custom_rankings: rankingPolicy === "custom" ? customRankingsPayload : {},
               }
               : {
             conference,
@@ -152,6 +166,7 @@ export default function RealignmentSimulator({ teams }) {
             protected_opponents_by_team: protectedOpponentsPayload,
             games_per_team: Number(gamesPerTeam),
             ranking_policy: rankingPolicy,
+            custom_rankings: rankingPolicy === "custom" ? customRankingsPayload : {},
           }),
       });
 
@@ -167,7 +182,7 @@ export default function RealignmentSimulator({ teams }) {
     } finally {
       setLoading(false);
     }
-  }, [conference, expansionTeam, expansionTeams, protectedOpponentsByTeam, gamesPerTeam, rankingPolicy, simMode, superleagueTeams, leagueMemberships, leagueProtectedMatchupsByTeam]);
+  }, [conference, expansionTeam, expansionTeams, protectedOpponentsByTeam, gamesPerTeam, rankingPolicy, customRankingsPayload, simMode, superleagueTeams, leagueMemberships, leagueProtectedMatchupsByTeam]);
 
   function toggleProtectedOpponent(expansion, opponent) {
     setProtectedOpponentsByTeam((current) => {
@@ -331,13 +346,39 @@ export default function RealignmentSimulator({ teams }) {
     () => simulation?.rows || [],
     [simulation]
   );
+  const overviewLeagueRows = useMemo(
+    () => uniqueGameRows(leagueRows),
+    [leagueRows]
+  );
+  const leagueViewLabel = leagueView === "overview" ? "Overview" : leagueView;
+  const isLeagueOverview = leagueView === "overview";
   const selectedLeagueRows = useMemo(
-    () => leagueRows.filter((row) => row.conference === conference),
-    [leagueRows, conference]
+    () => isLeagueOverview
+      ? overviewLeagueRows
+      : leagueRows.filter((row) => row.conference === leagueView),
+    [isLeagueOverview, leagueRows, leagueView, overviewLeagueRows]
+  );
+  const selectedConferenceTopGames = useMemo(
+    () => selectedLeagueRows
+      .filter((row) => row.nationally_rated)
+      .slice()
+      .sort((a, b) => Number(b.predicted_viewers || 0) - Number(a.predicted_viewers || 0))
+      .slice(0, 10),
+    [selectedLeagueRows]
+  );
+  const selectedConferenceTeams = useMemo(
+    () => leagueTeamsByConference[conference] || [],
+    [leagueTeamsByConference, conference]
+  );
+  const selectedLeagueViewTeams = useMemo(
+    () => isLeagueOverview
+      ? Object.keys(leagueMemberships).sort((a, b) => a.localeCompare(b))
+      : leagueTeamsByConference[leagueView] || [],
+    [isLeagueOverview, leagueMemberships, leagueTeamsByConference, leagueView]
   );
   const selectedLeagueTeamStats = useMemo(
-    () => buildTeamStats(selectedLeagueRows),
-    [selectedLeagueRows]
+    () => buildTeamStats(selectedLeagueRows, selectedLeagueViewTeams),
+    [selectedLeagueRows, selectedLeagueViewTeams]
   );
   const displayedRows = isLeagueResult ? selectedLeagueRows : isSuperleagueResult ? superleagueRows : expandedRows;
   const expandedTopRows = useMemo(
@@ -399,10 +440,19 @@ export default function RealignmentSimulator({ teams }) {
     && (!backendSupportsProtectedAudit || protectedMissingCount > 0)
   );
   const superleagueSummary = simulation?.slate?.summary || {};
-  const selectedLeagueSummary = simulation?.conference_summaries?.[conference] || {};
-  const selectedMembershipChange = simulation?.conference_membership_changes?.[conference] || {};
-  const selectedLeagueDistribution = simulation?.conference_distribution_metrics?.[conference] || [];
-  const selectedConferenceTeams = leagueTeamsByConference[conference] || [];
+  const leagueOverviewSummary = useMemo(
+    () => buildConferenceOverviewSummary(simulation?.conference_summaries || {}, editableConferences),
+    [simulation, editableConferences]
+  );
+  const selectedLeagueSummary = isLeagueOverview
+    ? leagueOverviewSummary
+    : simulation?.conference_summaries?.[leagueView] || {};
+  const selectedMembershipChange = isLeagueOverview
+    ? buildMembershipOverviewChange(simulation?.conference_membership_changes || {}, editableConferences)
+    : simulation?.conference_membership_changes?.[leagueView] || {};
+  const selectedLeagueDistribution = isLeagueOverview
+    ? []
+    : simulation?.conference_distribution_metrics?.[leagueView] || [];
   const selectedConferenceProtectedCount = new Set(
     selectedConferenceTeams.flatMap((team) => (leagueProtectedMatchupsByTeam[team] || [])
       .filter((opponent) => selectedConferenceTeams.includes(opponent) && opponent !== team)
@@ -527,6 +577,68 @@ export default function RealignmentSimulator({ teams }) {
           </select>
         </label>
       </div>
+
+      {rankingPolicy === "custom" && (
+        <div className="scenario-summary-card mb-6">
+          <div className="realignment-section-header">
+            <h3 className="text-xl font-semibold">Custom Top 25</h3>
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={() => setCustomRankingTeams(Array(25).fill(""))}
+            >
+              Clear rankings
+            </button>
+          </div>
+          <div className="custom-rankings-grid">
+            {[[0, 10], [10, 20], [20, 25]].map(([start, end]) => (
+              <div className="custom-rankings-column" key={`custom-ranks-${start}-${end}`}>
+                {customRankingTeams.slice(start, end).map((selectedTeam, offset) => {
+                  const idx = start + offset;
+                  const rank = idx + 1;
+                  const selectedElsewhere = new Set(
+                    customRankingTeams.filter((team, teamIdx) => team && teamIdx !== idx)
+                  );
+                  return (
+                    <label className="custom-ranking-row" key={`custom-rank-${rank}`}>
+                      <span className="custom-ranking-number">#{rank}</span>
+                      <span className="custom-ranking-logo-slot">
+                        {selectedTeam && getTeamLogoUrl(selectedTeam) && (
+                          <img
+                            alt={`${selectedTeam} logo`}
+                            className="custom-ranking-logo"
+                            src={getTeamLogoUrl(selectedTeam)}
+                          />
+                        )}
+                      </span>
+                      <select
+                        className="brand-filter-select"
+                        value={selectedTeam}
+                        onChange={(e) => {
+                          const next = [...customRankingTeams];
+                          next[idx] = e.target.value;
+                          setCustomRankingTeams(next);
+                        }}
+                      >
+                        <option value="">Unranked</option>
+                        {teamOptions.map((team) => (
+                          <option
+                            key={team.value}
+                            value={team.value}
+                            disabled={selectedElsewhere.has(team.value)}
+                          >
+                            {team.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {!isSuperleagueMode && !isLeagueEditorMode && (
         <div className="scenario-summary-card mb-6">
@@ -766,14 +878,35 @@ export default function RealignmentSimulator({ teams }) {
 
       {simulation && !error && (
         <div className="realignment-sim mt-8">
+          {isLeagueResult && (
+            <div className="league-view-switcher" aria-label="Change viewed conference">
+              <button
+                type="button"
+                className={`league-view-button ${isLeagueOverview ? "league-view-button-active" : ""}`}
+                onClick={() => setLeagueView("overview")}
+              >
+                Overview
+              </button>
+              {editableConferences.map((option) => (
+                <button
+                  type="button"
+                  key={`league-view-${option}`}
+                  className={`league-view-button ${leagueView === option ? "league-view-button-active" : ""}`}
+                  onClick={() => setLeagueView(option)}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          )}
           <div className="scenario-stat-grid realignment-metrics">
             {isLeagueResult ? (
               <>
-                <MetricCard label={`${conference} Viewers`} value={formatViewers(selectedLeagueSummary.total_viewers)} />
-                <MetricCard label={`${conference} Avg.`} value={formatViewers(selectedLeagueSummary.average_viewers)} />
-                <MetricCard label={`${conference} TV Games`} value={selectedLeagueSummary.nationally_rated_games || selectedLeagueSummary.games || 0} />
-                <MetricCard label={`${conference} Scheduled`} value={selectedLeagueSummary.scheduled_games || selectedLeagueSummary.games || 0} />
-                <MetricCard label={`${conference} Teams`} value={selectedLeagueSummary.teams || selectedConferenceTeams.length || 0} />
+                <MetricCard label={`${leagueViewLabel} Viewers`} value={formatViewers(selectedLeagueSummary.total_viewers)} />
+                <MetricCard label={`${leagueViewLabel} Avg.`} value={formatViewers(selectedLeagueSummary.average_viewers)} />
+                <MetricCard label={`${leagueViewLabel} TV Games`} value={selectedLeagueSummary.nationally_rated_games || selectedLeagueSummary.games || 0} />
+                <MetricCard label={`${leagueViewLabel} Scheduled`} value={selectedLeagueSummary.scheduled_games || selectedLeagueSummary.games || 0} />
+                <MetricCard label={isLeagueOverview ? "Conferences" : `${leagueViewLabel} Teams`} value={isLeagueOverview ? editableConferences.length : selectedLeagueSummary.teams || selectedLeagueViewTeams.length || 0} />
                 <MetricCard
                   label="Membership Change"
                   value={`${formatSignedNumber(selectedMembershipChange.team_delta)} teams (${formatSignedPercent(selectedMembershipChange.pct_delta)})`}
@@ -818,7 +951,7 @@ export default function RealignmentSimulator({ teams }) {
                         const summary = simulation?.conference_summaries?.[option] || {};
                         return (
                           <tr key={option}>
-                            <td>{option === conference ? `${option} (selected)` : option}</td>
+                            <td>{option === leagueView ? `${option} (selected)` : option}</td>
                             <td>{summary.teams || 0}</td>
                             <td>{summary.nationally_rated_games || summary.games || 0}</td>
                             <td>{summary.scheduled_games || summary.games || 0}</td>
@@ -832,7 +965,11 @@ export default function RealignmentSimulator({ teams }) {
                   </table>
                 </div>
               </div>
-              <DistributionMetricsTable conference={conference} rows={selectedLeagueDistribution} />
+              <div className="scenario-summary-card mt-6">
+                <h3 className="text-xl font-semibold mb-3">{leagueViewLabel} Top 10 Most Viewed Games</h3>
+                <ScheduleTable rows={selectedConferenceTopGames} showWeek />
+              </div>
+              <DistributionMetricsTable conference={leagueViewLabel} rows={selectedLeagueDistribution} />
             </>
           ) : isSuperleagueResult ? (
             <div className="scenario-expected-grid mt-6">
@@ -910,7 +1047,7 @@ export default function RealignmentSimulator({ teams }) {
 
           <div className="scenario-summary-card mt-6">
             <h3 className="text-xl font-semibold mb-3">
-              {isLeagueResult ? `${conference} Week-by-Week Schedule` : isSuperleagueResult ? "Superleague Slate: Top 40 Games" : "Expanded Conference Slate: Top 40 Games"}
+              {isLeagueResult ? `${leagueViewLabel} Week-by-Week Schedule` : isSuperleagueResult ? "Superleague Slate: Top 40 Games" : "Expanded Conference Slate: Top 40 Games"}
             </h3>
             {isLeagueResult ? (
               <>
@@ -966,6 +1103,44 @@ function SummaryCard({ title, teams, games, total, average }) {
       </table>
     </div>
   );
+}
+
+function uniqueGameRows(rows) {
+  const byGame = new Map();
+  (rows || []).forEach((row) => {
+    const teams = [row.team1, row.team2].filter(Boolean).sort().join("::");
+    const key = row.event_id || `${row.week || ""}-${teams}`;
+    const existing = byGame.get(key);
+    if (!existing || Number(row.predicted_viewers || 0) > Number(existing.predicted_viewers || 0)) {
+      byGame.set(key, row);
+    }
+  });
+  return Array.from(byGame.values());
+}
+
+function buildConferenceOverviewSummary(summaries, conferences) {
+  const rows = (conferences || []).map((conference) => summaries?.[conference] || {});
+  const nationallyRatedGames = rows.reduce((total, row) => total + Number(row.nationally_rated_games || row.games || 0), 0);
+  const totalViewers = rows.reduce((total, row) => total + Number(row.total_viewers || 0), 0);
+  return {
+    teams: rows.reduce((total, row) => total + Number(row.teams || 0), 0),
+    games: nationallyRatedGames,
+    scheduled_games: rows.reduce((total, row) => total + Number(row.scheduled_games || row.games || 0), 0),
+    nationally_rated_games: nationallyRatedGames,
+    unrated_games: rows.reduce((total, row) => total + Number(row.unrated_games || 0), 0),
+    total_viewers: totalViewers,
+    average_viewers: nationallyRatedGames ? totalViewers / nationallyRatedGames : 0,
+  };
+}
+
+function buildMembershipOverviewChange(changes, conferences) {
+  const rows = (conferences || []).map((conference) => changes?.[conference] || {});
+  const baselineTeams = rows.reduce((total, row) => total + Number(row.baseline_teams || 0), 0);
+  const teamDelta = rows.reduce((total, row) => total + Number(row.team_delta || 0), 0);
+  return {
+    team_delta: teamDelta,
+    pct_delta: baselineTeams ? (teamDelta / baselineTeams) * 100 : null,
+  };
 }
 
 function ScheduleGrid({ rows }) {
@@ -1042,8 +1217,9 @@ function ScheduleGrid({ rows }) {
   );
 }
 
-function buildTeamStats(rows) {
+function buildTeamStats(rows, allowedTeams = []) {
   const stats = new Map();
+  const allowedTeamSet = new Set(allowedTeams);
   const ensureTeam = (team) => {
     if (!stats.has(team)) {
       stats.set(team, {
@@ -1062,6 +1238,9 @@ function buildTeamStats(rows) {
 
   (rows || []).forEach((row) => {
     [row.team1, row.team2].filter(Boolean).forEach((team) => {
+      if (allowedTeamSet.size && !allowedTeamSet.has(team)) {
+        return;
+      }
       const teamRow = ensureTeam(team);
       teamRow.scheduled_games += 1;
 

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import BACKEND_BASE from "./config";
 import { getTeamLogoUrl, parseMatchupTeams } from "./teamLogos";
 
+const weekKey = (week) => `${week.year}-${week.week}`;
+
 export default function WeeklyPredictions() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -15,12 +17,13 @@ export default function WeeklyPredictions() {
       const res = await fetch(`${BACKEND_BASE}/weekly-predictions`);
       const data = await res.json();
 
-      setWeeks(data.weeks || []);
+      const orderedWeeks = [...(data.weeks || [])].sort(
+        (a, b) => Number(b.year || 0) - Number(a.year || 0) || Number(b.week) - Number(a.week)
+      );
+      setWeeks(orderedWeeks);
       setMetrics(data.metrics || null);
 
-      if (data.weeks && data.weeks.length > 0) {
-        setOpenWeek(data.weeks[0].week);
-      }
+      setOpenWeek(orderedWeeks.length > 0 ? weekKey(orderedWeeks[0]) : null);
     } catch (e) {
       console.error(e);
       setError("Failed to load weekly predictions.");
@@ -73,19 +76,19 @@ export default function WeeklyPredictions() {
 
       {/* === Week Sections === */}
       {weeks.map((week) => (
-        <div key={week.week} className="mb-6 border rounded overflow-hidden">
+        <div key={weekKey(week)} className="mb-6 border rounded overflow-hidden">
 
           {/* Week Header */}
           <button
             onClick={() =>
-              setOpenWeek(openWeek === week.week ? null : week.week)
+              setOpenWeek(openWeek === weekKey(week) ? null : weekKey(week))
             }
             className="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 font-semibold"
           >
             Week {week.week} {week.year ? `(${week.year})` : ""}
           </button>
 
-          {openWeek === week.week && (
+          {openWeek === weekKey(week) && (
             <div className="overflow-x-auto">
               <table className="min-w-max w-full text-sm">
                 <thead>

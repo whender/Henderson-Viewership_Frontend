@@ -42,6 +42,11 @@ export default function WeeklyPredictions() {
   return (
     <div>
       <h2 className="text-3xl font-semibold mb-4">Weekly Predictions</h2>
+      {weeks.some(week => week.games.some(game => game.revised_predicted)) && (
+        <p className="mb-4 text-sm text-gray-600">
+          Revised estimates are shown separately. Accuracy metrics use the original forecasts.
+        </p>
+      )}
 
       {/* === Summary Metrics (Pregame + Postgame) === */}
       {metrics && (
@@ -118,7 +123,16 @@ export default function WeeklyPredictions() {
                       </td>
                       <td className="p-2">{g.spread}</td>
                       <td className="p-2">{g.network}</td>
-                      <td className="p-2">{g.predicted}</td>
+                      <td className="p-2">
+                        {g.revised_predicted ? (
+                          <>
+                            <div>Original: {g.predicted}</div>
+                            <div className="font-semibold" title={g.revision_note || ""}>
+                              Revised: {g.revised_predicted}
+                            </div>
+                          </>
+                        ) : g.predicted}
+                      </td>
                       <td className="p-2">{g.post_predicted || ""}</td>
                       <td className="p-2">{g.actual || ""}</td>
                       <td className={`p-2 ${colorClass(g.percent_error)}`}>

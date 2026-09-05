@@ -25,3 +25,20 @@ test('orders weeks by season then week and opens only the newest season', async 
     global.fetch = originalFetch;
   }
 });
+
+test('shows revisions separately and explains original-forecast accuracy metrics', async () => {
+  const originalFetch = global.fetch;
+  global.fetch = jest.fn().mockResolvedValue({ json: async () => ({
+    weeks: [{ year: 2026, week: 0, games: [{
+      matchup: 'North Carolina vs TCU', predicted: '2.94M', revised_predicted: '3.78M', actual: '4.908M',
+    }] }], metrics: null,
+  }) });
+  try {
+    render(<WeeklyPredictions />);
+    expect(await screen.findByText('Original: 2.94M')).toBeInTheDocument();
+    expect(screen.getByText('Revised: 3.78M')).toBeInTheDocument();
+    expect(screen.getByText(/Accuracy metrics use the original forecasts/)).toBeInTheDocument();
+  } finally {
+    global.fetch = originalFetch;
+  }
+});

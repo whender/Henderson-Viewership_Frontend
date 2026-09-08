@@ -95,13 +95,9 @@ a.cfb-team:hover { color: var(--accent); }
   .cfb-week-controls label { order: -1; flex-basis: 100% !important; }
   .cfb-week-controls button { flex: 1; }
   .cfb-week-basis { width: 100%; }
-  .cfb-week-table,.cfb-week-table tbody { display: block; min-width: 0; }
-  .cfb-week-table thead { display: none; }
-  .cfb-week-table tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid var(--border); margin-bottom: 16px; }
-  .cfb-week-table td { display: block; padding: 12px; min-width: 0; border-bottom: 0; }
-  .cfb-week-table td::before { content: attr(data-label); display: block; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-secondary); margin-bottom: 8px; }
-  .cfb-week-table td:nth-child(2) { grid-column: 1 / -1; grid-row: 1; background: #f7f7f8; border-bottom: 1px solid var(--border); }
-  .cfb-week-table .cfb-number { white-space: normal; }
+  /* Let mobile sections use the page width without nested card gutters. */
+  .cfb-model .home-panel { padding: 0; border: 0; border-radius: 0; }
+  .cfb-week-stats,.cfb-stats { border-left: 0; border-right: 0; }
 }
 
 .ap-subtitle { margin: 8px 0 0; color: var(--text-secondary); font-size: 14px; }

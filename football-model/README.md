@@ -57,3 +57,19 @@ To publish a newly trained CFBPREDICT artifact, replace `football-model/model.js
 with `models/cfbpredict-v2.json` from that project, then run the exporter and commit
 the artifact and public snapshot together. `games.json.gz` contains the historical
 CFBD schedule/results used by the score model and current season schedule.
+
+## Weekly predictions
+
+`/#/football-model/weekly` groups the shared game forecasts by season type and
+week. It defaults to the earliest unfinished game’s week; the selected week is
+stored in the URL. Each row includes ESPN logos, model spread, probability-based
+winner pick, final score, pick outcome, and absolute margin error.
+
+Season and weekly summaries show winner record/accuracy, mean absolute margin
+error, root mean square error, and Brier score. Only completed games with valid
+scores and an eligible archived or reconstructed pregame forecast are graded.
+Even picks and tied results are excluded from winner accuracy; tied results are
+also excluded from binary Brier scoring. Archived-only filtering separates the
+published record from retrospective reconstruction. Search and result filters
+affect the game list only; summary scopes are explicitly labeled. All data uses
+the existing automatic model refresh without a public refresh control.

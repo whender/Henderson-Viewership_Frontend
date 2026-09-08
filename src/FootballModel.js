@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import { getTeamLogoUrl } from './teamLogos';
 import './FootballModel.css';
+import FootballWeekly from './FootballWeekly';
 
 const percent = value => `${(value * 100).toFixed(1)}%`;
 const signed = value => `${value > 0 ? '+' : ''}${value.toFixed(1)}`;
@@ -35,11 +36,11 @@ export default function FootballModel() {
     <header className="cfb-heading"><div><p className="home-kicker">Henderson Football</p><h2>College Football Model</h2><p>Team strength, projected spreads, and win probabilities.</p></div>
       <div className="cfb-update">{data && <><strong>{data.season} season · V2 model</strong><span>Updated {new Date(data.asOf).toLocaleString()}</span></>}</div>
     </header>
-    <nav className="cfb-tabs" aria-label="Football model navigation"><NavLink end to="/football-model">Top 25</NavLink><NavLink to="/football-model/predictor">Matchup Predictor</NavLink><NavLink to="/football-model/teams">Teams & Schedules</NavLink></nav>
+    <nav className="cfb-tabs" aria-label="Football model navigation"><NavLink end to="/football-model">Top 25</NavLink><NavLink to="/football-model/predictor">Matchup Predictor</NavLink><NavLink to="/football-model/teams">Teams & Schedules</NavLink><NavLink to="/football-model/weekly">Weekly Predictions</NavLink></nav>
     {error && <p role="alert" className="cfb-notice">{error} {data ? 'Showing the last loaded snapshot.' : 'Please try again later.'}</p>}
     {stale && <p className="cfb-notice">The last model update is more than three days old. Forecasts below use the timestamp shown above.</p>}
     {!data && !error && <p role="status">Loading football model…</p>}
-    {data && <Routes><Route index element={<Rankings data={data} />} /><Route path="predictor" element={<Predictor data={data} />} /><Route path="teams" element={<Teams data={data} />} /><Route path="teams/:team" element={<TeamPage data={data} />} /><Route path="*" element={<p>Page not found. <Link to="/football-model">View Top 25</Link></p>} /></Routes>}
+    {data && <Routes><Route index element={<Rankings data={data} />} /><Route path="predictor" element={<Predictor data={data} />} /><Route path="weekly" element={<FootballWeekly data={data} />} /><Route path="teams" element={<Teams data={data} />} /><Route path="teams/:team" element={<TeamPage data={data} />} /><Route path="*" element={<p>Page not found. <Link to="/football-model">View Top 25</Link></p>} /></Routes>}
     <p className="cfb-footnote">Model projections, not sportsbook lines. Rankings measure average symmetric neutral-field margin against the FBS field. Matchup forecasts use additional model components and are not a subtraction of the rankings.</p>
   </main>;
 }

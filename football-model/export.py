@@ -114,7 +114,7 @@ def export(model, records, output, advanced):
                 source, cutoff = 'reconstructed', game.start_date.isoformat()
         else:
             prediction = asdict(model.predict_game(game, games))
-        scheduled.append(dict(id=game.id, week=game.week, date=game.start_date.isoformat(),
+        scheduled.append(dict(id=game.id, week=game.week, seasonType=game.season_type, date=game.start_date.isoformat(),
             home=game.home_team, away=game.away_team, neutral=game.neutral_site,
             homeLogo=f"https://a.espncdn.com/i/teamlogos/ncaa/500/{game.home_id}.png" if game.home_id else None,
             awayLogo=f"https://a.espncdn.com/i/teamlogos/ncaa/500/{game.away_id}.png" if game.away_id else None,

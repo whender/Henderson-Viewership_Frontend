@@ -15,7 +15,6 @@ function Team({ name, logo, link = true }) {
 export default function FootballModel() {
   const [data, setData] = useState(null);
   const [error, setError] = useState('');
-  const [revision, setRevision] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
     async function load() {
@@ -30,14 +29,14 @@ export default function FootballModel() {
     load();
     const timer = setInterval(load, 5 * 60 * 1000);
     return () => { controller.abort(); clearInterval(timer); };
-  }, [revision]);
+  }, []);
   const stale = data && Date.now() - Date.parse(data.asOf) > 3 * 86400000;
   return <main className="cfb-model">
     <header className="cfb-heading"><div><p className="home-kicker">Henderson Football</p><h2>College Football Model</h2><p>Team strength, projected spreads, and win probabilities.</p></div>
-      <div className="cfb-update">{data && <><strong>{data.season} season · V2 model</strong><span>Updated {new Date(data.asOf).toLocaleString()}</span></>}<button className="btn-secondary" onClick={() => setRevision(v => v + 1)}>Refresh data</button></div>
+      <div className="cfb-update">{data && <><strong>{data.season} season · V2 model</strong><span>Updated {new Date(data.asOf).toLocaleString()}</span></>}</div>
     </header>
     <nav className="cfb-tabs" aria-label="Football model navigation"><NavLink end to="/football-model">Top 25</NavLink><NavLink to="/football-model/predictor">Matchup Predictor</NavLink><NavLink to="/football-model/teams">Teams & Schedules</NavLink></nav>
-    {error && <p role="alert" className="cfb-notice">{error} {data ? 'Showing the last loaded snapshot.' : 'Please try Refresh data.'}</p>}
+    {error && <p role="alert" className="cfb-notice">{error} {data ? 'Showing the last loaded snapshot.' : 'Please try again later.'}</p>}
     {stale && <p className="cfb-notice">The last model update is more than three days old. Forecasts below use the timestamp shown above.</p>}
     {!data && !error && <p role="status">Loading football model…</p>}
     {data && <Routes><Route index element={<Rankings data={data} />} /><Route path="predictor" element={<Predictor data={data} />} /><Route path="teams" element={<Teams data={data} />} /><Route path="teams/:team" element={<TeamPage data={data} />} /><Route path="*" element={<p>Page not found. <Link to="/football-model">View Top 25</Link></p>} /></Routes>}

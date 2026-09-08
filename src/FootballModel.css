@@ -3,7 +3,6 @@
 .cfb-heading h2 { max-width: 760px; margin: 8px 0 16px; }
 .cfb-heading p,.cfb-footnote { color: var(--text-secondary); }
 .cfb-update { display: grid; gap: 8px; font-size: 12px; text-align: right; flex-shrink: 0; }
-.cfb-update button { justify-self: end; }
 .cfb-tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--border); margin-bottom: 28px; overflow-x: auto; }
 .cfb-tabs a { padding: 14px 0; white-space: nowrap; font-weight: 700; border-bottom: 3px solid transparent; }
 .cfb-tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -53,7 +52,7 @@ a.cfb-team:hover { color: var(--accent); }
 .cfb-chance > div > span { height: 100%; display: block; background: var(--accent); }
 .cfb-notice { padding: 14px 18px; border-left: 3px solid var(--accent); background: #fff5f5; margin-bottom: 20px; }
 .cfb-model a:focus-visible,.cfb-model button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-@media(max-width: 640px) { .cfb-heading { display: block; } .cfb-heading h2 { font-size: 36px; } .cfb-update { text-align: left; margin-top: 20px; } .cfb-update button { justify-self: start; } .cfb-tabs { gap: 20px; font-size: 13px; } .cfb-table td,.cfb-table th { padding: 12px 8px; } .cfb-versus { grid-template-columns: 1fr 1fr; } .cfb-versus .cfb-line { grid-column: 1 / -1; grid-row: 2; } .cfb-stats > div { padding: 16px 10px; } .cfb-stats strong { font-size: 25px; } .cfb-model .home-panel-header { flex-wrap: wrap; gap: 20px; } .cfb-team-picker { width: 100%; } }
+@media(max-width: 640px) { .cfb-heading { display: block; } .cfb-heading h2 { font-size: 36px; } .cfb-update { text-align: left; margin-top: 20px; } .cfb-tabs { gap: 20px; font-size: 13px; } .cfb-table td,.cfb-table th { padding: 12px 8px; } .cfb-versus { grid-template-columns: 1fr 1fr; } .cfb-versus .cfb-line { grid-column: 1 / -1; grid-row: 2; } .cfb-stats > div { padding: 16px 10px; } .cfb-stats strong { font-size: 25px; } .cfb-model .home-panel-header { flex-wrap: wrap; gap: 20px; } .cfb-team-picker { width: 100%; } }
 @media(prefers-reduced-motion: reduce) { .cfb-probability > span { transition: none; } }
 
 .cfb-context { padding: 16px; background: #f7f7f8; border: 1px solid var(--border); font-size: 13px; }

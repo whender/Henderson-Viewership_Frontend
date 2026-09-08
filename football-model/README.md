@@ -38,8 +38,8 @@ Failures leave the last published website data intact and appear in Actions.
 The workflow commits the model artifact, schedule history, and public snapshot
 together to main. The existing hosting integration must deploy main commits
 (including github-actions bot commits). Clients revalidate the snapshot every
-five minutes and on Refresh data. A three-day-old model receives a visible stale
-data notice. Refresh data retrieves published data; it does not launch training.
+five minutes. A three-day-old model receives a visible stale
+data notice.
 
 The next season needs a newly trained annual model and matching schedule history;
 the updater fails explicitly rather than silently applying old annual priors.

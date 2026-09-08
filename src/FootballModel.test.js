@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import FootballModel from './FootballModel';
 const data = {
@@ -30,13 +30,16 @@ test('team profile shows scheduled spread instead of hypothetical line', async (
   expect(screen.getByText('39.3%')).toBeInTheDocument();
   expect(screen.queryByText('Notre Dame -6.1')).not.toBeInTheDocument();
 });
-test('failed load offers retry and recovers', async () => {
+test('failed load recovers automatically without a public refresh button', async () => {
+  jest.useFakeTimers();
   global.fetch.mockRejectedValueOnce(new Error('Offline'));
   open('/football-model');
   expect(await screen.findByRole('alert')).toHaveTextContent('Offline');
-  fireEvent.click(screen.getByText('Refresh data'));
+  expect(screen.queryByRole('button', { name: 'Refresh data' })).not.toBeInTheDocument();
+  await act(async () => { jest.advanceTimersByTime(5 * 60 * 1000); });
   await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument());
   expect(screen.getByText('Power Rankings')).toBeInTheDocument();
+  jest.useRealTimers();
 });
 
 test('neutral scheduled spread stays the same after swapping teams', async () => {

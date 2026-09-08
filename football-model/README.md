@@ -73,3 +73,75 @@ also excluded from binary Brier scoring. Archived-only filtering separates the
 published record from retrospective reconstruction. Search and result filters
 affect the game list only; summary scopes are explicitly labeled. All data uses
 the existing automatic model refresh without a public refresh control.
+
+## AP Poll Predictor
+
+The separate `/football-model/ap-poll` dashboard tab predicts AP voting order,
+not the football model's power ratings. It includes a projected next-release
+scenario, a completed-results-only alternative, a latest-poll comparison,
+searchable Top 25/bubble teams, the full AP archive, and historical validation.
+Team logos use ESPN IDs. No API key is present in browser code or public data.
+
+### Data and model
+
+`ap/polls.json.gz` contains all 1,269 archived AP releases from 1936 through
+September 8, 2026. College Poll Archive supplies rankings and release labels;
+CFBD supplies historical game results and reconciled team identities. CFBD's
+rankings endpoint was cross-checked, but missing polls and mismatched postseason
+labels made it unsafe as the sole poll source. `ap/coverage.json` records coverage.
+Historical source pages use `https://www.collegepollarchive.com/football/ap/seasons.cfm?appollid=ID`.
+
+`ap_model.py` is a standardized weighted ridge model for normalized ranking
+position, using prior AP positions/movement, preseason and previous-year rankings,
+record, clipped scoring margins, opponent winning percentages, ranked results,
+recent outcomes, interactions with the previous ranking, and three-year poll
+presence. Every season contributes, with a 20-year weight half-life. It does not
+train on a target poll's ranks as features or ingest the strength model's ratings.
+The next-release scenario alone uses the strength model's game forecasts to form
+hypothetical results. The displayed records explicitly distinguish this scenario.
+
+Training normalizes Top 10/20/25 formats and preserves ties. Rank labels are
+normalized ordinal positions, not vote shares; no fake vote totals or calibrated
+rank probabilities are displayed. Historical final polls lacking exact release
+dates use poll-history features with game results masked rather than guessed.
+Preseason polls use no current-season results. Dated polls use a conservative
+16:00 UTC cutoff with a four-hour game buffer. Games released later are excluded.
+Four wartime polls with unmatched game-universe teams remain in the archive and
+lagged history but are excluded as supervised targets. Training through 2025 uses
+1,263 polls; 2026 is excluded from fitting.
+
+Evaluation fits a fresh model on strictly earlier seasons for each 2019–2025
+in-season test year (102 polls). Results: 1.623 average rank error versus 2.313 for
+retaining the previous poll; 89.85% Top 25 membership versus 89.54% for that baseline.
+This is chronological historical validation, not an archived live track record.
+Rank error scores actual ranked teams and caps unranked model predictions at 26.
+Tied published ranks remain ties. Coefficient displays are associations per one
+historical standard deviation, not causal explanations.
+
+### Reproduction and updates
+
+```sh
+python football-model/train_ap.py --through 2025
+python football-model/export_ap.py
+python football-model/export_ap.py --refresh
+python -m unittest discover -s football-model -p 'test_*.py'
+```
+
+Training and publication are independent: the daily football workflow refreshes
+AP releases and rebuilds `public/football/ap.json` from the frozen fitted model.
+It reads game data from the football snapshot and deduplicates FBS/FCS overlap by
+game ID. Failed or unmapped poll downloads abort publication rather than silently
+inventing a ranking. The AP refresh does not require or expose an additional key.
+
+The next release date is an estimate of the next Sunday, not an official schedule.
+The projected scenario assumes each remaining game is won by the football model's
+probability favorite, using its absolute margin (at least one point). These
+synthetic outcomes are feature inputs only; they never overwrite actual games.
+Daily forecasts are retained when a new official poll arrives, provided the saved
+forecast timestamp predates that release. Until such an archive exists, the latest
+poll check is explicitly labeled a reconstruction. This is independent of the
+completed football-game forecast archive.
+
+When installing a new season's football model, train the AP model through the
+previous season after importing its completed poll/result archive. Publication
+rejects an AP artifact whose training season does not match that boundary.

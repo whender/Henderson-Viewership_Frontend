@@ -1,0 +1,3302 @@
+{
+  "260thcoastartillery": {
+    "team": "260th Coast Artillery",
+    "teamId": 1000770
+  },
+  "abilenechristian": {
+    "team": "Abilene Christian",
+    "teamId": 2000
+  },
+  "abilenefield": {
+    "team": "Abilene Field",
+    "teamId": 1000817
+  },
+  "adamsstate": {
+    "team": "Adams State",
+    "teamId": 2001
+  },
+  "adelphi": {
+    "team": "Adelphi",
+    "teamId": 1000872
+  },
+  "airforce": {
+    "team": "Air Force",
+    "teamId": 2005
+  },
+  "akron": {
+    "team": "Akron",
+    "teamId": 2006
+  },
+  "alabama": {
+    "team": "Alabama",
+    "teamId": 333
+  },
+  "alabamaam": {
+    "team": "Alabama A&M",
+    "teamId": 2010
+  },
+  "alabamastate": {
+    "team": "Alabama State",
+    "teamId": 2011
+  },
+  "alamedacoastguard": {
+    "team": "Alameda Coast Guard",
+    "teamId": 1000008
+  },
+  "alamedanas": {
+    "team": "Alameda NAS",
+    "teamId": 1000869
+  },
+  "albanystate": {
+    "team": "Albany State",
+    "teamId": 2013
+  },
+  "albertson": {
+    "team": "Albertson",
+    "teamId": 1000672
+  },
+  "albion": {
+    "team": "Albion",
+    "teamId": 2790
+  },
+  "albright": {
+    "team": "Albright",
+    "teamId": 2015
+  },
+  "albuquerquefield": {
+    "team": "Albuquerque Field",
+    "teamId": 1000782
+  },
+  "alcornstate": {
+    "team": "Alcorn State",
+    "teamId": 2016
+  },
+  "alfred": {
+    "team": "Alfred",
+    "teamId": 365
+  },
+  "allen": {
+    "team": "Allen",
+    "teamId": 2019
+  },
+  "alliance": {
+    "team": "Alliance",
+    "teamId": 1000874
+  },
+  "alma": {
+    "team": "Alma",
+    "teamId": 1000512
+  },
+  "amarillofield": {
+    "team": "Amarillo Field",
+    "teamId": 1000009
+  },
+  "american": {
+    "team": "American",
+    "teamId": 1000386
+  },
+  "americaninternational": {
+    "team": "American International",
+    "teamId": 2022
+  },
+  "amherst": {
+    "team": "Amherst",
+    "teamId": 7
+  },
+  "angelostate": {
+    "team": "Angelo State",
+    "teamId": 2025
+  },
+  "apprenticeschool": {
+    "team": "Apprentice School",
+    "teamId": 3111
+  },
+  "appstate": {
+    "team": "App State",
+    "teamId": 2026
+  },
+  "arizona": {
+    "team": "Arizona",
+    "teamId": 12
+  },
+  "arizonastate": {
+    "team": "Arizona State",
+    "teamId": 9
+  },
+  "arkansas": {
+    "team": "Arkansas",
+    "teamId": 8
+  },
+  "arkansasmonticello": {
+    "team": "Arkansas Monticello",
+    "teamId": 2028
+  },
+  "arkansaspinebluff": {
+    "team": "Arkansas-Pine Bluff",
+    "teamId": 2029
+  },
+  "arkansasstate": {
+    "team": "Arkansas State",
+    "teamId": 2032
+  },
+  "arkansastech": {
+    "team": "Arkansas Tech",
+    "teamId": 2033
+  },
+  "army": {
+    "team": "Army",
+    "teamId": 349
+  },
+  "assumption": {
+    "team": "Assumption",
+    "teamId": 2038
+  },
+  "atlanticcitynas": {
+    "team": "Atlantic City NAS",
+    "teamId": 1000838
+  },
+  "auburn": {
+    "team": "Auburn",
+    "teamId": 2
+  },
+  "augustanasd": {
+    "team": "Augustana (SD)",
+    "teamId": 2043
+  },
+  "augustanasouthdakota": {
+    "team": "Augustana (South Dakota)",
+    "teamId": 1000347
+  },
+  "aurora": {
+    "team": "Aurora",
+    "teamId": 2044
+  },
+  "austinpeay": {
+    "team": "Austin Peay",
+    "teamId": 2046
+  },
+  "azusapacific": {
+    "team": "Azusa Pacific",
+    "teamId": 2049
+  },
+  "baconecollege": {
+    "team": "Bacone College",
+    "teamId": 487
+  },
+  "bainbridgents": {
+    "team": "Bainbridge NTS",
+    "teamId": 1000808
+  },
+  "baker": {
+    "team": "Baker",
+    "teamId": 1000131
+  },
+  "bakeruniversity": {
+    "team": "Baker University",
+    "teamId": 488
+  },
+  "baldwinwallace": {
+    "team": "Baldwin Wallace",
+    "teamId": 188
+  },
+  "ballstate": {
+    "team": "Ball State",
+    "teamId": 2050
+  },
+  "barksdalefield": {
+    "team": "Barksdale Field",
+    "teamId": 1000845
+  },
+  "bates": {
+    "team": "Bates",
+    "teamId": 121
+  },
+  "baylor": {
+    "team": "Baylor",
+    "teamId": 239
+  },
+  "beaumonthospital": {
+    "team": "Beaumont Hospital",
+    "teamId": 1000825
+  },
+  "belhaven": {
+    "team": "Belhaven",
+    "teamId": 2056
+  },
+  "beloit": {
+    "team": "Beloit",
+    "teamId": 266
+  },
+  "benedict": {
+    "team": "Benedict",
+    "teamId": 490
+  },
+  "bentley": {
+    "team": "Bentley",
+    "teamId": 2060
+  },
+  "bergfield": {
+    "team": "Berg Field",
+    "teamId": 1000857
+  },
+  "bergstromfield": {
+    "team": "Bergstrom Field",
+    "teamId": 1000849
+  },
+  "berry": {
+    "team": "Berry",
+    "teamId": 2757
+  },
+  "bethanywv": {
+    "team": "Bethany (WV)",
+    "teamId": 2062
+  },
+  "betheluniversitytennessee": {
+    "team": "Bethel University Tennessee",
+    "teamId": 2064
+  },
+  "bethunecookman": {
+    "team": "Bethune-Cookman",
+    "teamId": 2065
+  },
+  "birminghamsouthern": {
+    "team": "Birmingham-Southern",
+    "teamId": 3
+  },
+  "bishop": {
+    "team": "Bishop",
+    "teamId": 1000893
+  },
+  "blackhillsstate": {
+    "team": "Black Hills State",
+    "teamId": 2069
+  },
+  "blacklandfield": {
+    "team": "Blackland Field",
+    "teamId": 1000771
+  },
+  "bloomsburg": {
+    "team": "Bloomsburg",
+    "teamId": 2071
+  },
+  "boguefield": {
+    "team": "Bogue Field",
+    "teamId": 1000856
+  },
+  "boisestate": {
+    "team": "Boise State",
+    "teamId": 68
+  },
+  "bollingfield": {
+    "team": "Bolling Field",
+    "teamId": 1000882
+  },
+  "bostoncollege": {
+    "team": "Boston College",
+    "teamId": 103
+  },
+  "bostonuniversity": {
+    "team": "Boston University",
+    "teamId": 1000010
+  },
+  "bowiestate": {
+    "team": "Bowie State",
+    "teamId": 2075
+  },
+  "bowlinggreen": {
+    "team": "Bowling Green",
+    "teamId": 189
+  },
+  "bradley": {
+    "team": "Bradley",
+    "teamId": 1000011
+  },
+  "brandeis": {
+    "team": "Brandeis",
+    "teamId": 1000881
+  },
+  "brevard": {
+    "team": "Brevard",
+    "teamId": 2913
+  },
+  "brooklyn": {
+    "team": "Brooklyn",
+    "teamId": 1000842
+  },
+  "brooklyntigersnfl": {
+    "team": "Brooklyn Tigers (NFL)",
+    "teamId": 1000814
+  },
+  "brown": {
+    "team": "Brown",
+    "teamId": 225
+  },
+  "bryanfield": {
+    "team": "Bryan Field",
+    "teamId": 1000795
+  },
+  "bryant": {
+    "team": "Bryant",
+    "teamId": 2803
+  },
+  "bucknell": {
+    "team": "Bucknell",
+    "teamId": 2083
+  },
+  "buffalo": {
+    "team": "Buffalo",
+    "teamId": 2084
+  },
+  "buffalostate": {
+    "team": "Buffalo State",
+    "teamId": 2085
+  },
+  "bunkerhillnavy": {
+    "team": "Bunker Hill Navy",
+    "teamId": 1000840
+  },
+  "butler": {
+    "team": "Butler",
+    "teamId": 2086
+  },
+  "byu": {
+    "team": "BYU",
+    "teamId": 252
+  },
+  "california": {
+    "team": "California",
+    "teamId": 25
+  },
+  "californiapa": {
+    "team": "California (PA)",
+    "teamId": 2858
+  },
+  "californiariverside": {
+    "team": "California-Riverside",
+    "teamId": 1000891
+  },
+  "californiasantabarbara": {
+    "team": "California-Santa Barbara",
+    "teamId": 1000007
+  },
+  "californiatech": {
+    "team": "California Tech",
+    "teamId": 1000690
+  },
+  "callutheran": {
+    "team": "Cal Lutheran",
+    "teamId": 2094
+  },
+  "calpoly": {
+    "team": "Cal Poly",
+    "teamId": 13
+  },
+  "calpolypomona": {
+    "team": "Cal Poly-Pomona",
+    "teamId": 1000513
+  },
+  "calstatefullerton": {
+    "team": "Cal State Fullerton",
+    "teamId": 1000012
+  },
+  "calstatelosangeles": {
+    "team": "Cal State Los Angeles",
+    "teamId": 1000013
+  },
+  "calstatenorthridge": {
+    "team": "Cal State Northridge",
+    "teamId": 1000887
+  },
+  "campbeale": {
+    "team": "Camp Beale",
+    "teamId": 1000854
+  },
+  "campbell": {
+    "team": "Campbell",
+    "teamId": 2097
+  },
+  "campblanding": {
+    "team": "Camp Blanding",
+    "teamId": 1000846
+  },
+  "campdavis": {
+    "team": "Camp Davis",
+    "teamId": 1000767
+  },
+  "campgrant": {
+    "team": "Camp Grant",
+    "teamId": 1000014
+  },
+  "camphaan": {
+    "team": "Camp Haan",
+    "teamId": 1000769
+  },
+  "camphood": {
+    "team": "Camp Hood",
+    "teamId": 1000879
+  },
+  "campkilmer": {
+    "team": "Camp Kilmer",
+    "teamId": 1000803
+  },
+  "camplee": {
+    "team": "Camp Lee",
+    "teamId": 1000574
+  },
+  "camplejeune": {
+    "team": "Camp Lejeune",
+    "teamId": 1000789
+  },
+  "campmackall": {
+    "team": "Camp Mackall",
+    "teamId": 1000861
+  },
+  "campmcclelland": {
+    "team": "Camp McClelland",
+    "teamId": 1000866
+  },
+  "camppeary": {
+    "team": "Camp Peary",
+    "teamId": 1000900
+  },
+  "camppendleton": {
+    "team": "Camp Pendleton",
+    "teamId": 1000880
+  },
+  "camppickett": {
+    "team": "Camp Pickett",
+    "teamId": 1000773
+  },
+  "camppolk": {
+    "team": "Camp Polk",
+    "teamId": 1000829
+  },
+  "canisius": {
+    "team": "Canisius",
+    "teamId": 1000706
+  },
+  "carleton": {
+    "team": "Carleton",
+    "teamId": 2101
+  },
+  "carnegiemellon": {
+    "team": "Carnegie Mellon",
+    "teamId": 2102
+  },
+  "carrollmontana": {
+    "team": "Carroll (Montana)",
+    "teamId": 1000692
+  },
+  "carsonnewman": {
+    "team": "Carson Newman",
+    "teamId": 2105
+  },
+  "carswellafb": {
+    "team": "Carswell AFB",
+    "teamId": 1000883
+  },
+  "carthage": {
+    "team": "Carthage",
+    "teamId": 2106
+  },
+  "case": {
+    "team": "Case",
+    "teamId": 1000156
+  },
+  "catawba": {
+    "team": "Catawba",
+    "teamId": 2107
+  },
+  "catholic": {
+    "team": "Catholic",
+    "teamId": 2108
+  },
+  "centenaryla": {
+    "team": "Centenary (LA)",
+    "teamId": 1000016
+  },
+  "centralarkansas": {
+    "team": "Central Arkansas",
+    "teamId": 2110
+  },
+  "centralconnecticut": {
+    "team": "Central Connecticut",
+    "teamId": 2115
+  },
+  "centraliowa": {
+    "team": "Central (Iowa)",
+    "teamId": 1000506
+  },
+  "centralmethodist": {
+    "team": "Central Methodist",
+    "teamId": 2860
+  },
+  "centralmichigan": {
+    "team": "Central Michigan",
+    "teamId": 2117
+  },
+  "centralmissouri": {
+    "team": "Central Missouri",
+    "teamId": 2118
+  },
+  "centraloklahoma": {
+    "team": "Central Oklahoma",
+    "teamId": 2122
+  },
+  "centralstate": {
+    "team": "Central State",
+    "teamId": 2119
+  },
+  "centralwashington": {
+    "team": "Central Washington",
+    "teamId": 2120
+  },
+  "centre": {
+    "team": "Centre",
+    "teamId": 2121
+  },
+  "chadronstate": {
+    "team": "Chadron State",
+    "teamId": 2123
+  },
+  "chapman": {
+    "team": "Chapman",
+    "teamId": 411
+  },
+  "charleston": {
+    "team": "Charleston",
+    "teamId": 1000305
+  },
+  "charlestoncoastguard": {
+    "team": "Charleston Coast Guard",
+    "teamId": 1000806
+  },
+  "charlestonsouthern": {
+    "team": "Charleston Southern",
+    "teamId": 2127
+  },
+  "charlestonwv": {
+    "team": "Charleston (WV)",
+    "teamId": 2128
+  },
+  "charlotte": {
+    "team": "Charlotte",
+    "teamId": 2429
+  },
+  "chathamfield": {
+    "team": "Chatham Field",
+    "teamId": 1000831
+  },
+  "chattanooga": {
+    "team": "Chattanooga",
+    "teamId": 236
+  },
+  "cherrypointmarines": {
+    "team": "Cherry Point Marines",
+    "teamId": 1000826
+  },
+  "cheyney": {
+    "team": "Cheyney",
+    "teamId": 2129
+  },
+  "chicago": {
+    "team": "Chicago",
+    "teamId": 80
+  },
+  "chowan": {
+    "team": "Chowan",
+    "teamId": 2804
+  },
+  "cincinnati": {
+    "team": "Cincinnati",
+    "teamId": 2132
+  },
+  "citycollegeofnewyork": {
+    "team": "City College of New York",
+    "teamId": 1000066
+  },
+  "clarkatlanta": {
+    "team": "Clark Atlanta",
+    "teamId": 2805
+  },
+  "clarkson": {
+    "team": "Clarkson",
+    "teamId": 1000268
+  },
+  "clemson": {
+    "team": "Clemson",
+    "teamId": 228
+  },
+  "coastalcarolina": {
+    "team": "Coastal Carolina",
+    "teamId": 324
+  },
+  "coastguard": {
+    "team": "Coast Guard",
+    "teamId": 2557
+  },
+  "coe": {
+    "team": "Coe",
+    "teamId": 2141
+  },
+  "colby": {
+    "team": "Colby",
+    "teamId": 33
+  },
+  "colgate": {
+    "team": "Colgate",
+    "teamId": 2142
+  },
+  "collegeallstars": {
+    "team": "College All-Stars",
+    "teamId": 1000844
+  },
+  "colorado": {
+    "team": "Colorado",
+    "teamId": 38
+  },
+  "coloradocollege": {
+    "team": "Colorado College",
+    "teamId": 2144
+  },
+  "coloradomesa": {
+    "team": "Colorado Mesa",
+    "teamId": 11
+  },
+  "coloradoschoolofmines": {
+    "team": "Colorado School of Mines",
+    "teamId": 2146
+  },
+  "coloradospringsfield": {
+    "team": "Colorado Springs Field",
+    "teamId": 1000775
+  },
+  "coloradostate": {
+    "team": "Colorado State",
+    "teamId": 36
+  },
+  "columbia": {
+    "team": "Columbia",
+    "teamId": 171
+  },
+  "concord": {
+    "team": "Concord",
+    "teamId": 2148
+  },
+  "concordiaal": {
+    "team": "Concordia (AL)",
+    "teamId": 3099
+  },
+  "concordiawi": {
+    "team": "Concordia (WI)",
+    "teamId": 409
+  },
+  "cornell": {
+    "team": "Cornell",
+    "teamId": 172
+  },
+  "cornellia": {
+    "team": "Cornell (IA)",
+    "teamId": 2155
+  },
+  "corpuschristinas": {
+    "team": "Corpus Christi NAS",
+    "teamId": 1000774
+  },
+  "creighton": {
+    "team": "Creighton",
+    "teamId": 1000017
+  },
+  "csupueblo": {
+    "team": "CSU Pueblo",
+    "teamId": 2570
+  },
+  "culverstocktoncollege": {
+    "team": "Culver-Stockton College",
+    "teamId": 510
+  },
+  "cumberlands": {
+    "team": "Cumberlands",
+    "teamId": 511
+  },
+  "cumberlandtn": {
+    "team": "Cumberland (TN)",
+    "teamId": 2161
+  },
+  "curtisbaycoastguard": {
+    "team": "Curtis Bay Coast Guard",
+    "teamId": 1000793
+  },
+  "dalhartfield": {
+    "team": "Dalhart Field",
+    "teamId": 1000862
+  },
+  "danielbaker": {
+    "team": "Daniel Baker",
+    "teamId": 1000331
+  },
+  "danielfield": {
+    "team": "Daniel Field",
+    "teamId": 1000787
+  },
+  "dartmouth": {
+    "team": "Dartmouth",
+    "teamId": 159
+  },
+  "davidson": {
+    "team": "Davidson",
+    "teamId": 2166
+  },
+  "daviselkins": {
+    "team": "Davis & Elkins",
+    "teamId": 1000507
+  },
+  "dayton": {
+    "team": "Dayton",
+    "teamId": 2168
+  },
+  "delaware": {
+    "team": "Delaware",
+    "teamId": 48
+  },
+  "delawarestate": {
+    "team": "Delaware State",
+    "teamId": 2169
+  },
+  "delawarevalley": {
+    "team": "Delaware Valley",
+    "teamId": 2808
+  },
+  "delmontepreflight": {
+    "team": "Del Monte Pre-Flight",
+    "teamId": 1000018
+  },
+  "deltastate": {
+    "team": "Delta State",
+    "teamId": 2170
+  },
+  "denver": {
+    "team": "Denver",
+    "teamId": 1000001
+  },
+  "depaul": {
+    "team": "DePaul",
+    "teamId": 1000671
+  },
+  "depauw": {
+    "team": "DePauw",
+    "teamId": 83
+  },
+  "desmoines": {
+    "team": "Des Moines",
+    "teamId": 2254
+  },
+  "detroitmercy": {
+    "team": "Detroit Mercy",
+    "teamId": 1000019
+  },
+  "dickinson": {
+    "team": "Dickinson",
+    "teamId": 2175
+  },
+  "doane": {
+    "team": "Doane",
+    "teamId": 1000130
+  },
+  "drake": {
+    "team": "Drake",
+    "teamId": 2181
+  },
+  "drexel": {
+    "team": "Drexel",
+    "teamId": 1000701
+  },
+  "dubuque": {
+    "team": "Dubuque",
+    "teamId": 49
+  },
+  "duke": {
+    "team": "Duke",
+    "teamId": 150
+  },
+  "duquesne": {
+    "team": "Duquesne",
+    "teamId": 2184
+  },
+  "eastcarolina": {
+    "team": "East Carolina",
+    "teamId": 151
+  },
+  "eastcentral": {
+    "team": "East Central",
+    "teamId": 2191
+  },
+  "easternillinois": {
+    "team": "Eastern Illinois",
+    "teamId": 2197
+  },
+  "easternkentucky": {
+    "team": "Eastern Kentucky",
+    "teamId": 2198
+  },
+  "easternmichigan": {
+    "team": "Eastern Michigan",
+    "teamId": 2199
+  },
+  "easternnewmexico": {
+    "team": "Eastern New Mexico",
+    "teamId": 2201
+  },
+  "easternoregon": {
+    "team": "Eastern Oregon",
+    "teamId": 2202
+  },
+  "easternwashington": {
+    "team": "Eastern Washington",
+    "teamId": 331
+  },
+  "easttennesseestate": {
+    "team": "East Tennessee State",
+    "teamId": 2193
+  },
+  "easttexasam": {
+    "team": "East Texas A&M",
+    "teamId": 2837
+  },
+  "edinboro": {
+    "team": "Edinboro",
+    "teamId": 2205
+  },
+  "edmontonfield": {
+    "team": "Edmonton Field",
+    "teamId": 1000833
+  },
+  "edwardwaters": {
+    "team": "Edward Waters",
+    "teamId": 2206
+  },
+  "elizabethcitystate": {
+    "team": "Elizabeth City State",
+    "teamId": 2207
+  },
+  "ellingtonfield": {
+    "team": "Ellington Field",
+    "teamId": 1000850
+  },
+  "elon": {
+    "team": "Elon",
+    "teamId": 2210
+  },
+  "eltoromarines": {
+    "team": "El Toro Marines",
+    "teamId": 1000828
+  },
+  "emoryhenry": {
+    "team": "Emory & Henry",
+    "teamId": 2213
+  },
+  "emporiacollege": {
+    "team": "Emporia College",
+    "teamId": 1000316
+  },
+  "emporiastate": {
+    "team": "Emporia State",
+    "teamId": 2214
+  },
+  "erskine": {
+    "team": "Erskine",
+    "teamId": 1000021
+  },
+  "evangeluniversity": {
+    "team": "Evangel University",
+    "teamId": 2865
+  },
+  "evansville": {
+    "team": "Evansville",
+    "teamId": 1000752
+  },
+  "farragutnavy": {
+    "team": "Farragut Navy",
+    "teamId": 1000859
+  },
+  "faulkneruniversity": {
+    "team": "Faulkner University",
+    "teamId": 2219
+  },
+  "fayettevillestate": {
+    "team": "Fayetteville State",
+    "teamId": 2220
+  },
+  "ferrisstate": {
+    "team": "Ferris State",
+    "teamId": 2222
+  },
+  "findlay": {
+    "team": "Findlay",
+    "teamId": 2224
+  },
+  "fleetcity": {
+    "team": "Fleet City",
+    "teamId": 1000819
+  },
+  "florida": {
+    "team": "Florida",
+    "teamId": 57
+  },
+  "floridaam": {
+    "team": "Florida A&M",
+    "teamId": 50
+  },
+  "floridaatlantic": {
+    "team": "Florida Atlantic",
+    "teamId": 2226
+  },
+  "floridainternational": {
+    "team": "Florida International",
+    "teamId": 2229
+  },
+  "floridastate": {
+    "team": "Florida State",
+    "teamId": 52
+  },
+  "floridatech": {
+    "team": "Florida Tech",
+    "teamId": 53
+  },
+  "fordham": {
+    "team": "Fordham",
+    "teamId": 2230
+  },
+  "fortbenning": {
+    "team": "Fort Benning",
+    "teamId": 1000022
+  },
+  "fortbliss": {
+    "team": "Fort Bliss",
+    "teamId": 1000830
+  },
+  "fortbragg": {
+    "team": "Fort Bragg",
+    "teamId": 1000689
+  },
+  "fortdouglas": {
+    "team": "Fort Douglas",
+    "teamId": 1000391
+  },
+  "forthays": {
+    "team": "Fort Hays",
+    "teamId": 2231
+  },
+  "fortknox": {
+    "team": "Fort Knox",
+    "teamId": 1000777
+  },
+  "fortlewis": {
+    "team": "Fort Lewis",
+    "teamId": 2237
+  },
+  "fortlewiscollege": {
+    "team": "Fort Lewis College",
+    "teamId": 1000755
+  },
+  "fortmonmouth": {
+    "team": "Fort Monmouth",
+    "teamId": 1000776
+  },
+  "fortmonroe": {
+    "team": "Fort Monroe",
+    "teamId": 1000823
+  },
+  "fortord": {
+    "team": "Fort Ord",
+    "teamId": 1000768
+  },
+  "fortpierce": {
+    "team": "Fort Pierce",
+    "teamId": 1000827
+  },
+  "fortriley": {
+    "team": "Fort Riley",
+    "teamId": 1000023
+  },
+  "fortsheridan": {
+    "team": "Fort Sheridan",
+    "teamId": 1000255
+  },
+  "forttotten": {
+    "team": "Fort Totten",
+    "teamId": 1000784
+  },
+  "fortvalleystate": {
+    "team": "Fort Valley State",
+    "teamId": 2232
+  },
+  "fortwarren": {
+    "team": "Fort Warren",
+    "teamId": 1000024
+  },
+  "franklin": {
+    "team": "Franklin",
+    "teamId": 2233
+  },
+  "franklinmarshall": {
+    "team": "Franklin & Marshall",
+    "teamId": 2234
+  },
+  "frederick": {
+    "team": "Frederick",
+    "teamId": 1000885
+  },
+  "fresnostate": {
+    "team": "Fresno State",
+    "teamId": 278
+  },
+  "fresnostatejv": {
+    "team": "Fresno State JV",
+    "teamId": 1000868
+  },
+  "frostburgstate": {
+    "team": "Frostburg State",
+    "teamId": 341
+  },
+  "furman": {
+    "team": "Furman",
+    "teamId": 231
+  },
+  "galvestonfield": {
+    "team": "Galveston Field",
+    "teamId": 1000818
+  },
+  "gannon": {
+    "team": "Gannon",
+    "teamId": 367
+  },
+  "gardnerwebb": {
+    "team": "Gardner-Webb",
+    "teamId": 2241
+  },
+  "geneva": {
+    "team": "Geneva",
+    "teamId": 2242
+  },
+  "georgetown": {
+    "team": "Georgetown",
+    "teamId": 46
+  },
+  "georgetowncollegekentucky": {
+    "team": "Georgetown College Kentucky",
+    "teamId": 2245
+  },
+  "georgewashington": {
+    "team": "George Washington",
+    "teamId": 1000025
+  },
+  "georgia": {
+    "team": "Georgia",
+    "teamId": 61
+  },
+  "georgiapreflight": {
+    "team": "Georgia Pre-Flight",
+    "teamId": 1000026
+  },
+  "georgiasouthern": {
+    "team": "Georgia Southern",
+    "teamId": 290
+  },
+  "georgiastate": {
+    "team": "Georgia State",
+    "teamId": 2247
+  },
+  "georgiatech": {
+    "team": "Georgia Tech",
+    "teamId": 59
+  },
+  "gettysburg": {
+    "team": "Gettysburg",
+    "teamId": 2248
+  },
+  "glenvillestate": {
+    "team": "Glenville State",
+    "teamId": 2249
+  },
+  "gonzaga": {
+    "team": "Gonzaga",
+    "teamId": 1000027
+  },
+  "grambling": {
+    "team": "Grambling",
+    "teamId": 2755
+  },
+  "grandvalleystate": {
+    "team": "Grand Valley State",
+    "teamId": 125
+  },
+  "greatlakesnavy": {
+    "team": "Great Lakes Navy",
+    "teamId": 1000028
+  },
+  "greensboro": {
+    "team": "Greensboro",
+    "teamId": 2256
+  },
+  "greensborofield": {
+    "team": "Greensboro Field",
+    "teamId": 1000809
+  },
+  "greenvillefield": {
+    "team": "Greenville Field",
+    "teamId": 1000804
+  },
+  "grinnell": {
+    "team": "Grinnell",
+    "teamId": 65
+  },
+  "guilford": {
+    "team": "Guilford",
+    "teamId": 2258
+  },
+  "gustavusadolphus": {
+    "team": "Gustavus Adolphus",
+    "teamId": 2968
+  },
+  "hampdensydney": {
+    "team": "Hampden Sydney",
+    "teamId": 297
+  },
+  "hampton": {
+    "team": "Hampton",
+    "teamId": 2261
+  },
+  "hanover": {
+    "team": "Hanover",
+    "teamId": 2262
+  },
+  "hardinsimmons": {
+    "team": "Hardin Simmons",
+    "teamId": 2810
+  },
+  "hartwick": {
+    "team": "Hartwick",
+    "teamId": 173
+  },
+  "harvard": {
+    "team": "Harvard",
+    "teamId": 108
+  },
+  "havanauniversity": {
+    "team": "Havana University",
+    "teamId": 1000420
+  },
+  "hawaii": {
+    "team": "Hawai'i",
+    "teamId": 62
+  },
+  "hawaiiallstars": {
+    "team": "Hawaii All-Stars",
+    "teamId": 1000696
+  },
+  "haywardstate": {
+    "team": "Hayward State",
+    "teamId": 1000889
+  },
+  "hendersonstate": {
+    "team": "Henderson State",
+    "teamId": 2271
+  },
+  "heringtonfield": {
+    "team": "Herington Field",
+    "teamId": 1000858
+  },
+  "highpoint": {
+    "team": "High Point",
+    "teamId": 1000719
+  },
+  "hillsdale": {
+    "team": "Hillsdale",
+    "teamId": 2273
+  },
+  "hiwassee": {
+    "team": "Hiwassee",
+    "teamId": 1000762
+  },
+  "hobart": {
+    "team": "Hobart",
+    "teamId": 174
+  },
+  "hofstra": {
+    "team": "Hofstra",
+    "teamId": 2275
+  },
+  "holycross": {
+    "team": "Holy Cross",
+    "teamId": 107
+  },
+  "hondofield": {
+    "team": "Hondo Field",
+    "teamId": 1000847
+  },
+  "houston": {
+    "team": "Houston",
+    "teamId": 248
+  },
+  "houstonchristian": {
+    "team": "Houston Christian",
+    "teamId": 2277
+  },
+  "howard": {
+    "team": "Howard",
+    "teamId": 47
+  },
+  "howardpayne": {
+    "team": "Howard Payne",
+    "teamId": 2758
+  },
+  "humboldtstate": {
+    "team": "Humboldt State",
+    "teamId": 2278
+  },
+  "husson": {
+    "team": "Husson",
+    "teamId": 2280
+  },
+  "idaho": {
+    "team": "Idaho",
+    "teamId": 70
+  },
+  "idahomarines": {
+    "team": "Idaho Marines",
+    "teamId": 1000779
+  },
+  "idahostate": {
+    "team": "Idaho State",
+    "teamId": 304
+  },
+  "illinois": {
+    "team": "Illinois",
+    "teamId": 356
+  },
+  "illinoiscollege": {
+    "team": "Illinois College",
+    "teamId": 2286
+  },
+  "illinoisstate": {
+    "team": "Illinois State",
+    "teamId": 2287
+  },
+  "illinoiswesleyan": {
+    "team": "Illinois Wesleyan",
+    "teamId": 306
+  },
+  "incarnateword": {
+    "team": "Incarnate Word",
+    "teamId": 2916
+  },
+  "indiana": {
+    "team": "Indiana",
+    "teamId": 84
+  },
+  "indianapolis": {
+    "team": "Indianapolis",
+    "teamId": 2292
+  },
+  "indianastate": {
+    "team": "Indiana State",
+    "teamId": 282
+  },
+  "iona": {
+    "team": "Iona",
+    "teamId": 314
+  },
+  "iowa": {
+    "team": "Iowa",
+    "teamId": 2294
+  },
+  "iowapreflight": {
+    "team": "Iowa Pre-Flight",
+    "teamId": 1000000
+  },
+  "iowastate": {
+    "team": "Iowa State",
+    "teamId": 66
+  },
+  "iowawesleyan": {
+    "team": "Iowa Wesleyan",
+    "teamId": 2295
+  },
+  "jacksonfield": {
+    "team": "Jackson Field",
+    "teamId": 1000822
+  },
+  "jacksonstate": {
+    "team": "Jackson State",
+    "teamId": 2296
+  },
+  "jacksonville": {
+    "team": "Jacksonville",
+    "teamId": 294
+  },
+  "jacksonvillenavalairstation": {
+    "team": "Jacksonville Naval Air Station",
+    "teamId": 1000031
+  },
+  "jacksonvillestate": {
+    "team": "Jacksonville State",
+    "teamId": 55
+  },
+  "jamesmadison": {
+    "team": "James Madison",
+    "teamId": 256
+  },
+  "jamesmillikin": {
+    "team": "James Millikin",
+    "teamId": 1000435
+  },
+  "johncarroll": {
+    "team": "John Carroll",
+    "teamId": 2302
+  },
+  "johnshopkins": {
+    "team": "Johns Hopkins",
+    "teamId": 118
+  },
+  "johnsoncsmith": {
+    "team": "Johnson C. Smith",
+    "teamId": 2304
+  },
+  "juniata": {
+    "team": "Juniata",
+    "teamId": 246
+  },
+  "kalamazoo": {
+    "team": "Kalamazoo",
+    "teamId": 126
+  },
+  "kansas": {
+    "team": "Kansas",
+    "teamId": 2305
+  },
+  "kansasstate": {
+    "team": "Kansas State",
+    "teamId": 2306
+  },
+  "kansaswesleyan": {
+    "team": "Kansas Wesleyan",
+    "teamId": 1000524
+  },
+  "kean": {
+    "team": "Kean",
+    "teamId": 2871
+  },
+  "kearneyfield": {
+    "team": "Kearney Field",
+    "teamId": 1000855
+  },
+  "keeslerfield": {
+    "team": "Keesler Field",
+    "teamId": 1000851
+  },
+  "kennesawstate": {
+    "team": "Kennesaw State",
+    "teamId": 338
+  },
+  "kentstate": {
+    "team": "Kent State",
+    "teamId": 2309
+  },
+  "kentucky": {
+    "team": "Kentucky",
+    "teamId": 96
+  },
+  "kentuckychristian": {
+    "team": "Kentucky Christian",
+    "teamId": 3077
+  },
+  "kentuckystate": {
+    "team": "Kentucky State",
+    "teamId": 2310
+  },
+  "kentuckywesleyan": {
+    "team": "Kentucky Wesleyan",
+    "teamId": 2316
+  },
+  "kirtlandfield": {
+    "team": "Kirtland Field",
+    "teamId": 1000772
+  },
+  "lacklandfield": {
+    "team": "Lackland Field",
+    "teamId": 1000848
+  },
+  "lafayette": {
+    "team": "Lafayette",
+    "teamId": 322
+  },
+  "lakehurstnas": {
+    "team": "Lakehurst NAS",
+    "teamId": 1000778
+  },
+  "lamar": {
+    "team": "Lamar",
+    "teamId": 2320
+  },
+  "lambuth": {
+    "team": "Lambuth",
+    "teamId": 2321
+  },
+  "lanecollege": {
+    "team": "Lane College",
+    "teamId": 2323
+  },
+  "langston": {
+    "team": "Langston",
+    "teamId": 2324
+  },
+  "lasalle": {
+    "team": "La Salle",
+    "teamId": 2325
+  },
+  "laverne": {
+    "team": "La Verne",
+    "teamId": 2318
+  },
+  "lawrence": {
+    "team": "Lawrence",
+    "teamId": 268
+  },
+  "lebanonvalley": {
+    "team": "Lebanon Valley",
+    "teamId": 388
+  },
+  "lehigh": {
+    "team": "Lehigh",
+    "teamId": 2329
+  },
+  "leilahau": {
+    "team": "Leilahau",
+    "teamId": 1000870
+  },
+  "lenoirrhyne": {
+    "team": "Lenoir Rhyne",
+    "teamId": 2331
+  },
+  "lewis": {
+    "team": "Lewis",
+    "teamId": 1000932
+  },
+  "liberty": {
+    "team": "Liberty",
+    "teamId": 2335
+  },
+  "lincoln": {
+    "team": "Lincoln",
+    "teamId": 1000894
+  },
+  "lincolnfield": {
+    "team": "Lincoln Field",
+    "teamId": 1000824
+  },
+  "lincolnmo": {
+    "team": "Lincoln (MO)",
+    "teamId": 2876
+  },
+  "lincolnpa": {
+    "team": "Lincoln (PA)",
+    "teamId": 2339
+  },
+  "lindenwood": {
+    "team": "Lindenwood",
+    "teamId": 2815
+  },
+  "linfield": {
+    "team": "Linfield",
+    "teamId": 203
+  },
+  "liupost": {
+    "team": "LIU Post",
+    "teamId": 2089
+  },
+  "livingstone": {
+    "team": "Livingstone",
+    "teamId": 2940
+  },
+  "lockhaven": {
+    "team": "Lock Haven",
+    "teamId": 209
+  },
+  "longbeachstate": {
+    "team": "Long Beach State",
+    "teamId": 1000006
+  },
+  "longislanduniversity": {
+    "team": "Long Island University",
+    "teamId": 2341
+  },
+  "louisiana": {
+    "team": "Louisiana",
+    "teamId": 309
+  },
+  "louisianaarmystu": {
+    "team": "Louisiana Army STU",
+    "teamId": 1000800
+  },
+  "louisianachristian": {
+    "team": "Louisiana Christian",
+    "teamId": 2347
+  },
+  "louisianatech": {
+    "team": "Louisiana Tech",
+    "teamId": 2348
+  },
+  "louisville": {
+    "team": "Louisville",
+    "teamId": 97
+  },
+  "louisvillefield": {
+    "team": "Louisville Field",
+    "teamId": 1000852
+  },
+  "lowryfield": {
+    "team": "Lowry Field",
+    "teamId": 1000790
+  },
+  "loyolala": {
+    "team": "Loyola (LA)",
+    "teamId": 1000033
+  },
+  "loyolamarymount": {
+    "team": "Loyola Marymount",
+    "teamId": 1000034
+  },
+  "lsu": {
+    "team": "LSU",
+    "teamId": 99
+  },
+  "lubbockfield": {
+    "team": "Lubbock Field",
+    "teamId": 1000035
+  },
+  "luther": {
+    "team": "Luther",
+    "teamId": 67
+  },
+  "maine": {
+    "team": "Maine",
+    "teamId": 311
+  },
+  "manhattan": {
+    "team": "Manhattan",
+    "teamId": 1000036
+  },
+  "manhattanbeachcoastguard": {
+    "team": "Manhattan Beach Coast Guard",
+    "teamId": 1000785
+  },
+  "mankatostate": {
+    "team": "Mankato State",
+    "teamId": 1000897
+  },
+  "mansfield": {
+    "team": "Mansfield",
+    "teamId": 2365
+  },
+  "marchfield": {
+    "team": "March Field",
+    "teamId": 1000037
+  },
+  "marianin": {
+    "team": "Marian (IN)",
+    "teamId": 2366
+  },
+  "marist": {
+    "team": "Marist",
+    "teamId": 2368
+  },
+  "marquette": {
+    "team": "Marquette",
+    "teamId": 1000039
+  },
+  "marshall": {
+    "team": "Marshall",
+    "teamId": 276
+  },
+  "marshill": {
+    "team": "Mars Hill",
+    "teamId": 2369
+  },
+  "maryland": {
+    "team": "Maryland",
+    "teamId": 120
+  },
+  "maryvilletn": {
+    "team": "Maryville (TN)",
+    "teamId": 2373
+  },
+  "massachusetts": {
+    "team": "Massachusetts",
+    "teamId": 113
+  },
+  "matherfield": {
+    "team": "Mather Field",
+    "teamId": 1000620
+  },
+  "maxwellfield": {
+    "team": "Maxwell Field",
+    "teamId": 1000841
+  },
+  "mayportnas": {
+    "team": "Mayport NAS",
+    "teamId": 1000815
+  },
+  "mcclellanfield": {
+    "team": "McClellan Field",
+    "teamId": 1000860
+  },
+  "mcdaniel": {
+    "team": "McDaniel",
+    "teamId": 1000345
+  },
+  "mckendree": {
+    "team": "McKendree",
+    "teamId": 2816
+  },
+  "mcmurry": {
+    "team": "McMurry",
+    "teamId": 241
+  },
+  "mcneese": {
+    "team": "McNeese",
+    "teamId": 2377
+  },
+  "melvilleptboats": {
+    "team": "Melville PT Boats",
+    "teamId": 1000835
+  },
+  "memphis": {
+    "team": "Memphis",
+    "teamId": 235
+  },
+  "memphisnavy": {
+    "team": "Memphis Navy",
+    "teamId": 1000797
+  },
+  "menlo": {
+    "team": "Menlo",
+    "teamId": 2381
+  },
+  "mercer": {
+    "team": "Mercer",
+    "teamId": 2382
+  },
+  "merchantmarine": {
+    "team": "Merchant Marine",
+    "teamId": 2383
+  },
+  "mercyhurst": {
+    "team": "Mercyhurst",
+    "teamId": 2385
+  },
+  "merrimack": {
+    "team": "Merrimack",
+    "teamId": 2771
+  },
+  "methodist": {
+    "team": "Methodist",
+    "teamId": 291
+  },
+  "miami": {
+    "team": "Miami",
+    "teamId": 2390
+  },
+  "miamioh": {
+    "team": "Miami (OH)",
+    "teamId": 193
+  },
+  "michigan": {
+    "team": "Michigan",
+    "teamId": 130
+  },
+  "michiganstate": {
+    "team": "Michigan State",
+    "teamId": 127
+  },
+  "middletennessee": {
+    "team": "Middle Tennessee",
+    "teamId": 2393
+  },
+  "midwesternstate": {
+    "team": "Midwestern State",
+    "teamId": 2395
+  },
+  "midwesterntexasstate": {
+    "team": "Midwestern Texas State",
+    "teamId": 1000873
+  },
+  "miles": {
+    "team": "Miles",
+    "teamId": 2396
+  },
+  "milligan": {
+    "team": "Milligan",
+    "teamId": 1000816
+  },
+  "millsaps": {
+    "team": "Millsaps",
+    "teamId": 2398
+  },
+  "minnesota": {
+    "team": "Minnesota",
+    "teamId": 135
+  },
+  "minnesotaduluth": {
+    "team": "Minnesota Duluth",
+    "teamId": 134
+  },
+  "minnesotamorris": {
+    "team": "Minnesota Morris",
+    "teamId": 2399
+  },
+  "minnesotastate": {
+    "team": "Minnesota State",
+    "teamId": 2364
+  },
+  "minotstate": {
+    "team": "Minot State",
+    "teamId": 568
+  },
+  "mississippicollege": {
+    "team": "Mississippi College",
+    "teamId": 2401
+  },
+  "mississippistate": {
+    "team": "Mississippi State",
+    "teamId": 344
+  },
+  "mississippivalleystate": {
+    "team": "Mississippi Valley State",
+    "teamId": 2400
+  },
+  "missouri": {
+    "team": "Missouri",
+    "teamId": 142
+  },
+  "missourirolla": {
+    "team": "Missouri-Rolla",
+    "teamId": 1000320
+  },
+  "missourisouthern": {
+    "team": "Missouri Southern",
+    "teamId": 1000895
+  },
+  "missourist": {
+    "team": "Missouri S&T",
+    "teamId": 2402
+  },
+  "missouristate": {
+    "team": "Missouri State",
+    "teamId": 2623
+  },
+  "missourivalley": {
+    "team": "Missouri Valley",
+    "teamId": 1000839
+  },
+  "moffettfield": {
+    "team": "Moffett Field",
+    "teamId": 1000766
+  },
+  "mohawk": {
+    "team": "Mohawk",
+    "teamId": 1000871
+  },
+  "monmouth": {
+    "team": "Monmouth",
+    "teamId": 2405
+  },
+  "montana": {
+    "team": "Montana",
+    "teamId": 149
+  },
+  "montanastate": {
+    "team": "Montana State",
+    "teamId": 147
+  },
+  "montanatech": {
+    "team": "Montana Tech",
+    "teamId": 1000534
+  },
+  "montanawestern": {
+    "team": "Montana Western",
+    "teamId": 2701
+  },
+  "montclairstate": {
+    "team": "Montclair State",
+    "teamId": 2818
+  },
+  "monticellonavy": {
+    "team": "Monticello Navy",
+    "teamId": 1000798
+  },
+  "moorheadstate": {
+    "team": "Moorhead State",
+    "teamId": 1000896
+  },
+  "moreheadstate": {
+    "team": "Morehead State",
+    "teamId": 2413
+  },
+  "morehouse": {
+    "team": "Morehouse",
+    "teamId": 60
+  },
+  "morganstate": {
+    "team": "Morgan State",
+    "teamId": 2415
+  },
+  "morrisfield": {
+    "team": "Morris Field",
+    "teamId": 1000832
+  },
+  "mountstmarys": {
+    "team": "Mount St. Mary's",
+    "teamId": 1000203
+  },
+  "muhlenberg": {
+    "team": "Muhlenberg",
+    "teamId": 2422
+  },
+  "murraystate": {
+    "team": "Murray State",
+    "teamId": 93
+  },
+  "navy": {
+    "team": "Navy",
+    "teamId": 2426
+  },
+  "ncstate": {
+    "team": "NC State",
+    "teamId": 152
+  },
+  "nebraska": {
+    "team": "Nebraska",
+    "teamId": 158
+  },
+  "nebraskakearney": {
+    "team": "Nebraska Kearney",
+    "teamId": 2438
+  },
+  "nebraskaomaha": {
+    "team": "Nebraska-Omaha",
+    "teamId": 2437
+  },
+  "nebraskawesleyan": {
+    "team": "Nebraska Wesleyan",
+    "teamId": 1000478
+  },
+  "nevada": {
+    "team": "Nevada",
+    "teamId": 2440
+  },
+  "newberry": {
+    "team": "Newberry",
+    "teamId": 2444
+  },
+  "newhampshire": {
+    "team": "New Hampshire",
+    "teamId": 160
+  },
+  "newhaven": {
+    "team": "New Haven",
+    "teamId": 2441
+  },
+  "newlondonsubmarinebase": {
+    "team": "New London Submarine Base",
+    "teamId": 1000837
+  },
+  "newmexico": {
+    "team": "New Mexico",
+    "teamId": 167
+  },
+  "newmexicohighlands": {
+    "team": "New Mexico Highlands",
+    "teamId": 2424
+  },
+  "newmexicomilitary": {
+    "team": "New Mexico Military",
+    "teamId": 1000737
+  },
+  "newmexicostate": {
+    "team": "New Mexico State",
+    "teamId": 166
+  },
+  "newportnews": {
+    "team": "Newport News",
+    "teamId": 1000759
+  },
+  "newyorkuniversity": {
+    "team": "New York University",
+    "teamId": 1000041
+  },
+  "niagara": {
+    "team": "Niagara",
+    "teamId": 1000402
+  },
+  "nicholls": {
+    "team": "Nicholls",
+    "teamId": 2447
+  },
+  "norfolkmarines": {
+    "team": "Norfolk Marines",
+    "teamId": 1000811
+  },
+  "norfolknavy": {
+    "team": "Norfolk Navy",
+    "teamId": 1000622
+  },
+  "norfolkstate": {
+    "team": "Norfolk State",
+    "teamId": 2450
+  },
+  "normannavalairstation": {
+    "team": "Norman Naval Air Station",
+    "teamId": 1000042
+  },
+  "northalabama": {
+    "team": "North Alabama",
+    "teamId": 2453
+  },
+  "northcarolina": {
+    "team": "North Carolina",
+    "teamId": 153
+  },
+  "northcarolinaat": {
+    "team": "North Carolina A&T",
+    "teamId": 2448
+  },
+  "northcarolinacentral": {
+    "team": "North Carolina Central",
+    "teamId": 2428
+  },
+  "northcarolinapreflight": {
+    "team": "North Carolina Pre-Flight",
+    "teamId": 1000005
+  },
+  "northdakota": {
+    "team": "North Dakota",
+    "teamId": 155
+  },
+  "northdakotastate": {
+    "team": "North Dakota State",
+    "teamId": 2449
+  },
+  "northeastern": {
+    "team": "Northeastern",
+    "teamId": 111
+  },
+  "northeasternstate": {
+    "team": "Northeastern State",
+    "teamId": 196
+  },
+  "northernarizona": {
+    "team": "Northern Arizona",
+    "teamId": 2464
+  },
+  "northerncolorado": {
+    "team": "Northern Colorado",
+    "teamId": 2458
+  },
+  "northernillinois": {
+    "team": "Northern Illinois",
+    "teamId": 2459
+  },
+  "northerniowa": {
+    "team": "Northern Iowa",
+    "teamId": 2460
+  },
+  "northernmichigan": {
+    "team": "Northern Michigan",
+    "teamId": 128
+  },
+  "northernstate": {
+    "team": "Northern State",
+    "teamId": 425
+  },
+  "northgreenville": {
+    "team": "North Greenville",
+    "teamId": 2822
+  },
+  "northtexas": {
+    "team": "North Texas",
+    "teamId": 249
+  },
+  "northwestern": {
+    "team": "Northwestern",
+    "teamId": 77
+  },
+  "northwesternok": {
+    "team": "Northwestern (OK)",
+    "teamId": 2823
+  },
+  "northwesternstate": {
+    "team": "Northwestern State",
+    "teamId": 2466
+  },
+  "northwestmissouristate": {
+    "team": "Northwest Missouri State",
+    "teamId": 138
+  },
+  "norwich": {
+    "team": "Norwich",
+    "teamId": 2467
+  },
+  "notredame": {
+    "team": "Notre Dame",
+    "teamId": 87
+  },
+  "oberlin": {
+    "team": "Oberlin",
+    "teamId": 391
+  },
+  "occidental": {
+    "team": "Occidental",
+    "teamId": 2475
+  },
+  "oceananas": {
+    "team": "Oceana NAS",
+    "teamId": 1000863
+  },
+  "oglethorpe": {
+    "team": "Oglethorpe",
+    "teamId": 1000043
+  },
+  "ohio": {
+    "team": "Ohio",
+    "teamId": 195
+  },
+  "ohiostate": {
+    "team": "Ohio State",
+    "teamId": 194
+  },
+  "ohiowesleyan": {
+    "team": "Ohio Wesleyan",
+    "teamId": 2980
+  },
+  "oklahoma": {
+    "team": "Oklahoma",
+    "teamId": 201
+  },
+  "oklahomabaptist": {
+    "team": "Oklahoma Baptist",
+    "teamId": 319
+  },
+  "oklahomacity": {
+    "team": "Oklahoma City",
+    "teamId": 1000457
+  },
+  "oklahomapanhandle": {
+    "team": "Oklahoma Panhandle",
+    "teamId": 2824
+  },
+  "oklahomastate": {
+    "team": "Oklahoma State",
+    "teamId": 197
+  },
+  "olathenavy": {
+    "team": "Olathe Navy",
+    "teamId": 1000821
+  },
+  "olddominion": {
+    "team": "Old Dominion",
+    "teamId": 295
+  },
+  "olemiss": {
+    "team": "Ole Miss",
+    "teamId": 145
+  },
+  "oregon": {
+    "team": "Oregon",
+    "teamId": 2483
+  },
+  "oregonstate": {
+    "team": "Oregon State",
+    "teamId": 204
+  },
+  "otterbein": {
+    "team": "Otterbein",
+    "teamId": 359
+  },
+  "ottumwapreflight": {
+    "team": "Ottumwa Pre-Flight",
+    "teamId": 1000805
+  },
+  "ouachita": {
+    "team": "Ouachita",
+    "teamId": 1000436
+  },
+  "ouachitabaptist": {
+    "team": "Ouachita Baptist",
+    "teamId": 2888
+  },
+  "pace": {
+    "team": "Pace",
+    "teamId": 2487
+  },
+  "pacific": {
+    "team": "Pacific",
+    "teamId": 1000044
+  },
+  "pacificallstars": {
+    "team": "Pacific All-Stars",
+    "teamId": 1000796
+  },
+  "pacificfleet": {
+    "team": "Pacific Fleet",
+    "teamId": 1000657
+  },
+  "pacificlutheran": {
+    "team": "Pacific Lutheran",
+    "teamId": 2486
+  },
+  "pacificoregon": {
+    "team": "Pacific (Oregon)",
+    "teamId": 1000650
+  },
+  "pacificsubmarines": {
+    "team": "Pacific Submarines",
+    "teamId": 1000878
+  },
+  "parrisislandmarines": {
+    "team": "Parris Island Marines",
+    "teamId": 1000456
+  },
+  "parsons": {
+    "team": "Parsons",
+    "teamId": 1000886
+  },
+  "parsonsiowa": {
+    "team": "Parsons (Iowa)",
+    "teamId": 1000482
+  },
+  "penn": {
+    "team": "Pennsylvania",
+    "teamId": 219
+  },
+  "pennstate": {
+    "team": "Penn State",
+    "teamId": 213
+  },
+  "pennsylvaniamilitary": {
+    "team": "Pennsylvania Military",
+    "teamId": 1000073
+  },
+  "pensacolanas": {
+    "team": "Pensacola NAS",
+    "teamId": 1000783
+  },
+  "pepperdine": {
+    "team": "Pepperdine",
+    "teamId": 1000867
+  },
+  "perustate": {
+    "team": "Peru State",
+    "teamId": 1000410
+  },
+  "piedmont": {
+    "team": "Piedmont",
+    "teamId": 1000674
+  },
+  "pikeville": {
+    "team": "Pikeville",
+    "teamId": 95
+  },
+  "pittsburgh": {
+    "team": "Pittsburgh",
+    "teamId": 221
+  },
+  "pittsburgstate": {
+    "team": "Pittsburg State",
+    "teamId": 90
+  },
+  "pleasantonnavy": {
+    "team": "Pleasanton Navy",
+    "teamId": 1000794
+  },
+  "pointuniversity": {
+    "team": "Point University",
+    "teamId": 3179
+  },
+  "pomonaordinancebase": {
+    "team": "Pomona Ordinance Base",
+    "teamId": 1000807
+  },
+  "pomonapitzer": {
+    "team": "Pomona Pitzer",
+    "teamId": 2923
+  },
+  "portland": {
+    "team": "Portland",
+    "teamId": 1000046
+  },
+  "portlandstate": {
+    "team": "Portland State",
+    "teamId": 2502
+  },
+  "portsmouthfleet": {
+    "team": "Portsmouth Fleet",
+    "teamId": 1000836
+  },
+  "prairieviewam": {
+    "team": "Prairie View A&M",
+    "teamId": 2504
+  },
+  "presbyterian": {
+    "team": "Presbyterian",
+    "teamId": 2506
+  },
+  "princeton": {
+    "team": "Princeton",
+    "teamId": 163
+  },
+  "providence": {
+    "team": "Providence",
+    "teamId": 1000704
+  },
+  "pugetsound": {
+    "team": "Puget Sound",
+    "teamId": 2508
+  },
+  "purdue": {
+    "team": "Purdue",
+    "teamId": 2509
+  },
+  "quanticomarines": {
+    "team": "Quantico Marines",
+    "teamId": 1000047
+  },
+  "quincy": {
+    "team": "Quincy",
+    "teamId": 2825
+  },
+  "randolphfield": {
+    "team": "Randolph Field",
+    "teamId": 1000048
+  },
+  "randolphmacon": {
+    "team": "Randolph Macon",
+    "teamId": 2516
+  },
+  "redlands": {
+    "team": "Redlands",
+    "teamId": 29
+  },
+  "regisco": {
+    "team": "Regis (CO)",
+    "teamId": 1000049
+  },
+  "reinhardt": {
+    "team": "Reinhardt",
+    "teamId": 2890
+  },
+  "rensselaer": {
+    "team": "Rensselaer",
+    "teamId": 2528
+  },
+  "rhodeisland": {
+    "team": "Rhode Island",
+    "teamId": 227
+  },
+  "rhodes": {
+    "team": "Rhodes",
+    "teamId": 2519
+  },
+  "rice": {
+    "team": "Rice",
+    "teamId": 242
+  },
+  "richmond": {
+    "team": "Richmond",
+    "teamId": 257
+  },
+  "richmondfield": {
+    "team": "Richmond Field",
+    "teamId": 1000791
+  },
+  "ripon": {
+    "team": "Ripon",
+    "teamId": 2891
+  },
+  "roanoke": {
+    "team": "Roanoke",
+    "teamId": 1000383
+  },
+  "robertmorris": {
+    "team": "Robert Morris",
+    "teamId": 2523
+  },
+  "rochesterny": {
+    "team": "Rochester (NY)",
+    "teamId": 184
+  },
+  "rockhurst": {
+    "team": "Rockhurst",
+    "teamId": 1000765
+  },
+  "rollins": {
+    "team": "Rollins",
+    "teamId": 1000669
+  },
+  "rowan": {
+    "team": "Rowan",
+    "teamId": 2827
+  },
+  "rutgers": {
+    "team": "Rutgers",
+    "teamId": 164
+  },
+  "sacramentostate": {
+    "team": "Sacramento State",
+    "teamId": 16
+  },
+  "sacredheart": {
+    "team": "Sacred Heart",
+    "teamId": 2529
+  },
+  "saintanselm": {
+    "team": "Saint Anselm",
+    "teamId": 2830
+  },
+  "saintfrancis": {
+    "team": "Saint Francis",
+    "teamId": 2598
+  },
+  "saintfrancisin": {
+    "team": "Saint Francis (IN)",
+    "teamId": 2831
+  },
+  "saintlouis": {
+    "team": "Saint Louis",
+    "teamId": 1000050
+  },
+  "saintmarysca": {
+    "team": "Saint Mary's (CA)",
+    "teamId": 1000051
+  },
+  "saintmaryscapreflight": {
+    "team": "Saint Mary's (CA) Pre-Flight",
+    "teamId": 1000065
+  },
+  "saintxavier": {
+    "team": "Saint Xavier",
+    "teamId": 2615
+  },
+  "salisbury": {
+    "team": "Salisbury",
+    "teamId": 2532
+  },
+  "saltlakefield": {
+    "team": "Salt Lake Field",
+    "teamId": 1000799
+  },
+  "salveregina": {
+    "team": "Salve Regina",
+    "teamId": 2776
+  },
+  "samford": {
+    "team": "Samford",
+    "teamId": 2535
+  },
+  "samhouston": {
+    "team": "Sam Houston",
+    "teamId": 2534
+  },
+  "sampsonnts": {
+    "team": "Sampson NTS",
+    "teamId": 1000792
+  },
+  "sandiego": {
+    "team": "San Diego",
+    "teamId": 301
+  },
+  "sandiegobomberspcfl": {
+    "team": "San Diego Bombers (PCFL)",
+    "teamId": 1000820
+  },
+  "sandiegomarines": {
+    "team": "San Diego Marines",
+    "teamId": 1000745
+  },
+  "sandiegonavy": {
+    "team": "San Diego Navy",
+    "teamId": 1000801
+  },
+  "sandiegostate": {
+    "team": "San Diego State",
+    "teamId": 21
+  },
+  "sanfrancisco": {
+    "team": "San Francisco",
+    "teamId": 1000004
+  },
+  "sanfranciscoclippersafl": {
+    "team": "San Francisco Clippers (AFL)",
+    "teamId": 1000843
+  },
+  "sanfranciscostate": {
+    "team": "San Francisco State",
+    "teamId": 1000888
+  },
+  "sanjosestate": {
+    "team": "San Jos\u00e9 State",
+    "teamId": 23
+  },
+  "sanpedroac": {
+    "team": "San Pedro A.C.",
+    "teamId": 1000875
+  },
+  "santaanafield": {
+    "team": "Santa Ana Field",
+    "teamId": 1000788
+  },
+  "santaclara": {
+    "team": "Santa Clara",
+    "teamId": 1000003
+  },
+  "savannahstate": {
+    "team": "Savannah State",
+    "teamId": 2542
+  },
+  "scranton": {
+    "team": "Scranton",
+    "teamId": 1000725
+  },
+  "secondairforce": {
+    "team": "Second Air Force",
+    "teamId": 1000053
+  },
+  "secondairforcecolorado": {
+    "team": "Second Air Force (Colorado)",
+    "teamId": 1000813
+  },
+  "secondairforcewashington": {
+    "team": "Second Air Force (Washington)",
+    "teamId": 1000781
+  },
+  "selouisiana": {
+    "team": "SE Louisiana",
+    "teamId": 2545
+  },
+  "sewanee": {
+    "team": "Sewanee",
+    "teamId": 2553
+  },
+  "shaw": {
+    "team": "Shaw",
+    "teamId": 2551
+  },
+  "shenandoah": {
+    "team": "Shenandoah",
+    "teamId": 2828
+  },
+  "shepherd": {
+    "team": "Shepherd",
+    "teamId": 2974
+  },
+  "shorter": {
+    "team": "Shorter",
+    "teamId": 2560
+  },
+  "siena": {
+    "team": "Siena",
+    "teamId": 2561
+  },
+  "simpsonia": {
+    "team": "Simpson (IA)",
+    "teamId": 2564
+  },
+  "siouxfalls": {
+    "team": "Sioux Falls",
+    "teamId": 2894
+  },
+  "slipperyrock": {
+    "team": "Slippery Rock",
+    "teamId": 215
+  },
+  "smu": {
+    "team": "SMU",
+    "teamId": 2567
+  },
+  "sonomastate": {
+    "team": "Sonoma State",
+    "teamId": 1000898
+  },
+  "southalabama": {
+    "team": "South Alabama",
+    "teamId": 6
+  },
+  "southcarolina": {
+    "team": "South Carolina",
+    "teamId": 2579
+  },
+  "southcarolinastate": {
+    "team": "South Carolina State",
+    "teamId": 2569
+  },
+  "southdakota": {
+    "team": "South Dakota",
+    "teamId": 233
+  },
+  "southdakotamines": {
+    "team": "South Dakota Mines",
+    "teamId": 613
+  },
+  "southdakotastate": {
+    "team": "South Dakota State",
+    "teamId": 2571
+  },
+  "southeastmissouristate": {
+    "team": "Southeast Missouri State",
+    "teamId": 2546
+  },
+  "southern": {
+    "team": "Southern",
+    "teamId": 2582
+  },
+  "southernarkansas": {
+    "team": "Southern Arkansas",
+    "teamId": 2568
+  },
+  "southernconnecticutstate": {
+    "team": "Southern Connecticut State",
+    "teamId": 2583
+  },
+  "southernillinois": {
+    "team": "Southern Illinois",
+    "teamId": 79
+  },
+  "southernmiss": {
+    "team": "Southern Miss",
+    "teamId": 2572
+  },
+  "southernoregon": {
+    "team": "Southern Oregon",
+    "teamId": 2584
+  },
+  "southernutah": {
+    "team": "Southern Utah",
+    "teamId": 253
+  },
+  "southernvirginia": {
+    "team": "Southern Virginia",
+    "teamId": 2896
+  },
+  "southflorida": {
+    "team": "South Florida",
+    "teamId": 58
+  },
+  "southplainsfield": {
+    "team": "South Plains Field",
+    "teamId": 1000802
+  },
+  "southwestbaptist": {
+    "team": "Southwest Baptist",
+    "teamId": 2586
+  },
+  "southwesternkansas": {
+    "team": "Southwestern (Kansas)",
+    "teamId": 1000493
+  },
+  "southwesternoklahomastate": {
+    "team": "Southwestern Oklahoma State",
+    "teamId": 2927
+  },
+  "southwesternu": {
+    "team": "Southwestern U",
+    "teamId": 2588
+  },
+  "spencefield": {
+    "team": "Spence Field",
+    "teamId": 1000786
+  },
+  "springfield": {
+    "team": "Springfield",
+    "teamId": 81
+  },
+  "springhill": {
+    "team": "Spring Hill",
+    "teamId": 1000054
+  },
+  "squantumnas": {
+    "team": "Squantum NAS",
+    "teamId": 1000853
+  },
+  "stambrose": {
+    "team": "St. Ambrose",
+    "teamId": 2591
+  },
+  "stanford": {
+    "team": "Stanford",
+    "teamId": 24
+  },
+  "staugustines": {
+    "team": "St. Augustine's",
+    "teamId": 395
+  },
+  "stbenedict": {
+    "team": "St. Benedict",
+    "teamId": 1000756
+  },
+  "stbonaventure": {
+    "team": "St. Bonaventure",
+    "teamId": 1000462
+  },
+  "stcloudstate": {
+    "team": "St. Cloud State",
+    "teamId": 2594
+  },
+  "stedwards": {
+    "team": "St. Edward's",
+    "teamId": 1000667
+  },
+  "stephenfaustin": {
+    "team": "Stephen F. Austin",
+    "teamId": 2617
+  },
+  "stetson": {
+    "team": "Stetson",
+    "teamId": 56
+  },
+  "stfrancisil": {
+    "team": "St. Francis (IL)",
+    "teamId": 2595
+  },
+  "stillman": {
+    "team": "Stillman",
+    "teamId": 2948
+  },
+  "stjohnsmaryland": {
+    "team": "St. John's (Maryland)",
+    "teamId": 1000113
+  },
+  "stjosephsin": {
+    "team": "St. Joseph's (IN)",
+    "teamId": 2601
+  },
+  "stjosephspennsylvania": {
+    "team": "St. Joseph's (Pennsylvania)",
+    "teamId": 1000617
+  },
+  "stlawrence": {
+    "team": "St. Lawrence",
+    "teamId": 1000246
+  },
+  "stmarysca": {
+    "team": "St. Mary's (CA)",
+    "teamId": 2608
+  },
+  "stmarystexas": {
+    "team": "St. Mary's (Texas)",
+    "teamId": 1000498
+  },
+  "stolaf": {
+    "team": "St. Olaf",
+    "teamId": 1000834
+  },
+  "stonehill": {
+    "team": "Stonehill",
+    "teamId": 284
+  },
+  "stonybrook": {
+    "team": "Stony Brook",
+    "teamId": 2619
+  },
+  "stpaulscollege": {
+    "team": "St. Paul's College",
+    "teamId": 2611
+  },
+  "stpeters": {
+    "team": "St. Peter's",
+    "teamId": 2612
+  },
+  "stvincentspennsylvania": {
+    "team": "St. Vincent's (Pennsylvania)",
+    "teamId": 1000763
+  },
+  "sulrossstate": {
+    "team": "Sul Ross State",
+    "teamId": 2834
+  },
+  "sunymaritime": {
+    "team": "SUNY Maritime",
+    "teamId": 2951
+  },
+  "swarthmore": {
+    "team": "Swarthmore",
+    "teamId": 1000002
+  },
+  "syracuse": {
+    "team": "Syracuse",
+    "teamId": 183
+  },
+  "tampa": {
+    "team": "Tampa",
+    "teamId": 1000056
+  },
+  "tarletonstate": {
+    "team": "Tarleton State",
+    "teamId": 2627
+  },
+  "taylor": {
+    "team": "Taylor",
+    "teamId": 620
+  },
+  "tcu": {
+    "team": "TCU",
+    "teamId": 2628
+  },
+  "temple": {
+    "team": "Temple",
+    "teamId": 218
+  },
+  "tennessee": {
+    "team": "Tennessee",
+    "teamId": 2633
+  },
+  "tennesseestate": {
+    "team": "Tennessee State",
+    "teamId": 2634
+  },
+  "tennesseetech": {
+    "team": "Tennessee Tech",
+    "teamId": 2635
+  },
+  "tennesseewesleyan": {
+    "team": "Tennessee Wesleyan",
+    "teamId": 1000757
+  },
+  "texas": {
+    "team": "Texas",
+    "teamId": 251
+  },
+  "texasam": {
+    "team": "Texas A&M",
+    "teamId": 245
+  },
+  "texasamcorpuschristi": {
+    "team": "Texas A&M-Corpus Christi",
+    "teamId": 1000876
+  },
+  "texasamkingsville": {
+    "team": "Texas A&M-Kingsville",
+    "teamId": 2658
+  },
+  "texasarlington": {
+    "team": "Texas-Arlington",
+    "teamId": 1000058
+  },
+  "texascollege": {
+    "team": "Texas College",
+    "teamId": 2637
+  },
+  "texaslutheran": {
+    "team": "Texas Lutheran",
+    "teamId": 2639
+  },
+  "texassouthern": {
+    "team": "Texas Southern",
+    "teamId": 2640
+  },
+  "texasstate": {
+    "team": "Texas State",
+    "teamId": 326
+  },
+  "texastech": {
+    "team": "Texas Tech",
+    "teamId": 2641
+  },
+  "texaswesleyan": {
+    "team": "Texas Wesleyan",
+    "teamId": 1000760
+  },
+  "thecitadel": {
+    "team": "The Citadel",
+    "teamId": 2643
+  },
+  "thecollegeofnewjersey": {
+    "team": "The College of New Jersey",
+    "teamId": 2442
+  },
+  "thirdairforce": {
+    "team": "Third Air Force",
+    "teamId": 1000901
+  },
+  "tiffin": {
+    "team": "Tiffin",
+    "teamId": 2838
+  },
+  "toledo": {
+    "team": "Toledo",
+    "teamId": 2649
+  },
+  "towson": {
+    "team": "Towson",
+    "teamId": 119
+  },
+  "trinityinternationalil": {
+    "team": "Trinity International (IL)",
+    "teamId": 2907
+  },
+  "trinitytexas": {
+    "team": "Trinity (Texas)",
+    "teamId": 1000302
+  },
+  "troy": {
+    "team": "Troy",
+    "teamId": 2653
+  },
+  "trumanstate": {
+    "team": "Truman State",
+    "teamId": 2654
+  },
+  "tufts": {
+    "team": "Tufts",
+    "teamId": 112
+  },
+  "tulane": {
+    "team": "Tulane",
+    "teamId": 2655
+  },
+  "tulsa": {
+    "team": "Tulsa",
+    "teamId": 202
+  },
+  "tusculum": {
+    "team": "Tusculum",
+    "teamId": 2839
+  },
+  "tuskegee": {
+    "team": "Tuskegee",
+    "teamId": 2657
+  },
+  "uab": {
+    "team": "UAB",
+    "teamId": 5
+  },
+  "ualbany": {
+    "team": "UAlbany",
+    "teamId": 399
+  },
+  "ucdavis": {
+    "team": "UC Davis",
+    "teamId": 302
+  },
+  "ucf": {
+    "team": "UCF",
+    "teamId": 2116
+  },
+  "ucla": {
+    "team": "UCLA",
+    "teamId": 26
+  },
+  "uconn": {
+    "team": "UConn",
+    "teamId": 41
+  },
+  "ulmonroe": {
+    "team": "UL Monroe",
+    "teamId": 2433
+  },
+  "uncpembroke": {
+    "team": "UNC Pembroke",
+    "teamId": 2882
+  },
+  "unioncollege": {
+    "team": "Union College",
+    "teamId": 2841
+  },
+  "unionny": {
+    "team": "Union (NY)",
+    "teamId": 1000059
+  },
+  "uniontennessee": {
+    "team": "Union (Tennessee)",
+    "teamId": 1000359
+  },
+  "universityofmexico": {
+    "team": "University of Mexico",
+    "teamId": 1000736
+  },
+  "unlv": {
+    "team": "UNLV",
+    "teamId": 2439
+  },
+  "upperiowa": {
+    "team": "Upper Iowa",
+    "teamId": 389
+  },
+  "upsala": {
+    "team": "Upsala",
+    "teamId": 1000764
+  },
+  "urbana": {
+    "team": "Urbana",
+    "teamId": 2666
+  },
+  "ursinus": {
+    "team": "Ursinus",
+    "teamId": 2667
+  },
+  "usamphibians": {
+    "team": "U.S. Amphibians",
+    "teamId": 1000864
+  },
+  "usc": {
+    "team": "USC",
+    "teamId": 30
+  },
+  "usinternational": {
+    "team": "U.S. International",
+    "teamId": 1000890
+  },
+  "utah": {
+    "team": "Utah",
+    "teamId": 254
+  },
+  "utahstate": {
+    "team": "Utah State",
+    "teamId": 328
+  },
+  "utahtech": {
+    "team": "Utah Tech",
+    "teamId": 3101
+  },
+  "utep": {
+    "team": "UTEP",
+    "teamId": 2638
+  },
+  "utmartin": {
+    "team": "UT Martin",
+    "teamId": 2630
+  },
+  "utriograndevalley": {
+    "team": "UT Rio Grande Valley",
+    "teamId": 292
+  },
+  "utsa": {
+    "team": "UTSA",
+    "teamId": 2636
+  },
+  "uvawise": {
+    "team": "UVA Wise",
+    "teamId": 2842
+  },
+  "valdostastate": {
+    "team": "Valdosta State",
+    "teamId": 2673
+  },
+  "valparaiso": {
+    "team": "Valparaiso",
+    "teamId": 2674
+  },
+  "vanderbilt": {
+    "team": "Vanderbilt",
+    "teamId": 238
+  },
+  "vermont": {
+    "team": "Vermont",
+    "teamId": 1000060
+  },
+  "villanova": {
+    "team": "Villanova",
+    "teamId": 222
+  },
+  "virginia": {
+    "team": "Virginia",
+    "teamId": 258
+  },
+  "virginialynchburg": {
+    "team": "Virginia Lynchburg",
+    "teamId": 2355
+  },
+  "virginiastate": {
+    "team": "Virginia State",
+    "teamId": 330
+  },
+  "virginiatech": {
+    "team": "Virginia Tech",
+    "teamId": 259
+  },
+  "virginiaunion": {
+    "team": "Virginia Union",
+    "teamId": 2676
+  },
+  "vmi": {
+    "team": "VMI",
+    "teamId": 2678
+  },
+  "wabash": {
+    "team": "Wabash",
+    "teamId": 89
+  },
+  "wacofield": {
+    "team": "Waco Field",
+    "teamId": 1000780
+  },
+  "wagner": {
+    "team": "Wagner",
+    "teamId": 2681
+  },
+  "wakeforest": {
+    "team": "Wake Forest",
+    "teamId": 154
+  },
+  "waldorf": {
+    "team": "Waldorf",
+    "teamId": 3080
+  },
+  "warner": {
+    "team": "Warner",
+    "teamId": 2683
+  },
+  "washburn": {
+    "team": "Washburn",
+    "teamId": 2687
+  },
+  "washington": {
+    "team": "Washington",
+    "teamId": 264
+  },
+  "washingtonandlee": {
+    "team": "Washington and Lee",
+    "teamId": 2688
+  },
+  "washingtonjefferson": {
+    "team": "Washington & Jefferson",
+    "teamId": 2686
+  },
+  "washingtonredskinsnfl": {
+    "team": "Washington Redskins (NFL)",
+    "teamId": 1000812
+  },
+  "washingtonstate": {
+    "team": "Washington State",
+    "teamId": 265
+  },
+  "washingtonstlouis": {
+    "team": "Washington St. Louis",
+    "teamId": 143
+  },
+  "waylandbaptist": {
+    "team": "Wayland Baptist",
+    "teamId": 630
+  },
+  "waynesburg": {
+    "team": "Waynesburg",
+    "teamId": 2845
+  },
+  "waynestate": {
+    "team": "Wayne State",
+    "teamId": 1000761
+  },
+  "waynestatene": {
+    "team": "Wayne State (NE)",
+    "teamId": 2844
+  },
+  "webberinternational": {
+    "team": "Webber International",
+    "teamId": 2691
+  },
+  "weberstate": {
+    "team": "Weber State",
+    "teamId": 2692
+  },
+  "wesleyanct": {
+    "team": "Wesleyan (CT)",
+    "teamId": 1000061
+  },
+  "wesleycollege": {
+    "team": "Wesley College",
+    "teamId": 2846
+  },
+  "westalabama": {
+    "team": "West Alabama",
+    "teamId": 2695
+  },
+  "westchester": {
+    "team": "West Chester",
+    "teamId": 223
+  },
+  "westerncarolina": {
+    "team": "Western Carolina",
+    "teamId": 2717
+  },
+  "westerncolorado": {
+    "team": "Western Colorado",
+    "teamId": 2714
+  },
+  "westernconnecticutstate": {
+    "team": "Western Connecticut State",
+    "teamId": 2843
+  },
+  "westernillinois": {
+    "team": "Western Illinois",
+    "teamId": 2710
+  },
+  "westernkentucky": {
+    "team": "Western Kentucky",
+    "teamId": 98
+  },
+  "westernmichigan": {
+    "team": "Western Michigan",
+    "teamId": 2711
+  },
+  "westernnewmexico": {
+    "team": "Western New Mexico",
+    "teamId": 2703
+  },
+  "westernoregon": {
+    "team": "Western Oregon",
+    "teamId": 2848
+  },
+  "westernreserve": {
+    "team": "Western Reserve",
+    "teamId": 1000169
+  },
+  "westernwashington": {
+    "team": "Western Washington",
+    "teamId": 2847
+  },
+  "westgeorgia": {
+    "team": "West Georgia",
+    "teamId": 2698
+  },
+  "westliberty": {
+    "team": "West Liberty",
+    "teamId": 2699
+  },
+  "westminsterpennsylvania": {
+    "team": "Westminster (Pennsylvania)",
+    "teamId": 1000371
+  },
+  "westtexas": {
+    "team": "West Texas",
+    "teamId": 2704
+  },
+  "westvirginia": {
+    "team": "West Virginia",
+    "teamId": 277
+  },
+  "westvirginiastate": {
+    "team": "West Virginia State",
+    "teamId": 2707
+  },
+  "westvirginiawesleyan": {
+    "team": "West Virginia Wesleyan",
+    "teamId": 455
+  },
+  "whitesands": {
+    "team": "White Sands",
+    "teamId": 1000877
+  },
+  "whitman": {
+    "team": "Whitman",
+    "teamId": 1000062
+  },
+  "whittier": {
+    "team": "Whittier",
+    "teamId": 2850
+  },
+  "wichitastate": {
+    "team": "Wichita State",
+    "teamId": 1000063
+  },
+  "willamette": {
+    "team": "Willamette",
+    "teamId": 2930
+  },
+  "williamjewell": {
+    "team": "William Jewell",
+    "teamId": 2911
+  },
+  "williammary": {
+    "team": "William & Mary",
+    "teamId": 2729
+  },
+  "williampenn": {
+    "team": "William Penn",
+    "teamId": 2912
+  },
+  "williams": {
+    "team": "Williams",
+    "teamId": 2731
+  },
+  "williamsfield": {
+    "team": "Williams Field",
+    "teamId": 1000865
+  },
+  "wingate": {
+    "team": "Wingate",
+    "teamId": 351
+  },
+  "winstonsalemstate": {
+    "team": "Winston-Salem State",
+    "teamId": 2736
+  },
+  "wisconsin": {
+    "team": "Wisconsin",
+    "teamId": 275
+  },
+  "wisconsinlacrosse": {
+    "team": "Wisconsin La Crosse",
+    "teamId": 2740
+  },
+  "wisconsinlutheran": {
+    "team": "Wisconsin Lutheran",
+    "teamId": 2741
+  },
+  "wisconsinmilwaukee": {
+    "team": "Wisconsin-Milwaukee",
+    "teamId": 1000892
+  },
+  "wisconsinplatteville": {
+    "team": "Wisconsin Platteville",
+    "teamId": 272
+  },
+  "wittenberg": {
+    "team": "Wittenberg",
+    "teamId": 2746
+  },
+  "wofford": {
+    "team": "Wofford",
+    "teamId": 2747
+  },
+  "wooster": {
+    "team": "Wooster",
+    "teamId": 2748
+  },
+  "wpi": {
+    "team": "WPI",
+    "teamId": 2749
+  },
+  "wvutech": {
+    "team": "WVU Tech",
+    "teamId": 2706
+  },
+  "wyoming": {
+    "team": "Wyoming",
+    "teamId": 2751
+  },
+  "xavier": {
+    "team": "Xavier",
+    "teamId": 1000064
+  },
+  "yale": {
+    "team": "Yale",
+    "teamId": 43
+  },
+  "youngstownstate": {
+    "team": "Youngstown State",
+    "teamId": 2754
+  },
+  "yumafield": {
+    "team": "Yuma Field",
+    "teamId": 1000810
+  }
+}

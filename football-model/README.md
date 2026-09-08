@@ -7,8 +7,14 @@ margin layers, and FBS/FCS components. No API credential is shipped to the brows
 
 The Top 25 is the model's symmetric neutral-field ranking, not a poll. All 138 FBS
 teams have profiles. The hypothetical predictor uses precomputed outputs of the
-actual model for every ordered pair at both home and neutral sites. Scheduled
-games use `predict_game`, including rest/travel context. Completed games display
+actual model for every ordered pair at both home and neutral sites. Home-site hypothetical predictions include venue travel. For an upcoming scheduled
+matchup, the predictor defaults to the earliest remaining meeting’s date/rest
+context and the user’s selected venue. Turning scheduled context off uses equal
+rest. Selecting the actual venue reproduces the team schedule exactly. Scheduled
+games use `predict_game`, including rest/travel context. Neutral FBS forecasts
+average both label orientations, canceling home-label margin and probability
+intercepts; swapping teams preserves the favorite, spread, and team probabilities.
+The cross-division model retains its canonical FBS/FCS orientation. Completed games display
 actual scores only, avoiding forecasts contaminated by their own outcomes.
 ESPN logos use the same team IDs and existing Henderson logo helper.
 

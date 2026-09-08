@@ -8,6 +8,7 @@ const data = {
     { team: 'Notre Dame', team_id: 87, rank: 3, rating: 29.25, conference: 'Independent', games: 1 },
   ],
   games: [{ id: 1, week: 7, date: '2026-10-17T04:00:00Z', home: 'BYU', away: 'Notre Dame', completed: false, prediction: { predicted_margin: -4.417, home_win_probability: .393, away_win_probability: .607 } }],
+  scheduledMatchups: { '252:87:0': { margin: -4.417, probability: .393, date: '2026-10-17T04:00:00Z', actualHome: 'BYU', actualNeutral: false }, '252:87:1': { margin: -8.4, probability: .3, date: '2026-10-17T04:00:00Z', actualHome: 'BYU', actualNeutral: false }, '87:252:1': { margin: 8.4, probability: .7, date: '2026-10-17T04:00:00Z', actualHome: 'BYU', actualNeutral: false } },
   matchups: { '252:87:0': [-6.058, .353], '252:87:1': [-10, .25], '87:252:0': [14, .8] },
 };
 beforeEach(() => { global.fetch = jest.fn().mockResolvedValue({ ok: true, json: async () => data }); });
@@ -15,7 +16,9 @@ afterEach(() => jest.restoreAllMocks());
 function open(path) { render(<MemoryRouter initialEntries={[path]}><Routes><Route path="/football-model/*" element={<FootballModel />} /></Routes></MemoryRouter>); }
 test('hypothetical predictions change with venue and reject self-matchups', async () => {
   open('/football-model/predictor');
-  expect(await screen.findByText('Notre Dame -6.1')).toBeInTheDocument();
+  expect(await screen.findByText('Notre Dame -4.4')).toBeInTheDocument();
+  fireEvent.click(screen.getByLabelText('Use scheduled game context'));
+  expect(screen.getByText('Notre Dame -6.1')).toBeInTheDocument();
   fireEvent.click(screen.getByLabelText('Neutral site'));
   expect(screen.getByText('Notre Dame -10.0')).toBeInTheDocument();
   fireEvent.change(screen.getByLabelText('Team 2'), { target: { value: 'BYU' } });
@@ -34,4 +37,14 @@ test('failed load offers retry and recovers', async () => {
   fireEvent.click(screen.getByText('Refresh data'));
   await waitFor(() => expect(screen.queryByRole('alert')).not.toBeInTheDocument());
   expect(screen.getByText('Power Rankings')).toBeInTheDocument();
+});
+
+test('neutral scheduled spread stays the same after swapping teams', async () => {
+  open('/football-model/predictor');
+  expect(await screen.findByText('Notre Dame -4.4')).toBeInTheDocument();
+  fireEvent.click(screen.getByLabelText('Neutral site'));
+  expect(screen.getByText('Notre Dame -8.4')).toBeInTheDocument();
+  fireEvent.click(screen.getByText('Swap teams'));
+  expect(screen.getByText('Notre Dame -8.4')).toBeInTheDocument();
+  expect(screen.getByText('70.0%')).toBeInTheDocument();
 });

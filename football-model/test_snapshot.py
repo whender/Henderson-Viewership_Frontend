@@ -42,3 +42,42 @@ class SnapshotTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class PredictionConsistencyTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.data = json.loads((ROOT.parent / 'public/football/model.json').read_text())
+        cls.model = CollegeFootballV2Model.load(ROOT / 'model.json')
+
+    def test_every_neutral_matchup_is_order_independent(self):
+        for key, (margin, probability) in self.data['matchups'].items():
+            home, away, neutral = key.split(':')
+            if neutral != '1':
+                continue
+            reverse = self.data['matchups'][f'{away}:{home}:1']
+            self.assertAlmostEqual(margin, -reverse[0], places=5)
+            self.assertAlmostEqual(probability, 1 - reverse[1], places=7)
+
+    def test_scheduled_predictor_matches_every_upcoming_fbs_game(self):
+        teams = {t['team']: t['team_id'] for t in self.data['teams']}
+        checked = set()
+        for game in sorted(self.data['games'], key=lambda g: (g['date'], g['id'])):
+            if game['completed'] or game['home'] not in teams or game['away'] not in teams:
+                continue
+            key = f"{teams[game['home']]}:{teams[game['away']]}:{int(game['neutral'])}"
+            if key in checked:
+                continue
+            checked.add(key)
+            scheduled = self.data['scheduledMatchups'][key]
+            self.assertEqual(scheduled['gameId'], game['id'])
+            self.assertAlmostEqual(scheduled['margin'], game['prediction']['predicted_margin'])
+            self.assertAlmostEqual(scheduled['probability'], game['prediction']['home_win_probability'])
+
+    def test_scheduled_neutral_matchups_are_symmetric_with_rest(self):
+        for key, p in self.data['scheduledMatchups'].items():
+            home, away, neutral = key.split(':')
+            if neutral != '1':
+                continue
+            reverse = self.data['scheduledMatchups'][f'{away}:{home}:1']
+            self.assertAlmostEqual(p['margin'], -reverse['margin'])
+            self.assertAlmostEqual(p['probability'], 1 - reverse['probability'])

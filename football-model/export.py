@@ -3,7 +3,7 @@ import argparse
 import gzip
 import json
 import os
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -79,9 +79,30 @@ def export(model, records, output):
                 p = model.predict(home['team'], away['team'], neutral_site=neutral)
                 matchups[f"{home['team_id']}:{away['team_id']}:{int(neutral)}"] = [
                     round(p.predicted_margin, 6), round(p.home_win_probability, 8)]
+    scheduled_matchups = {}
+    # Earliest remaining meeting supplies the date/rest context for this pair.
+    for game in sorted(games, key=lambda g: (g.start_date, g.id)):
+        if game.completed or game.home_team not in fbs_names or game.away_team not in fbs_names:
+            continue
+        for swapped in (False, True):
+            oriented = replace(
+                game, home_team=game.away_team, home_id=game.away_id,
+                away_team=game.home_team, away_id=game.home_id,
+            ) if swapped else game
+            for neutral in (False, True):
+                key = f"{oriented.home_id}:{oriented.away_id}:{int(neutral)}"
+                if key in scheduled_matchups:
+                    continue
+                p = model.predict_game(replace(oriented, neutral_site=neutral), games)
+                scheduled_matchups[key] = dict(
+                    gameId=game.id, date=game.start_date.isoformat(),
+                    margin=p.predicted_margin, probability=p.home_win_probability,
+                    actualHome=game.home_team, actualAway=game.away_team,
+                    actualNeutral=game.neutral_site,
+                )
     payload = dict(schemaVersion=1, season=model.season, asOf=model.as_of.isoformat(),
                    generatedAt=datetime.now(UTC).isoformat(), teams=teams, games=scheduled,
-                   matchups=matchups)
+                   matchups=matchups, scheduledMatchups=scheduled_matchups)
     atomic_write_json(output, payload)
     print(f'Published {len(teams)} teams, {len(scheduled)} games, {len(matchups)} matchups.')
 

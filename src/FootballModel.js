@@ -53,12 +53,18 @@ function Predictor({ data }) {
   const [home, setHome] = useState('BYU');
   const [away, setAway] = useState('Notre Dame');
   const [neutral, setNeutral] = useState(false);
+  const [useSchedule, setUseSchedule] = useState(true);
   const h = teams.find(t => t.team === home), a = teams.find(t => t.team === away);
-  const result = h && a && home !== away ? data.matchups[`${h.team_id}:${a.team_id}:${Number(neutral)}`] : null;
+  const key = h && a && home !== away ? `${h.team_id}:${a.team_id}:${Number(neutral)}` : null;
+  const scheduled = key ? data.scheduledMatchups?.[key] : null;
+  const usingSchedule = useSchedule && Boolean(scheduled);
+  const result = usingSchedule ? [scheduled.margin, scheduled.probability] : data.matchups[key];
+  const matchesVenue = scheduled && neutral === scheduled.actualNeutral && (neutral || home === scheduled.actualHome);
   return <section className="home-panel"><div className="home-panel-header"><div><p className="home-kicker">Hypothetical Matchup</p><h3>Who has the edge?</h3></div></div>
     <div className="cfb-controls"><label>{neutral ? 'Team 1' : 'Home team'}<select value={home} onChange={e => setHome(e.target.value)}>{teams.map(t => <option key={t.team_id}>{t.team}</option>)}</select></label><button className="btn-secondary" onClick={() => { setHome(away); setAway(home); }}>Swap teams</button><label>{neutral ? 'Team 2' : 'Away team'}<select value={away} onChange={e => setAway(e.target.value)}>{teams.map(t => <option key={t.team_id}>{t.team}</option>)}</select></label><label className="cfb-checkbox"><input type="checkbox" checked={neutral} onChange={e => setNeutral(e.target.checked)} />Neutral site</label></div>
+    {scheduled && <div className="cfb-context"><label className="cfb-checkbox"><input type="checkbox" checked={useSchedule} onChange={e => setUseSchedule(e.target.checked)} />Use scheduled game context</label><p>{new Date(scheduled.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}{usingSchedule ? matchesVenue ? ' · Same forecast as the team schedule' : ' · Scheduled date and rest, with your selected venue' : ' · Disabled; using equal rest'}</p></div>}
     {home === away ? <p role="alert" className="cfb-notice">Choose two different teams.</p> : !result ? <p role="alert">This matchup is unavailable.</p> : <div className="cfb-matchup" aria-live="polite"><div className="cfb-versus"><div><Team name={home} logo={h.logo} /><strong>{percent(result[1])}</strong><span>Win probability</span></div><div className="cfb-line"><span>Projected spread</span><strong>{spread(result[0], home, away)}</strong><span>{neutral ? 'Neutral field' : `At ${home}`}</span></div><div><Team name={away} logo={a.logo} /><strong>{percent(1 - result[1])}</strong><span>Win probability</span></div></div><div className="cfb-probability" aria-label={`${home} ${percent(result[1])}, ${away} ${percent(1 - result[1])}`}><span style={{ width: percent(result[1]) }} /></div></div>}
-    <p className="cfb-footnote">Hypothetical matchups use the selected venue. Scheduled forecasts also account for game context, including rest and travel, so their spreads can differ.</p></section>;
+    <p className="cfb-footnote">Home-site predictions include travel to the home team’s venue. For an upcoming scheduled matchup, its date and rest context are used by default. Turn off scheduled context to compare on equal rest. On a neutral field, swapping teams preserves the spread and each team’s win probability.</p></section>;
 }
 function Teams({ data }) {
   const [search, setSearch] = useState('');

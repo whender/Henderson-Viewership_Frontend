@@ -56,3 +56,7 @@ a.cfb-team:hover { color: var(--accent); }
 @media(max-width: 1000px) { .cfb-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media(max-width: 640px) { .cfb-heading { display: block; } .cfb-heading h2 { font-size: 36px; } .cfb-update { text-align: left; margin-top: 20px; } .cfb-update button { justify-self: start; } .cfb-tabs { gap: 20px; font-size: 13px; } .cfb-table td,.cfb-table th { padding: 12px 8px; } .cfb-team-grid { grid-template-columns: 1fr; } .cfb-versus { grid-template-columns: 1fr 1fr; } .cfb-versus .cfb-line { grid-column: 1 / -1; grid-row: 2; } .cfb-stats > div { padding: 16px 10px; } .cfb-stats strong { font-size: 25px; } .cfb-model .home-panel-header { flex-wrap: wrap; gap: 20px; } .cfb-team-picker { width: 100%; } }
 @media(prefers-reduced-motion: reduce) { .cfb-probability > span { transition: none; } }
+
+.cfb-context { padding: 16px; background: #f7f7f8; border: 1px solid var(--border); font-size: 13px; }
+.cfb-context .cfb-checkbox { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.cfb-context p { margin: 8px 0 0; color: var(--text-secondary); }

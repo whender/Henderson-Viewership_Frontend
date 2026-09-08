@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import math
 from collections.abc import Mapping, Sequence
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -139,6 +139,30 @@ def early_large_score_gap_feature(score_rating_diff: float, season_week: float) 
     return math.copysign(excess * decay, gap)
 
 
+def venue_travel_miles(
+    home_key: str | None,
+    away_key: str | None,
+    team_locations: Mapping[str, tuple[float, float]],
+    *,
+    neutral_site: bool,
+) -> float:
+    """Distance to a team's home venue; neutral venues have no inferred location."""
+    if neutral_site:
+        return 0.0
+    home_location = team_locations.get(home_key or "")
+    away_location = team_locations.get(away_key or "")
+    if home_location is None or away_location is None:
+        return 0.0
+    lat1, lon1 = (math.radians(value) for value in away_location)
+    lat2, lon2 = (math.radians(value) for value in home_location)
+    delta_lat, delta_lon = lat2 - lat1, lon2 - lon1
+    haversine = (
+        math.sin(delta_lat / 2.0) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin(delta_lon / 2.0) ** 2
+    )
+    return 2.0 * 3_958.8 * math.asin(min(math.sqrt(haversine), 1.0))
+
+
 def game_context_features(
     game: Any,
     season_games: Sequence[Any],
@@ -159,20 +183,9 @@ def game_context_features(
         days = (game.start_date - max(previous)).total_seconds() / 86_400.0
         return max(3.0, min(days, 21.0))
 
-    travel = 0.0
-    if not game.neutral_site:
-        home_location = team_locations.get(game.home_key)
-        away_location = team_locations.get(game.away_key)
-        if home_location is not None and away_location is not None:
-            lat1, lon1 = (math.radians(value) for value in away_location)
-            lat2, lon2 = (math.radians(value) for value in home_location)
-            delta_lat = lat2 - lat1
-            delta_lon = lon2 - lon1
-            haversine = (
-                math.sin(delta_lat / 2.0) ** 2
-                + math.cos(lat1) * math.cos(lat2) * math.sin(delta_lon / 2.0) ** 2
-            )
-            travel = 2.0 * 3_958.8 * math.asin(min(math.sqrt(haversine), 1.0))
+    travel = venue_travel_miles(
+        game.home_key, game.away_key, team_locations, neutral_site=game.neutral_site
+    )
     team_openers = [
         other.start_date
         for other in season_games
@@ -613,6 +626,26 @@ class CollegeFootballV2Model:
             for name in hybrid.feature_names
         }
         result = hybrid.predict(model_features)
+        if neutral_site and not use_fcs_model:
+            # Neither displayed side is a real home team. Average both orientations
+            # to cancel home-label intercepts in margin and probability calibration.
+            reverse = hybrid.predict({name: -value for name, value in model_features.items()})
+            margin = 0.5 * (result.predicted_margin - reverse.predicted_margin)
+            probability = 0.5 * (result.home_win_probability + reverse.away_win_probability)
+            result = replace(
+                result,
+                predicted_margin=margin,
+                home_win_probability=probability,
+                away_win_probability=1.0 - probability,
+                margin_interval_80=(
+                    0.5 * (result.margin_interval_80[0] - reverse.margin_interval_80[1]),
+                    0.5 * (result.margin_interval_80[1] - reverse.margin_interval_80[0]),
+                ),
+                margin_interval_95=(
+                    0.5 * (result.margin_interval_95[0] - reverse.margin_interval_95[1]),
+                    0.5 * (result.margin_interval_95[1] - reverse.margin_interval_95[0]),
+                ),
+            )
         predicted_margin = cross_orientation * result.predicted_margin
         if cross_orientation > 0.0:
             home_probability = result.home_win_probability
@@ -663,6 +696,11 @@ class CollegeFootballV2Model:
             home_team=home_team,
             away_team=away_team,
             neutral_site=neutral_site,
+            context={
+                "away_travel_thousand_miles": venue_travel_miles(
+                    home_key, away_key, self.team_locations, neutral_site=neutral_site
+                ) / 1_000.0,
+            },
         )
 
     def predict_game(self, game: Any, season_games: Sequence[Any]) -> V2Prediction:

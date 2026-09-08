@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, Navigate, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
+import FootballModel from "./FootballModel";
 import WeeklyPredictions from "./WeeklyPredictions";
 import TeamProfiles from "./TeamProfiles";
 import ViewershipRankings from "./ViewershipRankings";
@@ -17,6 +18,7 @@ import "./App.css";
 
 const NAV_ITEMS = [
   ["home", "/", "HOME"],
+  ["football-model", "/football-model", "FOOTBALL MODEL"],
   ["predictor", "/predictor", "GAME PREDICTOR"],
   ["brands", "/brands", "BRAND RANKINGS"],
   ["viewership-rankings", "/viewership-rankings", "VIEWERSHIP RANKINGS"],
@@ -124,7 +126,7 @@ export default function App() {
   const pageCopy = activeTab === "home" ? {
     title: "Will Henderson - Viewership Model",
     description: "Viewership tools, rankings, profiles, and conference analysis.",
-  } : sportCopy;
+  } : activeTab === "football-model" ? { title: "Will Henderson — College Football Model", description: "Team strength, game forecasts, and season outlooks." } : sportCopy;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -323,6 +325,7 @@ export default function App() {
         />
 
         <Routes>
+          <Route path="/football-model/*" element={<FootballModel />} />
           <Route
             path="/"
             element={
@@ -519,6 +522,8 @@ function DashboardNav({
         )}
       </div>
 
+      <Link to="/football-model" className={"dashboard-nav-link " + (activeTab === "football-model" ? "dashboard-nav-link-active" : "")}>Football Model</Link>
+
       <Link
         to="/articles"
         className={"dashboard-nav-link " + (activeTab === "articles" ? "dashboard-nav-link-active" : "")}
@@ -590,6 +595,7 @@ function MobileDashboardMenu({
           >
             Home
           </Link>
+          <Link to="/football-model" onClick={onClose} className={"mobile-drawer-link " + (activeTab === "football-model" ? "mobile-drawer-link-active" : "")}>Football Model</Link>
           <Link
             to="/articles"
             className={"mobile-drawer-link " + (activeTab === "articles" ? "mobile-drawer-link-active" : "")}

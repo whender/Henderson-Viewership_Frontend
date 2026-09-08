@@ -1,0 +1,58 @@
+.cfb-model { margin-top: 36px; }
+.cfb-heading { display: flex; justify-content: space-between; gap: 24px; align-items: flex-end; padding: 16px 0 28px; }
+.cfb-heading h2 { max-width: 760px; margin: 8px 0 16px; }
+.cfb-heading p,.cfb-footnote { color: var(--text-secondary); }
+.cfb-update { display: grid; gap: 8px; font-size: 12px; text-align: right; flex-shrink: 0; }
+.cfb-update button { justify-self: end; }
+.cfb-tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--border); margin-bottom: 28px; overflow-x: auto; }
+.cfb-tabs a { padding: 14px 0; white-space: nowrap; font-weight: 700; border-bottom: 3px solid transparent; }
+.cfb-tabs a.active { color: var(--accent); border-bottom-color: var(--accent); }
+.cfb-model .home-panel { min-width: 0; }
+.cfb-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.cfb-table th { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-secondary); padding: 14px 16px; background: #f7f7f8; }
+.cfb-table td { border-bottom: 1px solid var(--border); padding: 12px 16px; }
+.cfb-table tr:hover td { background: #fafafa; }
+.cfb-team { display: inline-flex; align-items: center; gap: 12px; font-weight: 600; }
+a.cfb-team:hover { color: var(--accent); }
+.cfb-team img { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+.cfb-rank { font-size: 20px; font-weight: 700; color: var(--text-secondary); }
+.cfb-number,.cfb-chance,.cfb-rank { font-variant-numeric: tabular-nums; }
+.cfb-number { font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+.cfb-controls { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; margin: 24px 0; }
+.cfb-controls label,.cfb-team-picker { display: grid; gap: 8px; font-size: 13px; font-weight: 600; }
+.cfb-controls select,.cfb-controls input { max-width: 100%; }
+.cfb-controls label:not(.cfb-checkbox) { flex: 1; min-width: 180px; }
+.cfb-controls .cfb-checkbox { display: flex; align-items: center; min-height: 44px; }
+.cfb-checkbox input { width: 18px; height: 18px; accent-color: var(--accent); }
+.cfb-versus { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 20px; padding: 32px 0; align-items: center; }
+.cfb-versus > div { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.cfb-versus > div > strong { font-size: clamp(26px, 4vw, 44px); letter-spacing: -.04em; }
+.cfb-versus .cfb-line strong { font-size: clamp(24px, 3vw, 36px); color: var(--accent); }
+.cfb-versus .cfb-team { flex-direction: column; }
+.cfb-versus img { width: 76px; height: 76px; }
+.cfb-versus > div > span { font-size: 13px; color: var(--text-secondary); }
+.cfb-probability { height: 12px; background: #222; overflow: hidden; border-radius: 3px; }
+.cfb-probability > span { display: block; height: 100%; background: var(--accent); transition: width .2s; }
+.cfb-footnote { font-size: 12px; line-height: 1.7; margin: 24px 0 0; max-width: 950px; }
+.cfb-team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--border); }
+.cfb-team-card { display: flex; align-items: center; gap: 12px; padding: 16px 10px; border-bottom: 1px solid var(--border); }
+.cfb-team-card .cfb-rank { font-size: 13px; min-width: 24px; }
+.cfb-team-card .cfb-number { margin-left: auto; font-size: 12px; }
+.cfb-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 24px 0 32px; border: 1px solid var(--border); }
+.cfb-stats > div { padding: 24px; display: grid; gap: 8px; }
+.cfb-stats > div + div { border-left: 1px solid var(--border); }
+.cfb-stats span { color: var(--text-secondary); font-size: 12px; }
+.cfb-stats strong { font-size: 32px; }
+.cfb-stats small { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+.cfb-schedule-title { margin: 18px 0; font-size: 20px; font-weight: 700; }
+.cfb-schedule { min-width: 760px; }
+.cfb-schedule td small { display: block; font-size: 12px; color: var(--text-secondary); }
+.cfb-opponent { display: flex; align-items: center; gap: 12px; }
+.cfb-opponent > span { font-size: 12px; min-width: 18px; color: var(--text-secondary); }
+.cfb-chance > div { height: 4px; background: #eee; width: 90px; margin-top: 8px; }
+.cfb-chance > div > span { height: 100%; display: block; background: var(--accent); }
+.cfb-notice { padding: 14px 18px; border-left: 3px solid var(--accent); background: #fff5f5; margin-bottom: 20px; }
+.cfb-model a:focus-visible,.cfb-model button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media(max-width: 1000px) { .cfb-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media(max-width: 640px) { .cfb-heading { display: block; } .cfb-heading h2 { font-size: 36px; } .cfb-update { text-align: left; margin-top: 20px; } .cfb-update button { justify-self: start; } .cfb-tabs { gap: 20px; font-size: 13px; } .cfb-table td,.cfb-table th { padding: 12px 8px; } .cfb-team-grid { grid-template-columns: 1fr; } .cfb-versus { grid-template-columns: 1fr 1fr; } .cfb-versus .cfb-line { grid-column: 1 / -1; grid-row: 2; } .cfb-stats > div { padding: 16px 10px; } .cfb-stats strong { font-size: 25px; } .cfb-model .home-panel-header { flex-wrap: wrap; gap: 20px; } .cfb-team-picker { width: 100%; } }
+@media(prefers-reduced-motion: reduce) { .cfb-probability > span { transition: none; } }

@@ -34,7 +34,7 @@ a.cfb-team:hover { color: var(--accent); }
 .cfb-probability { height: 12px; background: #222; overflow: hidden; border-radius: 3px; }
 .cfb-probability > span { display: block; height: 100%; background: var(--accent); transition: width .2s; }
 .cfb-footnote { font-size: 12px; line-height: 1.7; margin: 24px 0 0; max-width: 950px; }
-.cfb-team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--border); }
+.cfb-team-grid { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--border); }
 .cfb-team-card { display: flex; align-items: center; gap: 12px; padding: 16px 10px; border-bottom: 1px solid var(--border); }
 .cfb-team-card .cfb-rank { font-size: 13px; min-width: 24px; }
 .cfb-team-card .cfb-number { margin-left: auto; font-size: 12px; }
@@ -53,8 +53,7 @@ a.cfb-team:hover { color: var(--accent); }
 .cfb-chance > div > span { height: 100%; display: block; background: var(--accent); }
 .cfb-notice { padding: 14px 18px; border-left: 3px solid var(--accent); background: #fff5f5; margin-bottom: 20px; }
 .cfb-model a:focus-visible,.cfb-model button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-@media(max-width: 1000px) { .cfb-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media(max-width: 640px) { .cfb-heading { display: block; } .cfb-heading h2 { font-size: 36px; } .cfb-update { text-align: left; margin-top: 20px; } .cfb-update button { justify-self: start; } .cfb-tabs { gap: 20px; font-size: 13px; } .cfb-table td,.cfb-table th { padding: 12px 8px; } .cfb-team-grid { grid-template-columns: 1fr; } .cfb-versus { grid-template-columns: 1fr 1fr; } .cfb-versus .cfb-line { grid-column: 1 / -1; grid-row: 2; } .cfb-stats > div { padding: 16px 10px; } .cfb-stats strong { font-size: 25px; } .cfb-model .home-panel-header { flex-wrap: wrap; gap: 20px; } .cfb-team-picker { width: 100%; } }
+@media(max-width: 640px) { .cfb-heading { display: block; } .cfb-heading h2 { font-size: 36px; } .cfb-update { text-align: left; margin-top: 20px; } .cfb-update button { justify-self: start; } .cfb-tabs { gap: 20px; font-size: 13px; } .cfb-table td,.cfb-table th { padding: 12px 8px; } .cfb-versus { grid-template-columns: 1fr 1fr; } .cfb-versus .cfb-line { grid-column: 1 / -1; grid-row: 2; } .cfb-stats > div { padding: 16px 10px; } .cfb-stats strong { font-size: 25px; } .cfb-model .home-panel-header { flex-wrap: wrap; gap: 20px; } .cfb-team-picker { width: 100%; } }
 @media(prefers-reduced-motion: reduce) { .cfb-probability > span { transition: none; } }
 
 .cfb-context { padding: 16px; background: #f7f7f8; border: 1px solid var(--border); font-size: 13px; }

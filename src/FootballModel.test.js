@@ -48,3 +48,25 @@ test('neutral scheduled spread stays the same after swapping teams', async () =>
   expect(screen.getByText('Notre Dame -8.4')).toBeInTheDocument();
   expect(screen.getByText('70.0%')).toBeInTheDocument();
 });
+
+test('completed game shows reconstructed pregame spread beside final score', async () => {
+  const completed = { ...data.games[0], completed: true, homePoints: 28, awayPoints: 21,
+    predictionSource: 'reconstructed', predictionAsOf: data.games[0].date };
+  global.fetch.mockResolvedValue({ ok: true, json: async () => ({ ...data, games: [completed] }) });
+  open('/football-model/teams/BYU');
+  expect(await screen.findByText('BYU +4.4')).toBeInTheDocument();
+  expect(screen.getByText('Pregame · reconstructed')).toBeInTheDocument();
+  expect(screen.getByText('W 28–21')).toBeInTheDocument();
+  expect(screen.getByText('39.3%')).toBeInTheDocument();
+});
+
+test('completed away-team spread has the opposite sign and archived label', async () => {
+  const completed = { ...data.games[0], completed: true, homePoints: 28, awayPoints: 21,
+    predictionSource: 'archived', predictionAsOf: '2026-10-16T00:00:00Z' };
+  global.fetch.mockResolvedValue({ ok: true, json: async () => ({ ...data, games: [completed] }) });
+  open('/football-model/teams/Notre%20Dame');
+  expect(await screen.findByText('Notre Dame -4.4')).toBeInTheDocument();
+  expect(screen.getByText('Pregame · archived')).toBeInTheDocument();
+  expect(screen.getByText('L 21–28')).toBeInTheDocument();
+  expect(screen.getByText('60.7%')).toBeInTheDocument();
+});

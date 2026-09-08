@@ -14,8 +14,14 @@ rest. Selecting the actual venue reproduces the team schedule exactly. Scheduled
 games use `predict_game`, including rest/travel context. Neutral FBS forecasts
 average both label orientations, canceling home-label margin and probability
 intercepts; swapping teams preserves the favorite, spread, and team probabilities.
-The cross-division model retains its canonical FBS/FCS orientation. Completed games display
-actual scores only, avoiding forecasts contaminated by their own outcomes.
+The cross-division model retains its canonical FBS/FCS orientation. Completed games display actual scores alongside pregame spreads and probabilities.
+The exporter preserves eligible predictions from the previous published snapshot
+when a game finishes (archived). If none exists, it reconstructs score/efficiency
+ratings before kickoff using historical timing buffers and labels the forecast
+reconstructed. Reconstructions retain the saved annual priors and calibration;
+they are not archived predictions or a substitute for historical backtesting.
+`advanced.json.gz` holds the advanced game records needed for reconstruction and
+is refreshed together with the other model data.
 ESPN logos use the same team IDs and existing Henderson logo helper.
 
 ## Automatic updates

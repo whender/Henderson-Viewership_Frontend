@@ -28,11 +28,14 @@ test('opens upcoming week and keeps season stats when changing weeks', () => {
   fireEvent.click(screen.getByText('Previous week'));
   expect(screen.getByLabelText('Prediction week')).toHaveValue('regular:1');
   expect(screen.getByText('21–28')).toBeInTheDocument();
-  expect(screen.getByText('Correct')).toBeInTheDocument();
+  expect(within(screen.getByRole('table')).getByRole('img', { name: 'Correct winner pick' })).toBeInTheDocument();
+  expect(within(screen.getByRole('table')).getByRole('img', { name: 'Accurate spread: within 3 points' })).toBeInTheDocument();
   expect(screen.getByText('3.0 pt error')).toBeInTheDocument();
   expect(screen.getByText('Reconstructed pregame')).toBeInTheDocument();
   expect(within(season).getByText('1–0')).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: 'BYU' })).toHaveAttribute('href', '/football-model/teams/BYU');
+  const winner = screen.getAllByRole('link', { name: 'BYU' })[1];
+  expect(winner).toHaveAttribute('href', '/football-model/teams/BYU');
+  expect(winner.querySelector('img')).toHaveAttribute('src', completed.homeLogo);
 });
 
 test('archived-only filter excludes reconstructed games from results and stats', () => {
@@ -57,4 +60,12 @@ test('empty schedule has disabled week controls and no invented percentages', ()
   expect(screen.getByText('Previous week')).toBeDisabled();
   expect(screen.getByText('Next week')).toBeDisabled();
   expect(screen.getByText('No graded winner picks')).toBeInTheDocument();
+});
+
+ test('missed winners show an X and spreads outside three points get no accuracy symbol', () => {
+  open({ ...data, games: [{ ...completed, prediction: { predicted_margin: -1, home_win_probability: .4 } }] });
+  const table = within(screen.getByRole('table'));
+  expect(table.getByRole('img', { name: 'Incorrect winner pick' })).toBeInTheDocument();
+  expect(table.queryByRole('img', { name: 'Accurate spread: within 3 points' })).not.toBeInTheDocument();
+  expect(screen.getAllByRole('link', { name: 'Notre Dame' })[1].querySelector('img')).toHaveAttribute('src', completed.awayLogo);
 });

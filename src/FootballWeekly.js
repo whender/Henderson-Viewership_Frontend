@@ -17,6 +17,19 @@ function TeamName({ name, logo, teams }) {
     : <span className="cfb-team">{content}</span>;
 }
 
+const ACCURATE_SPREAD_POINTS = 3;
+
+function GradeIcon({ kind }) {
+  const labels = { correct: 'Correct winner pick', incorrect: 'Incorrect winner pick', accurate: 'Accurate spread: within 3 points' };
+  return <span className={`cfb-grade-icon cfb-grade-${kind}`} role="img" aria-label={labels[kind]} title={labels[kind]}>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {kind === 'correct' ? <path d="m5 12 4 4L19 6" /> : kind === 'incorrect'
+        ? <path d="m6 6 12 12M18 6 6 18" />
+        : <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r=".8" fill="currentColor" /></>}
+    </svg>
+  </span>;
+}
+
 function Stats({ games, label }) {
   const stats = predictionStats(games);
   return <section className="cfb-week-stats" aria-label={label}>
@@ -56,13 +69,15 @@ function PredictionRow({ game, teams }) {
     <td data-label="Model spread"><strong className="cfb-number">{line}</strong>
       {p && <small title={game.predictionAsOf ? `Forecast cutoff: ${game.predictionAsOf}` : undefined}>{source}</small>}
     </td>
-    <td data-label="Winner pick">{hasProbability ? <><strong>{pick || 'Even matchup'}</strong><small>{percent(probability)}</small></> : 'Unavailable'}</td>
+    <td data-label="Winner pick">{hasProbability ? <>{pick ? <TeamName name={pick} logo={pick === game.home ? game.homeLogo : game.awayLogo} teams={teams} /> : <strong>Even matchup</strong>}<small>{percent(probability)}</small></> : 'Unavailable'}</td>
     <td data-label="Result">{final ? <><strong>{game.awayPoints}–{game.homePoints}</strong>
       <small>{game.awayPoints === game.homePoints ? 'Final · Tie'
         : `Final · ${game.homePoints > game.awayPoints ? game.home : game.away} wins`}</small></>
       : game.completed ? 'Final unavailable' : 'Upcoming'}</td>
-    <td data-label="Pick / error">{grade ? <><strong className={grade.correct === false ? 'cfb-pick-miss' : ''}>
-      {grade.correct == null ? 'No winner grade' : grade.correct ? 'Correct' : 'Miss'}</strong>
+    <td data-label="Pick / error">{grade ? <><div className="cfb-grade-icons">
+      {grade.correct == null ? <span>No winner grade</span> : <GradeIcon kind={grade.correct ? 'correct' : 'incorrect'} />}
+      {grade.absoluteError <= ACCURATE_SPREAD_POINTS && <GradeIcon kind="accurate" />}
+      </div>
       <small>{grade.absoluteError.toFixed(1)} pt error</small></> : game.completed ? 'Not graded' : '—'}</td>
   </tr>;
 }
@@ -117,6 +132,11 @@ export default function FootballWeekly({ data }) {
       </select></label>
     </div>
     <p className="cfb-week-list-caption">{visible.length} games shown · Scores list away team first. Search and status filter the game list; summary stats cover the selected forecast group.</p>
+    <div className="cfb-grade-legend" aria-label="Prediction symbols">
+      <span><GradeIcon kind="correct" /> Correct winner</span>
+      <span><GradeIcon kind="incorrect" /> Incorrect winner</span>
+      <span><GradeIcon kind="accurate" /> Spread within {ACCURATE_SPREAD_POINTS} points of final margin</span>
+    </div>
     {visible.length ? <div className="overflow-x-auto"><table className="cfb-table cfb-week-table">
       <thead><tr><th scope="col">Date</th><th scope="col">Matchup</th><th scope="col">Model spread</th>
         <th scope="col">Winner pick</th><th scope="col">Final score</th><th scope="col">Pick / error</th></tr></thead>

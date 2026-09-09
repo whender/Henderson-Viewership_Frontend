@@ -1,0 +1,9509 @@
+{
+  "schema_version": 1,
+  "polls": [
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "7-0",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 2,
+          "record": "7-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 3,
+          "record": "6-1",
+          "team": "Auburn"
+        },
+        {
+          "rank": 4,
+          "record": "7-1",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 7,
+          "record": "6-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 8,
+          "record": "7-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 9,
+          "record": "6-1",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 10,
+          "record": "6-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 11,
+          "record": "6-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 12,
+          "record": "6-1",
+          "team": "Arizona"
+        },
+        {
+          "rank": 13,
+          "record": "6-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 14,
+          "record": "6-1",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 15,
+          "record": "7-1",
+          "team": "Nebraska"
+        },
+        {
+          "rank": 16,
+          "record": "6-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 17,
+          "record": "6-1",
+          "team": "Utah"
+        },
+        {
+          "rank": 18,
+          "record": "5-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 19,
+          "record": "7-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 20,
+          "record": "6-2",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 21,
+          "record": "6-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 22,
+          "record": "6-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 23,
+          "record": "6-1",
+          "team": "East Carolina"
+        },
+        {
+          "rank": 24,
+          "record": "6-1",
+          "team": "Duke"
+        },
+        {
+          "rank": 25,
+          "record": "6-2",
+          "team": "Louisville"
+        }
+      ],
+      "release_date": "2014-10-28",
+      "season": 2014,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 2,
+          "record": "8-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 3,
+          "record": "7-1",
+          "team": "Auburn"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 7,
+          "record": "7-1",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 8,
+          "record": "7-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 9,
+          "record": "7-1",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 11,
+          "record": "7-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 12,
+          "record": "7-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 13,
+          "record": "8-1",
+          "team": "Nebraska"
+        },
+        {
+          "rank": 14,
+          "record": "7-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 17,
+          "record": "6-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 18,
+          "record": "7-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "Arizona"
+        },
+        {
+          "rank": 20,
+          "record": "6-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 21,
+          "record": "6-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 22,
+          "record": "7-1",
+          "team": "Duke"
+        },
+        {
+          "rank": 23,
+          "record": "6-3",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 24,
+          "record": "7-2",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 25,
+          "record": "6-2",
+          "team": "Wisconsin"
+        }
+      ],
+      "release_date": "2014-11-04",
+      "season": 2014,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 2,
+          "record": "9-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 3,
+          "record": "9-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 5,
+          "record": "8-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 7,
+          "record": "8-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 8,
+          "record": "8-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 9,
+          "record": "7-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 10,
+          "record": "8-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 12,
+          "record": "7-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Arizona"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 16,
+          "record": "8-1",
+          "team": "Nebraska"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 18,
+          "record": "7-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 19,
+          "record": "7-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 20,
+          "record": "7-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 21,
+          "record": "8-1",
+          "team": "Duke"
+        },
+        {
+          "rank": 22,
+          "record": "8-2",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 23,
+          "record": "6-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 24,
+          "record": "7-3",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 25,
+          "record": "7-2",
+          "team": "Minnesota"
+        }
+      ],
+      "release_date": "2014-11-11",
+      "season": 2014,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "9-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 3,
+          "record": "10-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 5,
+          "record": "9-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 6,
+          "record": "9-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "8-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 8,
+          "record": "8-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 9,
+          "record": "8-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 10,
+          "record": "8-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 12,
+          "record": "7-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 13,
+          "record": "8-2",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 14,
+          "record": "7-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 15,
+          "record": "8-2",
+          "team": "Arizona"
+        },
+        {
+          "rank": 16,
+          "record": "8-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 18,
+          "record": "9-2",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 19,
+          "record": "7-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 20,
+          "record": "8-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 21,
+          "record": "7-3",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 22,
+          "record": "7-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 23,
+          "record": "8-2",
+          "team": "Nebraska"
+        },
+        {
+          "rank": 24,
+          "record": "7-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 25,
+          "record": "7-3",
+          "team": "Minnesota"
+        }
+      ],
+      "release_date": "2014-11-18",
+      "season": 2014,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "10-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 3,
+          "record": "11-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 4,
+          "record": "10-1",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 5,
+          "record": "9-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 8,
+          "record": "9-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 10,
+          "record": "9-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 11,
+          "record": "9-2",
+          "team": "Arizona"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 13,
+          "record": "9-2",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 14,
+          "record": "9-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 16,
+          "record": "9-2",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 17,
+          "record": "9-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 18,
+          "record": "8-3",
+          "team": "Minnesota"
+        },
+        {
+          "rank": 19,
+          "record": "8-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 21,
+          "record": "8-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 22,
+          "record": "8-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 23,
+          "record": "9-2",
+          "team": "Boise State"
+        },
+        {
+          "rank": 24,
+          "record": "11-0",
+          "team": "Marshall"
+        },
+        {
+          "rank": 25,
+          "record": "7-4",
+          "team": "Utah"
+        }
+      ],
+      "release_date": "2014-11-25",
+      "season": 2014,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "11-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 3,
+          "record": "10-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 4,
+          "record": "12-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Arizona"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 12,
+          "record": "9-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Georgia"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "UCLA"
+        },
+        {
+          "rank": 16,
+          "record": "10-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 19,
+          "record": "8-4",
+          "team": "Auburn"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 21,
+          "record": "9-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 22,
+          "record": "10-2",
+          "team": "Boise State"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Utah"
+        },
+        {
+          "rank": 24,
+          "record": "8-4",
+          "team": "LSU"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Southern California"
+        }
+      ],
+      "release_date": "2014-12-02",
+      "season": 2014,
+      "week": 15
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "12-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 3,
+          "record": "13-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 4,
+          "record": "12-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 9,
+          "record": "9-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 10,
+          "record": "10-3",
+          "team": "Arizona"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 12,
+          "record": "10-3",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Georgia"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "UCLA"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 16,
+          "record": "10-3",
+          "team": "Missouri"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 18,
+          "record": "10-3",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 19,
+          "record": "8-4",
+          "team": "Auburn"
+        },
+        {
+          "rank": 20,
+          "record": "11-2",
+          "team": "Boise State"
+        },
+        {
+          "rank": 21,
+          "record": "9-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 22,
+          "record": "8-4",
+          "team": "Utah"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "LSU"
+        },
+        {
+          "rank": 24,
+          "record": "8-4",
+          "team": "Southern California"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Minnesota"
+        }
+      ],
+      "release_date": "2014-12-07",
+      "season": 2014,
+      "week": 16
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 2,
+          "record": "7-0",
+          "team": "LSU"
+        },
+        {
+          "rank": 3,
+          "record": "8-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 4,
+          "record": "7-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 6,
+          "record": "7-0",
+          "team": "Baylor"
+        },
+        {
+          "rank": 7,
+          "record": "8-0",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 8,
+          "record": "8-0",
+          "team": "TCU"
+        },
+        {
+          "rank": 9,
+          "record": "8-0",
+          "team": "Iowa"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Florida"
+        },
+        {
+          "rank": 11,
+          "record": "7-1",
+          "team": "Stanford"
+        },
+        {
+          "rank": 12,
+          "record": "7-1",
+          "team": "Utah"
+        },
+        {
+          "rank": 13,
+          "record": "8-0",
+          "team": "Memphis"
+        },
+        {
+          "rank": 14,
+          "record": "8-0",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 15,
+          "record": "7-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 16,
+          "record": "7-1",
+          "team": "Florida State"
+        },
+        {
+          "rank": 17,
+          "record": "6-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 18,
+          "record": "7-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 20,
+          "record": "6-2",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 21,
+          "record": "6-2",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 22,
+          "record": "7-1",
+          "team": "Temple"
+        },
+        {
+          "rank": 23,
+          "record": "6-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 24,
+          "record": "7-0",
+          "team": "Toledo"
+        },
+        {
+          "rank": 25,
+          "record": "8-0",
+          "team": "Houston"
+        }
+      ],
+      "release_date": "2015-11-03",
+      "season": 2015,
+      "week": 9
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 2,
+          "record": "8-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "9-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 5,
+          "record": "9-0",
+          "team": "Iowa"
+        },
+        {
+          "rank": 6,
+          "record": "8-0",
+          "team": "Baylor"
+        },
+        {
+          "rank": 7,
+          "record": "8-1",
+          "team": "Stanford"
+        },
+        {
+          "rank": 8,
+          "record": "9-0",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 9,
+          "record": "7-1",
+          "team": "LSU"
+        },
+        {
+          "rank": 10,
+          "record": "8-1",
+          "team": "Utah"
+        },
+        {
+          "rank": 11,
+          "record": "8-1",
+          "team": "Florida"
+        },
+        {
+          "rank": 12,
+          "record": "8-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 13,
+          "record": "8-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 15,
+          "record": "8-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "Florida State"
+        },
+        {
+          "rank": 17,
+          "record": "7-2",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 18,
+          "record": "7-2",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 19,
+          "record": "7-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 20,
+          "record": "7-1",
+          "team": "Navy"
+        },
+        {
+          "rank": 21,
+          "record": "8-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 22,
+          "record": "8-1",
+          "team": "Temple"
+        },
+        {
+          "rank": 23,
+          "record": "8-1",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 24,
+          "record": "9-0",
+          "team": "Houston"
+        },
+        {
+          "rank": 25,
+          "record": "8-2",
+          "team": "Wisconsin"
+        }
+      ],
+      "release_date": "2015-11-10",
+      "season": 2015,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 2,
+          "record": "9-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "10-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 5,
+          "record": "10-0",
+          "team": "Iowa"
+        },
+        {
+          "rank": 6,
+          "record": "10-0",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 8,
+          "record": "9-1",
+          "team": "Florida"
+        },
+        {
+          "rank": 9,
+          "record": "9-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 10,
+          "record": "8-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Stanford"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 13,
+          "record": "8-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 14,
+          "record": "8-2",
+          "team": "Florida State"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 16,
+          "record": "8-1",
+          "team": "Navy"
+        },
+        {
+          "rank": 17,
+          "record": "9-1",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 18,
+          "record": "9-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 19,
+          "record": "10-0",
+          "team": "Houston"
+        },
+        {
+          "rank": 20,
+          "record": "8-2",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 21,
+          "record": "8-2",
+          "team": "Memphis"
+        },
+        {
+          "rank": 22,
+          "record": "7-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 23,
+          "record": "7-3",
+          "team": "Oregon"
+        },
+        {
+          "rank": 24,
+          "record": "7-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 25,
+          "record": "8-2",
+          "team": "Wisconsin"
+        }
+      ],
+      "release_date": "2015-11-17",
+      "season": 2015,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 2,
+          "record": "10-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "10-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 4,
+          "record": "11-0",
+          "team": "Iowa"
+        },
+        {
+          "rank": 5,
+          "record": "10-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 8,
+          "record": "10-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Stanford"
+        },
+        {
+          "rank": 10,
+          "record": "9-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 11,
+          "record": "10-1",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 12,
+          "record": "10-1",
+          "team": "Florida"
+        },
+        {
+          "rank": 13,
+          "record": "9-2",
+          "team": "Florida State"
+        },
+        {
+          "rank": 14,
+          "record": "10-1",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 15,
+          "record": "9-1",
+          "team": "Navy"
+        },
+        {
+          "rank": 16,
+          "record": "9-2",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 17,
+          "record": "8-3",
+          "team": "Oregon"
+        },
+        {
+          "rank": 18,
+          "record": "8-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 19,
+          "record": "9-2",
+          "team": "TCU"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "Washington State"
+        },
+        {
+          "rank": 21,
+          "record": "8-3",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 22,
+          "record": "8-3",
+          "team": "UCLA"
+        },
+        {
+          "rank": 23,
+          "record": "8-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 24,
+          "record": "9-1",
+          "team": "Toledo"
+        },
+        {
+          "rank": 25,
+          "record": "9-2",
+          "team": "Temple"
+        }
+      ],
+      "release_date": "2015-11-24",
+      "season": 2015,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 2,
+          "record": "11-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "11-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 4,
+          "record": "12-0",
+          "team": "Iowa"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Stanford"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Florida State"
+        },
+        {
+          "rank": 10,
+          "record": "11-1",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "TCU"
+        },
+        {
+          "rank": 12,
+          "record": "9-2",
+          "team": "Baylor"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 14,
+          "record": "10-2",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "Michigan"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Oregon"
+        },
+        {
+          "rank": 17,
+          "record": "10-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 18,
+          "record": "10-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 19,
+          "record": "11-1",
+          "team": "Houston"
+        },
+        {
+          "rank": 20,
+          "record": "8-4",
+          "team": "Southern California"
+        },
+        {
+          "rank": 21,
+          "record": "8-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 22,
+          "record": "10-2",
+          "team": "Temple"
+        },
+        {
+          "rank": 23,
+          "record": "9-2",
+          "team": "Navy"
+        },
+        {
+          "rank": 24,
+          "record": "9-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Tennessee"
+        }
+      ],
+      "release_date": "2015-12-01",
+      "season": 2015,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "13-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 2,
+          "record": "12-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "12-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 5,
+          "record": "12-1",
+          "team": "Iowa"
+        },
+        {
+          "rank": 6,
+          "record": "11-2",
+          "team": "Stanford"
+        },
+        {
+          "rank": 7,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Florida State"
+        },
+        {
+          "rank": 10,
+          "record": "11-2",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "TCU"
+        },
+        {
+          "rank": 12,
+          "record": "9-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Michigan"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "Oregon"
+        },
+        {
+          "rank": 16,
+          "record": "10-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "Baylor"
+        },
+        {
+          "rank": 18,
+          "record": "12-1",
+          "team": "Houston"
+        },
+        {
+          "rank": 19,
+          "record": "10-3",
+          "team": "Florida"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 21,
+          "record": "9-2",
+          "team": "Navy"
+        },
+        {
+          "rank": 22,
+          "record": "9-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 24,
+          "record": "10-3",
+          "team": "Temple"
+        },
+        {
+          "rank": 25,
+          "record": "8-5",
+          "team": "Southern California"
+        }
+      ],
+      "release_date": "2015-12-06",
+      "season": 2015,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "8-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "8-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "7-1",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 5,
+          "record": "8-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "7-1",
+          "team": "Louisville"
+        },
+        {
+          "rank": 8,
+          "record": "6-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 9,
+          "record": "6-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Nebraska"
+        },
+        {
+          "rank": 11,
+          "record": "6-1",
+          "team": "Florida"
+        },
+        {
+          "rank": 12,
+          "record": "6-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 13,
+          "record": "5-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 14,
+          "record": "6-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "Colorado"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 17,
+          "record": "6-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 18,
+          "record": "6-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 20,
+          "record": "6-1",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 21,
+          "record": "6-2",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 22,
+          "record": "5-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 23,
+          "record": "8-0",
+          "team": "Western Michigan"
+        },
+        {
+          "rank": 24,
+          "record": "7-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 25,
+          "record": "6-2",
+          "team": "Washington State"
+        }
+      ],
+      "release_date": "2016-11-01",
+      "season": 2016,
+      "week": 9
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "9-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "9-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "9-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 5,
+          "record": "8-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Louisville"
+        },
+        {
+          "rank": 7,
+          "record": "7-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 8,
+          "record": "7-2",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 9,
+          "record": "7-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 10,
+          "record": "7-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "7-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 12,
+          "record": "7-2",
+          "team": "Colorado"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 16,
+          "record": "7-1",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 17,
+          "record": "7-2",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 18,
+          "record": "6-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 19,
+          "record": "7-2",
+          "team": "Nebraska"
+        },
+        {
+          "rank": 20,
+          "record": "6-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 21,
+          "record": "9-0",
+          "team": "Western Michigan"
+        },
+        {
+          "rank": 22,
+          "record": "8-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 23,
+          "record": "7-2",
+          "team": "Washington State"
+        },
+        {
+          "rank": 24,
+          "record": "5-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 25,
+          "record": "6-3",
+          "team": "Arkansas"
+        }
+      ],
+      "release_date": "2016-11-08",
+      "season": 2016,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "9-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "9-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 5,
+          "record": "9-1",
+          "team": "Louisville"
+        },
+        {
+          "rank": 6,
+          "record": "9-1",
+          "team": "Washington"
+        },
+        {
+          "rank": 7,
+          "record": "8-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 8,
+          "record": "8-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 9,
+          "record": "8-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 10,
+          "record": "8-2",
+          "team": "Colorado"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 13,
+          "record": "7-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 14,
+          "record": "8-1",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 15,
+          "record": "7-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 16,
+          "record": "6-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 18,
+          "record": "8-2",
+          "team": "Nebraska"
+        },
+        {
+          "rank": 19,
+          "record": "7-3",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 20,
+          "record": "9-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 21,
+          "record": "10-0",
+          "team": "Western Michigan"
+        },
+        {
+          "rank": 22,
+          "record": "8-2",
+          "team": "Washington State"
+        },
+        {
+          "rank": 23,
+          "record": "7-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 24,
+          "record": "7-3",
+          "team": "Stanford"
+        },
+        {
+          "rank": 25,
+          "record": "7-3",
+          "team": "Texas A&M"
+        }
+      ],
+      "release_date": "2016-11-15",
+      "season": 2016,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "10-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "10-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "10-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 5,
+          "record": "10-1",
+          "team": "Washington"
+        },
+        {
+          "rank": 6,
+          "record": "9-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 7,
+          "record": "9-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 8,
+          "record": "9-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Colorado"
+        },
+        {
+          "rank": 10,
+          "record": "9-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 11,
+          "record": "9-2",
+          "team": "Louisville"
+        },
+        {
+          "rank": 12,
+          "record": "8-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 13,
+          "record": "8-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 14,
+          "record": "8-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 15,
+          "record": "8-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 16,
+          "record": "9-2",
+          "team": "Nebraska"
+        },
+        {
+          "rank": 17,
+          "record": "8-3",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 18,
+          "record": "8-2",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 19,
+          "record": "10-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 20,
+          "record": "9-2",
+          "team": "Houston"
+        },
+        {
+          "rank": 21,
+          "record": "11-0",
+          "team": "Western Michigan"
+        },
+        {
+          "rank": 22,
+          "record": "8-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 23,
+          "record": "8-3",
+          "team": "Washington State"
+        },
+        {
+          "rank": 24,
+          "record": "8-3",
+          "team": "Stanford"
+        },
+        {
+          "rank": 25,
+          "record": "8-2",
+          "team": "Navy"
+        }
+      ],
+      "release_date": "2016-11-22",
+      "season": 2016,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "11-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Washington"
+        },
+        {
+          "rank": 5,
+          "record": "10-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 6,
+          "record": "10-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Colorado"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 10,
+          "record": "9-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 12,
+          "record": "9-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 14,
+          "record": "8-4",
+          "team": "Auburn"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "Florida"
+        },
+        {
+          "rank": 16,
+          "record": "9-2",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 17,
+          "record": "12-0",
+          "team": "Western Michigan"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "Stanford"
+        },
+        {
+          "rank": 19,
+          "record": "9-2",
+          "team": "Navy"
+        },
+        {
+          "rank": 20,
+          "record": "8-4",
+          "team": "Utah"
+        },
+        {
+          "rank": 21,
+          "record": "7-4",
+          "team": "LSU"
+        },
+        {
+          "rank": 22,
+          "record": "8-4",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 23,
+          "record": "9-3",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 24,
+          "record": "9-3",
+          "team": "Houston"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Pittsburgh"
+        }
+      ],
+      "release_date": "2016-11-29",
+      "season": 2016,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "13-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "12-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 4,
+          "record": "12-1",
+          "team": "Washington"
+        },
+        {
+          "rank": 5,
+          "record": "11-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 6,
+          "record": "10-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 8,
+          "record": "10-3",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 9,
+          "record": "9-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 10,
+          "record": "10-3",
+          "team": "Colorado"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 12,
+          "record": "9-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 14,
+          "record": "8-4",
+          "team": "Auburn"
+        },
+        {
+          "rank": 15,
+          "record": "13-0",
+          "team": "Western Michigan"
+        },
+        {
+          "rank": 16,
+          "record": "10-2",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 17,
+          "record": "8-4",
+          "team": "Florida"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "Stanford"
+        },
+        {
+          "rank": 19,
+          "record": "8-4",
+          "team": "Utah"
+        },
+        {
+          "rank": 20,
+          "record": "7-4",
+          "team": "LSU"
+        },
+        {
+          "rank": 21,
+          "record": "8-4",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 22,
+          "record": "9-4",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 24,
+          "record": "10-3",
+          "team": "Temple"
+        },
+        {
+          "rank": 25,
+          "record": "9-3",
+          "team": "Navy"
+        }
+      ],
+      "release_date": "2016-12-04",
+      "season": 2016,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "8-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "7-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 4,
+          "record": "7-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "7-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 8,
+          "record": "7-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 9,
+          "record": "8-0",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 10,
+          "record": "7-0",
+          "team": "Miami"
+        },
+        {
+          "rank": 11,
+          "record": "7-1",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 12,
+          "record": "7-1",
+          "team": "Washington"
+        },
+        {
+          "rank": 13,
+          "record": "7-1",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 14,
+          "record": "6-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 16,
+          "record": "6-2",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 17,
+          "record": "7-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 18,
+          "record": "7-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 20,
+          "record": "6-2",
+          "team": "NC State"
+        },
+        {
+          "rank": 21,
+          "record": "6-2",
+          "team": "Stanford"
+        },
+        {
+          "rank": 22,
+          "record": "6-2",
+          "team": "Arizona"
+        },
+        {
+          "rank": 23,
+          "record": "7-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 24,
+          "record": "6-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 25,
+          "record": "7-2",
+          "team": "Washington State"
+        }
+      ],
+      "release_date": "2017-10-31",
+      "season": 2017,
+      "week": 9
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "9-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "8-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 5,
+          "record": "8-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 7,
+          "record": "8-0",
+          "team": "Miami"
+        },
+        {
+          "rank": 8,
+          "record": "9-0",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 9,
+          "record": "8-1",
+          "team": "Washington"
+        },
+        {
+          "rank": 10,
+          "record": "7-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 12,
+          "record": "7-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 17,
+          "record": "7-2",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 18,
+          "record": "8-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 19,
+          "record": "8-2",
+          "team": "Washington State"
+        },
+        {
+          "rank": 20,
+          "record": "6-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 21,
+          "record": "6-3",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 22,
+          "record": "8-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 23,
+          "record": "6-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 24,
+          "record": "6-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 25,
+          "record": "6-3",
+          "team": "Northwestern"
+        }
+      ],
+      "release_date": "2017-11-07",
+      "season": 2017,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "9-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "9-0",
+          "team": "Miami"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 5,
+          "record": "10-0",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 6,
+          "record": "8-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 8,
+          "record": "8-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 9,
+          "record": "8-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 10,
+          "record": "8-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "9-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "TCU"
+        },
+        {
+          "rank": 13,
+          "record": "8-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 14,
+          "record": "9-2",
+          "team": "Washington State"
+        },
+        {
+          "rank": 15,
+          "record": "9-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 16,
+          "record": "7-3",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 18,
+          "record": "8-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 19,
+          "record": "7-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 20,
+          "record": "7-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 21,
+          "record": "8-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 22,
+          "record": "7-3",
+          "team": "Stanford"
+        },
+        {
+          "rank": 23,
+          "record": "7-3",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 24,
+          "record": "8-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 25,
+          "record": "8-2",
+          "team": "Boise State"
+        }
+      ],
+      "release_date": "2017-11-14",
+      "season": 2017,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "10-0",
+          "team": "Miami"
+        },
+        {
+          "rank": 3,
+          "record": "10-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "10-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 5,
+          "record": "11-0",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 6,
+          "record": "9-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 7,
+          "record": "10-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 8,
+          "record": "9-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 10,
+          "record": "9-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 12,
+          "record": "9-2",
+          "team": "TCU"
+        },
+        {
+          "rank": 13,
+          "record": "9-2",
+          "team": "Washington State"
+        },
+        {
+          "rank": 14,
+          "record": "8-3",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 15,
+          "record": "10-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 16,
+          "record": "8-3",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 17,
+          "record": "9-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 18,
+          "record": "8-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 19,
+          "record": "8-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 20,
+          "record": "9-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 21,
+          "record": "8-3",
+          "team": "Stanford"
+        },
+        {
+          "rank": 22,
+          "record": "8-3",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 23,
+          "record": "9-2",
+          "team": "Boise State"
+        },
+        {
+          "rank": 24,
+          "record": "8-3",
+          "team": "South Carolina"
+        },
+        {
+          "rank": 25,
+          "record": "8-3",
+          "team": "Virginia Tech"
+        }
+      ],
+      "release_date": "2017-11-21",
+      "season": 2017,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 2,
+          "record": "10-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 3,
+          "record": "11-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 4,
+          "record": "12-0",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 7,
+          "record": "10-1",
+          "team": "Miami"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "TCU"
+        },
+        {
+          "rank": 12,
+          "record": "9-3",
+          "team": "Stanford"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 14,
+          "record": "11-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "Washington State"
+        },
+        {
+          "rank": 19,
+          "record": "9-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 20,
+          "record": "10-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 21,
+          "record": "9-3",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 22,
+          "record": "9-3",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 24,
+          "record": "8-4",
+          "team": "NC State"
+        },
+        {
+          "rank": 25,
+          "record": "9-3",
+          "team": "Fresno State"
+        }
+      ],
+      "release_date": "2017-11-28",
+      "season": 2017,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 2,
+          "record": "12-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 3,
+          "record": "12-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 5,
+          "record": "11-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 6,
+          "record": "12-1",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 7,
+          "record": "10-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 8,
+          "record": "11-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 12,
+          "record": "12-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 13,
+          "record": "9-4",
+          "team": "Stanford"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 15,
+          "record": "10-3",
+          "team": "TCU"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "Washington State"
+        },
+        {
+          "rank": 19,
+          "record": "9-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 20,
+          "record": "10-2",
+          "team": "Memphis"
+        },
+        {
+          "rank": 21,
+          "record": "9-3",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 22,
+          "record": "9-3",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 24,
+          "record": "8-4",
+          "team": "NC State"
+        },
+        {
+          "rank": 25,
+          "record": "10-3",
+          "team": "Boise State"
+        }
+      ],
+      "release_date": "2017-12-03",
+      "season": 2017,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "8-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "7-1",
+          "team": "LSU"
+        },
+        {
+          "rank": 4,
+          "record": "8-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 7,
+          "record": "7-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 8,
+          "record": "7-1",
+          "team": "Washington State"
+        },
+        {
+          "rank": 9,
+          "record": "7-1",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 11,
+          "record": "6-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 12,
+          "record": "7-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 13,
+          "record": "6-1",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 14,
+          "record": "6-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 16,
+          "record": "6-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 17,
+          "record": "6-2",
+          "team": "Texas"
+        },
+        {
+          "rank": 18,
+          "record": "5-3",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 20,
+          "record": "5-3",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 21,
+          "record": "5-2",
+          "team": "NC State"
+        },
+        {
+          "rank": 22,
+          "record": "6-2",
+          "team": "Boston College"
+        },
+        {
+          "rank": 23,
+          "record": "7-1",
+          "team": "Fresno State"
+        },
+        {
+          "rank": 24,
+          "record": "4-3",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 25,
+          "record": "6-2",
+          "team": "Virginia"
+        }
+      ],
+      "release_date": "2018-10-30",
+      "season": 2018,
+      "week": 9
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "9-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "9-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 5,
+          "record": "8-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 7,
+          "record": "7-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 8,
+          "record": "8-1",
+          "team": "Washington State"
+        },
+        {
+          "rank": 9,
+          "record": "7-1",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 10,
+          "record": "8-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 11,
+          "record": "7-2",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 12,
+          "record": "8-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 14,
+          "record": "6-2",
+          "team": "NC State"
+        },
+        {
+          "rank": 15,
+          "record": "6-3",
+          "team": "Florida"
+        },
+        {
+          "rank": 16,
+          "record": "6-3",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 17,
+          "record": "7-2",
+          "team": "Boston College"
+        },
+        {
+          "rank": 18,
+          "record": "6-3",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 19,
+          "record": "6-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 20,
+          "record": "6-3",
+          "team": "Penn State"
+        },
+        {
+          "rank": 21,
+          "record": "6-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 22,
+          "record": "5-3",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 23,
+          "record": "8-1",
+          "team": "Fresno State"
+        },
+        {
+          "rank": 24,
+          "record": "6-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 25,
+          "record": "7-3",
+          "team": "Washington"
+        }
+      ],
+      "release_date": "2018-11-06",
+      "season": 2018,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "10-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "10-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 5,
+          "record": "9-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 6,
+          "record": "9-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 7,
+          "record": "8-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 8,
+          "record": "9-1",
+          "team": "Washington State"
+        },
+        {
+          "rank": 9,
+          "record": "8-1",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 10,
+          "record": "9-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 11,
+          "record": "9-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 13,
+          "record": "7-3",
+          "team": "Florida"
+        },
+        {
+          "rank": 14,
+          "record": "7-3",
+          "team": "Penn State"
+        },
+        {
+          "rank": 15,
+          "record": "7-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 16,
+          "record": "6-3",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 18,
+          "record": "7-3",
+          "team": "Washington"
+        },
+        {
+          "rank": 19,
+          "record": "7-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 20,
+          "record": "7-3",
+          "team": "Boston College"
+        },
+        {
+          "rank": 21,
+          "record": "6-4",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 22,
+          "record": "6-4",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 23,
+          "record": "9-1",
+          "team": "Utah State"
+        },
+        {
+          "rank": 24,
+          "record": "9-1",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 25,
+          "record": "8-2",
+          "team": "Boise State"
+        }
+      ],
+      "release_date": "2018-11-13",
+      "season": 2018,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "11-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "11-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 4,
+          "record": "10-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 5,
+          "record": "10-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 7,
+          "record": "9-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 8,
+          "record": "10-1",
+          "team": "Washington State"
+        },
+        {
+          "rank": 9,
+          "record": "10-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 10,
+          "record": "10-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 11,
+          "record": "8-3",
+          "team": "Florida"
+        },
+        {
+          "rank": 12,
+          "record": "8-3",
+          "team": "Penn State"
+        },
+        {
+          "rank": 13,
+          "record": "8-2",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 14,
+          "record": "8-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 16,
+          "record": "8-3",
+          "team": "Washington"
+        },
+        {
+          "rank": 17,
+          "record": "8-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 18,
+          "record": "7-4",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 19,
+          "record": "7-4",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 21,
+          "record": "10-1",
+          "team": "Utah State"
+        },
+        {
+          "rank": 22,
+          "record": "7-4",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 23,
+          "record": "9-2",
+          "team": "Boise State"
+        },
+        {
+          "rank": 24,
+          "record": "7-4",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 25,
+          "record": "6-4",
+          "team": "Iowa State"
+        }
+      ],
+      "release_date": "2018-11-20",
+      "season": 2018,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "12-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "12-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 8,
+          "record": "11-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 9,
+          "record": "9-3",
+          "team": "Florida"
+        },
+        {
+          "rank": 10,
+          "record": "9-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "Washington"
+        },
+        {
+          "rank": 12,
+          "record": "9-3",
+          "team": "Penn State"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Washington State"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 16,
+          "record": "8-3",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 18,
+          "record": "8-4",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 19,
+          "record": "8-4",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 20,
+          "record": "9-3",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 21,
+          "record": "8-4",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 22,
+          "record": "10-2",
+          "team": "Boise State"
+        },
+        {
+          "rank": 23,
+          "record": "7-4",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 24,
+          "record": "8-4",
+          "team": "Missouri"
+        },
+        {
+          "rank": 25,
+          "record": "10-2",
+          "team": "Fresno State"
+        }
+      ],
+      "release_date": "2018-11-27",
+      "season": 2018,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "13-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "13-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "12-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 4,
+          "record": "12-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 5,
+          "record": "11-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 6,
+          "record": "12-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 8,
+          "record": "12-0",
+          "team": "UCF"
+        },
+        {
+          "rank": 9,
+          "record": "10-3",
+          "team": "Washington"
+        },
+        {
+          "rank": 10,
+          "record": "9-3",
+          "team": "Florida"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 12,
+          "record": "9-3",
+          "team": "Penn State"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Washington State"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 15,
+          "record": "9-4",
+          "team": "Texas"
+        },
+        {
+          "rank": 16,
+          "record": "8-3",
+          "team": "West Virginia"
+        },
+        {
+          "rank": 17,
+          "record": "9-4",
+          "team": "Utah"
+        },
+        {
+          "rank": 18,
+          "record": "8-4",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 19,
+          "record": "8-4",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 20,
+          "record": "9-3",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 21,
+          "record": "11-2",
+          "team": "Fresno State"
+        },
+        {
+          "rank": 22,
+          "record": "8-5",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Missouri"
+        },
+        {
+          "rank": 24,
+          "record": "8-4",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 25,
+          "record": "10-3",
+          "team": "Boise State"
+        }
+      ],
+      "release_date": "2018-12-02",
+      "season": 2018,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "8-0",
+          "team": "LSU"
+        },
+        {
+          "rank": 3,
+          "record": "8-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 4,
+          "record": "8-0",
+          "team": "Penn State"
+        },
+        {
+          "rank": 5,
+          "record": "9-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 7,
+          "record": "8-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 8,
+          "record": "8-1",
+          "team": "Utah"
+        },
+        {
+          "rank": 9,
+          "record": "7-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 10,
+          "record": "7-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 11,
+          "record": "7-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 12,
+          "record": "8-0",
+          "team": "Baylor"
+        },
+        {
+          "rank": 13,
+          "record": "6-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 16,
+          "record": "6-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 17,
+          "record": "8-0",
+          "team": "Minnesota"
+        },
+        {
+          "rank": 18,
+          "record": "6-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 19,
+          "record": "7-1",
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 20,
+          "record": "7-1",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 21,
+          "record": "8-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 22,
+          "record": "7-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 23,
+          "record": "6-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 24,
+          "record": "7-1",
+          "team": "Navy"
+        },
+        {
+          "rank": 25,
+          "record": "8-1",
+          "team": "SMU"
+        }
+      ],
+      "release_date": "2019-11-05",
+      "season": 2019,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "LSU"
+        },
+        {
+          "rank": 2,
+          "record": "9-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "10-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "record": "8-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "8-1",
+          "team": "Utah"
+        },
+        {
+          "rank": 8,
+          "record": "9-0",
+          "team": "Minnesota"
+        },
+        {
+          "rank": 9,
+          "record": "8-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 10,
+          "record": "8-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 12,
+          "record": "7-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 13,
+          "record": "9-0",
+          "team": "Baylor"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 17,
+          "record": "8-1",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 18,
+          "record": "8-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 19,
+          "record": "6-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 20,
+          "record": "6-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 21,
+          "record": "8-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 22,
+          "record": "6-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 23,
+          "record": "7-1",
+          "team": "Navy"
+        },
+        {
+          "rank": 24,
+          "record": "6-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 25,
+          "record": "8-1",
+          "team": "Appalachian State"
+        }
+      ],
+      "release_date": "2019-11-12",
+      "season": 2019,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "LSU"
+        },
+        {
+          "rank": 2,
+          "record": "10-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "11-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "record": "9-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 6,
+          "record": "9-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Utah"
+        },
+        {
+          "rank": 8,
+          "record": "9-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 9,
+          "record": "9-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 10,
+          "record": "9-1",
+          "team": "Minnesota"
+        },
+        {
+          "rank": 11,
+          "record": "9-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 13,
+          "record": "8-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 14,
+          "record": "9-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 15,
+          "record": "7-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 16,
+          "record": "8-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 18,
+          "record": "9-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 19,
+          "record": "9-1",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 20,
+          "record": "9-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 21,
+          "record": "7-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 22,
+          "record": "6-4",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 23,
+          "record": "7-4",
+          "team": "Southern California"
+        },
+        {
+          "rank": 24,
+          "record": "9-1",
+          "team": "Appalachian State"
+        },
+        {
+          "rank": 25,
+          "record": "9-1",
+          "team": "SMU"
+        }
+      ],
+      "release_date": "2019-11-19",
+      "season": 2019,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "11-0",
+          "team": "LSU"
+        },
+        {
+          "rank": 3,
+          "record": "11-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "10-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "record": "10-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Utah"
+        },
+        {
+          "rank": 7,
+          "record": "10-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 8,
+          "record": "10-1",
+          "team": "Minnesota"
+        },
+        {
+          "rank": 9,
+          "record": "10-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 10,
+          "record": "9-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "9-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 12,
+          "record": "9-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 13,
+          "record": "9-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 14,
+          "record": "9-2",
+          "team": "Oregon"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 16,
+          "record": "9-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 17,
+          "record": "8-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 18,
+          "record": "10-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 19,
+          "record": "10-1",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 20,
+          "record": "10-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 21,
+          "record": "8-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 22,
+          "record": "8-4",
+          "team": "Southern California"
+        },
+        {
+          "rank": 23,
+          "record": "7-4",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 24,
+          "record": "8-3",
+          "team": "Virginia Tech"
+        },
+        {
+          "rank": 25,
+          "record": "10-1",
+          "team": "Appalachian State"
+        }
+      ],
+      "release_date": "2019-11-26",
+      "season": 2019,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "12-0",
+          "team": "LSU"
+        },
+        {
+          "rank": 3,
+          "record": "12-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Utah"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 7,
+          "record": "11-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 12,
+          "record": "10-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Oregon"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Michigan"
+        },
+        {
+          "rank": 15,
+          "record": "10-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 17,
+          "record": "11-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 18,
+          "record": "10-2",
+          "team": "Minnesota"
+        },
+        {
+          "rank": 19,
+          "record": "11-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 20,
+          "record": "10-2",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 21,
+          "record": "11-1",
+          "team": "Appalachian State"
+        },
+        {
+          "rank": 22,
+          "record": "8-4",
+          "team": "Southern California"
+        },
+        {
+          "rank": 23,
+          "record": "9-3",
+          "team": "Virginia"
+        },
+        {
+          "rank": 24,
+          "record": "9-2",
+          "team": "Navy"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Oklahoma State"
+        }
+      ],
+      "release_date": "2019-12-03",
+      "season": 2019,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "13-0",
+          "team": "LSU"
+        },
+        {
+          "rank": 2,
+          "record": "13-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "13-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "12-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 5,
+          "record": "11-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 6,
+          "record": "11-2",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "11-2",
+          "team": "Baylor"
+        },
+        {
+          "rank": 8,
+          "record": "10-3",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "11-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 12,
+          "record": "9-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Michigan"
+        },
+        {
+          "rank": 15,
+          "record": "10-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 17,
+          "record": "12-1",
+          "team": "Memphis"
+        },
+        {
+          "rank": 18,
+          "record": "10-2",
+          "team": "Minnesota"
+        },
+        {
+          "rank": 19,
+          "record": "12-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 20,
+          "record": "12-1",
+          "team": "Appalachian State"
+        },
+        {
+          "rank": 21,
+          "record": "10-3",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 22,
+          "record": "8-4",
+          "team": "Southern California"
+        },
+        {
+          "rank": 23,
+          "record": "9-2",
+          "team": "Navy"
+        },
+        {
+          "rank": 24,
+          "record": "9-4",
+          "team": "Virginia"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Oklahoma State"
+        }
+      ],
+      "release_date": "2019-12-08",
+      "season": 2019,
+      "week": 15
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "7-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "8-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 3,
+          "record": "7-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "4-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 5,
+          "record": "5-1",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 6,
+          "record": "6-1",
+          "team": "Florida"
+        },
+        {
+          "rank": 7,
+          "record": "8-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 8,
+          "record": "5-0",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 9,
+          "record": "5-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Miami"
+        },
+        {
+          "rank": 11,
+          "record": "6-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 12,
+          "record": "4-1",
+          "team": "Indiana"
+        },
+        {
+          "rank": 13,
+          "record": "6-2",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 14,
+          "record": "9-0",
+          "team": "BYU"
+        },
+        {
+          "rank": 15,
+          "record": "3-0",
+          "team": "Oregon"
+        },
+        {
+          "rank": 16,
+          "record": "2-1",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 17,
+          "record": "5-2",
+          "team": "Texas"
+        },
+        {
+          "rank": 18,
+          "record": "3-0",
+          "team": "Southern California"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 20,
+          "record": "8-0",
+          "team": "Coastal Carolina"
+        },
+        {
+          "rank": 21,
+          "record": "7-0",
+          "team": "Marshall"
+        },
+        {
+          "rank": 22,
+          "record": "5-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 23,
+          "record": "5-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 24,
+          "record": "3-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 25,
+          "record": "5-1",
+          "team": "Tulsa"
+        }
+      ],
+      "release_date": "2020-11-24",
+      "season": 2020,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "9-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 3,
+          "record": "8-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "4-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 5,
+          "record": "6-1",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Florida"
+        },
+        {
+          "rank": 7,
+          "record": "8-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 8,
+          "record": "6-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 9,
+          "record": "7-2",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Miami"
+        },
+        {
+          "rank": 11,
+          "record": "6-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 12,
+          "record": "5-1",
+          "team": "Indiana"
+        },
+        {
+          "rank": 13,
+          "record": "9-0",
+          "team": "BYU"
+        },
+        {
+          "rank": 14,
+          "record": "5-1",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 16,
+          "record": "2-1",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 17,
+          "record": "6-3",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 18,
+          "record": "9-0",
+          "team": "Coastal Carolina"
+        },
+        {
+          "rank": 19,
+          "record": "4-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 20,
+          "record": "3-0",
+          "team": "Southern California"
+        },
+        {
+          "rank": 21,
+          "record": "7-0",
+          "team": "Marshall"
+        },
+        {
+          "rank": 22,
+          "record": "3-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 23,
+          "record": "3-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 24,
+          "record": "5-1",
+          "team": "Tulsa"
+        },
+        {
+          "rank": 25,
+          "record": "8-1",
+          "team": "Louisiana"
+        }
+      ],
+      "release_date": "2020-12-01",
+      "season": 2020,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "10-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 3,
+          "record": "9-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "5-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Florida"
+        },
+        {
+          "rank": 7,
+          "record": "8-2",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 8,
+          "record": "8-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 9,
+          "record": "6-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 10,
+          "record": "8-1",
+          "team": "Miami"
+        },
+        {
+          "rank": 11,
+          "record": "7-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 12,
+          "record": "6-1",
+          "team": "Indiana"
+        },
+        {
+          "rank": 13,
+          "record": "10-0",
+          "team": "Coastal Carolina"
+        },
+        {
+          "rank": 14,
+          "record": "5-1",
+          "team": "Northwestern"
+        },
+        {
+          "rank": 15,
+          "record": "4-0",
+          "team": "Southern California"
+        },
+        {
+          "rank": 16,
+          "record": "5-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 18,
+          "record": "9-1",
+          "team": "BYU"
+        },
+        {
+          "rank": 19,
+          "record": "9-1",
+          "team": "Louisiana"
+        },
+        {
+          "rank": 20,
+          "record": "6-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 21,
+          "record": "4-0",
+          "team": "Colorado"
+        },
+        {
+          "rank": 22,
+          "record": "6-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 23,
+          "record": "8-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 24,
+          "record": "6-1",
+          "team": "Tulsa"
+        },
+        {
+          "rank": 25,
+          "record": "5-3",
+          "team": "Missouri"
+        }
+      ],
+      "release_date": "2020-12-08",
+      "season": 2020,
+      "week": 15
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "10-0",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 3,
+          "record": "9-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 4,
+          "record": "5-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 6,
+          "record": "8-2",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 7,
+          "record": "8-2",
+          "team": "Florida"
+        },
+        {
+          "rank": 8,
+          "record": "7-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 9,
+          "record": "8-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 10,
+          "record": "7-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 11,
+          "record": "6-1",
+          "team": "Indiana"
+        },
+        {
+          "rank": 12,
+          "record": "11-0",
+          "team": "Coastal Carolina"
+        },
+        {
+          "rank": 13,
+          "record": "5-0",
+          "team": "Southern California"
+        },
+        {
+          "rank": 14,
+          "record": "6-1",
+          "team": "Northwestern University"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 16,
+          "record": "6-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 17,
+          "record": "10-1",
+          "team": "BYU"
+        },
+        {
+          "rank": 18,
+          "record": "8-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 19,
+          "record": "9-1",
+          "team": "Louisiana"
+        },
+        {
+          "rank": 20,
+          "record": "6-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 21,
+          "record": "7-3",
+          "team": "Oklahoma State University"
+        },
+        {
+          "rank": 22,
+          "record": "8-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 23,
+          "record": "6-1",
+          "team": "Tulsa"
+        },
+        {
+          "rank": 24,
+          "record": "6-0",
+          "team": "San Jose State"
+        },
+        {
+          "rank": 25,
+          "record": "4-1",
+          "team": "Colorado"
+        }
+      ],
+      "release_date": "2020-12-15",
+      "season": 2020,
+      "week": 16
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "10-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 3,
+          "record": "6-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 4,
+          "record": "10-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 5,
+          "record": "8-1",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 6,
+          "record": "8-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 7,
+          "record": "8-3",
+          "team": "Florida"
+        },
+        {
+          "rank": 8,
+          "record": "9-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 9,
+          "record": "7-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 10,
+          "record": "8-3",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 11,
+          "record": "6-1",
+          "team": "Indiana"
+        },
+        {
+          "rank": 12,
+          "record": "11-0",
+          "team": "Coastal Carolina"
+        },
+        {
+          "rank": 13,
+          "record": "8-3",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 14,
+          "record": "6-2",
+          "team": "Northwestern University"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 16,
+          "record": "10-1",
+          "team": "BYU"
+        },
+        {
+          "rank": 17,
+          "record": "5-1",
+          "team": "Southern California"
+        },
+        {
+          "rank": 18,
+          "record": "8-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 19,
+          "record": "9-1",
+          "team": "Louisiana"
+        },
+        {
+          "rank": 20,
+          "record": "6-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 21,
+          "record": "7-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 22,
+          "record": "7-0",
+          "team": "San Jose State University"
+        },
+        {
+          "rank": 23,
+          "record": "8-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 24,
+          "record": "6-2",
+          "team": "Tulsa"
+        },
+        {
+          "rank": 25,
+          "record": "4-2",
+          "team": "Oregon"
+        }
+      ],
+      "release_date": "2020-12-20",
+      "season": 2020,
+      "week": 17
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "7-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "8-0",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 4,
+          "record": "7-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 6,
+          "record": "8-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 7,
+          "record": "7-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 8,
+          "record": "9-0",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 9,
+          "record": "8-0",
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 11,
+          "record": "7-1",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 12,
+          "record": "7-1",
+          "team": "Baylor"
+        },
+        {
+          "rank": 13,
+          "record": "6-2",
+          "team": "Auburn"
+        },
+        {
+          "rank": 14,
+          "record": "6-2",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 16,
+          "record": "6-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 17,
+          "record": "5-3",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 18,
+          "record": "6-2",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "NC State"
+        },
+        {
+          "rank": 20,
+          "record": "6-2",
+          "team": "Minnesota"
+        },
+        {
+          "rank": 21,
+          "record": "5-3",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 22,
+          "record": "6-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 23,
+          "record": "7-2",
+          "team": "Fresno State"
+        },
+        {
+          "rank": 24,
+          "record": "7-1",
+          "team": "San Diego State"
+        },
+        {
+          "rank": 25,
+          "record": "6-2",
+          "team": "Pittsburgh"
+        }
+      ],
+      "release_date": "2021-11-02",
+      "season": 2021,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "8-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "8-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 5,
+          "record": "9-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 7,
+          "record": "8-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 8,
+          "record": "9-0",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 9,
+          "record": "8-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 10,
+          "record": "8-1",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 11,
+          "record": "7-2",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 12,
+          "record": "8-1",
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Baylor University"
+        },
+        {
+          "rank": 14,
+          "record": "8-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "NC State"
+        },
+        {
+          "rank": 17,
+          "record": "6-3",
+          "team": "Auburn"
+        },
+        {
+          "rank": 18,
+          "record": "6-3",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 19,
+          "record": "6-3",
+          "team": "Purdue"
+        },
+        {
+          "rank": 20,
+          "record": "7-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 21,
+          "record": "7-2",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 22,
+          "record": "8-1",
+          "team": "San Diego State"
+        },
+        {
+          "rank": 23,
+          "record": "9-0",
+          "team": "UTSA"
+        },
+        {
+          "rank": 24,
+          "record": "6-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 25,
+          "record": "6-3",
+          "team": "Arkansas"
+        }
+      ],
+      "release_date": "2021-11-09",
+      "season": 2021,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "9-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 3,
+          "record": "9-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 5,
+          "record": "10-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 6,
+          "record": "9-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 8,
+          "record": "9-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 9,
+          "record": "9-1",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 10,
+          "record": "9-1",
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Baylor"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 13,
+          "record": "9-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 14,
+          "record": "8-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 15,
+          "record": "7-3",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 16,
+          "record": "7-3",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 17,
+          "record": "8-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 18,
+          "record": "8-2",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 19,
+          "record": "9-1",
+          "team": "San Diego State"
+        },
+        {
+          "rank": 20,
+          "record": "7-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 21,
+          "record": "7-3",
+          "team": "Arkansas"
+        },
+        {
+          "rank": 22,
+          "record": "10-0",
+          "team": "UTSA"
+        },
+        {
+          "rank": 23,
+          "record": "7-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 24,
+          "record": "9-1",
+          "team": "Houston"
+        },
+        {
+          "rank": 25,
+          "record": "6-4",
+          "team": "Mississippi State"
+        }
+      ],
+      "release_date": "2021-11-16",
+      "season": 2021,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "10-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "10-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 4,
+          "record": "11-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 5,
+          "record": "10-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 7,
+          "record": "10-1",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 8,
+          "record": "9-2",
+          "team": "Baylor"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 10,
+          "record": "10-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 11,
+          "record": "9-2",
+          "team": "Oregon"
+        },
+        {
+          "rank": 12,
+          "record": "9-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 13,
+          "record": "9-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 14,
+          "record": "8-3",
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 16,
+          "record": "9-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 17,
+          "record": "9-2",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 18,
+          "record": "9-2",
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 19,
+          "record": "8-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 21,
+          "record": "10-1",
+          "team": "San Diego State"
+        },
+        {
+          "rank": 22,
+          "record": "11-0",
+          "team": "UTSA"
+        },
+        {
+          "rank": 23,
+          "record": "8-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 24,
+          "record": "10-1",
+          "team": "Houston"
+        },
+        {
+          "rank": 25,
+          "record": "7-4",
+          "team": "Arkansas"
+        }
+      ],
+      "release_date": "2021-11-23",
+      "season": 2021,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "11-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 3,
+          "record": "11-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 4,
+          "record": "12-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Baylor"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Oregon"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 12,
+          "record": "10-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 14,
+          "record": "10-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 15,
+          "record": "10-2",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 16,
+          "record": "10-2",
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 19,
+          "record": "11-1",
+          "team": "San Diego State"
+        },
+        {
+          "rank": 20,
+          "record": "9-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 21,
+          "record": "11-1",
+          "team": "Houston"
+        },
+        {
+          "rank": 22,
+          "record": "8-4",
+          "team": "Arkansas"
+        },
+        {
+          "rank": 23,
+          "record": "9-3",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 24,
+          "record": "11-1",
+          "team": "Louisiana"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Texas A&M"
+        }
+      ],
+      "release_date": "2021-11-30",
+      "season": 2021,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 2,
+          "record": "12-1",
+          "team": "Michigan"
+        },
+        {
+          "rank": 3,
+          "record": "12-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 4,
+          "record": "13-0",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 6,
+          "record": "10-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "11-2",
+          "team": "Baylor"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 9,
+          "record": "11-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Michigan State"
+        },
+        {
+          "rank": 11,
+          "record": "10-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 12,
+          "record": "11-2",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 14,
+          "record": "10-3",
+          "team": "Oregon"
+        },
+        {
+          "rank": 15,
+          "record": "10-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 16,
+          "record": "10-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 17,
+          "record": "10-3",
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 19,
+          "record": "9-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 20,
+          "record": "11-2",
+          "team": "Houston"
+        },
+        {
+          "rank": 21,
+          "record": "8-4",
+          "team": "Arkansas"
+        },
+        {
+          "rank": 22,
+          "record": "9-3",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 23,
+          "record": "12-1",
+          "team": "Louisiana"
+        },
+        {
+          "rank": 24,
+          "record": "11-2",
+          "team": "San Diego State"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Texas A&M"
+        }
+      ],
+      "release_date": "2021-12-05",
+      "season": 2021,
+      "week": 15
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 2,
+          "record": "8-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "8-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 4,
+          "record": "8-0",
+          "team": "Clemson"
+        },
+        {
+          "rank": 5,
+          "record": "8-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 7,
+          "record": "8-0",
+          "team": "TCU"
+        },
+        {
+          "rank": 8,
+          "record": "7-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 9,
+          "record": "7-1",
+          "team": "Southern California"
+        },
+        {
+          "rank": 10,
+          "record": "6-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 11,
+          "record": "8-1",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 12,
+          "record": "7-1",
+          "team": "UCLA"
+        },
+        {
+          "rank": 13,
+          "record": "6-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 14,
+          "record": "6-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 16,
+          "record": "7-1",
+          "team": "Illinois"
+        },
+        {
+          "rank": 17,
+          "record": "7-1",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 18,
+          "record": "6-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 19,
+          "record": "7-1",
+          "team": "Tulane"
+        },
+        {
+          "rank": 20,
+          "record": "6-2",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 21,
+          "record": "6-2",
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 22,
+          "record": "6-2",
+          "team": "NC State"
+        },
+        {
+          "rank": 23,
+          "record": "6-2",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 24,
+          "record": "5-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 25,
+          "record": "6-2",
+          "team": "UCF"
+        }
+      ],
+      "release_date": "2022-11-01",
+      "season": 2022,
+      "week": 9
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "9-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "9-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "9-0",
+          "team": "TCU"
+        },
+        {
+          "rank": 5,
+          "record": "8-1",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "7-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 8,
+          "record": "8-1",
+          "team": "Southern California"
+        },
+        {
+          "rank": 9,
+          "record": "7-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 10,
+          "record": "8-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 11,
+          "record": "8-1",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 12,
+          "record": "8-1",
+          "team": "UCLA"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 15,
+          "record": "8-1",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "NC State"
+        },
+        {
+          "rank": 17,
+          "record": "8-1",
+          "team": "Tulane"
+        },
+        {
+          "rank": 18,
+          "record": "6-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 19,
+          "record": "6-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 20,
+          "record": "6-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 21,
+          "record": "7-2",
+          "team": "Illinois"
+        },
+        {
+          "rank": 22,
+          "record": "7-2",
+          "team": "UCF"
+        },
+        {
+          "rank": 23,
+          "record": "6-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 24,
+          "record": "6-3",
+          "team": "Kentucky"
+        },
+        {
+          "rank": 25,
+          "record": "7-2",
+          "team": "Washington"
+        }
+      ],
+      "release_date": "2022-11-08",
+      "season": 2022,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "10-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "10-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "10-0",
+          "team": "TCU"
+        },
+        {
+          "rank": 5,
+          "record": "9-1",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 6,
+          "record": "8-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Southern California"
+        },
+        {
+          "rank": 8,
+          "record": "8-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 9,
+          "record": "9-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 10,
+          "record": "8-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Oregon"
+        },
+        {
+          "rank": 13,
+          "record": "9-1",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 14,
+          "record": "8-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 15,
+          "record": "7-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 16,
+          "record": "8-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 17,
+          "record": "8-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 18,
+          "record": "7-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 19,
+          "record": "7-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 20,
+          "record": "8-2",
+          "team": "UCF"
+        },
+        {
+          "rank": 21,
+          "record": "8-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 22,
+          "record": "7-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 23,
+          "record": "7-3",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 24,
+          "record": "7-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 25,
+          "record": "8-2",
+          "team": "Cincinnati"
+        }
+      ],
+      "release_date": "2022-11-15",
+      "season": 2022,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "11-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "11-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "11-0",
+          "team": "TCU"
+        },
+        {
+          "rank": 5,
+          "record": "9-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Southern California"
+        },
+        {
+          "rank": 7,
+          "record": "9-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 8,
+          "record": "10-1",
+          "team": "Clemson"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Oregon"
+        },
+        {
+          "rank": 10,
+          "record": "9-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 11,
+          "record": "9-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 12,
+          "record": "8-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 13,
+          "record": "9-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 14,
+          "record": "8-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 16,
+          "record": "8-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 17,
+          "record": "9-2",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 18,
+          "record": "8-3",
+          "team": "UCLA"
+        },
+        {
+          "rank": 19,
+          "record": "9-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 21,
+          "record": "8-3",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 22,
+          "record": "8-3",
+          "team": "UCF"
+        },
+        {
+          "rank": 23,
+          "record": "7-4",
+          "team": "Texas"
+        },
+        {
+          "rank": 24,
+          "record": "9-2",
+          "team": "Cincinnati"
+        },
+        {
+          "rank": 25,
+          "record": "7-4",
+          "team": "Louisville"
+        }
+      ],
+      "release_date": "2022-11-22",
+      "season": 2022,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "12-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 3,
+          "record": "12-0",
+          "team": "TCU"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Southern California"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 6,
+          "record": "10-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 10,
+          "record": "9-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 12,
+          "record": "10-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Oregon"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "UCLA"
+        },
+        {
+          "rank": 18,
+          "record": "10-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 19,
+          "record": "8-4",
+          "team": "South Carolina"
+        },
+        {
+          "rank": 20,
+          "record": "8-4",
+          "team": "Texas"
+        },
+        {
+          "rank": 21,
+          "record": "8-4",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 22,
+          "record": "9-3",
+          "team": "UCF"
+        },
+        {
+          "rank": 23,
+          "record": "9-3",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 24,
+          "record": "8-4",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "NC State"
+        }
+      ],
+      "release_date": "2022-11-29",
+      "season": 2022,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "13-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "13-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 3,
+          "record": "12-1",
+          "team": "TCU"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 5,
+          "record": "10-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 6,
+          "record": "10-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 7,
+          "record": "11-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 8,
+          "record": "10-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 9,
+          "record": "10-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 10,
+          "record": "11-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 12,
+          "record": "10-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Florida State"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "Oregon"
+        },
+        {
+          "rank": 16,
+          "record": "11-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 17,
+          "record": "9-4",
+          "team": "LSU"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "UCLA"
+        },
+        {
+          "rank": 19,
+          "record": "8-4",
+          "team": "South Carolina"
+        },
+        {
+          "rank": 20,
+          "record": "8-4",
+          "team": "Texas"
+        },
+        {
+          "rank": 21,
+          "record": "8-4",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 22,
+          "record": "8-4",
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "NC State"
+        },
+        {
+          "rank": 24,
+          "record": "11-2",
+          "team": "Troy"
+        },
+        {
+          "rank": 25,
+          "record": "11-2",
+          "team": "UTSA"
+        }
+      ],
+      "release_date": "2022-12-04",
+      "season": 2022,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "8-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 3,
+          "record": "8-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "8-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 5,
+          "record": "8-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "7-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 8,
+          "record": "7-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 9,
+          "record": "7-1",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 11,
+          "record": "7-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 12,
+          "record": "7-1",
+          "team": "Missouri"
+        },
+        {
+          "rank": 13,
+          "record": "7-1",
+          "team": "Louisville"
+        },
+        {
+          "rank": 14,
+          "record": "6-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 16,
+          "record": "6-2",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 17,
+          "record": "6-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 18,
+          "record": "6-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "UCLA"
+        },
+        {
+          "rank": 20,
+          "record": "7-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 21,
+          "record": "6-2",
+          "team": "Kansas"
+        },
+        {
+          "rank": 22,
+          "record": "6-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 23,
+          "record": "6-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 24,
+          "record": "7-1",
+          "team": "Tulane"
+        },
+        {
+          "rank": 25,
+          "record": "8-0",
+          "team": "Air Force"
+        }
+      ],
+      "release_date": "2023-10-31",
+      "season": 2023,
+      "week": 9
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "9-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 3,
+          "record": "9-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "9-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 5,
+          "record": "9-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "8-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 8,
+          "record": "8-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 9,
+          "record": "8-1",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 10,
+          "record": "8-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "8-1",
+          "team": "Louisville"
+        },
+        {
+          "rank": 12,
+          "record": "7-2",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "Kansas"
+        },
+        {
+          "rank": 17,
+          "record": "7-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 18,
+          "record": "7-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 19,
+          "record": "6-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 20,
+          "record": "7-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 21,
+          "record": "6-3",
+          "team": "Arizona"
+        },
+        {
+          "rank": 22,
+          "record": "7-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 23,
+          "record": "8-1",
+          "team": "Tulane"
+        },
+        {
+          "rank": 24,
+          "record": "7-2",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 25,
+          "record": "6-3",
+          "team": "Kansas State"
+        }
+      ],
+      "release_date": "2023-11-07",
+      "season": 2023,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "10-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "10-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "10-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 5,
+          "record": "10-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 6,
+          "record": "9-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 8,
+          "record": "9-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 9,
+          "record": "8-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 10,
+          "record": "9-1",
+          "team": "Louisville"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 13,
+          "record": "8-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 14,
+          "record": "8-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 15,
+          "record": "7-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 16,
+          "record": "8-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "Arizona"
+        },
+        {
+          "rank": 18,
+          "record": "7-3",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 19,
+          "record": "7-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 20,
+          "record": "8-2",
+          "team": "North Carolina"
+        },
+        {
+          "rank": 21,
+          "record": "7-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 22,
+          "record": "7-3",
+          "team": "Utah"
+        },
+        {
+          "rank": 23,
+          "record": "7-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 24,
+          "record": "9-1",
+          "team": "Tulane"
+        },
+        {
+          "rank": 25,
+          "record": "7-3",
+          "team": "Kansas"
+        }
+      ],
+      "release_date": "2023-11-14",
+      "season": 2023,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "11-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "11-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 4,
+          "record": "11-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 5,
+          "record": "11-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "10-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 8,
+          "record": "10-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 10,
+          "record": "10-1",
+          "team": "Louisville"
+        },
+        {
+          "rank": 11,
+          "record": "9-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 12,
+          "record": "9-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 13,
+          "record": "9-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 14,
+          "record": "8-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "Arizona"
+        },
+        {
+          "rank": 16,
+          "record": "8-3",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 17,
+          "record": "9-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 18,
+          "record": "8-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 19,
+          "record": "8-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 21,
+          "record": "7-4",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 22,
+          "record": "8-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 23,
+          "record": "10-1",
+          "team": "Tulane"
+        },
+        {
+          "rank": 24,
+          "record": "7-4",
+          "team": "Clemson"
+        },
+        {
+          "rank": 25,
+          "record": "11-0",
+          "team": "Liberty"
+        }
+      ],
+      "release_date": "2023-11-21",
+      "season": 2023,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Georgia"
+        },
+        {
+          "rank": 2,
+          "record": "12-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 3,
+          "record": "12-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 4,
+          "record": "12-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "11-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 8,
+          "record": "11-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 12,
+          "record": "10-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 14,
+          "record": "10-2",
+          "team": "Louisville"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "Arizona"
+        },
+        {
+          "rank": 16,
+          "record": "10-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 19,
+          "record": "9-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 20,
+          "record": "8-4",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 21,
+          "record": "8-4",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 22,
+          "record": "11-1",
+          "team": "Tulane"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Clemson"
+        },
+        {
+          "rank": 24,
+          "record": "12-0",
+          "team": "Liberty"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Kansas State"
+        }
+      ],
+      "release_date": "2023-11-28",
+      "season": 2023,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "13-0",
+          "team": "Michigan"
+        },
+        {
+          "rank": 2,
+          "record": "13-0",
+          "team": "Washington"
+        },
+        {
+          "rank": 3,
+          "record": "12-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 4,
+          "record": "12-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 5,
+          "record": "13-0",
+          "team": "Florida State"
+        },
+        {
+          "rank": 6,
+          "record": "12-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 7,
+          "record": "11-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 8,
+          "record": "11-2",
+          "team": "Oregon"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 12,
+          "record": "10-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Arizona"
+        },
+        {
+          "rank": 15,
+          "record": "10-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 17,
+          "record": "10-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "NC State"
+        },
+        {
+          "rank": 19,
+          "record": "8-4",
+          "team": "Oregon State"
+        },
+        {
+          "rank": 20,
+          "record": "9-4",
+          "team": "Oklahoma State"
+        },
+        {
+          "rank": 21,
+          "record": "8-4",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 22,
+          "record": "8-4",
+          "team": "Clemson"
+        },
+        {
+          "rank": 23,
+          "record": "13-0",
+          "team": "Liberty"
+        },
+        {
+          "rank": 24,
+          "record": "11-2",
+          "team": "SMU"
+        },
+        {
+          "rank": 25,
+          "record": "8-4",
+          "team": "Kansas State"
+        }
+      ],
+      "release_date": "2023-12-03",
+      "season": 2023,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Oregon"
+        },
+        {
+          "rank": 2,
+          "record": "7-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "7-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 4,
+          "record": "9-0",
+          "team": "Miami"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 6,
+          "record": "7-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 7,
+          "record": "7-1",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 8,
+          "record": "9-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 9,
+          "record": "8-0",
+          "team": "BYU"
+        },
+        {
+          "rank": 10,
+          "record": "7-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 11,
+          "record": "6-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 12,
+          "record": "7-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 13,
+          "record": "8-1",
+          "team": "SMU"
+        },
+        {
+          "rank": 14,
+          "record": "7-2",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 15,
+          "record": "6-2",
+          "team": "LSU"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 17,
+          "record": "7-1",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 18,
+          "record": "7-1",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 19,
+          "record": "7-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 20,
+          "record": "6-2",
+          "team": "Colorado"
+        },
+        {
+          "rank": 21,
+          "record": "7-1",
+          "team": "Washington State"
+        },
+        {
+          "rank": 22,
+          "record": "6-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 23,
+          "record": "6-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 24,
+          "record": "6-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 25,
+          "record": "8-0",
+          "team": "Army"
+        }
+      ],
+      "release_date": "2024-11-05",
+      "season": 2024,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Oregon"
+        },
+        {
+          "rank": 2,
+          "record": "8-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "8-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 5,
+          "record": "10-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 6,
+          "record": "9-0",
+          "team": "BYU"
+        },
+        {
+          "rank": 7,
+          "record": "8-1",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 8,
+          "record": "8-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 9,
+          "record": "9-1",
+          "team": "Miami"
+        },
+        {
+          "rank": 10,
+          "record": "7-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 12,
+          "record": "7-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 13,
+          "record": "8-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 14,
+          "record": "8-1",
+          "team": "SMU"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 17,
+          "record": "7-2",
+          "team": "Colorado"
+        },
+        {
+          "rank": 18,
+          "record": "8-1",
+          "team": "Washington State"
+        },
+        {
+          "rank": 19,
+          "record": "6-3",
+          "team": "Louisville"
+        },
+        {
+          "rank": 20,
+          "record": "7-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 21,
+          "record": "6-3",
+          "team": "South Carolina"
+        },
+        {
+          "rank": 22,
+          "record": "6-3",
+          "team": "LSU"
+        },
+        {
+          "rank": 23,
+          "record": "7-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 24,
+          "record": "9-0",
+          "team": "Army"
+        },
+        {
+          "rank": 25,
+          "record": "8-2",
+          "team": "Tulane"
+        }
+      ],
+      "release_date": "2024-11-12",
+      "season": 2024,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Oregon"
+        },
+        {
+          "rank": 2,
+          "record": "9-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "9-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 5,
+          "record": "10-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 6,
+          "record": "9-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 7,
+          "record": "8-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 8,
+          "record": "9-1",
+          "team": "Miami"
+        },
+        {
+          "rank": 9,
+          "record": "8-2",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 10,
+          "record": "8-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 11,
+          "record": "8-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 12,
+          "record": "9-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 13,
+          "record": "9-1",
+          "team": "SMU"
+        },
+        {
+          "rank": 14,
+          "record": "9-1",
+          "team": "BYU"
+        },
+        {
+          "rank": 15,
+          "record": "8-2",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 16,
+          "record": "8-2",
+          "team": "Colorado"
+        },
+        {
+          "rank": 17,
+          "record": "8-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 18,
+          "record": "7-3",
+          "team": "South Carolina"
+        },
+        {
+          "rank": 19,
+          "record": "9-0",
+          "team": "Army"
+        },
+        {
+          "rank": 20,
+          "record": "9-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 21,
+          "record": "8-2",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 22,
+          "record": "8-2",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 23,
+          "record": "7-3",
+          "team": "Missouri"
+        },
+        {
+          "rank": 24,
+          "record": "8-2",
+          "team": "UNLV"
+        },
+        {
+          "rank": 25,
+          "record": "7-3",
+          "team": "Illinois"
+        }
+      ],
+      "release_date": "2024-11-19",
+      "season": 2024,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Oregon"
+        },
+        {
+          "rank": 2,
+          "record": "10-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "10-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 4,
+          "record": "10-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 5,
+          "record": "10-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Miami"
+        },
+        {
+          "rank": 7,
+          "record": "9-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 8,
+          "record": "9-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 9,
+          "record": "10-1",
+          "team": "SMU"
+        },
+        {
+          "rank": 10,
+          "record": "10-1",
+          "team": "Indiana"
+        },
+        {
+          "rank": 11,
+          "record": "10-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 12,
+          "record": "9-2",
+          "team": "Clemson"
+        },
+        {
+          "rank": 13,
+          "record": "8-3",
+          "team": "Alabama"
+        },
+        {
+          "rank": 14,
+          "record": "8-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 15,
+          "record": "8-3",
+          "team": "South Carolina"
+        },
+        {
+          "rank": 16,
+          "record": "9-2",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 17,
+          "record": "9-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 18,
+          "record": "9-2",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 19,
+          "record": "9-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 21,
+          "record": "8-3",
+          "team": "Missouri"
+        },
+        {
+          "rank": 22,
+          "record": "9-2",
+          "team": "UNLV"
+        },
+        {
+          "rank": 23,
+          "record": "8-3",
+          "team": "Illinois"
+        },
+        {
+          "rank": 24,
+          "record": "8-3",
+          "team": "Kansas State"
+        },
+        {
+          "rank": 25,
+          "record": "8-3",
+          "team": "Colorado"
+        }
+      ],
+      "release_date": "2024-11-26",
+      "season": 2024,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Oregon"
+        },
+        {
+          "rank": 2,
+          "record": "11-1",
+          "team": "Texas"
+        },
+        {
+          "rank": 3,
+          "record": "11-1",
+          "team": "Penn State"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 5,
+          "record": "10-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 6,
+          "record": "10-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 8,
+          "record": "11-1",
+          "team": "SMU"
+        },
+        {
+          "rank": 9,
+          "record": "11-1",
+          "team": "Indiana"
+        },
+        {
+          "rank": 10,
+          "record": "11-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "Alabama"
+        },
+        {
+          "rank": 12,
+          "record": "10-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Mississippi"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "South Carolina"
+        },
+        {
+          "rank": 15,
+          "record": "10-2",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 16,
+          "record": "10-2",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 18,
+          "record": "10-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 19,
+          "record": "9-3",
+          "team": "Missouri"
+        },
+        {
+          "rank": 20,
+          "record": "10-2",
+          "team": "UNLV"
+        },
+        {
+          "rank": 21,
+          "record": "9-3",
+          "team": "Illinois"
+        },
+        {
+          "rank": 22,
+          "record": "9-3",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 23,
+          "record": "9-3",
+          "team": "Colorado"
+        },
+        {
+          "rank": 24,
+          "record": "10-1",
+          "team": "Army"
+        },
+        {
+          "rank": 25,
+          "record": "10-2",
+          "team": "Memphis"
+        }
+      ],
+      "release_date": "2024-12-03",
+      "season": 2024,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "13-0",
+          "team": "Oregon"
+        },
+        {
+          "rank": 2,
+          "record": "11-2",
+          "team": "Georgia"
+        },
+        {
+          "rank": 3,
+          "record": "11-2",
+          "team": "Texas"
+        },
+        {
+          "rank": 4,
+          "record": "11-2",
+          "team": "Penn State"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 6,
+          "record": "10-2",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 7,
+          "record": "10-2",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 8,
+          "record": "11-1",
+          "team": "Indiana"
+        },
+        {
+          "rank": 9,
+          "record": "12-1",
+          "team": "Boise State"
+        },
+        {
+          "rank": 10,
+          "record": "11-2",
+          "team": "SMU"
+        },
+        {
+          "rank": 11,
+          "record": "9-3",
+          "team": "Alabama"
+        },
+        {
+          "rank": 12,
+          "record": "11-2",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 13,
+          "record": "10-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 14,
+          "record": "9-3",
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 15,
+          "record": "9-3",
+          "team": "South Carolina"
+        },
+        {
+          "rank": 16,
+          "record": "10-3",
+          "team": "Clemson"
+        },
+        {
+          "rank": 17,
+          "record": "10-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 18,
+          "record": "10-3",
+          "team": "Iowa State"
+        },
+        {
+          "rank": 19,
+          "record": "9-3",
+          "team": "Missouri"
+        },
+        {
+          "rank": 20,
+          "record": "9-3",
+          "team": "Illinois"
+        },
+        {
+          "rank": 21,
+          "record": "9-3",
+          "team": "Syracuse"
+        },
+        {
+          "rank": 22,
+          "record": "11-1",
+          "team": "Army"
+        },
+        {
+          "rank": 23,
+          "record": "9-3",
+          "team": "Colorado"
+        },
+        {
+          "rank": 24,
+          "record": "10-3",
+          "team": "UNLV"
+        },
+        {
+          "rank": 25,
+          "record": "10-2",
+          "team": "Memphis"
+        }
+      ],
+      "release_date": "2024-12-08",
+      "season": 2024,
+      "week": 15
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "8-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "9-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 3,
+          "record": "8-0",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 4,
+          "record": "7-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 5,
+          "record": "7-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 6,
+          "record": "8-1",
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 7,
+          "record": "8-0",
+          "team": "BYU"
+        },
+        {
+          "rank": 8,
+          "record": "8-1",
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 9,
+          "record": "7-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 10,
+          "record": "6-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 11,
+          "record": "7-2",
+          "team": "Texas"
+        },
+        {
+          "rank": 12,
+          "record": "7-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 14,
+          "record": "8-1",
+          "team": "Virginia"
+        },
+        {
+          "rank": 15,
+          "record": "7-1",
+          "team": "Louisville"
+        },
+        {
+          "rank": 16,
+          "record": "7-2",
+          "team": "Vanderbilt"
+        },
+        {
+          "rank": 17,
+          "record": "8-1",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 18,
+          "record": "6-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 19,
+          "record": "6-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 20,
+          "record": "6-2",
+          "team": "Iowa"
+        },
+        {
+          "rank": 21,
+          "record": "7-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 22,
+          "record": "6-2",
+          "team": "Missouri"
+        },
+        {
+          "rank": 23,
+          "record": "6-2",
+          "team": "Washington"
+        },
+        {
+          "rank": 24,
+          "record": "7-2",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 25,
+          "record": "6-3",
+          "team": "Tennessee"
+        }
+      ],
+      "release_date": "2025-11-04",
+      "season": 2025,
+      "week": 10
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "9-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "10-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 3,
+          "record": "9-0",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 4,
+          "record": "8-1",
+          "team": "Alabama"
+        },
+        {
+          "rank": 5,
+          "record": "8-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 6,
+          "record": "9-1",
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 8,
+          "record": "8-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 9,
+          "record": "7-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 10,
+          "record": "7-2",
+          "team": "Texas"
+        },
+        {
+          "rank": 11,
+          "record": "7-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 12,
+          "record": "8-1",
+          "team": "BYU"
+        },
+        {
+          "rank": 13,
+          "record": "7-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 14,
+          "record": "8-2",
+          "team": "Vanderbilt"
+        },
+        {
+          "rank": 15,
+          "record": "7-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 16,
+          "record": "8-1",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 17,
+          "record": "7-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 18,
+          "record": "7-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 19,
+          "record": "8-2",
+          "team": "Virginia"
+        },
+        {
+          "rank": 20,
+          "record": "7-2",
+          "team": "Louisville"
+        },
+        {
+          "rank": 21,
+          "record": "6-3",
+          "team": "Iowa"
+        },
+        {
+          "rank": 22,
+          "record": "7-2",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 23,
+          "record": "6-3",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 24,
+          "record": "7-2",
+          "team": "South Florida"
+        },
+        {
+          "rank": 25,
+          "record": "7-2",
+          "team": "Cincinnati"
+        }
+      ],
+      "release_date": "2025-11-11",
+      "season": 2025,
+      "week": 11
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "10-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "11-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 3,
+          "record": "10-0",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 4,
+          "record": "9-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "record": "10-1",
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 7,
+          "record": "9-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 8,
+          "record": "8-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 9,
+          "record": "8-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 10,
+          "record": "8-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 11,
+          "record": "9-1",
+          "team": "BYU"
+        },
+        {
+          "rank": 12,
+          "record": "8-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 13,
+          "record": "8-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 14,
+          "record": "8-2",
+          "team": "Vanderbilt"
+        },
+        {
+          "rank": 15,
+          "record": "8-2",
+          "team": "Southern California"
+        },
+        {
+          "rank": 16,
+          "record": "9-1",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 17,
+          "record": "7-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 18,
+          "record": "8-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 19,
+          "record": "9-2",
+          "team": "Virginia"
+        },
+        {
+          "rank": 20,
+          "record": "7-3",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 21,
+          "record": "7-3",
+          "team": "Illinois"
+        },
+        {
+          "rank": 22,
+          "record": "7-3",
+          "team": "Missouri"
+        },
+        {
+          "rank": 23,
+          "record": "8-2",
+          "team": "Houston"
+        },
+        {
+          "rank": 24,
+          "record": "8-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 25,
+          "record": "7-3",
+          "team": "Arizona State"
+        }
+      ],
+      "release_date": "2025-11-18",
+      "season": 2025,
+      "week": 12
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "11-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "11-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 3,
+          "record": "11-0",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 4,
+          "record": "10-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "record": "10-1",
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 6,
+          "record": "10-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 7,
+          "record": "10-1",
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 8,
+          "record": "9-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 9,
+          "record": "9-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 10,
+          "record": "9-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 11,
+          "record": "10-1",
+          "team": "BYU"
+        },
+        {
+          "rank": 12,
+          "record": "9-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 13,
+          "record": "9-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 14,
+          "record": "9-2",
+          "team": "Vanderbilt"
+        },
+        {
+          "rank": 15,
+          "record": "9-2",
+          "team": "Michigan"
+        },
+        {
+          "rank": 16,
+          "record": "8-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 17,
+          "record": "8-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 18,
+          "record": "9-2",
+          "team": "Virginia"
+        },
+        {
+          "rank": 19,
+          "record": "8-3",
+          "team": "Tennessee"
+        },
+        {
+          "rank": 20,
+          "record": "8-3",
+          "team": "Arizona State"
+        },
+        {
+          "rank": 21,
+          "record": "8-3",
+          "team": "SMU"
+        },
+        {
+          "rank": 22,
+          "record": "8-3",
+          "team": "Pittsburgh"
+        },
+        {
+          "rank": 23,
+          "record": "9-2",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 24,
+          "record": "9-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 25,
+          "record": "8-3",
+          "team": "Arizona"
+        }
+      ],
+      "release_date": "2025-11-25",
+      "season": 2025,
+      "week": 13
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "12-0",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 2,
+          "record": "12-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 3,
+          "record": "11-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 4,
+          "record": "11-1",
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 7,
+          "record": "11-1",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 9,
+          "record": "10-2",
+          "team": "Alabama"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 11,
+          "record": "11-1",
+          "team": "BYU"
+        },
+        {
+          "rank": 12,
+          "record": "10-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 14,
+          "record": "10-2",
+          "team": "Vanderbilt"
+        },
+        {
+          "rank": 15,
+          "record": "10-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 17,
+          "record": "10-2",
+          "team": "Virginia"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "Arizona"
+        },
+        {
+          "rank": 19,
+          "record": "9-3",
+          "team": "Michigan"
+        },
+        {
+          "rank": 20,
+          "record": "10-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 21,
+          "record": "9-3",
+          "team": "Houston"
+        },
+        {
+          "rank": 22,
+          "record": "9-3",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Iowa"
+        },
+        {
+          "rank": 24,
+          "record": "11-1",
+          "team": "North Texas"
+        },
+        {
+          "rank": 25,
+          "record": "11-1",
+          "team": "James Madison"
+        }
+      ],
+      "release_date": "2025-12-02",
+      "season": 2025,
+      "week": 14
+    },
+    {
+      "entries": [
+        {
+          "rank": 1,
+          "record": "13-0",
+          "team": "Indiana"
+        },
+        {
+          "rank": 2,
+          "record": "12-1",
+          "team": "Ohio State"
+        },
+        {
+          "rank": 3,
+          "record": "12-1",
+          "team": "Georgia"
+        },
+        {
+          "rank": 4,
+          "record": "12-1",
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 5,
+          "record": "11-1",
+          "team": "Oregon"
+        },
+        {
+          "rank": 6,
+          "record": "11-1",
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 7,
+          "record": "11-1",
+          "team": "Texas A&M"
+        },
+        {
+          "rank": 8,
+          "record": "10-2",
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 9,
+          "record": "10-3",
+          "team": "Alabama"
+        },
+        {
+          "rank": 10,
+          "record": "10-2",
+          "team": "Miami"
+        },
+        {
+          "rank": 11,
+          "record": "10-2",
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 12,
+          "record": "11-2",
+          "team": "BYU"
+        },
+        {
+          "rank": 13,
+          "record": "9-3",
+          "team": "Texas"
+        },
+        {
+          "rank": 14,
+          "record": "10-2",
+          "team": "Vanderbilt"
+        },
+        {
+          "rank": 15,
+          "record": "10-2",
+          "team": "Utah"
+        },
+        {
+          "rank": 16,
+          "record": "9-3",
+          "team": "Southern California"
+        },
+        {
+          "rank": 17,
+          "record": "9-3",
+          "team": "Arizona"
+        },
+        {
+          "rank": 18,
+          "record": "9-3",
+          "team": "Michigan"
+        },
+        {
+          "rank": 19,
+          "record": "10-3",
+          "team": "Virginia"
+        },
+        {
+          "rank": 20,
+          "record": "11-2",
+          "team": "Tulane"
+        },
+        {
+          "rank": 21,
+          "record": "9-3",
+          "team": "Houston"
+        },
+        {
+          "rank": 22,
+          "record": "9-3",
+          "team": "Georgia Tech"
+        },
+        {
+          "rank": 23,
+          "record": "8-4",
+          "team": "Iowa"
+        },
+        {
+          "rank": 24,
+          "record": "12-1",
+          "team": "James Madison"
+        },
+        {
+          "rank": 25,
+          "record": "11-2",
+          "team": "North Texas"
+        }
+      ],
+      "release_date": "2025-12-07",
+      "season": 2025,
+      "week": 15
+    }
+  ]
+}

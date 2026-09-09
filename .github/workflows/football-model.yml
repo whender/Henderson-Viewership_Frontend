@@ -25,13 +25,15 @@ jobs:
         run: python football-model/export.py --refresh
       - name: Publish AP poll outlook
         run: python football-model/export_ap.py --refresh
+      - name: Publish CFP rankings outlook
+        run: python football-model/export_cfp.py --refresh
       - name: Verify model snapshot
         run: python -m unittest discover -s football-model -p 'test_*.py'
       - name: Commit updated data
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/football/model.json football-model/model.json football-model/games.json.gz football-model/advanced.json.gz public/football/ap.json football-model/ap/polls.json.gz football-model/ap/games.json.gz
+          git add public/football/cfp.json football-model/cfp/polls.json public/football/model.json football-model/model.json football-model/games.json.gz football-model/advanced.json.gz public/football/ap.json football-model/ap/polls.json.gz football-model/ap/games.json.gz
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh football model rankings and game forecasts'
             git pull --rebase origin main

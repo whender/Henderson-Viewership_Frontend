@@ -30,3 +30,8 @@ test('preseason rankings and accuracy remain distinct from weekly predictions',a
 test('preseason outlook has no game scenario controls',async()=>{
  global.fetch.mockResolvedValue({ok:true,json:async()=>({...data,preseason,activeModel:'preseason',next:{...data.next,rows:preseason.rows,resultsSoFar:preseason.rows}})});open();await screen.findByText('Next release outlook');expect(screen.queryByLabelText('Forecast basis')).not.toBeInTheDocument();expect(screen.queryByText(/Game assumptions/)).not.toBeInTheDocument();expect(screen.getByText(/Uses offseason inputs/)).toBeInTheDocument();
 });
+test('movement model labels inputs and its regression baseline accurately',async()=>{
+ global.fetch.mockResolvedValue({ok:true,json:async()=>({...data,modelVersion:'ap-movement-v1',baselineLabel:'AP + Vegas regression',drivers:[],dropValidation:{caughtBigDrops:3,actualBigDrops:11,falseAlarms:4,winningTop10Cases:577},next:{...data.next,rows:[{...row,drivers:[{feature:'previous_ap',label:'Previous AP: 2',contribution:null,detail:'Starting poll position'}]}]}})});
+ open();await screen.findByText('Next release outlook');fireEvent.click(screen.getByText('Why this rank?'));expect(screen.getByText('Starting poll position')).toBeInTheDocument();
+ fireEvent.click(screen.getByRole('button',{name:'Model & accuracy'}));expect(screen.getByText('AP + Vegas regression: 2.30')).toBeInTheDocument();expect(screen.queryByText('Largest fitted effects per one historical standard deviation.')).not.toBeInTheDocument();expect(screen.getByText(/detected 3 of 11/)).toBeInTheDocument();
+});

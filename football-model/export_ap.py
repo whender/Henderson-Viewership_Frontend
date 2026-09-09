@@ -5,6 +5,9 @@ from pathlib import Path
 import httpx
 import numpy as np
 from ap_preseason import preseason_forecast
+import ap_movement
+from cfbpredict.cfbd import CFBDClient
+from cfbpredict.config import cfbd_api_key
 from ap_data import parse_options,parse_entries,normalize_poll,token
 from ap_model import matrix,predict,ranks,LABELS,FEATURES,timestamp
 ROOT=Path(__file__).resolve().parent
@@ -45,7 +48,18 @@ def main():
     fbs_ids={t['team_id'] for t in football['teams']}
     history=[g for g in history if g['season']!=year]+[{k:g.get(k) for k in keep} for g in raw if g['season']==year and (g.get('homeId') in fbs_ids or g.get('awayId') in fbs_ids)]
     if args.refresh:dump_gzip(ROOT/'ap/games.json.gz',history)
-    model=json.loads((ROOT/'ap/model.json').read_text())
+    model=json.loads((ROOT/'ap/movement_model.json').read_text())
+    lines=json.loads(gzip.decompress((ROOT/'ap/lines.json.gz').read_bytes()))
+    if args.refresh:
+        with CFBDClient(cfbd_api_key()) as client:
+            fresh=[]
+            for kind in ['regular','postseason']:
+                fresh.extend(client.get('/lines',params={'year':year,'seasonType':kind},refresh=True))
+        if not fresh:raise ValueError('CFBD returned no current-season lines; refusing an empty market refresh')
+        lines=list({r['id']:r for r in lines+[{k:r[k] for k in ['id','season','seasonType','startDate','lines'] if k in r} for r in fresh]}.values())
+    market={r['id']:ap_movement.e.closing_consensus(r) for r in lines}
+    def weekly(p,previous,earlier,games):
+        return ap_movement.ranked(model,p,previous,earlier,games,market,candidates)
     if model['trainedThrough']!=year-1:raise ValueError('Retrain the AP model through the previous season before publishing')
     current=[p for p in polls if p['season']==year]
     preseason_mode=not current
@@ -84,35 +98,46 @@ def main():
         key=str(previous_forecast['previousPollId']+1)
         actual=next((p for p in polls if str(p['id'])==key),None)
         if actual and actual.get('cutoff') and timestamp(previous_output['asOf'])<timestamp(actual['cutoff']):
-            saved.setdefault(key,{'asOf':previous_output['asOf'],'rows':previous_forecast['rows'],'basis':'Projected remaining games'})
+            saved.setdefault(key,{'asOf':previous_output['asOf'],'rows':previous_forecast['rows'],'basis':'Projected remaining games','modelVersion':previous_output.get('modelVersion','legacy-ap-regression')})
     # These reconstructions exclude the target ranking but are distinct from stored live forecasts.
     previous=next((p for p in reversed(polls) if p['id']<latest['id']),None)
     earlier=[p for p in polls if p['id']<latest['id']]
-    latest_rows=(preseason['rows'] if latest['kind']=='preseason' else ranked(model,latest,previous,earlier,source_games,candidates)) if current else []
-    next_rows=preseason['rows'] if preseason_mode else ranked(model,nextpoll,latest,polls,projected,candidates)
-    sofar_rows=preseason['rows'] if preseason_mode else ranked(model,sofar,latest,polls,source_games,candidates)
+    latest_rows=(preseason['rows'] if latest['kind']=='preseason' else weekly(latest,previous,earlier,source_games)) if current else []
+    next_rows=preseason['rows'] if preseason_mode else weekly(nextpoll,latest,polls,projected)
+    sofar_rows=preseason['rows'] if preseason_mode else weekly(sofar,latest,polls,source_games)
     # Score only historical regular polls; final/preseason timing limitations remain explicit.
-    evaluation=model['evaluation'];n=sum(e['polls'] for e in evaluation)
+    validation=json.loads((ROOT/'ap/movement_validation.json').read_text())
+    selected=validation['selected'];evaluation=[]
+    for y in range(2019,2026):
+        suffix='_2025' if y==2025 else ''
+        rows=[r for r in validation['details'][selected+suffix] if r['season']==y]
+        controls=[r for r in validation['details']['vegas_control'+suffix] if r['season']==y]
+        evaluation.append({'season':y,'polls':len(rows),'overlap':float(np.mean([r['overlap'] for r in rows])),'rankError':float(np.mean([r['rankError'] for r in rows])),'baselineOverlap':float(np.mean([r['overlap'] for r in controls])),'baselineRankError':float(np.mean([r['rankError'] for r in controls]))})
+    n=sum(e['polls'] for e in evaluation)
     stats={k:sum(e[k]*e['polls'] for e in evaluation)/n for k in ['overlap','rankError','baselineOverlap','baselineRankError']};stats['polls']=n
     coverage=json.loads((ROOT/'ap/coverage.json').read_text());coverage.update(polls=len(polls),endYear=year)
-    coefficients=[{'feature':name,'label':LABELS[name],'effect':round(model['coefficients'][i+1],4)} for i,name in enumerate(FEATURES)]
-    out={'schemaVersion':1,'asOf':now.isoformat(),'season':year,'trainingThrough':model['trainedThrough'],'trainingPolls':model['trainingPolls'],
-        'preseason':preseason,'activeModel':'preseason' if preseason_mode else 'in-season','coverage':coverage,'excludedTrainingPolls':model['excludedPolls'],'evaluation':evaluation,'overallEvaluation':stats,
-        'latest':{'pollId':latest['id'],'label':latest['label'] if current else 'Preseason poll not released','releaseDate':latest['releaseDate'] if current else None,'official':latest['ranks'] if current else [],'rows':saved.get(str(latest['id']),{}).get('rows',latest_rows),'forecastSource':'Archived forecast' if str(latest['id']) in saved else 'Historical reconstruction'},
+    next_games=[g for g in projected if g['season']==year and g.get('completed') and timestamp(g['startDate'])+timedelta(hours=4)<=target]
+    line_coverage={'games':len(next_games),'withLines':sum(market.get(g['id']) is not None for g in next_games)}
+    out={'schemaVersion':1,'asOf':now.isoformat(),'season':year,'trainingThrough':model['trainedThrough'],'trainingPolls':model['trainingPolls'],'modelVersion':model['version'],'baselineLabel':'AP + Vegas regression','lineCoverage':line_coverage,'dropValidation':validation['development'][selected],
+        'preseason':preseason,'activeModel':'preseason' if preseason_mode else 'in-season','coverage':coverage,'excludedTrainingPolls':[],'evaluation':evaluation,'overallEvaluation':stats,
+        'latest':{'pollId':latest['id'],'label':latest['label'] if current else 'Preseason poll not released','releaseDate':latest['releaseDate'] if current else None,'official':latest['ranks'] if current else [],'rows':saved.get(str(latest['id']),{}).get('rows',latest_rows),'forecastSource':('Archived forecast · '+saved[str(latest['id'])].get('modelVersion','legacy-ap-regression')) if str(latest['id']) in saved else 'Historical reconstruction · '+model['version']},
         'next':{'previousPollId':latest['id'],'estimatedReleaseDate':target.date().isoformat(),'rows':next_rows,'resultsSoFar':sofar_rows,'assumptions':assumptions},
-        'drivers':sorted(coefficients,key=lambda c:-abs(c['effect'])),'publishedForecasts':saved,
+        'drivers':[],'publishedForecasts':saved,
         'history':[{'id':p['id'],'season':p['season'],'label':p['label'],'size':p['size'],'releaseDate':p['releaseDate'],'ranks':p['ranks']} for p in reversed(polls)],
         'methodology':['Predicts AP voting order, not team strength or the CFP committee.',
             'Trained on prior seasons only; previous polls and results available before release supply the features.',
-            'All archived polls contribute poll-history information. A small number of polls without matching game identities are excluded as training targets.',
+            'Weekly movement is trained on 2015–2025 regular AP polls. The full archive remains available; earlier polls can supply prior poll-history context.',
             'Preseason rankings use a separate roster-informed model trained only on earlier preseason polls. Weekly forecasts use the in-season model.',
             'Preseason release dates come from College Poll Archive; input cutoffs use the start of release day. Annual offseason inputs are treated as pre-poll information, not as live forecast archives.',
-            'Historical final polls without a verified release date use poll-history features only; game-result features are masked.',
-            'Historical Top 10/20/25 rankings are normalized within each era. Recent seasons have greater weight.',
-            'Validation uses 2019–2025 in-season polls, fitting only earlier seasons each year. Rank error caps unranked teams at 26.',
+            'A nonlinear tree model learns changes from the previous AP poll using game margins, pregame AP tiers, Vegas expectations, early-season effects and nearby teams’ performances.',
+            'Historical big drops after wins receive extra training weight. Displayed team factors are input facts, not additive causal explanations.',
+            '2019–2024 validation selected the model; 2025 is a previously examined follow-up, not a fresh holdout. Each year trains only on earlier seasons. Rank error caps unranked predictions at 26.',
+            'Vegas expectations use median closing spreads from distinct sportsbooks for completed games; future-game scenarios use currently available lines. Missing lines are marked, never replaced with model spreads. CFBD provides no independent quote timestamps.',
             'Next-release projections assume the football model’s favored teams win the remaining listed games. They are a scenario, not calibrated rank probabilities.',
-            'Feature effects describe statistical associations, not causes. Scores are not projected AP vote totals.'],
+            'Displayed factors describe inputs. Scores are not projected AP vote totals or calibrated probabilities of a ranking drop.'],
         'sources':[{'title':'College Poll Archive · AP history','url':'https://www.collegepollarchive.com/football/ap/seasons.cfm'}, {'title':'College Football Data · game results','url':'https://collegefootballdata.com'}]}
     temporary=output_path.with_suffix('.tmp')
-    temporary.write_text(json.dumps(out,separators=(',',':'),allow_nan=False));temporary.replace(output_path);print('Published AP outlook',len(polls),'historical polls',len(assumptions),'projected games')
+    temporary.write_text(json.dumps(out,separators=(',',':'),allow_nan=False));temporary.replace(output_path)
+    if args.refresh:dump_gzip(ROOT/'ap/lines.json.gz',lines)
+    print('Published AP outlook',len(polls),'historical polls',len(assumptions),'projected games')
 if __name__=='__main__':main()

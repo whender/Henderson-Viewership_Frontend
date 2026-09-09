@@ -126,3 +126,36 @@ a.cfb-team:hover { color: var(--accent); }
 .ap-driver-track > span { display: block; background: var(--accent); height: 100%; }
 .ap-note { margin: 0 0 20px; }
 @media(max-width:640px) { .ap-assumptions,.ap-drivers { grid-template-columns: 1fr; } .ap-view { flex: 1 0 40%; } .ap-predictor .cfb-week-metrics strong { font-size: 25px; } }
+
+.ap-scenario { margin: 24px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 0; }
+.ap-scenario-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.ap-scenario-heading h4 { margin: 0; font-size: 18px; }
+.ap-scenario-heading > span,.ap-scenario-date { font-size: 12px; color: var(--text-secondary); }
+.ap-scenario-games { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 28px; max-height: 620px; overflow-y: auto; padding-right: 8px; }
+.ap-scenario-game { min-width: 0; margin: 0; padding: 18px 0; border: 0; border-bottom: 1px solid var(--border); }
+.ap-scenario-game legend { float: left; width: 100%; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.ap-scenario-date { clear: both; margin-bottom: 10px; }
+.ap-scenario-team { display: grid; grid-template-columns: minmax(0,1fr) 74px; gap: 10px; align-items: center; margin-top: 8px; }
+.ap-pick { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 10px; min-height: 46px; text-align: left; border: 1px solid var(--border); background: white; color: var(--text-primary); cursor: pointer; }
+.ap-pick .cfb-team { min-width: 0; white-space: normal; }
+.ap-pick.selected { border-color: var(--accent); background: #fff5f5; }
+.ap-pick-label { color: var(--accent); font-size: 10px; font-weight: 600; flex-shrink: 0; }
+.ap-score-label { min-width: 0; }
+.ap-score-label > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.ap-score-label input { width: 100%; box-sizing: border-box; min-height: 46px; text-align: center; padding: 8px; font-variant-numeric: tabular-nums; }
+.ap-score-label input[aria-invalid="true"] { border-color: var(--accent); }
+.ap-scenario-game-footer { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; min-height: 26px; margin-top: 8px; font-size: 12px; color: var(--text-secondary); }
+.ap-scenario-game-footer button { background: none; border: 0; text-decoration: underline; padding: 4px; cursor: pointer; white-space: nowrap; }
+.ap-scenario-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 18px; }
+.ap-scenario-actions button { padding: 11px 16px; border: 1px solid var(--border); background: white; font-weight: 600; cursor: pointer; }
+.ap-scenario-actions .ap-apply { background: var(--accent); border-color: var(--accent); color: white; }
+.ap-scenario-actions button:disabled { opacity: .5; cursor: not-allowed; }
+.ap-scenario-actions [role="status"] { font-size: 12px; color: var(--text-secondary); }
+.ap-scenario button:focus-visible,.ap-scenario input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media(max-width:640px) {
+  .ap-scenario-games { grid-template-columns: minmax(0,1fr); max-height: 580px; padding-right: 3px; }
+  .ap-scenario-team { grid-template-columns: minmax(0,1fr) 66px; gap: 8px; }
+  .ap-pick { padding: 8px; }
+  .ap-pick-label { font-size: 9px; }
+  .ap-scenario-actions [role="status"] { flex-basis: 100%; }
+}

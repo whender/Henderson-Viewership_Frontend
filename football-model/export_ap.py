@@ -7,6 +7,7 @@ import numpy as np
 from ap_preseason import preseason_forecast
 import ap_movement
 from ap_poll_context import parse_votes
+from ap_simulator import build_simulator
 from cfbpredict.cfbd import CFBDClient
 from cfbpredict.config import cfbd_api_key
 from ap_data import parse_options,parse_entries,normalize_poll,token
@@ -141,6 +142,12 @@ def main():
             'Next-release projections assume the football model’s favored teams win the remaining listed games. They are a scenario, not calibrated rank probabilities.',
             'Displayed factors describe inputs. Scores are not projected AP vote totals or calibrated probabilities of a ranking drop.'],
         'sources':[{'title':'College Poll Archive · AP history','url':'https://www.collegepollarchive.com/football/ap/seasons.cfm'}, {'title':'College Football Data · game results','url':'https://collegefootballdata.com'}]}
+    if not preseason_mode:
+        simulator=build_simulator(model,nextpoll,latest,polls,source_games,projected,market,candidates,votes,next_rows,now.isoformat())
+        simulator_path=output_path.with_name('ap-simulator.json')
+        simulator_temp=simulator_path.with_suffix('.tmp')
+        simulator_temp.write_text(json.dumps(simulator,separators=(',',':'),allow_nan=False));simulator_temp.replace(simulator_path)
+        out['next']['simulator']={'url':'/football/ap-simulator.json','asOf':now.isoformat(),'editableGames':sum(g['editable'] for g in simulator['games'])}
     temporary=output_path.with_suffix('.tmp')
     temporary.write_text(json.dumps(out,separators=(',',':'),allow_nan=False));temporary.replace(output_path)
     if args.refresh:dump_gzip(ROOT/'ap/lines.json.gz',lines)

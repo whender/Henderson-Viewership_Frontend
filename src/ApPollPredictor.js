@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ApScenarioEditor from './ApScenarioEditor';
 
 const pct = x => `${(x * 100).toFixed(1)}%`;
 function LogoTeam({ team, id }) {
@@ -25,6 +26,7 @@ function PreseasonAccuracy({ data }) {
 }
 export default function ApPollPredictor() {
   const [data, setData] = useState(null), [error, setError] = useState('');
+  const [custom, setCustom] = useState(null), [draft, setDraft] = useState(null);
   const [view, setView] = useState('outlook'), [basis, setBasis] = useState('projected');
   const [year, setYear] = useState(''), [pollId, setPollId] = useState(''), [search, setSearch] = useState(''), [bubble, setBubble] = useState(false);
   useEffect(() => {
@@ -46,7 +48,8 @@ export default function ApPollPredictor() {
   const selectedYear = year ? Number(year) : data.season;
   const polls = data.history.filter(p => p.season === selectedYear);
   const historical = polls.find(p => String(p.id) === pollId) || polls[0];
-  const ranking = basis === 'projected' ? data.next.rows : data.next.resultsSoFar;
+  const appliedCustom = custom?.asOf === data.asOf ? custom : null;
+  const ranking = basis === 'custom' ? appliedCustom?.rows || data.next.rows : basis === 'projected' ? data.next.rows : data.next.resultsSoFar;
   const visible = ranking.filter(t => (bubble || t.rank <= 25) && t.team.toLowerCase().includes(search.toLowerCase()));
   const stats = data.overallEvaluation;
   return <section className="home-panel ap-predictor">
@@ -56,9 +59,11 @@ export default function ApPollPredictor() {
     <div className="ap-view-controls" role="group" aria-label="AP predictor views">{[['outlook','Next poll'],['latest','Latest poll check'],...(data.preseason ? [['preseason','Preseason']] : []),['history','Poll archive'],['model','Model & accuracy']].map(([key,label]) => <button key={key} className={view === key ? 'ap-view active' : 'ap-view'} aria-pressed={view === key} onClick={() => setView(key)}>{label}</button>)}</div>
     {view === 'outlook' && <>
       <div className="ap-outlook-heading"><h4>Next release outlook</h4><span>Estimated release: {data.next.estimatedReleaseDate}</span></div>
-      <div className="cfb-controls">{data.activeModel !== 'preseason' && <label>Forecast basis<select value={basis} onChange={e => setBasis(e.target.value)}><option value="projected">Project remaining games</option><option value="sofar">Completed results only</option></select></label>}<label>Find a team<input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search teams" /></label><label className="cfb-checkbox"><input type="checkbox" checked={bubble} onChange={e => setBubble(e.target.checked)} />Include bubble teams (26–40)</label></div>
-      <p className="cfb-notice">{data.activeModel === 'preseason' ? `${data.preseason.basis}. Uses offseason inputs and previous-season AP history.` : basis === 'projected' ? `Assumes the football model’s favored teams win ${data.next.assumptions.length} remaining games before the estimated release. Records include those projected results.` : 'Uses completed results available now. Unplayed games are excluded; this outlook will change as results arrive.'} Movement is relative to the {data.latest.label} AP poll.</p>
+      <div className="cfb-controls">{data.activeModel !== 'preseason' && <label>Forecast basis<select value={basis} onChange={e => setBasis(e.target.value)}><option value="projected">Project remaining games</option><option value="sofar">Completed results only</option>{data.next.simulator && <option value="custom">My game picks</option>}</select></label>}<label>Find a team<input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search teams" /></label><label className="cfb-checkbox"><input type="checkbox" checked={bubble} onChange={e => setBubble(e.target.checked)} />Include bubble teams (26–40)</label></div>
+      <p className="cfb-notice">{data.activeModel === 'preseason' ? `${data.preseason.basis}. Uses offseason inputs and previous-season AP history.` : basis === 'projected' ? `Assumes the football model’s favored teams win ${data.next.assumptions.length} remaining games before the estimated release. Records include those projected results.` : basis === 'custom' ? `Uses ${appliedCustom?.count || 0} custom game results. Other games keep the model’s assumptions. Records include these hypothetical results.` : 'Uses completed results available now. Unplayed games are excluded; this outlook will change as results arrive.'} Movement is relative to the {data.latest.label} AP poll.</p>
       {data.lineCoverage && data.activeModel !== 'preseason' && <p className="cfb-footnote">Vegas lines available for {data.lineCoverage.withLines} of {data.lineCoverage.games} completed or projected games through the next release. Missing lines are marked in the model. Team factors show input facts, not additive explanations.</p>}
+      {basis === 'custom' && data.next.simulator && <ApScenarioEditor key={data.asOf} forecast={data} onResult={setCustom} savedDraft={draft} onDraft={setDraft} />}
+      {basis === 'custom' && <h4 className="cfb-schedule-title">Your next-poll prediction</h4>}
       {visible.length ? <RankingTable rows={visible} showDrivers /> : <p role="status">No teams match your search.</p>}
       {data.activeModel !== 'preseason' && basis === 'projected' && <details className="ap-details"><summary>Game assumptions ({data.next.assumptions.length})</summary><p>One scenario using the football model’s winner and margin estimates. No game scores are being reported as actual results.</p><div className="ap-assumptions">{data.next.assumptions.map(g => <div key={g.id}><span>{g.away} at {g.home}</span><strong>{g.winner} by {g.margin.toFixed(1)}</strong></div>)}</div></details>}
     </>}

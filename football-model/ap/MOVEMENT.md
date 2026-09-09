@@ -13,3 +13,11 @@ Historical expectations use median CFBD closing lines, with sportsbook spelling 
 The dashboard displays input facts for individual teams, not linear coefficients or causal explanations. Forecast versions accompany newly archived live forecasts, preserving earlier models' predictions instead of rewriting them as current-model successes. The latest reconstruction and scenario are produced using the active model.
 
 Promotion checks include persisted-model round trips, production Oregon parity (#5 for September 8, 2026), target-rank immunity, provider deduplication, missing lines, and the existing preseason/export checks. Experiment chronology, feature, tree, and false-alarm tests also passed before porting. Prior `ap/model.json` is retained for comparison; runtime publication uses `ap/movement_model.json`.
+
+## Comfortable wins (ap-movement-v2)
+
+After scoring, negative movement is reduced linearly as the minimum margin across games since the previous poll grows from 14 to 42 points. Positive score movement is unchanged. A team with no new games, a loss, or a win of 14 points or fewer receives no adjustment. This calibrates normalized AP score movement; it does not lock a team's rank, because peers may pass it. It uses only buffered pre-release results, including clearly labeled scenario scores in hypothetical forecasts. The raw Vegas residual remains visible in team factors.
+
+Four fixed variants were compared in 87 walk-forward polls across 2019–2024. The selected taper reduced overall rank error from 1.1904 to 1.1821 and comfortable-win Top10 error from 0.450 to 0.404 across 240 cases. Top25 membership, three detected large drops, and four false alarms were unchanged. The already-examined 2025 follow-up regressed slightly: overall error 1.1467 to 1.1573; comfortable-win error 0.459 to 0.514. These are exploratory results, not fresh holdouts. Full summary is in `comfortable_win_validation.json`.
+
+September 8, 2026 reconstruction: Indiana moves from predicted No.8 to No.6 (actual No.5); Oregon remains No.5 (actual No.6). No team-specific adjustment is used. The preseason model is unchanged.

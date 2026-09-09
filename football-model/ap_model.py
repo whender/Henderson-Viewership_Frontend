@@ -78,7 +78,7 @@ def matrix(poll, previous, earlier, games, candidates=None):
         values.append(v);meta.append({**t,'wins':int(s[0]),'losses':int(s[1]),'ties':int(s[2]),'previousRank':ranks(previous).get(key),'previousStrength':p})
     return np.array(values,dtype=float),meta
 
-def fit(observations,through,alpha=80.):
+def fit(observations,through,alpha=80.,feature_names=None):
     obs=[o for o in observations if o['season']<=through]
     x=np.concatenate([o['x'] for o in obs]);y=np.concatenate([o['y'] for o in obs])
     # Every historical season contributes; recent voting behavior receives more weight.
@@ -87,10 +87,10 @@ def fit(observations,through,alpha=80.):
     means=np.average(x,axis=0,weights=weights);scales=np.sqrt(np.average((x-means)**2,axis=0,weights=weights));scales=np.maximum(scales,1e-5)
     z=np.column_stack([np.ones(len(x)),(x-means)/scales]);penalty=np.eye(z.shape[1])*alpha;penalty[0,0]=0
     coef=np.linalg.solve(z.T@(z*weights[:,None])+penalty,z.T@(weights*y))
-    return {'features':FEATURES,'means':means.tolist(),'scales':scales.tolist(),'coefficients':coef.tolist(),'trainedThrough':through,'trainingPolls':len(obs),'alpha':alpha}
+    return {'features':list(feature_names) if feature_names is not None else FEATURES,'means':means.tolist(),'scales':scales.tolist(),'coefficients':coef.tolist(),'trainedThrough':through,'trainingPolls':len(obs),'alpha':alpha}
 
-def predict(model,x):
-    if model['features']!=FEATURES:raise ValueError('AP feature schema mismatch')
+def predict(model,x,feature_names=None):
+    if model['features']!=(list(feature_names) if feature_names is not None else FEATURES):raise ValueError('AP feature schema mismatch')
     return np.column_stack([np.ones(len(x)),(x-model['means'])/model['scales']])@model['coefficients']
 
 def evaluate(model,obs):

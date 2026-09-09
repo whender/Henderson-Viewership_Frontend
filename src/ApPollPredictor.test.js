@@ -20,3 +20,13 @@ test('labels latest reconstruction and shows baseline validation',async()=>{
 test('reports data errors without fabricating a ranking',async()=>{
  global.fetch.mockResolvedValue({ok:false});open();await waitFor(()=>expect(screen.getByRole('alert')).toHaveTextContent('temporarily unavailable'));expect(screen.queryByRole('table')).not.toBeInTheDocument();
 });
+const preseason={season:2026,releaseDate:'2026-08-17',basis:'Roster-informed preseason model',forecastSource:'Historical reconstruction',trainingThrough:2025,trainingPolls:10,rows:[{...row,wins:0}],official:[{school:'Texas',teamId:251,rank:5}],overallEvaluation:{polls:7,overlap:.8743,rankError:3.71,baselineRankError:5.30},evaluation:[{season:2025,overlap:.88,rankError:5.12,baselineRankError:7.52}]};
+test('preseason rankings and accuracy remain distinct from weekly predictions',async()=>{
+ global.fetch.mockResolvedValue({ok:true,json:async()=>({...data,preseason})});open();await screen.findByText('Next release outlook');
+ fireEvent.click(screen.getByRole('button',{name:'Preseason',exact:true}));
+ expect(screen.getByText('2026 preseason AP prediction')).toBeInTheDocument();expect(screen.getByText(/AP release: 2026-08-17/)).toBeInTheDocument();expect(screen.getByText('3.71')).toBeInTheDocument();expect(screen.getByText('Actual AP')).toBeInTheDocument();expect(screen.getByText('0–0')).toBeInTheDocument();
+ fireEvent.click(screen.getByRole('button',{name:'Next poll',exact:true}));expect(screen.getByText('2–0')).toBeInTheDocument();
+});
+test('preseason outlook has no game scenario controls',async()=>{
+ global.fetch.mockResolvedValue({ok:true,json:async()=>({...data,preseason,activeModel:'preseason',next:{...data.next,rows:preseason.rows,resultsSoFar:preseason.rows}})});open();await screen.findByText('Next release outlook');expect(screen.queryByLabelText('Forecast basis')).not.toBeInTheDocument();expect(screen.queryByText(/Game assumptions/)).not.toBeInTheDocument();expect(screen.getByText(/Uses offseason inputs/)).toBeInTheDocument();
+});

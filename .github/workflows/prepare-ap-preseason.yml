@@ -1,0 +1,41 @@
+name: Prepare preseason AP model
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: Season with reviewed input snapshots and a verified release date already committed
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: football-model-publish
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: pip install -r football-model/requirements.txt
+      - name: Train reviewed preseason inputs
+        env:
+          AP_SEASON: ${{ inputs.season }}
+          OPENBLAS_NUM_THREADS: '1'
+        run: python football-model/train_preseason.py --season "$AP_SEASON"
+      - name: Publish and verify
+        run: |
+          python football-model/export_ap.py
+          python -m unittest discover -s football-model -p 'test_*.py'
+      - name: Commit prepared model
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add football-model/ap/preseason_model.json public/football/ap.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Prepare preseason AP model'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

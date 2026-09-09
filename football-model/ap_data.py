@@ -1,5 +1,6 @@
 """Parse official AP rankings reproduced by College Poll Archive."""
-import re,html,unicodedata
+import re,html,unicodedata,json
+from pathlib import Path
 from datetime import datetime
 ALIASES={'southerncalifornia':'usc','southerncal':'usc','miamifl':'miami','miamiflorida':'miami','miamiohio':'miamioh','brighamyoung':'byu','texaschristian':'tcu','louisianastate':'lsu','mississippi':'olemiss','pittsburghuniversity':'pittsburgh','pitt':'pittsburgh','appalachianstate':'appstate','sanjosestate':'sanjosestate','louisianalafayette':'louisiana','louisianamonroe':'ulmonroe','texaselpaso':'utep','pennsylvania':'penn','southernmethodist':'smu','centralflorida':'ucf','alabamabirmingham':'uab','bowlinggreenstate':'bowlinggreen','texassanantonio':'utsa','ncstate':'ncstate','northcarolinastate':'ncstate','calstatesacramento':'sacramentostate'}
 ALIASES.update({'boston':'bostonuniversity','connecticut':'uconn','detroit':'detroitmercy','newyork':'newyorkuniversity','washingtonlee':'washingtonandlee','southwestern':'southwesternu','stmarys':'saintmarysca','stmaryspreflight':'saintmaryscapreflight','2ndairforce':'secondairforce','3rdairforce':'thirdairforce','bainbridgenaval':'bainbridgents','fortpiercenaval':'fortpierce','greatlakesnaval':'greatlakesnavy','memphisnaval':'memphisnavy','sandiegonaval':'sandiegonavy','normanpreflight':'normannavalairstation','marchfield4thaf':'marchfield'})
@@ -27,7 +28,10 @@ def normalize_poll(p,lookup):
     if kind=='regular':
         dt=datetime.strptime(f'{label} {year}','%B %d %Y');dt=dt.replace(year=year+1 if dt.month<3 else year)
         cutoff=dt.strftime('%Y-%m-%dT16:00:00+00:00');release=dt.strftime('%Y-%m-%d')
-    if kind=='preseason':cutoff=f'{year}-07-01T00:00:00+00:00'
+    if kind=='preseason':
+        dates=json.loads((Path(__file__).parent/'ap/preseason_dates.json').read_text())['dates']
+        release=dates.get(str(year))
+        cutoff=release+'T00:00:00+00:00' if release else None
     size=25 if year>=1989 else 10 if 1961<=year<=1967 else 20
     entries=[]
     for r in p['ranks']:

@@ -6,9 +6,22 @@ function LogoTeam({ team, id }) {
   const numeric = /^\d+$/.test(String(id));
   return <span className="cfb-team">{numeric && <img src={`https://a.espncdn.com/i/teamlogos/ncaa/500/${id}.png`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = 'hidden'; }} />}<span>{team}</span></span>;
 }
-function RankingTable({ rows, official = false, showDrivers = false }) {
-  return <div className="overflow-x-auto"><table className="cfb-table ap-table"><thead><tr><th scope="col">{official ? 'AP rank' : 'Projected'}</th><th scope="col">Team</th><th scope="col">Record</th>{!official && <><th scope="col">Previous AP</th><th scope="col">Move</th>{showDrivers && <th scope="col">Model factors</th>}</>}</tr></thead>
-    <tbody>{rows.map(t => <tr key={t.teamId}><td className="cfb-rank">{t.rank}</td><td><LogoTeam team={t.team || t.school} id={t.teamId} /></td><td className="cfb-number">{official ? t.record || '—' : `${t.wins}–${t.losses}${t.ties ? `–${t.ties}` : ''}`}</td>{!official && <><td>{t.previousRank || 'NR'}</td><td className={t.movement > 0 ? 'ap-rise' : t.movement < 0 ? 'ap-fall' : ''}>{t.movement == null ? 'New' : t.movement > 0 ? `+${t.movement}` : t.movement || '—'}</td>{showDrivers && <td><details><summary>Why this rank?</summary><ul className="ap-factor-list">{t.drivers.map(d => <li key={d.feature}>{d.label} <span>{d.contribution >= 0 ? 'Supports' : 'Lowers'} score</span></li>)}</ul></details></td>}</>}</tr>)}</tbody></table></div>;
+function RankingTable({ rows, official = false, showDrivers = false, actualRanks = null }) {
+  return <div className="overflow-x-auto"><table className="cfb-table ap-table"><thead><tr><th scope="col">{official ? 'AP rank' : 'Projected'}</th>{actualRanks && <th scope="col">Actual AP</th>}<th scope="col">Team</th><th scope="col">Record</th>{!official && <><th scope="col">Previous AP</th><th scope="col">Move</th>{showDrivers && <th scope="col">Model factors</th>}</>}</tr></thead>
+    <tbody>{rows.map(t => <tr key={t.teamId}><td className="cfb-rank">{t.rank}</td>{actualRanks && <td>{actualRanks.find(a => String(a.teamId) === String(t.teamId))?.rank || 'NR'}</td>}<td><LogoTeam team={t.team || t.school} id={t.teamId} /></td><td className="cfb-number">{official ? t.record || '—' : `${t.wins}–${t.losses}${t.ties ? `–${t.ties}` : ''}`}</td>{!official && <><td>{t.previousRank || 'NR'}</td><td className={t.movement > 0 ? 'ap-rise' : t.movement < 0 ? 'ap-fall' : ''}>{t.movement == null ? 'New' : t.movement > 0 ? `+${t.movement}` : t.movement || '—'}</td>{showDrivers && <td><details><summary>Why this rank?</summary><ul className="ap-factor-list">{t.drivers.map(d => <li key={d.feature}>{d.label} <span>{d.contribution >= 0 ? 'Supports' : 'Lowers'} score</span></li>)}</ul></details></td>}</>}</tr>)}</tbody></table></div>;
+}
+function PreseasonAccuracy({ data }) {
+  const stats = data.overallEvaluation;
+  return <>
+    <div className="cfb-week-stats"><div className="cfb-week-stats-heading"><h4>Preseason validation · 2019–{data.trainingThrough}</h4><span>{stats.polls} preseason polls</span></div><div className="cfb-week-metrics">
+      <div><span>Top 25 membership</span><strong>{pct(stats.overlap)}</strong><small>{(25 * stats.overlap).toFixed(1)} of 25 teams</small></div>
+      <div><span>Average rank error</span><strong>{stats.rankError.toFixed(2)}</strong><small>Previous-final baseline: {stats.baselineRankError.toFixed(2)}</small></div>
+      <div><span>Training polls</span><strong>{data.trainingPolls}</strong><small>Preseason only, through {data.trainingThrough}</small></div>
+      <div><span>Inputs</span><strong>Roster</strong><small>Talent, continuity, transfers and efficiency</small></div>
+    </div></div>
+    <p className="cfb-footnote">Each year is predicted using earlier seasons only. These are historical backtests using annual offseason data, not archived live forecasts. Rank error counts predictions outside the Top 25 as 26.</p>
+    <div className="overflow-x-auto ap-validation"><table className="cfb-table"><thead><tr><th scope="col">Season</th><th scope="col">Top 25 overlap</th><th scope="col">Rank error</th><th scope="col">Baseline error</th></tr></thead><tbody>{data.evaluation.map(e => <tr key={e.season}><td>{e.season}</td><td>{pct(e.overlap)}</td><td>{e.rankError.toFixed(2)}</td><td>{e.baselineRankError.toFixed(2)}</td></tr>)}</tbody></table></div>
+  </>;
 }
 export default function ApPollPredictor() {
   const [data, setData] = useState(null), [error, setError] = useState('');
@@ -40,13 +53,19 @@ export default function ApPollPredictor() {
     <div className="home-panel-header"><div><p className="home-kicker">AP voting model</p><h3>AP Poll Predictor</h3><p className="ap-subtitle">Predicting the voters’ Top 25.</p></div><div className="ap-timestamp">Updated {new Date(data.asOf).toLocaleString()}</div></div>
     {error && <p role="alert" className="cfb-notice">{error} Showing the last loaded forecast.</p>}
     {Date.now() - Date.parse(data.asOf) > 3 * 86400000 && <p className="cfb-notice">This AP forecast is more than three days old. Check its update time before using it.</p>}
-    <div className="ap-view-controls" role="group" aria-label="AP predictor views">{[['outlook','Next poll'],['latest','Latest poll check'],['history','Poll archive'],['model','Model & accuracy']].map(([key,label]) => <button key={key} className={view === key ? 'ap-view active' : 'ap-view'} aria-pressed={view === key} onClick={() => setView(key)}>{label}</button>)}</div>
+    <div className="ap-view-controls" role="group" aria-label="AP predictor views">{[['outlook','Next poll'],['latest','Latest poll check'],...(data.preseason ? [['preseason','Preseason']] : []),['history','Poll archive'],['model','Model & accuracy']].map(([key,label]) => <button key={key} className={view === key ? 'ap-view active' : 'ap-view'} aria-pressed={view === key} onClick={() => setView(key)}>{label}</button>)}</div>
     {view === 'outlook' && <>
       <div className="ap-outlook-heading"><h4>Next release outlook</h4><span>Estimated release: {data.next.estimatedReleaseDate}</span></div>
-      <div className="cfb-controls"><label>Forecast basis<select value={basis} onChange={e => setBasis(e.target.value)}><option value="projected">Project remaining games</option><option value="sofar">Completed results only</option></select></label><label>Find a team<input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search teams" /></label><label className="cfb-checkbox"><input type="checkbox" checked={bubble} onChange={e => setBubble(e.target.checked)} />Include bubble teams (26–40)</label></div>
-      <p className="cfb-notice">{basis === 'projected' ? `Assumes the football model’s favored teams win ${data.next.assumptions.length} remaining games before the estimated release. Records include those projected results.` : 'Uses completed results available now. Unplayed games are excluded; this outlook will change as results arrive.'} Movement is relative to the {data.latest.label} AP poll.</p>
+      <div className="cfb-controls">{data.activeModel !== 'preseason' && <label>Forecast basis<select value={basis} onChange={e => setBasis(e.target.value)}><option value="projected">Project remaining games</option><option value="sofar">Completed results only</option></select></label>}<label>Find a team<input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search teams" /></label><label className="cfb-checkbox"><input type="checkbox" checked={bubble} onChange={e => setBubble(e.target.checked)} />Include bubble teams (26–40)</label></div>
+      <p className="cfb-notice">{data.activeModel === 'preseason' ? `${data.preseason.basis}. Uses offseason inputs and previous-season AP history.` : basis === 'projected' ? `Assumes the football model’s favored teams win ${data.next.assumptions.length} remaining games before the estimated release. Records include those projected results.` : 'Uses completed results available now. Unplayed games are excluded; this outlook will change as results arrive.'} Movement is relative to the {data.latest.label} AP poll.</p>
       {visible.length ? <RankingTable rows={visible} showDrivers /> : <p role="status">No teams match your search.</p>}
-      {basis === 'projected' && <details className="ap-details"><summary>Game assumptions ({data.next.assumptions.length})</summary><p>One scenario using the football model’s winner and margin estimates. No game scores are being reported as actual results.</p><div className="ap-assumptions">{data.next.assumptions.map(g => <div key={g.id}><span>{g.away} at {g.home}</span><strong>{g.winner} by {g.margin.toFixed(1)}</strong></div>)}</div></details>}
+      {data.activeModel !== 'preseason' && basis === 'projected' && <details className="ap-details"><summary>Game assumptions ({data.next.assumptions.length})</summary><p>One scenario using the football model’s winner and margin estimates. No game scores are being reported as actual results.</p><div className="ap-assumptions">{data.next.assumptions.map(g => <div key={g.id}><span>{g.away} at {g.home}</span><strong>{g.winner} by {g.margin.toFixed(1)}</strong></div>)}</div></details>}
+    </>}
+    {view === 'preseason' && data.preseason && <>
+      <h4 className="cfb-schedule-title">{data.season} preseason AP prediction</h4>
+      <p className="cfb-footnote ap-note">{data.preseason.basis} · AP release: {data.preseason.releaseDate}. {data.preseason.forecastSource}. Inputs are held fixed after the preseason release.</p>
+      <RankingTable rows={data.preseason.rows.filter(t => t.rank <= 25)} showDrivers actualRanks={data.preseason.official.length ? data.preseason.official : null} />
+      <PreseasonAccuracy data={data.preseason} />
     </>}
     {view === 'latest' && <>
       <h4 className="cfb-schedule-title">{data.season} · {data.latest.label} AP poll</h4>
@@ -59,6 +78,7 @@ export default function ApPollPredictor() {
       <p className="cfb-footnote">Official historical rankings, including tied ranks. The AP used Top 10 and Top 20 formats before expanding to 25 teams in 1989.</p>
     </>}
     {view === 'model' && <>
+      {data.preseason && <PreseasonAccuracy data={data.preseason} />}
       <div className="cfb-week-stats"><div className="cfb-week-stats-heading"><h4>Historical validation · 2019–2025</h4><span>{stats.polls} in-season polls</span></div><div className="cfb-week-metrics">
         <div><span>Top 25 membership</span><strong>{pct(stats.overlap)}</strong><small>Previous-poll baseline: {pct(stats.baselineOverlap)}</small></div>
         <div><span>Average rank error</span><strong>{stats.rankError.toFixed(2)}</strong><small>Previous-poll baseline: {stats.baselineRankError.toFixed(2)}</small></div>

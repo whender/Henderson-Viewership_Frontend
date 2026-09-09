@@ -2,8 +2,9 @@ from pathlib import Path
 import json
 import numpy as np
 import ap_market as e
+import ap_poll_context as poll_context
 v=e.v;ap=e.ap
-VERSION="ap-movement-v2"
+VERSION="ap-movement-v3"
 CONTEXT=['early','early_previous','early_underperformance','early_disappointing_win','early_home_disappointment','top10_disappointment','early_top10_disappointment','peer_margin','peer_surprise','peer_ranked_wins','peer_margin_gap','peer_surprise_gap','impressive_peers','above_margin','above_surprise']
 
 def context_features(base,market,teams):
@@ -54,9 +55,9 @@ class BoostedMovement:
         b=self.bin(x);return self.bias+sum((self.rate*self.apply(t,b) for t in self.trees),np.zeros(len(x)))
 
 
-FEATURES=ap.FEATURES+v.GROUPS['ap']+[f'{period}_{m}' for period in ['season','recent'] for m in e.METRICS]+CONTEXT
+FEATURES=ap.FEATURES+v.GROUPS['ap']+[f'{period}_{m}' for period in ['season','recent'] for m in e.METRICS]+CONTEXT+poll_context.VOTE_FEATURES+poll_context.CONF_FEATURES
 
-def matrix(p,previous,earlier,games,market,candidates=None):
+def matrix(p,previous,earlier,games,market,candidates=None,votes=None):
     games=list({g['id']:g for g in games}.values())
     x,teams=ap.matrix(p,previous,earlier,games,candidates)
     usable=[g for g in games if g['season']==p['season'] and p.get('cutoff') and ap.finished(g,ap.timestamp(p['cutoff']))]
@@ -64,7 +65,8 @@ def matrix(p,previous,earlier,games,market,candidates=None):
     mf={(g['id'],side):e.market_factors(g,side,market.get(g['id']),earlier) for g in usable for side in ['home','away']}
     extra,fixed=v.additions(p,previous,teams,games,factors);x[:,10:12]=fixed
     base=np.column_stack([x,extra['ap']]);m=e.market_matrix(p,previous,teams,games,mf)
-    return np.column_stack([base,m,context_features(base,m,teams)]),teams
+    vf,cf=poll_context.features(teams,previous,p,votes or {})
+    return np.column_stack([base,m,context_features(base,m,teams),vf,cf]),teams
 
 def fit(observations,through):
     obs=[o for o in observations if o['season']<=through and o['kind']=='regular']
@@ -96,13 +98,16 @@ def comfortable_win_scores(scores,previous,margins):
     strength=np.clip((np.asarray(margins)-14)/28,0,1)
     return scores+np.maximum(previous-scores,0)*strength
 
-def ranked(model,p,previous,earlier,games,market,candidates):
+def ranked(model,p,previous,earlier,games,market,candidates,votes=None):
     games=list({g['id']:g for g in games}.values())
-    x,teams=matrix(p,previous,earlier,games,market,candidates);raw=predict(model,x)
+    x,teams=matrix(p,previous,earlier,games,market,candidates,votes);raw=predict(model,x)
     margins=win_context(p,previous,teams,games)
     scores=comfortable_win_scores(raw,x[:,0],margins);order=np.argsort(-scores,kind='stable');output=[]
     for rank,i in enumerate(order[:40],1):
         t=teams[i];drivers=[{'feature':'previous_ap','label':f"Previous AP: {t['previousRank'] or 'Unranked'}",'contribution':None,'detail':'Starting poll position'}, {'feature':'recent_results','label':f"Since previous poll: {int(x[i,12])} wins, {int(x[i,13])} losses",'contribution':None,'detail':'Observed or scenario results'}]
+        prior_votes=(votes or {}).get(str(previous['id'])) if previous else None
+        points=next((r['points'] for r in prior_votes or [] if str(r['teamId'])==str(t['teamId'])),0)
+        drivers.extend([{'feature':'prior_votes','label':'Previous AP vote points','contribution':None,'detail':str(points) if prior_votes is not None else 'Unavailable'}, {'feature':'conference','label':'Conference','contribution':None,'detail':poll_context.conference_group(t.get('conference'))}])
         residual=x[i,FEATURES.index('recent_residual')]*35
         missing=int(x[i,FEATURES.index('recent_missing')]);played=int(x[i,12]+x[i,13])
         label='No new games since previous poll' if not played else 'Vegas lines unavailable for recent games' if missing>=played else f'Versus Vegas expectations: {residual:+.1f} points'

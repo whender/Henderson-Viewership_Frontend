@@ -53,7 +53,7 @@ class PreseasonTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)/'football-model';(root/'ap').mkdir(parents=True)
             (Path(d)/'public/football').mkdir(parents=True)
-            for name in ['movement_model.json','movement_validation.json','lines.json.gz','identities.json','model.json','preseason_model.json','preseason_dates.json','coverage.json','games.json.gz']:
+            for name in ['receiving_votes.json.gz','movement_model.json','movement_validation.json','lines.json.gz','identities.json','model.json','preseason_model.json','preseason_dates.json','coverage.json','games.json.gz']:
                 (root/'ap'/name).write_bytes((ROOT/'ap'/name).read_bytes())
             (root/'games.json.gz').write_bytes(gzip.compress(b'[]'))
             candidates=json.loads((ROOT/'ap/preseason_model.json').read_text())['snapshot']['teams']

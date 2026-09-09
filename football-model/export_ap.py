@@ -6,6 +6,7 @@ import httpx
 import numpy as np
 from ap_preseason import preseason_forecast
 import ap_movement
+from ap_poll_context import parse_votes
 from cfbpredict.cfbd import CFBDClient
 from cfbpredict.config import cfbd_api_key
 from ap_data import parse_options,parse_entries,normalize_poll,token
@@ -30,6 +31,7 @@ def main():
     now=datetime.now(timezone.utc);football=json.loads((ROOT.parent/'public/football/model.json').read_text());year=football['season']
     polls=json.loads(gzip.decompress((ROOT/'ap/polls.json.gz').read_bytes()));history=json.loads(gzip.decompress((ROOT/'ap/games.json.gz').read_bytes()))
     lookup=json.loads((ROOT/'ap/identities.json').read_text())
+    votes=json.loads(gzip.decompress((ROOT/'ap/receiving_votes.json.gz').read_bytes()))
     release=json.loads((ROOT/'ap/preseason_dates.json').read_text())['dates'].get(str(year))
     if args.refresh and (not release or now.date().isoformat()>=release):
         with httpx.Client(follow_redirects=True,timeout=40) as client:
@@ -41,8 +43,10 @@ def main():
                     response=client.get(url);response.raise_for_status()
                     p=normalize_poll({'season':year,**opt,'ranks':parse_entries(response.text),'source':url},lookup)
                     if any(str(r['teamId']).startswith('archive:') for r in p['ranks']):raise ValueError('Unmapped AP team; refusing ambiguous publication')
+                    votes[str(p['id'])]=parse_votes(response.text,lookup)
                     polls.append(p)
         polls.sort(key=lambda p:p['id']);dump_gzip(ROOT/'ap/polls.json.gz',polls)
+        dump_gzip(ROOT/'ap/receiving_votes.json.gz',votes)
     raw=list({g['id']:g for g in json.loads(gzip.decompress((ROOT/'games.json.gz').read_bytes()))}.values())
     keep=['id','season','week','seasonType','startDate','completed','homeId','homeTeam','awayId','awayTeam','homePoints','awayPoints','homeClassification','awayClassification','homeConference','awayConference','neutralSite']
     fbs_ids={t['team_id'] for t in football['teams']}
@@ -59,7 +63,8 @@ def main():
         lines=list({r['id']:r for r in lines+[{k:r[k] for k in ['id','season','seasonType','startDate','lines'] if k in r} for r in fresh]}.values())
     market={r['id']:ap_movement.e.closing_consensus(r) for r in lines}
     def weekly(p,previous,earlier,games):
-        return ap_movement.ranked(model,p,previous,earlier,games,market,candidates)
+        if previous and str(previous['id']) not in votes:raise ValueError('Missing prior AP vote totals; refusing incomplete publication')
+        return ap_movement.ranked(model,p,previous,earlier,games,market,candidates,votes)
     if model['trainedThrough']!=year-1:raise ValueError('Retrain the AP model through the previous season before publishing')
     current=[p for p in polls if p['season']==year]
     preseason_mode=not current

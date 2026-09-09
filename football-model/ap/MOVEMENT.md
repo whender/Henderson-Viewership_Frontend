@@ -21,3 +21,13 @@ After scoring, negative movement is reduced linearly as the minimum margin acros
 Four fixed variants were compared in 87 walk-forward polls across 2019–2024. The selected taper reduced overall rank error from 1.1904 to 1.1821 and comfortable-win Top10 error from 0.450 to 0.404 across 240 cases. Top25 membership, three detected large drops, and four false alarms were unchanged. The already-examined 2025 follow-up regressed slightly: overall error 1.1467 to 1.1573; comfortable-win error 0.459 to 0.514. These are exploratory results, not fresh holdouts. Full summary is in `comfortable_win_validation.json`.
 
 September 8, 2026 reconstruction: Indiana moves from predicted No.8 to No.6 (actual No.5); Oregon remains No.5 (actual No.6). No team-specific adjustment is used. The preseason model is unchanged.
+
+## Prior vote support and conference (ap-movement-v3)
+
+Weekly movement now includes the immediately preceding poll's vote-point share, receiving-votes status, unranked point share, points relative to the No.25 threshold, and missingness. Conference one-hot categories and their interactions with unranked status use the affiliation in each historical season. Conference effects are learned, not fixed bonuses. Preseason predictions retain their separate model.
+
+`receiving_votes.json.gz` holds complete prior Top25 and receiving-votes point tables. The publisher collects these alongside each new poll, refuses missing prior tables, and shows prior points and conference as input facts. The scheduled workflow commits the vote cache. Rebuild with `python football-model/train_movement.py --through 2025`.
+
+Four fixed ablations selected both feature groups on 2019–2024 walk-forward results. Newcomer recall improves 36.3%→55.3%, precision 46.9%→69.1%, overall rank error 1.182→1.128 and Top25 overlap 92.4%→94.6%. Conference alone does not improve newcomer detection. Comfortable-win error regresses 0.404→0.446; rare winning-Top10 drop error changes 1.909→2.000. The previously inspected 2025 follow-up improves newcomer recall 37.5%→60.0%, precision 48.4%→82.8% and overall error 1.157→1.131.
+
+The September 8 reconstruction still misses Virginia (No.46 versus actual No.25); it replaces false newcomer picks Massachusetts/Tulsa with Florida/Boise State. Indiana remains No.6 and Oregon No.5. The current poll was not used for selection. These are exploratory historical reconstructions, not untouched holdouts. See `votes_conferences_validation.json` for the full summary.

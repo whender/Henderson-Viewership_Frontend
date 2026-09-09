@@ -1,0 +1,676 @@
+{
+  "development": {
+    "x": {
+      "poll": {
+        "polls": 87,
+        "rankError": 1.1821396993810787,
+        "overlap": 0.9242263483642793,
+        "winningTop10Cases": 577,
+        "actualBigDrops": 11,
+        "caughtBigDrops": 3,
+        "falseAlarms": 4,
+        "bigDropRecall": 0.2727272727272727,
+        "bigDropPrecision": 0.42857142857142855,
+        "falseAlarmRate": 0.007067137809187279,
+        "bigDropRankError": 1.9090909090909092,
+        "winningTop10RankError": 0.5043327556325823,
+        "comfortableCases": 240,
+        "comfortableRankError": 0.4041666666666667
+      },
+      "newcomers": {
+        "polls": 87,
+        "actualNewcomers": 226,
+        "predictedNewcomers": 175,
+        "hits": 82,
+        "misses": 144,
+        "falseAlarms": 93,
+        "recall": 0.36283185840707965,
+        "precision": 0.4685714285714286,
+        "exactSetPolls": 8,
+        "allActualCaughtPolls": 10,
+        "pollsWithActualNewcomers": 85,
+        "allCaughtWhenNewcomersExist": 8,
+        "hitRankMAE": 2.207317073170732,
+        "allEntryRankMAECapped26": 2.7079646017699117,
+        "missesPredicted26to30": 52,
+        "entry1to20": {
+          "actual": 41,
+          "hits": 23,
+          "recall": 0.5609756097560976
+        },
+        "entry21to25": {
+          "actual": 185,
+          "hits": 59,
+          "recall": 0.31891891891891894
+        }
+      }
+    },
+    "votes": {
+      "poll": {
+        "polls": 87,
+        "rankError": 1.1336339522546417,
+        "overlap": 0.9439964633068081,
+        "winningTop10Cases": 577,
+        "actualBigDrops": 11,
+        "caughtBigDrops": 4,
+        "falseAlarms": 3,
+        "bigDropRecall": 0.36363636363636365,
+        "bigDropPrecision": 0.5714285714285714,
+        "falseAlarmRate": 0.00530035335689046,
+        "bigDropRankError": 2.0,
+        "winningTop10RankError": 0.5285961871750433,
+        "comfortableCases": 240,
+        "comfortableRankError": 0.45
+      },
+      "newcomers": {
+        "polls": 87,
+        "actualNewcomers": 226,
+        "predictedNewcomers": 180,
+        "hits": 122,
+        "misses": 104,
+        "falseAlarms": 58,
+        "recall": 0.5398230088495575,
+        "precision": 0.6777777777777778,
+        "exactSetPolls": 18,
+        "allActualCaughtPolls": 20,
+        "pollsWithActualNewcomers": 85,
+        "allCaughtWhenNewcomersExist": 18,
+        "hitRankMAE": 1.9672131147540983,
+        "allEntryRankMAECapped26": 2.420353982300885,
+        "missesPredicted26to30": 74,
+        "entry1to20": {
+          "actual": 41,
+          "hits": 29,
+          "recall": 0.7073170731707317
+        },
+        "entry21to25": {
+          "actual": 185,
+          "hits": 93,
+          "recall": 0.5027027027027027
+        }
+      }
+    },
+    "conference": {
+      "poll": {
+        "polls": 87,
+        "rankError": 1.1821220159151193,
+        "overlap": 0.9242263483642793,
+        "winningTop10Cases": 577,
+        "actualBigDrops": 11,
+        "caughtBigDrops": 3,
+        "falseAlarms": 4,
+        "bigDropRecall": 0.2727272727272727,
+        "bigDropPrecision": 0.42857142857142855,
+        "falseAlarmRate": 0.007067137809187279,
+        "bigDropRankError": 1.9090909090909092,
+        "winningTop10RankError": 0.49393414211438474,
+        "comfortableCases": 240,
+        "comfortableRankError": 0.42916666666666664
+      },
+      "newcomers": {
+        "polls": 87,
+        "actualNewcomers": 226,
+        "predictedNewcomers": 174,
+        "hits": 81,
+        "misses": 145,
+        "falseAlarms": 93,
+        "recall": 0.3584070796460177,
+        "precision": 0.46551724137931033,
+        "exactSetPolls": 7,
+        "allActualCaughtPolls": 9,
+        "pollsWithActualNewcomers": 85,
+        "allCaughtWhenNewcomersExist": 7,
+        "hitRankMAE": 2.185185185185185,
+        "allEntryRankMAECapped26": 2.6991150442477876,
+        "missesPredicted26to30": 50,
+        "entry1to20": {
+          "actual": 41,
+          "hits": 23,
+          "recall": 0.5609756097560976
+        },
+        "entry21to25": {
+          "actual": 185,
+          "hits": 58,
+          "recall": 0.31351351351351353
+        }
+      }
+    },
+    "both": {
+      "poll": {
+        "polls": 87,
+        "rankError": 1.128258178603006,
+        "overlap": 0.9458355437665781,
+        "winningTop10Cases": 577,
+        "actualBigDrops": 11,
+        "caughtBigDrops": 3,
+        "falseAlarms": 3,
+        "bigDropRecall": 0.2727272727272727,
+        "bigDropPrecision": 0.5,
+        "falseAlarmRate": 0.00530035335689046,
+        "bigDropRankError": 2.0,
+        "winningTop10RankError": 0.5268630849220104,
+        "comfortableCases": 240,
+        "comfortableRankError": 0.44583333333333336
+      },
+      "newcomers": {
+        "polls": 87,
+        "actualNewcomers": 226,
+        "predictedNewcomers": 181,
+        "hits": 125,
+        "misses": 101,
+        "falseAlarms": 56,
+        "recall": 0.5530973451327433,
+        "precision": 0.6906077348066298,
+        "exactSetPolls": 20,
+        "allActualCaughtPolls": 21,
+        "pollsWithActualNewcomers": 85,
+        "allCaughtWhenNewcomersExist": 19,
+        "hitRankMAE": 1.88,
+        "allEntryRankMAECapped26": 2.3628318584070795,
+        "missesPredicted26to30": 70,
+        "entry1to20": {
+          "actual": 41,
+          "hits": 29,
+          "recall": 0.7073170731707317
+        },
+        "entry21to25": {
+          "actual": 185,
+          "hits": 96,
+          "recall": 0.518918918918919
+        }
+      }
+    }
+  },
+  "selected": "both",
+  "followup2025": {
+    "x": {
+      "poll": {
+        "polls": 15,
+        "rankError": 1.1573333333333333,
+        "overlap": 0.9199999999999998,
+        "winningTop10Cases": 97,
+        "actualBigDrops": 1,
+        "caughtBigDrops": 0,
+        "falseAlarms": 0,
+        "bigDropRecall": 0.0,
+        "bigDropPrecision": null,
+        "falseAlarmRate": 0.0,
+        "bigDropRankError": 2.0,
+        "winningTop10RankError": 0.5567010309278351,
+        "comfortableCases": 37,
+        "comfortableRankError": 0.5135135135135135
+      },
+      "newcomers": {
+        "polls": 15,
+        "actualNewcomers": 40,
+        "predictedNewcomers": 31,
+        "hits": 15,
+        "misses": 25,
+        "falseAlarms": 16,
+        "recall": 0.375,
+        "precision": 0.4838709677419355,
+        "exactSetPolls": 0,
+        "allActualCaughtPolls": 1,
+        "pollsWithActualNewcomers": 14,
+        "allCaughtWhenNewcomersExist": 0,
+        "hitRankMAE": 2.466666666666667,
+        "allEntryRankMAECapped26": 2.15,
+        "missesPredicted26to30": 13,
+        "entry1to20": {
+          "actual": 6,
+          "hits": 6,
+          "recall": 1.0
+        },
+        "entry21to25": {
+          "actual": 34,
+          "hits": 9,
+          "recall": 0.2647058823529412
+        }
+      }
+    },
+    "both": {
+      "poll": {
+        "polls": 15,
+        "rankError": 1.1306666666666667,
+        "overlap": 0.9466666666666669,
+        "winningTop10Cases": 97,
+        "actualBigDrops": 1,
+        "caughtBigDrops": 0,
+        "falseAlarms": 0,
+        "bigDropRecall": 0.0,
+        "bigDropPrecision": null,
+        "falseAlarmRate": 0.0,
+        "bigDropRankError": 2.0,
+        "winningTop10RankError": 0.5567010309278351,
+        "comfortableCases": 37,
+        "comfortableRankError": 0.5135135135135135
+      },
+      "newcomers": {
+        "polls": 15,
+        "actualNewcomers": 40,
+        "predictedNewcomers": 29,
+        "hits": 24,
+        "misses": 16,
+        "falseAlarms": 5,
+        "recall": 0.6,
+        "precision": 0.8275862068965517,
+        "exactSetPolls": 3,
+        "allActualCaughtPolls": 4,
+        "pollsWithActualNewcomers": 14,
+        "allCaughtWhenNewcomersExist": 3,
+        "hitRankMAE": 1.8333333333333333,
+        "allEntryRankMAECapped26": 1.95,
+        "missesPredicted26to30": 15,
+        "entry1to20": {
+          "actual": 6,
+          "hits": 5,
+          "recall": 0.8333333333333334
+        },
+        "entry21to25": {
+          "actual": 34,
+          "hits": 19,
+          "recall": 0.5588235294117647
+        }
+      }
+    }
+  },
+  "current2026": {
+    "x": [
+      {
+        "poll": {
+          "season": 2026,
+          "label": "September 8",
+          "rankError": 1.08,
+          "overlap": 0.88,
+          "events": [
+            {
+              "team": "Georgia",
+              "previous": 3,
+              "actual": 2,
+              "predicted": 2,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Indiana",
+              "previous": 6,
+              "actual": 5,
+              "predicted": 6,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Miami",
+              "previous": 7,
+              "actual": 7,
+              "predicted": 7,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Notre Dame",
+              "previous": 4,
+              "actual": 3,
+              "predicted": 3,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Ohio State",
+              "previous": 1,
+              "actual": 1,
+              "predicted": 1,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Oklahoma",
+              "previous": 10,
+              "actual": 11,
+              "predicted": 9,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Ole Miss",
+              "previous": 9,
+              "actual": 9,
+              "predicted": 10,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Oregon",
+              "previous": 2,
+              "actual": 6,
+              "predicted": 5,
+              "bigDrop": true,
+              "predictedBigDrop": true,
+              "early": true
+            },
+            {
+              "team": "Texas",
+              "previous": 5,
+              "actual": 4,
+              "predicted": 4,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Texas A&M",
+              "previous": 8,
+              "actual": 10,
+              "predicted": 8,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            }
+          ],
+          "oregon": 5,
+          "comfortable": [
+            {
+              "team": "Georgia",
+              "actual": 2,
+              "predicted": 2,
+              "previous": 3,
+              "margin": 60.0
+            },
+            {
+              "team": "Indiana",
+              "actual": 5,
+              "predicted": 6,
+              "previous": 6,
+              "margin": 36.0
+            },
+            {
+              "team": "Miami",
+              "actual": 7,
+              "predicted": 7,
+              "previous": 7,
+              "margin": 39.0
+            },
+            {
+              "team": "Notre Dame",
+              "actual": 3,
+              "predicted": 3,
+              "previous": 4,
+              "margin": 28.0
+            },
+            {
+              "team": "Ohio State",
+              "actual": 1,
+              "predicted": 1,
+              "previous": 1,
+              "margin": 53.0
+            },
+            {
+              "team": "Oklahoma",
+              "actual": 11,
+              "predicted": 9,
+              "previous": 10,
+              "margin": 51.0
+            },
+            {
+              "team": "Texas",
+              "actual": 4,
+              "predicted": 4,
+              "previous": 5,
+              "margin": 52.0
+            },
+            {
+              "team": "Texas A&M",
+              "actual": 10,
+              "predicted": 8,
+              "previous": 8,
+              "margin": 50.0
+            }
+          ],
+          "indiana": 6
+        },
+        "newcomers": {
+          "season": 2026,
+          "label": "September 8",
+          "actualCount": 1,
+          "predictedCount": 2,
+          "hits": [],
+          "misses": [
+            {
+              "team": "Virginia",
+              "actual": 25,
+              "predicted": 27
+            }
+          ],
+          "falseAlarms": [
+            {
+              "team": "Massachusetts",
+              "actual": null,
+              "predicted": 24
+            },
+            {
+              "team": "Tulsa",
+              "actual": null,
+              "predicted": 25
+            }
+          ],
+          "allActual": [
+            {
+              "team": "Virginia",
+              "actual": 25,
+              "predicted": 27
+            }
+          ]
+        }
+      }
+    ],
+    "both": [
+      {
+        "poll": {
+          "season": 2026,
+          "label": "September 8",
+          "rankError": 1.12,
+          "overlap": 0.88,
+          "events": [
+            {
+              "team": "Georgia",
+              "previous": 3,
+              "actual": 2,
+              "predicted": 2,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Indiana",
+              "previous": 6,
+              "actual": 5,
+              "predicted": 6,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Miami",
+              "previous": 7,
+              "actual": 7,
+              "predicted": 7,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Notre Dame",
+              "previous": 4,
+              "actual": 3,
+              "predicted": 3,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Ohio State",
+              "previous": 1,
+              "actual": 1,
+              "predicted": 1,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Oklahoma",
+              "previous": 10,
+              "actual": 11,
+              "predicted": 9,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Ole Miss",
+              "previous": 9,
+              "actual": 9,
+              "predicted": 10,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Oregon",
+              "previous": 2,
+              "actual": 6,
+              "predicted": 5,
+              "bigDrop": true,
+              "predictedBigDrop": true,
+              "early": true
+            },
+            {
+              "team": "Texas",
+              "previous": 5,
+              "actual": 4,
+              "predicted": 4,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            },
+            {
+              "team": "Texas A&M",
+              "previous": 8,
+              "actual": 10,
+              "predicted": 8,
+              "bigDrop": false,
+              "predictedBigDrop": false,
+              "early": true
+            }
+          ],
+          "oregon": 5,
+          "comfortable": [
+            {
+              "team": "Georgia",
+              "actual": 2,
+              "predicted": 2,
+              "previous": 3,
+              "margin": 60.0
+            },
+            {
+              "team": "Indiana",
+              "actual": 5,
+              "predicted": 6,
+              "previous": 6,
+              "margin": 36.0
+            },
+            {
+              "team": "Miami",
+              "actual": 7,
+              "predicted": 7,
+              "previous": 7,
+              "margin": 39.0
+            },
+            {
+              "team": "Notre Dame",
+              "actual": 3,
+              "predicted": 3,
+              "previous": 4,
+              "margin": 28.0
+            },
+            {
+              "team": "Ohio State",
+              "actual": 1,
+              "predicted": 1,
+              "previous": 1,
+              "margin": 53.0
+            },
+            {
+              "team": "Oklahoma",
+              "actual": 11,
+              "predicted": 9,
+              "previous": 10,
+              "margin": 51.0
+            },
+            {
+              "team": "Texas",
+              "actual": 4,
+              "predicted": 4,
+              "previous": 5,
+              "margin": 52.0
+            },
+            {
+              "team": "Texas A&M",
+              "actual": 10,
+              "predicted": 8,
+              "previous": 8,
+              "margin": 50.0
+            }
+          ],
+          "indiana": 6
+        },
+        "newcomers": {
+          "season": 2026,
+          "label": "September 8",
+          "actualCount": 1,
+          "predictedCount": 2,
+          "hits": [],
+          "misses": [
+            {
+              "team": "Virginia",
+              "actual": 25,
+              "predicted": 46
+            }
+          ],
+          "falseAlarms": [
+            {
+              "team": "Florida",
+              "actual": null,
+              "predicted": 24
+            },
+            {
+              "team": "Boise State",
+              "actual": null,
+              "predicted": 25
+            }
+          ],
+          "allActual": [
+            {
+              "team": "Virginia",
+              "actual": 25,
+              "predicted": 46
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "method": [
+    "Four fixed variants: production inputs, prior votes, conference indicators, both. Same tree hyperparameters and comfortable-win calibration.",
+    "2019\u20132024 walk-forward model selection; 2025/2026 are previously examined follow-ups, not untouched holdouts.",
+    "Selection maximizes newcomer recall subject to no worsening in overall rank error, Top25 overlap, or newcomer precision, and at most +0.25 spots in rare big-drop error.",
+    "Prior-poll vote totals only; conferences from target-season game metadata, never backfilled with current affiliations.",
+    "No team-specific corrections or fixed conference ranking. Production unchanged during experiment."
+  ]
+}

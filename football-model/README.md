@@ -145,3 +145,24 @@ completed football-game forecast archive.
 When installing a new season's football model, train the AP model through the
 previous season after importing its completed poll/result archive. Publication
 rejects an AP artifact whose training season does not match that boundary.
+
+## CFP next-release simulations
+
+“Project to next release” uses 10,000 seeded simulations of the eligible remaining
+games, sampling each outcome from its current football-model win probability.
+Completed games stay fixed. Only games whose kickoff plus four hours precedes the
+release cutoff are included. Probabilities remain fixed through each simulation;
+future injuries and rating changes are not modeled.
+
+The exporter rounds simulated mean remaining wins to whole numbers, then selects
+the sampled result slate with the smallest total squared deviation from those
+team targets. Ties favor the more probable slate. A single consistent slate is
+necessary for head-to-head results, quality wins, opponent records and losses;
+individual records may differ from independently rounded means. The CFP model
+ranks that slate's resumes, not averaged rankings. Scoring-margin magnitudes use
+the football model estimates, rounded to at least one point, with the sampled
+winner determining the sign. These are hypothetical margins, not predicted final
+scores. The selected results remain inspectable under Game assumptions.
+
+The seed and simulation count are published in `next.simulation`. Refreshes
+regenerate the projection as actual results and game probabilities change.

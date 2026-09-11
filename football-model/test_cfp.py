@@ -31,6 +31,22 @@ class CFPTests(unittest.TestCase):
         self.assertFalse(future.completed);self.assertTrue(result[0].completed);self.assertEqual(assumptions[0]['winner'],g.away_team)
         self.assertEqual(scenario_games([future],{},now,cutoff)[2],[g.id])
         self.assertEqual(scenario_games([replace(g,completed=True)],{},now,cutoff)[0],[replace(g,completed=True)])
+    def test_simulations_allow_upsets_and_preserve_whole_consistent_records(self):
+        raw=json.loads(gzip.decompress((ROOT/'games.json.gz').read_bytes()))
+        template=Game.from_cfbd(raw[0]);now=template.start_date-timedelta(days=1)
+        games=[replace(template,id=i,completed=False,home_points=None,away_points=None) for i in range(10)]
+        predictions={g.id:{'prediction':{'predicted_margin':3.5,'home_win_probability':.6}} for g in games}
+        cutoff=template.start_date+timedelta(days=1)
+        result,assumptions,missing=scenario_games(games,predictions,now,cutoff)
+        self.assertEqual(sum(g.home_points>g.away_points for g in result),6)
+        self.assertEqual(sum(g.away_points>g.home_points for g in result),4)
+        self.assertEqual(result,scenario_games(list(reversed(games)),predictions,now,cutoff)[0][::-1])
+        self.assertTrue(all(g.home_points!=g.away_points for g in result))
+        self.assertEqual(len(assumptions),10);self.assertFalse(missing)
+        self.assertEqual(scenario_games(games,predictions,now,template.start_date+timedelta(hours=3))[1],[])
+        predictions[0]['prediction']['home_win_probability']=1.1
+        with self.assertRaises(ValueError):scenario_games(games,predictions,now,cutoff)
+
     def test_public_snapshot_and_held_out_archive(self):
         data=json.loads((ROOT.parent/'public/football/cfp.json').read_text())
         self.assertEqual(data['trainingThrough'],data['season']-1)

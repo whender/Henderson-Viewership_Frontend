@@ -4,6 +4,7 @@ from dataclasses import replace
 from datetime import datetime,timezone,timedelta
 from pathlib import Path
 import httpx
+import numpy as np
 from cfbpredict.games import Game
 from cfbpredict.committee import CommitteeModel
 from cfbpredict.committee_history import build_resume_state,_team_token
@@ -36,20 +37,45 @@ def rankings(model,games,cutoff,ids):
             'drivers':[{'feature':name,'label':LABELS.get(name,name),'contribution':round(value,4)} for name,value in sorted(rank.contributions,key=lambda t:-abs(t[1]))[:4]]})
     return rows
 
+SIMULATIONS=10000
+SIMULATION_SEED=2026
+
 def scenario_games(games,predictions,now,cutoff):
-    output=[];assumptions=[];missing=[]
-    for game in games:
-        result=game
-        if not game.completed and now<game.start_date and game.start_date+timedelta(hours=4)<=cutoff:
-            pred=predictions.get(game.id,{}).get('prediction')
+    """Choose a coherent simulation nearest rounded mean wins, never independent team records."""
+    games=list({g.id:g for g in games}.values())
+    eligible=[];missing=[]
+    for g in sorted(games,key=lambda g:(g.start_date,g.id)):
+        if not g.completed and now<g.start_date and g.start_date+timedelta(hours=4)<=cutoff:
+            pred=predictions.get(g.id,{}).get('prediction')
             if pred:
-                margin=max(abs(pred['predicted_margin']),1.)
-                signed=margin if pred['home_win_probability']>=.5 else -margin
-                result=replace(game,completed=True,home_points=max(signed,0),away_points=max(-signed,0))
-                assumptions.append({'id':game.id,'home':game.home_team,'away':game.away_team,'winner':game.home_team if signed>0 else game.away_team,'margin':round(margin,1)})
-            elif game.home_classification=='fbs' or game.away_classification=='fbs':missing.append(game.id)
-        output.append(result)
-    return output,assumptions,missing
+                p=pred['home_win_probability']
+                if not np.isfinite(p) or not 0<=p<=1:raise ValueError('Invalid game win probability')
+                eligible.append((g,pred))
+            elif g.home_classification=='fbs' or g.away_classification=='fbs':missing.append(g.id)
+    if not eligible:return games,[],missing
+    rng=np.random.default_rng(SIMULATION_SEED)
+    probabilities=np.array([p['home_win_probability'] for _,p in eligible])
+    outcomes=rng.random((SIMULATIONS,len(eligible)))<probabilities
+    keys=sorted({key for g,_ in eligible for key in (g.home_key,g.away_key)})
+    counts=np.zeros((SIMULATIONS,len(keys)),dtype=np.int16);indices={k:i for i,k in enumerate(keys)}
+    for j,(g,_) in enumerate(eligible):
+        counts[:,indices[g.home_key]]+=outcomes[:,j]
+        counts[:,indices[g.away_key]]+=~outcomes[:,j]
+    # Completed wins add an integer to every simulation, so rounding remaining wins is equivalent.
+    means=counts.mean(axis=0);targets=np.floor(means+.5)
+    distance=((counts-targets)**2).sum(axis=1)
+    candidates=np.flatnonzero(distance==distance.min())
+    # Break equal record-distance ties with the probability of the complete result slate.
+    logs=outcomes[candidates]@np.log(np.clip(probabilities,1e-15,1))+(~outcomes[candidates])@np.log(np.clip(1-probabilities,1e-15,1))
+    chosen=outcomes[candidates[int(np.argmax(logs))]]
+    replacements={};assumptions=[]
+    for j,(g,pred) in enumerate(eligible):
+        margin=max(int(np.floor(abs(pred['predicted_margin'])+.5)),1)
+        home=bool(chosen[j]);signed=margin if home else -margin
+        replacements[g.id]=replace(g,completed=True,home_points=max(signed,0),away_points=max(-signed,0))
+        assumptions.append({'id':g.id,'home':g.home_team,'away':g.away_team,'winner':g.home_team if home else g.away_team,'margin':margin,
+            'winnerProbability':float(probabilities[j] if home else 1-probabilities[j])})
+    return [replacements.get(g.id,g) for g in games],assumptions,missing
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--refresh',action='store_true');args=parser.parse_args()
@@ -97,7 +123,7 @@ def main():
     stats={k:sum(e[k]*e['historical_poll_count'] for e in evaluation)/count for k in keys};stats['polls']=int(count)
     stats['baselineRankError']=sum(e['baseline']['historical_mean_absolute_rank_error']*e['historical_poll_count'] for e in evaluation)/count
     out={'schemaVersion':1,'asOf':now.isoformat(),'season':year,'firstRelease':dates[0],'schedule':dates,'trainingThrough':validation['trainingThrough'],
-        'trainingPolls':validation['trainingPolls'],'archivePolls':len(polls),'next':{'releaseDate':next_date,'rows':outlook,'assumptions':assumptions,'unprojectedGames':len(missing)},
+        'trainingPolls':validation['trainingPolls'],'archivePolls':len(polls),'next':{'releaseDate':next_date,'rows':outlook,'assumptions':assumptions,'unprojectedGames':len(missing),'simulation':{'count':SIMULATIONS,'seed':SIMULATION_SEED,'method':'Representative simulation nearest rounded average team wins; ties favor more probable game results'}},
         'today':today,'latest':next((p for p in history if p['season']==year),None),'history':history,'evaluation':evaluation,'overallEvaluation':stats,'publishedForecasts':saved,
         'methodology':['Predicts committee Top 25 order, not playoff seeds or qualification probabilities.',
             'Trained on CFP rankings starting in 2014; AP polls are not training targets or inputs.',
@@ -106,7 +132,7 @@ def main():
             'Team resumes capture record and schedule strength, quality wins, bad losses, conference championships and opponent-adjusted strength. Head-to-head and common opponents modify comparable-team comparisons.',
             'Quality-win thresholds use model-rated opponents, not official committee top-25 membership. Scoring margins enter the underlying strength rating, not a direct committee resume feature.',
             'Rank error uses full predicted ranks without capping at 26. Top 12 membership is a ranking metric, not playoff-field accuracy.',
-            'Projected results assume the main football model’s favored teams win. They are scenarios, not actual scores or guaranteed outcomes.'],
+            'Run 10,000 independent game-outcome simulations using current football-model win probabilities. Select a coherent slate nearest rounded average team wins, breaking ties by slate probability, then rank its resumes. Whole-number records can differ from independent rounding to keep opponents consistent. Model margin magnitudes supply hypothetical scoring margins. This is a representative scenario, not an average CFP rank or a guaranteed outcome.'],
         'sources':[{'title':'Official CFP rankings history','url':HISTORY_URL},{'title':'CFP release schedule','url':calendar['source']},{'title':'Committee selection protocol','url':'https://collegefootballplayoff.com/sports/2016/10/24/selection-committee-protocol'}]}
     temp=output_path.with_suffix('.tmp');temp.write_text(json.dumps(out,separators=(',',':'),allow_nan=False));temp.replace(output_path)
     if args.refresh:(ROOT/'cfp/polls.json').write_text(json.dumps({'schema_version':1,'polls':polls},indent=2)+'\n')

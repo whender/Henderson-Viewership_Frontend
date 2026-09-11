@@ -6,7 +6,7 @@ beforeEach(()=>{global.fetch=jest.fn().mockResolvedValue({ok:true,json:async()=>
 afterEach(()=>jest.restoreAllMocks());
 test('defaults to actual results, uses ESPN logos and switches to labeled scenario',async()=>{
  render(<CfpPollPredictor />);await screen.findByText('Resume rankings today');expect(screen.getByText('2–0')).toBeInTheDocument();expect(screen.getByRole('presentation')).toHaveAttribute('src','https://a.espncdn.com/i/teamlogos/ncaa/500/251.png');
- fireEvent.change(screen.getByLabelText('Ranking basis'),{target:{value:'projected'}});expect(screen.getByText('8–0')).toBeInTheDocument();expect(screen.getByText(/One scenario assuming/)).toBeInTheDocument();
+ fireEvent.change(screen.getByLabelText('Ranking basis'),{target:{value:'projected'}});expect(screen.getByText('8–0')).toBeInTheDocument();expect(screen.getByText(/simulations of/)).toBeInTheDocument();
 });
 test('handles unreleased rankings and distinguishes historical reconstruction',async()=>{
  render(<CfpPollPredictor />);await screen.findByText('Resume rankings today');fireEvent.click(screen.getByRole('button',{name:'Latest rankings'}));expect(screen.getByText(/No official 2026/)).toBeInTheDocument();

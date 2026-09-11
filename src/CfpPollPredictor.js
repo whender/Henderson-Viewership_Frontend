@@ -4,11 +4,15 @@ const pct = n => `${(n * 100).toFixed(1)}%`;
 function Team({ row }) {
   return <span className="cfb-team">{row.teamId && <img src={`https://a.espncdn.com/i/teamlogos/ncaa/500/${row.teamId}.png`} alt="" loading="lazy" onError={e => { e.currentTarget.style.visibility = 'hidden'; }} />}<span>{row.team}</span></span>;
 }
+function Opponents({ teams = [], label }) {
+  return teams.length ? <div className="cfp-opponents" aria-label={label}>{teams.map(t => <span key={t.gameId} title={t.team}>{t.teamId ? <img src={`https://a.espncdn.com/i/teamlogos/ncaa/500/${t.teamId}.png`} alt={t.team} loading="lazy" onError={e => { e.currentTarget.hidden = true; e.currentTarget.nextElementSibling.hidden = false; }} /> : null}<span hidden={Boolean(t.teamId)}>{t.team}</span></span>)}</div> : <span className="cfb-footnote">None</span>;
+}
 function Comparison({ poll }) {
   return <><p className="cfb-footnote ap-note">{poll.forecastSource}. Reconstructed predictions use only results available before this release.</p><div className="overflow-x-auto"><table className="cfb-table"><thead><tr><th>CFP rank</th><th>Team</th><th>Record</th><th>Predicted rank</th><th>Error</th></tr></thead><tbody>{poll.rows.map(t => <tr key={t.team}><td className="cfb-rank">{t.rank}</td><td><Team row={t} /></td><td>{t.record}</td><td>{t.predictedRank ?? '—'}</td><td>{t.predictedRank == null ? '—' : Math.abs(t.predictedRank - t.rank)}</td></tr>)}</tbody></table></div></>;
 }
 export default function CfpPollPredictor() {
   const [data, setData] = useState(null), [error, setError] = useState('');
+  const [simulation, setSimulation] = useState({asOf:null,index:0});
   const [view, setView] = useState('outlook'), [basis, setBasis] = useState('today');
   const [search, setSearch] = useState(''), [bubble, setBubble] = useState(false), [year, setYear] = useState(''), [date, setDate] = useState('');
   useEffect(() => {
@@ -30,7 +34,11 @@ export default function CfpPollPredictor() {
   const selectedYear = Number(year || years[0]);
   const polls = data.history.filter(p => p.season === selectedYear);
   const poll = polls.find(p => p.releaseDate === date) || polls[0];
-  const rows = (basis === 'today' ? data.today : data.next.rows).filter(t => (bubble || t.rank <= 25) && t.team.toLowerCase().includes(search.toLowerCase()));
+  const scenarios = [data.next, ...(data.next.alternatives || [])];
+  const simulationIndex = simulation.asOf === data.asOf ? simulation.index % scenarios.length : 0;
+  const projected = scenarios[simulationIndex];
+  const refreshSimulation = () => setSimulation({asOf:data.asOf,index:(simulationIndex + 1 + Math.floor(Math.random() * (scenarios.length - 1))) % scenarios.length});
+  const rows = (basis === 'today' ? data.today : projected.rows).filter(t => (bubble || t.rank <= 25) && t.team.toLowerCase().includes(search.toLowerCase()));
   const stats = data.overallEvaluation;
   return <section className="home-panel ap-predictor">
     <div className="home-panel-header"><div><p className="home-kicker">Selection committee model</p><h3>CFP Rankings Predictor</h3><p className="ap-subtitle">Predicting the committee’s Top 25.</p></div><div className="ap-timestamp">Updated {new Date(data.asOf).toLocaleString()}</div></div>
@@ -41,11 +49,12 @@ export default function CfpPollPredictor() {
       <div className="ap-outlook-heading"><h4>{basis === 'today' ? 'Resume rankings today' : 'Next release scenario'}</h4><span>{data.next.releaseDate ? `Next CFP release: ${data.next.releaseDate}` : 'Final CFP release complete'}</span></div>
       {!data.latest && <p className="cfb-footnote ap-note">The {data.season} committee rankings have not started. First release: {data.firstRelease}. Early-season estimates have limited results to work with.</p>}
       <div className="cfb-controls"><label>Ranking basis<select value={basis} onChange={e => setBasis(e.target.value)}><option value="today">Completed results only</option><option value="projected">Project to next release</option></select></label><label>Find a team<input type="search" placeholder="Search teams" value={search} onChange={e => setSearch(e.target.value)} /></label><label className="cfb-checkbox"><input type="checkbox" checked={bubble} onChange={e => setBubble(e.target.checked)} />Include bubble teams (26–40)</label></div>
-      <p className="cfb-notice">{basis === 'today' ? 'Uses completed games available now, through the final CFP release. Rankings will change as teams build their resumes.' : `Uses ${data.next.simulation?.count?.toLocaleString() || "10,000"} simulations of ${data.next.assumptions.length} remaining games. The model ranks one consistent set of results closest to rounded average win totals. Records include projected wins and losses; these are hypothetical resumes.`}</p>
+      <p className="cfb-notice">{basis === 'today' ? 'Uses completed games available now, through the final CFP release. Rankings will change as teams build their resumes.' : `Uses ${data.next.simulation?.count?.toLocaleString() || "10,000"} simulations of ${projected.assumptions.length} remaining games. The model ranks one consistent set of results closest to rounded average win totals. Records include projected wins and losses; these are hypothetical resumes. Refresh simulation selects another representative outcome from the saved simulation pool.`}</p>
+      {basis === 'projected' && scenarios.length > 1 && <div className="ap-scenario-actions"><button type="button" onClick={refreshSimulation}>Refresh simulation</button><span role="status">Scenario {simulationIndex + 1} of {scenarios.length}</span></div>}
       {basis === 'projected' && data.next.unprojectedGames > 0 && <p role="alert" className="cfb-notice">{data.next.unprojectedGames} scheduled games have no available prediction and are excluded from this scenario.</p>}
-      {rows.length ? <div className="overflow-x-auto"><table className="cfb-table ap-table"><thead><tr><th>Predicted</th><th>Team</th><th>Record</th><th>Quality wins</th><th>Model factors</th></tr></thead><tbody>{rows.map(t => <tr key={t.key}><td className="cfb-rank">{t.rank}</td><td><Team row={t} /></td><td className="cfb-number">{t.wins}–{t.losses}</td><td>{t.qualityWins}</td><td><details><summary>Why this rank?</summary><ul className="ap-factor-list">{t.drivers.map(d => <li key={d.feature}>{d.label} <span>{d.contribution >= 0 ? 'Supports' : 'Lowers'} score</span></li>)}</ul></details></td></tr>)}</tbody></table></div> : <p role="status">No rankings available for this selection.</p>}
-      <p className="cfb-footnote">Quality wins are wins over model-rated Top 25 opponents. Factors show the largest base-score contributions; head-to-head and common opponents also affect comparisons.</p>
-      {basis === 'projected' && <details className="ap-details"><summary>Game assumptions ({data.next.assumptions.length})</summary><div className="ap-assumptions">{data.next.assumptions.map(g => <div key={g.id}><span>{g.away} at {g.home}</span><strong>{g.winner} by {g.margin.toFixed(1)}</strong></div>)}</div></details>}
+      {rows.length ? <div className="overflow-x-auto"><table className="cfb-table ap-table"><thead><tr><th>Predicted</th><th>Team</th><th>Record</th><th>Quality wins</th><th>Best wins</th><th>Worst losses</th></tr></thead><tbody>{rows.map(t => <tr key={t.key}><td className="cfb-rank">{t.rank}</td><td><Team row={t} /></td><td className="cfb-number">{t.wins}–{t.losses}</td><td>{t.qualityWins}</td><td><Opponents teams={t.bestWins} label={`${t.team} best wins`} /></td><td><Opponents teams={t.worstLosses} label={`${t.team} worst losses`} /></td></tr>)}</tbody></table></div> : <p role="status">No rankings available for this selection.</p>}
+      <p className="cfb-footnote">Quality wins are wins over model-rated Top 25 opponents. Logos show up to three strongest opponents beaten and three weakest opponents lost to, ordered by opponent-adjusted strength in the selected resume. Projected mode includes simulated results.</p>
+      {basis === 'projected' && <details className="ap-details"><summary>Game assumptions ({projected.assumptions.length})</summary><div className="ap-assumptions">{projected.assumptions.map(g => <div key={g.id}><span>{g.away} at {g.home}</span><strong>{g.winner} by {g.margin.toFixed(1)}</strong></div>)}</div></details>}
     </>}
     {view === 'latest' && (data.latest ? <><h4 className="cfb-schedule-title">CFP rankings · {data.latest.releaseDate}</h4><Comparison poll={data.latest} /></> : <p className="cfb-notice">No official {data.season} CFP rankings yet. The first release is {data.firstRelease}.</p>)}
     {view === 'history' && <><div className="cfb-controls"><label>CFP season<select value={selectedYear} onChange={e => { setYear(e.target.value); setDate(''); }}>{years.map(y => <option key={y}>{y}</option>)}</select></label><label>Release date<select value={poll?.releaseDate || ''} onChange={e => setDate(e.target.value)}>{polls.map(p => <option key={p.releaseDate}>{p.releaseDate}</option>)}</select></label></div>{poll && <Comparison poll={poll} />}</>}

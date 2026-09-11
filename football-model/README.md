@@ -166,3 +166,16 @@ scores. The selected results remain inspectable under Game assumptions.
 
 The seed and simulation count are published in `next.simulation`. Refreshes
 regenerate the projection as actual results and game probabilities change.
+
+The projected CFP table exposes up to 25 distinct representative outcomes from
+that simulation pool. “Refresh simulation” randomly selects a different saved
+outcome, updating rankings, whole-number records, game assumptions, and opponent
+logos together. It does not contact an API or generate a fresh pool on each click.
+The pool is regenerated during normal model publication. Duplicate Top 40
+rank/record combinations are removed; if only one outcome exists, the button is
+hidden. Completed-only rankings remain independent of this selection.
+
+Best-win logos show up to three strongest opponents beaten; worst-loss logos
+show up to three weakest opponents lost to. Ordering uses opponent-adjusted
+strength from that same resume snapshot, with the committee model's division
+fallback for opponents without FBS ratings. No results displays as “None.”

@@ -159,3 +159,6 @@ a.cfb-team:hover { color: var(--accent); }
   .ap-pick-label { font-size: 9px; }
   .ap-scenario-actions [role="status"] { flex-basis: 100%; }
 }
+
+.cfp-opponents { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.cfp-opponents img { width: 30px; height: 30px; object-fit: contain; }

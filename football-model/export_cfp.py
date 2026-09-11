@@ -25,6 +25,22 @@ def identities(games):
             out[getattr(g,side+'_key')]=getattr(g,side+'_id')
     return out
 
+def resume_highlights(key,resumes,results,ids):
+    """Strongest opponents beaten and weakest opponents lost to in this resume."""
+    minimum=min(r.power_rating for r in resumes.values())
+    wins=[];losses=[]
+    for game in results:
+        if key not in (game.home_key,game.away_key):continue
+        side='away' if key==game.home_key else 'home'
+        opponent=getattr(game,side+'_key');name=getattr(game,side+'_team')
+        classification=getattr(game,side+'_classification')
+        power=resumes[opponent].power_rating if opponent in resumes else minimum-(8 if classification=='fcs' else 15)
+        entry={'gameId':game.game_id,'team':name,'teamId':ids.get(opponent),'power':power}
+        (wins if game.winner_key==key else losses).append(entry)
+    def selected(rows,sign):
+        return [{k:v for k,v in r.items() if k!='power'} for r in sorted(rows,key=lambda r:(sign*r['power'],r['team'],r['gameId']))[:3]]
+    return {'bestWins':selected(wins,-1),'worstLosses':selected(losses,1)}
+
 def rankings(model,games,cutoff,ids):
     try:resumes,results=build_resume_state(games,cutoff)
     except InsufficientDataError:return []
@@ -34,13 +50,14 @@ def rankings(model,games,cutoff,ids):
         rows.append({'rank':rank.rank,'team':rank.team,'teamId':ids.get(rank.key),'key':rank.key,'wins':r.wins,'losses':r.losses,
             'conference':r.conference,'recordStrength':round(r.record_strength,2),'scheduleStrength':round(r.schedule_strength,3),
             'qualityWins':r.top_25_wins,'badLosses':r.bad_losses,
+            **resume_highlights(rank.key,resumes,results,ids),
             'drivers':[{'feature':name,'label':LABELS.get(name,name),'contribution':round(value,4)} for name,value in sorted(rank.contributions,key=lambda t:-abs(t[1]))[:4]]})
     return rows
 
 SIMULATIONS=10000
 SIMULATION_SEED=2026
 
-def scenario_games(games,predictions,now,cutoff):
+def scenario_games(games,predictions,now,cutoff,selection=0):
     """Choose a coherent simulation nearest rounded mean wins, never independent team records."""
     games=list({g.id:g for g in games}.values())
     eligible=[];missing=[]
@@ -64,10 +81,11 @@ def scenario_games(games,predictions,now,cutoff):
     # Completed wins add an integer to every simulation, so rounding remaining wins is equivalent.
     means=counts.mean(axis=0);targets=np.floor(means+.5)
     distance=((counts-targets)**2).sum(axis=1)
-    candidates=np.flatnonzero(distance==distance.min())
+    candidates=np.arange(SIMULATIONS)
     # Break equal record-distance ties with the probability of the complete result slate.
     logs=outcomes[candidates]@np.log(np.clip(probabilities,1e-15,1))+(~outcomes[candidates])@np.log(np.clip(1-probabilities,1e-15,1))
-    chosen=outcomes[candidates[int(np.argmax(logs))]]
+    order=np.lexsort((-logs,distance))
+    chosen=outcomes[order[selection]]
     replacements={};assumptions=[]
     for j,(g,pred) in enumerate(eligible):
         margin=max(int(np.floor(abs(pred['predicted_margin'])+.5)),1)
@@ -101,6 +119,13 @@ def main():
     today=rankings(model,season_games,min(now,datetime.fromisoformat(dates[-1]+'T12:00:00+00:00')),ids)
     projected,assumptions,missing=scenario_games(season_games,{g['id']:g for g in football['games']},now,target)
     outlook=rankings(model,projected,target,ids)
+    variants=[];seen={json.dumps([(r['teamId'],r['wins'],r['losses']) for r in outlook])}
+    for selection in range(1,25):
+        alternative,choices,_=scenario_games(season_games,{g['id']:g for g in football['games']},now,target,selection)
+        rows=rankings(model,alternative,target,ids)
+        signature=json.dumps([(r['teamId'],r['wins'],r['losses']) for r in rows])
+        if signature not in seen:
+            variants.append({'rows':rows,'assumptions':choices});seen.add(signature)
     output_path=ROOT.parent/'public/football/cfp.json';old=json.loads(output_path.read_text()) if output_path.exists() else {}
     saved=old.get('publishedForecasts',{})
     old_next=old.get('next',{})
@@ -123,7 +148,7 @@ def main():
     stats={k:sum(e[k]*e['historical_poll_count'] for e in evaluation)/count for k in keys};stats['polls']=int(count)
     stats['baselineRankError']=sum(e['baseline']['historical_mean_absolute_rank_error']*e['historical_poll_count'] for e in evaluation)/count
     out={'schemaVersion':1,'asOf':now.isoformat(),'season':year,'firstRelease':dates[0],'schedule':dates,'trainingThrough':validation['trainingThrough'],
-        'trainingPolls':validation['trainingPolls'],'archivePolls':len(polls),'next':{'releaseDate':next_date,'rows':outlook,'assumptions':assumptions,'unprojectedGames':len(missing),'simulation':{'count':SIMULATIONS,'seed':SIMULATION_SEED,'method':'Representative simulation nearest rounded average team wins; ties favor more probable game results'}},
+        'trainingPolls':validation['trainingPolls'],'archivePolls':len(polls),'next':{'releaseDate':next_date,'rows':outlook,'alternatives':variants,'assumptions':assumptions,'unprojectedGames':len(missing),'simulation':{'count':SIMULATIONS,'seed':SIMULATION_SEED,'method':'Representative simulation nearest rounded average team wins; ties favor more probable game results'}},
         'today':today,'latest':next((p for p in history if p['season']==year),None),'history':history,'evaluation':evaluation,'overallEvaluation':stats,'publishedForecasts':saved,
         'methodology':['Predicts committee Top 25 order, not playoff seeds or qualification probabilities.',
             'Trained on CFP rankings starting in 2014; AP polls are not training targets or inputs.',

@@ -1,7 +1,9 @@
 name: Update football model
 on:
   schedule:
-    - cron: '25 10 * * *'
+    - cron: '25 10 * * 0-5'
+    - cron: '*/30 * * * 6'
+      timezone: 'America/New_York'
   workflow_dispatch:
 permissions:
   contents: write

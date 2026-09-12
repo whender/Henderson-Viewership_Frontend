@@ -26,8 +26,10 @@ ESPN logos use the same team IDs and existing Henderson logo helper.
 
 ## Automatic updates
 
-The `Update football model` GitHub Actions workflow runs daily at 10:25 UTC and
-can also be run manually. It needs the repository Actions secret `CFBD_API_KEY`.
+The `Update football model` GitHub Actions workflow runs every 30 minutes throughout Saturday
+in America/New_York time (including daylight-saving changes), and at 10:25 UTC
+Sunday through Friday. It can also be run manually. GitHub scheduled runs may
+start later than their scheduled time when runners are busy. It needs the repository Actions secret `CFBD_API_KEY`.
 It downloads current-season FBS/FCS games and advanced game statistics, refits
 score and efficiency ratings with live completed results, and preserves the
 trained preseason priors and margin/calibration layers. This is an in-season

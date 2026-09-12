@@ -181,3 +181,9 @@ Best-win logos show up to three strongest opponents beaten; worst-loss logos
 show up to three weakest opponents lost to. Ordering uses opponent-adjusted
 strength from that same resume snapshot, with the committee model's division
 fallback for opponents without FBS ratings. No results displays as “None.”
+
+AP and CFP next-release projections include unfinished games even after kickoff,
+provided they fit before the release cutoff. Partial scores never become final
+resume results: the saved football prediction supplies the projected outcome
+until the feed marks the game completed. AP custom scenarios inherit these
+defaults; the score editor still only permits edits to games before kickoff.

@@ -28,6 +28,8 @@ class CFPTests(unittest.TestCase):
         g=Game.from_cfbd(raw[0]);now=g.start_date-timedelta(days=1);cutoff=g.start_date+timedelta(days=1)
         future=replace(g,completed=False,home_points=None,away_points=None,home_classification='fbs')
         result,assumptions,missing=scenario_games([future],{g.id:{'prediction':{'predicted_margin':-7,'home_win_probability':.3}}},now,cutoff)
+        live=replace(future,home_points=0,away_points=21)
+        self.assertEqual(scenario_games([live],{g.id:{'prediction':{'predicted_margin':-7,'home_win_probability':.3}}},g.start_date+timedelta(hours=1),cutoff)[1],assumptions)
         self.assertFalse(future.completed);self.assertTrue(result[0].completed);self.assertEqual(assumptions[0]['winner'],g.away_team)
         self.assertEqual(scenario_games([future],{},now,cutoff)[2],[g.id])
         self.assertEqual(scenario_games([replace(g,completed=True)],{},now,cutoff)[0],[replace(g,completed=True)])

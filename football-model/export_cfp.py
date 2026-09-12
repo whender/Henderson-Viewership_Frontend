@@ -62,7 +62,7 @@ def scenario_games(games,predictions,now,cutoff,selection=0):
     games=list({g.id:g for g in games}.values())
     eligible=[];missing=[]
     for g in sorted(games,key=lambda g:(g.start_date,g.id)):
-        if not g.completed and now<g.start_date and g.start_date+timedelta(hours=4)<=cutoff:
+        if not g.completed and g.start_date+timedelta(hours=4)<=cutoff:
             pred=predictions.get(g.id,{}).get('prediction')
             if pred:
                 p=pred['home_win_probability']

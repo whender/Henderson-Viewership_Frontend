@@ -27,6 +27,20 @@ def ranked(model,poll,previous,earlier,games,candidates):
             'drivers':[{'feature':FEATURES[j],'label':LABELS[FEATURES[j]],'contribution':round(float(terms[j]),4)} for j in drivers]})
     return output
 
+def project_games(source_games,projections,year,target,preseason_mode=False):
+    assumptions=[];projected=[]
+    for g in source_games:
+        p=projections.get(g['id']);ng=dict(g)
+        if not preseason_mode and g['season']==year and not g.get('completed') and timestamp(g['startDate'])+timedelta(hours=4)<=target:
+            if p and p.get('prediction'):
+                pred=p['prediction'];margin=pred['predicted_margin'];hwin=pred['home_win_probability']>=.5
+                signed=max(abs(margin),1)*(1 if hwin else -1)
+                # Synthetic scores carry ONLY the expected winner/margin into resume features.
+                ng.update(completed=True,homePoints=max(signed,0),awayPoints=max(-signed,0))
+                assumptions.append({'id':g['id'],'home':g['homeTeam'],'away':g['awayTeam'],'date':g['startDate'],'winner':g['homeTeam'] if hwin else g['awayTeam'],'margin':round(abs(signed),1)})
+        projected.append(ng)
+    return projected,assumptions
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--refresh',action='store_true');args=parser.parse_args()
     now=datetime.now(timezone.utc);football=json.loads((ROOT.parent/'public/football/model.json').read_text());year=football['season']
@@ -84,17 +98,7 @@ def main():
         target=timestamp(preseason['releaseDate']+'T00:00:00+00:00')
     nextpoll={'season':year,'kind':'preseason' if preseason_mode else 'regular','cutoff':target.isoformat(),'size':25}
     sofar={**nextpoll,'cutoff':min(now,target).isoformat()}
-    projections={g['id']:g for g in football['games']};assumptions=[];projected=[]
-    for g in source_games:
-        p=projections.get(g['id']);ng=dict(g)
-        if not preseason_mode and g['season']==year and not g.get('completed') and timestamp(g['startDate'])+timedelta(hours=4)<=target and timestamp(g['startDate'])>now:
-            if p and p.get('prediction'):
-                pred=p['prediction'];margin=pred['predicted_margin'];hwin=pred['home_win_probability']>=.5
-                signed=max(abs(margin),1)*(1 if hwin else -1)
-                # Synthetic scores carry ONLY the expected winner/margin into resume features.
-                ng.update(completed=True,homePoints=max(signed,0),awayPoints=max(-signed,0))
-                assumptions.append({'id':g['id'],'home':g['homeTeam'],'away':g['awayTeam'],'date':g['startDate'],'winner':g['homeTeam'] if hwin else g['awayTeam'],'margin':round(abs(signed),1)})
-        projected.append(ng)
+    projected,assumptions=project_games(source_games,{g['id']:g for g in football['games']},year,target,preseason_mode)
     output_path=ROOT.parent/'public/football/ap.json'
     previous_output=json.loads(output_path.read_text()) if output_path.exists() else {}
     # Preserve a published next-poll forecast after its target becomes official.

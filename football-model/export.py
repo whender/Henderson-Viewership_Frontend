@@ -99,6 +99,7 @@ def export(model, records, output, advanced, archive=None):
         teams.append(dict(asdict(row), rank=rank,
                           logo=f'https://a.espncdn.com/i/teamlogos/ncaa/500/{row.team_id}.png'))
     scheduled = []
+    game_notes = {r["id"]: r.get("notes") for r in records}
     fbs_names = {t["team"] for t in teams}
     for game in games:
         if game.home_team not in fbs_names and game.away_team not in fbs_names:
@@ -124,6 +125,7 @@ def export(model, records, output, advanced, archive=None):
         proof = {k: evidence[k] for k in ('archiveId', 'observedAt', 'provenance') if source == 'archived' and k in evidence}
         scheduled.append(dict(**proof, id=game.id, week=game.week, seasonType=game.season_type, date=game.start_date.isoformat(),
             home=game.home_team, away=game.away_team, neutral=game.neutral_site,
+            conferenceGame=game.conference_game, notes=game_notes.get(game.id),
             homeLogo=f"https://a.espncdn.com/i/teamlogos/ncaa/500/{game.home_id}.png" if game.home_id else None,
             awayLogo=f"https://a.espncdn.com/i/teamlogos/ncaa/500/{game.away_id}.png" if game.away_id else None,
             completed=game.completed, homePoints=game.home_points, awayPoints=game.away_points,

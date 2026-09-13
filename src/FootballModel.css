@@ -162,3 +162,19 @@ a.cfb-team:hover { color: var(--accent); }
 
 .cfp-opponents { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .cfp-opponents img { width: 30px; height: 30px; object-fit: contain; }
+
+.cfb-standings-toggle { display: flex; border: 1px solid var(--border); }
+.cfb-standings-toggle button { padding: 10px 18px; background: transparent; color: var(--text-secondary); font-weight: 700; min-height: 44px; }
+.cfb-standings-toggle button[aria-pressed="true"] { background: var(--accent); color: white; }
+.cfb-standings-conference { margin-top: 32px; }
+.cfb-standings-conference h4 { font-size: 20px; margin: 0 0 12px; }
+.cfb-standings tbody th { background: transparent; text-transform: none; letter-spacing: normal; font-size: 14px; border-bottom: 1px solid var(--border); }
+.cfb-standings .cfb-team small { display: block; font-size: 11px; font-weight: 400; color: var(--text-secondary); }
+@media(max-width: 640px) {
+  .cfb-standings .cfb-team { gap: 7px; }
+  .cfb-standings .cfb-team img { width: 26px; height: 26px; }
+  .cfb-standings .cfb-table td,.cfb-standings .cfb-table th { padding: 12px 4px; }
+  .cfb-standings .cfb-table { font-size: 12px; }
+  .cfb-standings tbody th { font-size: 12px; }
+  .cfb-standings .cfb-rank { font-size: 15px; }
+}

@@ -1,0 +1,487 @@
+[
+  {
+    "poll": {
+      "id": 1269.5,
+      "provisionalId": true,
+      "season": 2026,
+      "kind": "regular",
+      "label": "September 13",
+      "releaseDate": "2026-09-13",
+      "releaseTimestamp": "2026-09-13T18:00:00+00:00",
+      "cutoff": "2026-09-13T16:00:00+00:00",
+      "size": 25,
+      "source": "https://apnews.com/hub/ap-top-25-college-football-poll",
+      "ranks": [
+        {
+          "rank": 1,
+          "school": "Texas",
+          "teamId": 251,
+          "conference": "SEC",
+          "record": "2-0",
+          "points": "1678",
+          "firstPlaceVotes": 56
+        },
+        {
+          "rank": 2,
+          "school": "Georgia",
+          "teamId": 61,
+          "conference": "SEC",
+          "record": "2-0",
+          "points": "1551",
+          "firstPlaceVotes": 3
+        },
+        {
+          "rank": 3,
+          "school": "Notre Dame",
+          "teamId": 87,
+          "conference": "FBS Independents",
+          "record": "2-0",
+          "points": "1531",
+          "firstPlaceVotes": 1
+        },
+        {
+          "rank": 4,
+          "school": "Indiana",
+          "teamId": 84,
+          "conference": "Big Ten",
+          "record": "2-0",
+          "points": "1466",
+          "firstPlaceVotes": 3
+        },
+        {
+          "rank": 5,
+          "school": "Miami",
+          "teamId": 2390,
+          "conference": "ACC",
+          "record": "2-0",
+          "points": "1452",
+          "firstPlaceVotes": 4
+        },
+        {
+          "rank": 6,
+          "school": "Ohio State",
+          "teamId": 194,
+          "conference": "Big Ten",
+          "record": "1-1",
+          "points": "1407",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 7,
+          "school": "LSU",
+          "teamId": 99,
+          "conference": "SEC",
+          "record": "2-0",
+          "points": "1334",
+          "firstPlaceVotes": 1
+        },
+        {
+          "rank": 8,
+          "school": "Ole Miss",
+          "teamId": 145,
+          "conference": "SEC",
+          "record": "2-0",
+          "points": "1216",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 9,
+          "school": "Texas A&M",
+          "teamId": 245,
+          "conference": "SEC",
+          "record": "2-0",
+          "points": "1165",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 10,
+          "school": "Alabama",
+          "teamId": 333,
+          "conference": "SEC",
+          "record": "2-0",
+          "points": "1068",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 11,
+          "school": "BYU",
+          "teamId": 252,
+          "conference": "Big 12",
+          "record": "2-0",
+          "points": "966",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 12,
+          "school": "USC",
+          "teamId": 30,
+          "conference": "Big Ten",
+          "record": "3-0",
+          "points": "944",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 13,
+          "school": "Texas Tech",
+          "teamId": 2641,
+          "conference": "Big 12",
+          "record": "2-0",
+          "points": "910",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 14,
+          "school": "Penn State",
+          "teamId": 213,
+          "conference": "Big Ten",
+          "record": "2-0",
+          "points": "692",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 15,
+          "school": "Tennessee",
+          "teamId": 2633,
+          "conference": "SEC",
+          "record": "2-0",
+          "points": "676",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 16,
+          "school": "SMU",
+          "teamId": 2567,
+          "conference": "ACC",
+          "record": "2-0",
+          "points": "636",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 17,
+          "school": "Utah",
+          "teamId": 254,
+          "conference": "Big 12",
+          "record": "2-0",
+          "points": "558",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 18,
+          "school": "Iowa",
+          "teamId": 2294,
+          "conference": "Big Ten",
+          "record": "2-0",
+          "points": "391",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 19,
+          "school": "Michigan",
+          "teamId": 130,
+          "conference": "Big Ten",
+          "record": "2-0",
+          "points": "382",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 20,
+          "school": "Missouri",
+          "teamId": 142,
+          "conference": "SEC",
+          "record": "2-0",
+          "points": "344",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 21,
+          "school": "Oregon",
+          "teamId": 2483,
+          "conference": "Big Ten",
+          "record": "1-1",
+          "points": "324",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 22,
+          "school": "Houston",
+          "teamId": 248,
+          "conference": "Big 12",
+          "record": "2-0",
+          "points": "292",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 23,
+          "school": "Louisville",
+          "teamId": 97,
+          "conference": "ACC",
+          "record": "1-1",
+          "points": "244",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 24,
+          "school": "Oklahoma",
+          "teamId": 201,
+          "conference": "SEC",
+          "record": "1-1",
+          "points": "222",
+          "firstPlaceVotes": 0
+        },
+        {
+          "rank": 25,
+          "school": "Virginia",
+          "teamId": 258,
+          "conference": "ACC",
+          "record": "2-0",
+          "points": "182",
+          "firstPlaceVotes": 0
+        }
+      ]
+    },
+    "votes": [
+      {
+        "teamId": 251,
+        "team": "Texas",
+        "rank": 1,
+        "points": 1678
+      },
+      {
+        "teamId": 61,
+        "team": "Georgia",
+        "rank": 2,
+        "points": 1551
+      },
+      {
+        "teamId": 87,
+        "team": "Notre Dame",
+        "rank": 3,
+        "points": 1531
+      },
+      {
+        "teamId": 84,
+        "team": "Indiana",
+        "rank": 4,
+        "points": 1466
+      },
+      {
+        "teamId": 2390,
+        "team": "Miami",
+        "rank": 5,
+        "points": 1452
+      },
+      {
+        "teamId": 194,
+        "team": "Ohio State",
+        "rank": 6,
+        "points": 1407
+      },
+      {
+        "teamId": 99,
+        "team": "LSU",
+        "rank": 7,
+        "points": 1334
+      },
+      {
+        "teamId": 145,
+        "team": "Ole Miss",
+        "rank": 8,
+        "points": 1216
+      },
+      {
+        "teamId": 245,
+        "team": "Texas A&M",
+        "rank": 9,
+        "points": 1165
+      },
+      {
+        "teamId": 333,
+        "team": "Alabama",
+        "rank": 10,
+        "points": 1068
+      },
+      {
+        "teamId": 252,
+        "team": "BYU",
+        "rank": 11,
+        "points": 966
+      },
+      {
+        "teamId": 30,
+        "team": "USC",
+        "rank": 12,
+        "points": 944
+      },
+      {
+        "teamId": 2641,
+        "team": "Texas Tech",
+        "rank": 13,
+        "points": 910
+      },
+      {
+        "teamId": 213,
+        "team": "Penn State",
+        "rank": 14,
+        "points": 692
+      },
+      {
+        "teamId": 2633,
+        "team": "Tennessee",
+        "rank": 15,
+        "points": 676
+      },
+      {
+        "teamId": 2567,
+        "team": "SMU",
+        "rank": 16,
+        "points": 636
+      },
+      {
+        "teamId": 254,
+        "team": "Utah",
+        "rank": 17,
+        "points": 558
+      },
+      {
+        "teamId": 2294,
+        "team": "Iowa",
+        "rank": 18,
+        "points": 391
+      },
+      {
+        "teamId": 130,
+        "team": "Michigan",
+        "rank": 19,
+        "points": 382
+      },
+      {
+        "teamId": 142,
+        "team": "Missouri",
+        "rank": 20,
+        "points": 344
+      },
+      {
+        "teamId": 2483,
+        "team": "Oregon",
+        "rank": 21,
+        "points": 324
+      },
+      {
+        "teamId": 248,
+        "team": "Houston",
+        "rank": 22,
+        "points": 292
+      },
+      {
+        "teamId": 97,
+        "team": "Louisville",
+        "rank": 23,
+        "points": 244
+      },
+      {
+        "teamId": 201,
+        "team": "Oklahoma",
+        "rank": 24,
+        "points": 222
+      },
+      {
+        "teamId": 258,
+        "team": "Virginia",
+        "rank": 25,
+        "points": 182
+      },
+      {
+        "teamId": 264,
+        "team": "Washington",
+        "rank": null,
+        "points": 172
+      },
+      {
+        "teamId": 57,
+        "team": "Florida",
+        "rank": null,
+        "points": 83
+      },
+      {
+        "teamId": 68,
+        "team": "Boise State",
+        "rank": null,
+        "points": 57
+      },
+      {
+        "teamId": 197,
+        "team": "Oklahoma State",
+        "rank": null,
+        "points": 36
+      },
+      {
+        "teamId": 2711,
+        "team": "Western Michigan",
+        "rank": null,
+        "points": 35
+      },
+      {
+        "teamId": 202,
+        "team": "Tulsa",
+        "rank": null,
+        "points": 18
+      },
+      {
+        "teamId": 344,
+        "team": "Mississippi State",
+        "rank": null,
+        "points": 17
+      },
+      {
+        "teamId": 2579,
+        "team": "South Carolina",
+        "rank": null,
+        "points": 15
+      },
+      {
+        "teamId": 259,
+        "team": "Virginia Tech",
+        "rank": null,
+        "points": 11
+      },
+      {
+        "teamId": 26,
+        "team": "UCLA",
+        "rank": null,
+        "points": 9
+      },
+      {
+        "teamId": 256,
+        "team": "James Madison",
+        "rank": null,
+        "points": 6
+      },
+      {
+        "teamId": 12,
+        "team": "Arizona",
+        "rank": null,
+        "points": 5
+      },
+      {
+        "teamId": 2449,
+        "team": "North Dakota State",
+        "rank": null,
+        "points": 3
+      },
+      {
+        "teamId": 221,
+        "team": "Pittsburgh",
+        "rank": null,
+        "points": 1
+      },
+      {
+        "teamId": 2306,
+        "team": "Kansas State",
+        "rank": null,
+        "points": 1
+      }
+    ],
+    "retrievedAt": "2026-09-13T18:23:12.751163+00:00",
+    "note": "Transcribed from official AP live table (Week 2, All Voters). Fractional ID is internal and provisional, not an archive ID; replaced when archive supplies this release."
+  }
+]

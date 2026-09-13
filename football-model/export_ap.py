@@ -7,6 +7,7 @@ import numpy as np
 from ap_preseason import preseason_forecast
 import ap_movement
 from ap_poll_context import parse_votes
+from ap_official_updates import merge_updates
 from ap_simulator import build_simulator
 from cfbpredict.cfbd import CFBDClient
 from cfbpredict.config import cfbd_api_key
@@ -62,6 +63,9 @@ def main():
                     polls.append(p)
         polls.sort(key=lambda p:p['id']);dump_gzip(ROOT/'ap/polls.json.gz',polls)
         dump_gzip(ROOT/'ap/receiving_votes.json.gz',votes)
+    updates_path=ROOT/'ap/official_updates.json'
+    polls,votes=merge_updates(polls,votes,json.loads(updates_path.read_text()) if updates_path.exists() else [])
+    dump_gzip(ROOT/'ap/polls.json.gz',polls);dump_gzip(ROOT/'ap/receiving_votes.json.gz',votes)
     raw=list({g['id']:g for g in json.loads(gzip.decompress((ROOT/'games.json.gz').read_bytes()))}.values())
     keep=['id','season','week','seasonType','startDate','completed','homeId','homeTeam','awayId','awayTeam','homePoints','awayPoints','homeClassification','awayClassification','homeConference','awayConference','neutralSite']
     fbs_ids={t['team_id'] for t in football['teams']}
@@ -103,10 +107,15 @@ def main():
     previous_output=json.loads(output_path.read_text()) if output_path.exists() else {}
     # Preserve a published next-poll forecast after its target becomes official.
     saved=previous_output.get('publishedForecasts',{})
+    # Re-key preserved forecasts when the archive replaces a provisional release ID.
+    for update in json.loads(updates_path.read_text()) if updates_path.exists() else []:
+        old_key=str(update['poll']['id'])
+        actual=next((p for p in polls if p.get('releaseDate')==update['poll']['releaseDate'] and p['season']==update['poll']['season']),None)
+        if actual and old_key in saved:saved.setdefault(str(actual['id']),saved[old_key])
     previous_forecast=previous_output.get('next',{})
     if previous_forecast and previous_forecast.get('previousPollId')!=latest['id']:
-        key=str(previous_forecast['previousPollId']+1)
-        actual=next((p for p in polls if str(p['id'])==key),None)
+        actual=next((p for p in polls if p.get('releaseDate')==previous_forecast.get('estimatedReleaseDate')),None)
+        key=str(actual['id']) if actual else None
         if actual and actual.get('cutoff') and timestamp(previous_output['asOf'])<timestamp(actual['cutoff']):
             saved.setdefault(key,{'asOf':previous_output['asOf'],'rows':previous_forecast['rows'],'basis':'Projected remaining games','modelVersion':previous_output.get('modelVersion','legacy-ap-regression')})
     # These reconstructions exclude the target ranking but are distinct from stored live forecasts.

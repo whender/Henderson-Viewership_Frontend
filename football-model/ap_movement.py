@@ -4,7 +4,7 @@ import numpy as np
 import ap_market as e
 import ap_poll_context as poll_context
 v=e.v;ap=e.ap
-VERSION="ap-movement-v3"
+VERSION="ap-movement-v4"
 CONTEXT=['early','early_previous','early_underperformance','early_disappointing_win','early_home_disappointment','top10_disappointment','early_top10_disappointment','peer_margin','peer_surprise','peer_ranked_wins','peer_margin_gap','peer_surprise_gap','impressive_peers','above_margin','above_surprise']
 
 def context_features(base,market,teams):
@@ -22,11 +22,27 @@ def context_features(base,market,teams):
         out.append([early[i],early[i]*base[i,0],early[i]*min(surprise[i],0),early[i]*dw,early[i]*recent[i,ix['home_disappointing_win']],dw*int(p<=10),dw*early[i]*int(p<=10),pm,ps,avg(quality,below),pm-margin[i],ps-surprise[i],impressive,avg(margin,above),avg(surprise,above)])
     return np.array(out)
 
+def histogram_edges(values):
+    """Keep quantile bins while separating rare values at the observed extremes.
+
+    A quantile equal to the minimum creates an empty lower bin with right-sided
+    search. For sparse flags that can collapse every observation into one bin.
+    Move endpoint thresholds between adjacent distinct training values instead.
+    """
+    unique = np.unique(values)
+    if len(unique) < 2:
+        return np.array([], dtype=float)
+    edges = np.unique(np.quantile(values, np.linspace(0, 1, 25)[1:-1]))
+    edges[edges == unique[0]] = unique[0] / 2 + unique[1] / 2
+    edges[edges == unique[-1]] = unique[-2] / 2 + unique[-1] / 2
+    return np.unique(edges)
+
+
 class BoostedMovement:
     """Small fixed histogram gradient boosting model; quantiles fitted on training only."""
     def __init__(self,trees=100,depth=3,min_leaf=45,rate=.05):self.n_trees=trees;self.depth=depth;self.min_leaf=min_leaf;self.rate=rate
     def fit(self,x,y,w):
-        self.edges=[np.unique(np.quantile(x[:,j],np.linspace(0,1,25)[1:-1])) for j in range(x.shape[1])]
+        self.edges=[histogram_edges(x[:,j]) for j in range(x.shape[1])]
         bins=self.bin(x);self.bias=float(np.average(y,weights=w));pred=np.full(len(y),self.bias);self.trees=[]
         def build(ids,residual,depth):
             wt=w[ids];total=wt.sum();weighted=(wt*residual[ids]);mean=weighted.sum()/total

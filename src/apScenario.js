@@ -14,7 +14,7 @@ export function validateScores(home, away) {
 }
 
 export function scenarioFeatures(payload, overrides = {}) {
-  if (payload.schemaVersion !== 1 || payload.modelVersion !== 'ap-movement-v3') throw new Error('This scenario model needs an update.');
+  if (payload.schemaVersion !== 1 || !['ap-movement-v3', 'ap-movement-v4'].includes(payload.modelVersion)) throw new Error('This scenario model needs an update.');
   const { teams, model } = payload, names = model.features;
   const index = Object.fromEntries(names.map((n, i) => [n, i]));
   const x = payload.baseFeatures.map(row => [...row]);

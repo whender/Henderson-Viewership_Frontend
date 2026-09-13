@@ -1,0 +1,203 @@
+{
+  "development": {
+    "original": {
+      "poll": {
+        "polls": 87,
+        "rankError": 1.128258178603006,
+        "overlap": 0.9458355437665781,
+        "winningTop10Cases": 577,
+        "actualBigDrops": 11,
+        "caughtBigDrops": 3,
+        "falseAlarms": 3,
+        "bigDropRecall": 0.2727272727272727,
+        "bigDropPrecision": 0.5,
+        "falseAlarmRate": 0.00530035335689046,
+        "bigDropRankError": 2.0,
+        "winningTop10RankError": 0.5268630849220104,
+        "comfortableCases": 240,
+        "comfortableRankError": 0.44583333333333336
+      },
+      "newcomers": {
+        "polls": 87,
+        "actualNewcomers": 226,
+        "predictedNewcomers": 181,
+        "hits": 125,
+        "misses": 101,
+        "falseAlarms": 56,
+        "recall": 0.5530973451327433,
+        "precision": 0.6906077348066298,
+        "exactSetPolls": 20,
+        "allActualCaughtPolls": 21,
+        "pollsWithActualNewcomers": 85,
+        "allCaughtWhenNewcomersExist": 19,
+        "hitRankMAE": 1.88,
+        "allEntryRankMAECapped26": 2.3628318584070795,
+        "missesPredicted26to30": 70,
+        "entry1to20": {
+          "actual": 41,
+          "hits": 29,
+          "recall": 0.7073170731707317
+        },
+        "entry21to25": {
+          "actual": 185,
+          "hits": 96,
+          "recall": 0.518918918918919
+        }
+      },
+      "late": {
+        "cases": 123,
+        "cappedRankError": 1.1544715447154472
+      }
+    },
+    "fixed": {
+      "poll": {
+        "polls": 87,
+        "rankError": 1.0574889478337755,
+        "overlap": 0.9453757736516355,
+        "winningTop10Cases": 577,
+        "actualBigDrops": 11,
+        "caughtBigDrops": 4,
+        "falseAlarms": 2,
+        "bigDropRecall": 0.36363636363636365,
+        "bigDropPrecision": 0.6666666666666666,
+        "falseAlarmRate": 0.0035335689045936395,
+        "bigDropRankError": 1.8181818181818181,
+        "winningTop10RankError": 0.43154246100519933,
+        "comfortableCases": 240,
+        "comfortableRankError": 0.375
+      },
+      "newcomers": {
+        "polls": 87,
+        "actualNewcomers": 226,
+        "predictedNewcomers": 176,
+        "hits": 121,
+        "misses": 105,
+        "falseAlarms": 55,
+        "recall": 0.5353982300884956,
+        "precision": 0.6875,
+        "exactSetPolls": 18,
+        "allActualCaughtPolls": 21,
+        "pollsWithActualNewcomers": 85,
+        "allCaughtWhenNewcomersExist": 19,
+        "hitRankMAE": 1.8264462809917354,
+        "allEntryRankMAECapped26": 2.3185840707964602,
+        "missesPredicted26to30": 78,
+        "entry1to20": {
+          "actual": 41,
+          "hits": 30,
+          "recall": 0.7317073170731707
+        },
+        "entry21to25": {
+          "actual": 185,
+          "hits": 91,
+          "recall": 0.4918918918918919
+        }
+      },
+      "late": {
+        "cases": 123,
+        "cappedRankError": 1.08130081300813
+      }
+    }
+  },
+  "followup2025": {
+    "original": {
+      "poll": {
+        "polls": 15,
+        "rankError": 1.1306666666666667,
+        "overlap": 0.9466666666666669,
+        "winningTop10Cases": 97,
+        "actualBigDrops": 1,
+        "caughtBigDrops": 0,
+        "falseAlarms": 0,
+        "bigDropRecall": 0.0,
+        "bigDropPrecision": null,
+        "falseAlarmRate": 0.0,
+        "bigDropRankError": 2.0,
+        "winningTop10RankError": 0.5567010309278351,
+        "comfortableCases": 37,
+        "comfortableRankError": 0.5135135135135135
+      },
+      "newcomers": {
+        "polls": 15,
+        "actualNewcomers": 40,
+        "predictedNewcomers": 29,
+        "hits": 24,
+        "misses": 16,
+        "falseAlarms": 5,
+        "recall": 0.6,
+        "precision": 0.8275862068965517,
+        "exactSetPolls": 3,
+        "allActualCaughtPolls": 4,
+        "pollsWithActualNewcomers": 14,
+        "allCaughtWhenNewcomersExist": 3,
+        "hitRankMAE": 1.8333333333333333,
+        "allEntryRankMAECapped26": 1.95,
+        "missesPredicted26to30": 15,
+        "entry1to20": {
+          "actual": 6,
+          "hits": 5,
+          "recall": 0.8333333333333334
+        },
+        "entry21to25": {
+          "actual": 34,
+          "hits": 19,
+          "recall": 0.5588235294117647
+        }
+      },
+      "late": {
+        "cases": 12,
+        "cappedRankError": 1.5833333333333333
+      }
+    },
+    "fixed": {
+      "poll": {
+        "polls": 15,
+        "rankError": 1.0186666666666666,
+        "overlap": 0.9466666666666669,
+        "winningTop10Cases": 97,
+        "actualBigDrops": 1,
+        "caughtBigDrops": 0,
+        "falseAlarms": 0,
+        "bigDropRecall": 0.0,
+        "bigDropPrecision": null,
+        "falseAlarmRate": 0.0,
+        "bigDropRankError": 2.0,
+        "winningTop10RankError": 0.4742268041237113,
+        "comfortableCases": 37,
+        "comfortableRankError": 0.43243243243243246
+      },
+      "newcomers": {
+        "polls": 15,
+        "actualNewcomers": 40,
+        "predictedNewcomers": 29,
+        "hits": 23,
+        "misses": 17,
+        "falseAlarms": 6,
+        "recall": 0.575,
+        "precision": 0.7931034482758621,
+        "exactSetPolls": 3,
+        "allActualCaughtPolls": 4,
+        "pollsWithActualNewcomers": 14,
+        "allCaughtWhenNewcomersExist": 3,
+        "hitRankMAE": 1.7391304347826086,
+        "allEntryRankMAECapped26": 1.875,
+        "missesPredicted26to30": 15,
+        "entry1to20": {
+          "actual": 6,
+          "hits": 5,
+          "recall": 0.8333333333333334
+        },
+        "entry21to25": {
+          "actual": 34,
+          "hits": 18,
+          "recall": 0.5294117647058824
+        }
+      },
+      "late": {
+        "cases": 12,
+        "cappedRankError": 1.25
+      }
+    }
+  },
+  "method": "Only quantile endpoint handling changed. Same features, hyperparameters, chronological folds and calibration. 2025/2026 previously inspected follow-ups; no target ranks used as inputs."
+}

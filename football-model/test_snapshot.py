@@ -116,7 +116,16 @@ class PregameHistoryTests(unittest.TestCase):
         before = reconstruct_pregame(model, history, advanced, game.start_date)
         changed = [replace(g, home_points=100, away_points=0)
                    if g.start_date >= game.start_date and g.completed else g for g in history]
-        after = reconstruct_pregame(model, changed, advanced, game.start_date)
+        import copy
+        altered = copy.deepcopy(advanced)
+        future_ids = {g.id for g in history if g.start_date >= game.start_date}
+        for row in altered:
+            if row['gameId'] in future_ids:
+                for side in ('offense', 'defense'):
+                    row[side]['ppa'] = 20
+                    row[side]['totalPPA'] = 20 * row[side]['plays']
+                    row[side]['successRate'] = 1
+        after = reconstruct_pregame(model, changed, altered, game.start_date)
         p1 = before.predict_game(game, history)
         p2 = after.predict_game(game, changed)
         self.assertAlmostEqual(p1.predicted_margin, p2.predicted_margin)

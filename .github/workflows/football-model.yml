@@ -23,8 +23,11 @@ jobs:
       - name: Refresh results and publish model forecasts
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          FIREBASE_CREDENTIALS_JSON: ${{ secrets.FIREBASE_CREDENTIALS_JSON }}
           OPENBLAS_NUM_THREADS: '1'
-        run: python football-model/export.py --refresh
+        run: |
+          test -n "$FIREBASE_CREDENTIALS_JSON" || { echo 'Missing Firebase archive credential'; exit 1; }
+          python football-model/export.py --refresh
       - name: Publish AP poll outlook
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
@@ -37,7 +40,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/football/ap-simulator.json football-model/ap/receiving_votes.json.gz football-model/ap/lines.json.gz public/football/cfp.json football-model/cfp/polls.json public/football/model.json football-model/model.json football-model/games.json.gz football-model/advanced.json.gz public/football/ap.json football-model/ap/polls.json.gz football-model/ap/games.json.gz
+          git add football-model/forecast-archive-pending.json.gz public/football/ap-simulator.json football-model/ap/receiving_votes.json.gz football-model/ap/lines.json.gz public/football/cfp.json football-model/cfp/polls.json public/football/model.json football-model/model.json football-model/games.json.gz football-model/advanced.json.gz public/football/ap.json football-model/ap/polls.json.gz football-model/ap/games.json.gz
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh football model rankings and game forecasts'
             git pull --rebase origin main

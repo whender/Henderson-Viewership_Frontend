@@ -79,12 +79,15 @@ def saved_pregame(previous, game, snapshot_as_of):
         return None
     time = datetime.fromisoformat(cutoff)
     source = previous.get('predictionSource', 'current')
+    observed = previous.get('observedAt') or (snapshot_as_of if source == 'current' else None)
+    if observed and datetime.fromisoformat(observed.replace('Z','+00:00')) >= game.start_date:
+        return None
     if time > game.start_date or (time == game.start_date and source != 'reconstructed'):
         return None
     return previous['prediction'], 'reconstructed' if source == 'reconstructed' else 'archived', cutoff
 
 
-def export(model, records, output, advanced):
+def export(model, records, output, advanced, archive=None):
     history = normalize_games(records)
     games = [g for g in history if g.season == model.season]
     previous_snapshot = json.loads(output.read_text()) if output.exists() else {}
@@ -101,8 +104,11 @@ def export(model, records, output, advanced):
         if game.home_team not in fbs_names and game.away_team not in fbs_names:
             continue
         source, cutoff = 'current', model.as_of.isoformat()
-        if game.completed:
-            saved = saved_pregame(previous_games.get(game.id), game, previous_snapshot.get('asOf'))
+        archived_row = (archive or {}).get(game.id)
+        if game.completed or game.start_date <= datetime.now(UTC):
+            candidates = [saved_pregame(archived_row, game, None), saved_pregame(previous_games.get(game.id), game, previous_snapshot.get('generatedAt') or previous_snapshot.get('asOf'))]
+            valid = [p for p in candidates if p]
+            saved = max(valid, key=lambda p: (p[1] == 'archived', datetime.fromisoformat(p[2]))) if valid else None
             if saved:
                 prediction, source, cutoff = saved
             else:
@@ -114,7 +120,9 @@ def export(model, records, output, advanced):
                 source, cutoff = 'reconstructed', game.start_date.isoformat()
         else:
             prediction = asdict(model.predict_game(game, games))
-        scheduled.append(dict(id=game.id, week=game.week, seasonType=game.season_type, date=game.start_date.isoformat(),
+        evidence = archived_row if archived_row and cutoff == archived_row.get('predictionAsOf') and prediction == archived_row.get('prediction') else previous_games.get(game.id, {})
+        proof = {k: evidence[k] for k in ('archiveId', 'observedAt', 'provenance') if source == 'archived' and k in evidence}
+        scheduled.append(dict(**proof, id=game.id, week=game.week, seasonType=game.season_type, date=game.start_date.isoformat(),
             home=game.home_team, away=game.away_team, neutral=game.neutral_site,
             homeLogo=f"https://a.espncdn.com/i/teamlogos/ncaa/500/{game.home_id}.png" if game.home_id else None,
             awayLogo=f"https://a.espncdn.com/i/teamlogos/ncaa/500/{game.away_id}.png" if game.away_id else None,
@@ -173,7 +181,32 @@ if __name__ == '__main__':
         advanced = json.load(f)
     if args.refresh:
         records, advanced = refresh(model, records)
-    export(model, records, args.output, advanced)
+    archive_db = None
+    archived = {}
+    queue_path = ROOT / 'forecast-archive-pending.json.gz'
+    from forecast_archive import client, load, save, records as archive_records, read_queue, write_queue, merge_latest
+    pending = read_queue(queue_path)
+    if os.environ.get('FIREBASE_CREDENTIALS_JSON'):
+        archive_db = client()
+        from google.api_core.exceptions import ResourceExhausted, RetryError
+        try:
+            archived = load(archive_db, model.season)
+        except (ResourceExhausted, RetryError) as exc:
+            print(f'Firebase read deferred ({type(exc).__name__}); using durable queue and previous published snapshot.')
+    archived = merge_latest(list(archived.values()) + pending)
+    export(model, records, args.output, advanced, archived)
+    if archive_db is not None:
+        snapshot = json.loads(args.output.read_text())
+        pending = list({e['archiveId']:e for e in pending + archive_records(snapshot, datetime.now(UTC).isoformat(), {'type':'live-export'})}.values())
+        write_queue(queue_path,pending)
+        from google.api_core.exceptions import ResourceExhausted, RetryError
+        try:
+            count = save(archive_db, pending)
+        except (ResourceExhausted, RetryError) as exc:
+            print(f'Firebase archive deferred ({type(exc).__name__}); {len(pending)} versions retained in durable repository queue.')
+        else:
+            write_queue(queue_path,[])
+            print(f'Archived {count} pregame forecast versions in Firestore.')
     if args.refresh:
         model.save(args.model)
         with gzip.open(args.advanced, 'wt') as f:

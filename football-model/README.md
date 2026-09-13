@@ -187,3 +187,43 @@ provided they fit before the release cutoff. Partial scores never become final
 resume results: the saved football prediction supplies the projected outcome
 until the feed marks the game completed. AP custom scenarios inherit these
 defaults; the score editor still only permits edits to games before kickoff.
+
+## Pregame spread archive and reconstruction audit
+
+The updater writes to the existing `hendersonviewership` Firestore project in a
+separate `football-pregame-forecasts` collection; viewership documents are untouched.
+Each `{season}_{gameId}` document holds the latest verified pregame forecast, with
+all timestamped versions under its `versions` subcollection. Content-derived IDs
+make retries idempotent. Versions store the complete margin/probability output,
+teams, venue flag, kickoff, model cutoff, observation time, and provenance.
+The server credential is the GitHub secret `FIREBASE_CREDENTIALS_JSON`; it is never
+included in browser files. A missing credential stops the scheduled publisher.
+
+A live forecast must be generated and observed strictly before kickoff to enter
+the archive. Historical imports require a pre-kickoff Git commit as well as a
+pre-kickoff generation and model timestamp. Reconstructed forecasts are never
+imported as originals. The parent document advances transactionally only to a
+later observation; previous versions remain available.
+
+Once kickoff passes, the schedule freezes the latest eligible archived forecast,
+even while the game remains in progress. Firestore can restore it if the previous
+JSON snapshot loses it. Original lines take priority over reconstruction. The
+public row carries its archive ID and provenance when available.
+
+Reconstruction refits score and efficiency ratings at kickoff using historical
+availability buffers and excludes target/later outcomes and advanced statistics.
+It retains the installed annual priors, calibration and margin layers, and may
+use subsequently corrected historical source data. It is therefore a retrospective
+estimate, not proof of a line actually published at that time. Run
+`python football-model/audit_reconstructions.py` to compare every displayed
+reconstruction to its cutoff-model calculation. Tests also perturb target/later
+scores and efficiency data to verify that those cannot affect the result.
+
+If Firebase reports quota exhaustion, `forecast-archive-pending.json.gz` keeps
+all unacknowledged versions in Git. Every refresh merges that queue with new
+forecasts, retries missing version writes, and transactionally advances the
+latest pointers. Already stored versions are skipped. The queue clears only
+after both versions and pointers succeed. The exporter can restore historical
+lines directly from the queue while Firebase is unavailable. The September 13
+backfill hit Firebase's quota; increasing Firebase capacity may be necessary
+for every-half-hour archiving of the full future schedule.

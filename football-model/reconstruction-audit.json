@@ -1,0 +1,523 @@
+{
+  "date": "2026-09-13",
+  "checkedReconstructedBeforeRecovery": 163,
+  "recoveredOriginals": 64,
+  "remainingReconstructed": 99,
+  "meanAbsoluteDifferenceFromOriginal": 0.24912888329835722,
+  "maxAbsoluteDifferenceFromOriginal": 1.5178310868840734,
+  "note": "All 163 pre-recovery reconstructed forecasts matched cutoff-model calculations; originals replace 64 where pregame Git evidence exists. Remaining reconstructions retain current annual priors and calibration.",
+  "recovered": [
+    {
+      "gameId": 401856782,
+      "home": "Oklahoma State",
+      "away": "Oregon",
+      "reconstructedMargin": -27.404912793165078,
+      "originalMargin": -27.409552064763833,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401858218,
+      "home": "North Carolina",
+      "away": "East Tennessee State",
+      "reconstructedMargin": 32.28398077117211,
+      "originalMargin": 32.28565533314581,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401856791,
+      "home": "West Virginia",
+      "away": "UT Martin",
+      "reconstructedMargin": 29.438022646979142,
+      "originalMargin": 29.44006673945269,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401866413,
+      "home": "Ball State",
+      "away": "Stony Brook",
+      "reconstructedMargin": 20.431027541170263,
+      "originalMargin": 20.433903614645164,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401856674,
+      "home": "Kentucky",
+      "away": "Alabama",
+      "reconstructedMargin": -4.213636626102972,
+      "originalMargin": -4.211061402640255,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401856677,
+      "home": "Minnesota",
+      "away": "Mississippi State",
+      "reconstructedMargin": 1.039343084803056,
+      "originalMargin": 1.0399527203414152,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401856785,
+      "home": "Colorado",
+      "away": "Weber State",
+      "reconstructedMargin": 32.61743309034946,
+      "originalMargin": 32.619814828477466,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401856790,
+      "home": "Pittsburgh",
+      "away": "UCF",
+      "reconstructedMargin": 10.151755949118906,
+      "originalMargin": 10.149156507406387,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401856810,
+      "home": "BYU",
+      "away": "Arizona",
+      "reconstructedMargin": 7.288607669735952,
+      "originalMargin": 7.287174152146898,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401858216,
+      "home": "Syracuse",
+      "away": "California",
+      "reconstructedMargin": 7.394920970221566,
+      "originalMargin": 7.404629726934984,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401858217,
+      "home": "Illinois",
+      "away": "Duke",
+      "reconstructedMargin": 9.187886167653554,
+      "originalMargin": 9.190331905505955,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401858440,
+      "home": "Michigan State",
+      "away": "Eastern Michigan",
+      "reconstructedMargin": 7.378889336334926,
+      "originalMargin": 7.382869876275628,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401858444,
+      "home": "UConn",
+      "away": "Maryland",
+      "reconstructedMargin": -1.8673299755467951,
+      "originalMargin": -1.8640662612181376,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401858446,
+      "home": "Washington",
+      "away": "Utah State",
+      "reconstructedMargin": 16.85515400929857,
+      "originalMargin": 16.856044793959203,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401859184,
+      "home": "Notre Dame",
+      "away": "Rice",
+      "reconstructedMargin": 45.48644157402051,
+      "originalMargin": 45.485239438686826,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401860884,
+      "home": "Texas State",
+      "away": "UTSA",
+      "reconstructedMargin": -3.2189303428014435,
+      "originalMargin": -3.2252077466049798,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401862708,
+      "home": "UAB",
+      "away": "UL Monroe",
+      "reconstructedMargin": 8.102685708678479,
+      "originalMargin": 8.107764049781924,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401866412,
+      "home": "Akron",
+      "away": "Robert Morris",
+      "reconstructedMargin": 30.28775828158998,
+      "originalMargin": 30.29285306846076,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401866419,
+      "home": "Toledo",
+      "away": "Central Connecticut",
+      "reconstructedMargin": 35.07256667106652,
+      "originalMargin": 35.07854694631807,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401866420,
+      "home": "Massachusetts",
+      "away": "Sacred Heart",
+      "reconstructedMargin": 19.841378829996632,
+      "originalMargin": 19.84425793524829,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401862705,
+      "home": "North Texas",
+      "away": "UNLV",
+      "reconstructedMargin": 1.2579625085467836,
+      "originalMargin": 1.2577922075379164,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401858223,
+      "home": "SMU",
+      "away": "UC Davis",
+      "reconstructedMargin": 30.686793904923547,
+      "originalMargin": 30.691169185451336,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401864506,
+      "home": "Wyoming",
+      "away": "Northern Colorado",
+      "reconstructedMargin": 28.53344846331776,
+      "originalMargin": 28.53565891713099,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401865252,
+      "home": "New Mexico",
+      "away": "Mercyhurst",
+      "reconstructedMargin": 41.73531968007315,
+      "originalMargin": 41.74156364392685,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401868326,
+      "home": "Troy",
+      "away": "Alabama State",
+      "reconstructedMargin": 21.224221059908214,
+      "originalMargin": 21.22879348680211,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401856684,
+      "home": "Vanderbilt",
+      "away": "Delaware",
+      "reconstructedMargin": 22.32016408006316,
+      "originalMargin": 22.32178599928618,
+      "forecastAsOf": "2026-09-12T10:29:04.978757+00:00"
+    },
+    {
+      "gameId": 401856672,
+      "home": "Florida",
+      "away": "Campbell",
+      "reconstructedMargin": 40.88770638394543,
+      "originalMargin": 41.34841084382711,
+      "forecastAsOf": "2026-09-12T21:13:18.016419+00:00"
+    },
+    {
+      "gameId": 401860881,
+      "home": "Boise State",
+      "away": "Memphis",
+      "reconstructedMargin": 7.123010421499019,
+      "originalMargin": 6.139580106332788,
+      "forecastAsOf": "2026-09-12T21:36:17.594998+00:00"
+    },
+    {
+      "gameId": 401866414,
+      "home": "Florida International",
+      "away": "Buffalo",
+      "reconstructedMargin": 6.576948463770166,
+      "originalMargin": 6.03323545896317,
+      "forecastAsOf": "2026-09-12T21:36:17.594998+00:00"
+    },
+    {
+      "gameId": 401866418,
+      "home": "Ohio",
+      "away": "Jacksonville State",
+      "reconstructedMargin": -0.5534939299368578,
+      "originalMargin": -0.305373567579704,
+      "forecastAsOf": "2026-09-12T21:36:17.594998+00:00"
+    },
+    {
+      "gameId": 401866421,
+      "home": "Western Michigan",
+      "away": "Monmouth",
+      "reconstructedMargin": 27.842040351324663,
+      "originalMargin": 28.40324309734718,
+      "forecastAsOf": "2026-09-12T22:12:21.328095+00:00"
+    },
+    {
+      "gameId": 401856680,
+      "home": "South Carolina",
+      "away": "Towson",
+      "reconstructedMargin": 41.32201644865916,
+      "originalMargin": 41.92007095619364,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401856681,
+      "home": "Georgia Tech",
+      "away": "Tennessee",
+      "reconstructedMargin": -5.644503674274059,
+      "originalMargin": -5.446391019706543,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401856786,
+      "home": "Cincinnati",
+      "away": "Western Carolina",
+      "reconstructedMargin": 28.273213703380087,
+      "originalMargin": 29.085045665695144,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401856787,
+      "home": "Houston",
+      "away": "Southern",
+      "reconstructedMargin": 46.748800001596585,
+      "originalMargin": 47.200547927042614,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401858441,
+      "home": "Nebraska",
+      "away": "Bowling Green",
+      "reconstructedMargin": 17.189228854488576,
+      "originalMargin": 17.158661676010222,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401860882,
+      "home": "Colorado State",
+      "away": "Southern Utah",
+      "reconstructedMargin": 18.30846291644683,
+      "originalMargin": 18.552176583602908,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401862707,
+      "home": "Sam Houston",
+      "away": "Tulsa",
+      "reconstructedMargin": -3.2248106514428496,
+      "originalMargin": -4.742641738326923,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401864503,
+      "home": "Northern Illinois",
+      "away": "Illinois State",
+      "reconstructedMargin": 9.272670811496942,
+      "originalMargin": 9.420131050479405,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401864575,
+      "home": "Tulane",
+      "away": "South Alabama",
+      "reconstructedMargin": 8.382831201783246,
+      "originalMargin": 8.451665552712344,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401868241,
+      "home": "Arkansas State",
+      "away": "West Georgia",
+      "reconstructedMargin": 27.056459419418204,
+      "originalMargin": 27.347045690490603,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401869955,
+      "home": "Kennesaw State",
+      "away": "Georgia State",
+      "reconstructedMargin": 3.5025625489300736,
+      "originalMargin": 3.18143463844293,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401871045,
+      "home": "Marshall",
+      "away": "Middle Tennessee",
+      "reconstructedMargin": 6.787616111482857,
+      "originalMargin": 6.787429029803588,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401871046,
+      "home": "Missouri State",
+      "away": "Lindenwood",
+      "reconstructedMargin": 25.080227685716455,
+      "originalMargin": 25.42589245031738,
+      "forecastAsOf": "2026-09-12T22:36:49.839133+00:00"
+    },
+    {
+      "gameId": 401858443,
+      "home": "UCLA",
+      "away": "San Diego State",
+      "reconstructedMargin": 4.815217208402769,
+      "originalMargin": 4.912041528183634,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401858447,
+      "home": "Wisconsin",
+      "away": "Western Illinois",
+      "reconstructedMargin": 39.63261266861609,
+      "originalMargin": 39.792030799641054,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401856682,
+      "home": "Texas",
+      "away": "Ohio State",
+      "reconstructedMargin": -6.7519619585541655,
+      "originalMargin": -6.888370175349694,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401856783,
+      "home": "Oregon State",
+      "away": "Texas Tech",
+      "reconstructedMargin": -27.2412828897218,
+      "originalMargin": -27.75416043648293,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401856788,
+      "home": "Iowa",
+      "away": "Iowa State",
+      "reconstructedMargin": 15.912478965193777,
+      "originalMargin": 15.548446466981758,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401858219,
+      "home": "Clemson",
+      "away": "Georgia Southern",
+      "reconstructedMargin": 9.634202936425693,
+      "originalMargin": 9.8200044411646,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401862703,
+      "home": "Florida Atlantic",
+      "away": "Navy",
+      "reconstructedMargin": -7.648173793071832,
+      "originalMargin": -7.652457823365102,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401867796,
+      "home": "LSU",
+      "away": "Louisiana Tech",
+      "reconstructedMargin": 23.7588452330298,
+      "originalMargin": 24.150604072235122,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401868008,
+      "home": "Coastal Carolina",
+      "away": "Fordham",
+      "reconstructedMargin": 32.726120163797304,
+      "originalMargin": 33.54018869942427,
+      "forecastAsOf": "2026-09-12T23:12:10.706542+00:00"
+    },
+    {
+      "gameId": 401856671,
+      "home": "Auburn",
+      "away": "Southern Miss",
+      "reconstructedMargin": 14.130038393946931,
+      "originalMargin": 14.293856642129468,
+      "forecastAsOf": "2026-09-12T23:36:22.112768+00:00"
+    },
+    {
+      "gameId": 401856676,
+      "home": "Ole Miss",
+      "away": "Charlotte",
+      "reconstructedMargin": 42.014327446029135,
+      "originalMargin": 42.38141886343096,
+      "forecastAsOf": "2026-09-12T23:36:22.112768+00:00"
+    },
+    {
+      "gameId": 401856789,
+      "home": "TCU",
+      "away": "Grambling",
+      "reconstructedMargin": 45.938989568296506,
+      "originalMargin": 46.45642360180727,
+      "forecastAsOf": "2026-09-12T23:36:22.112768+00:00"
+    },
+    {
+      "gameId": 401856784,
+      "home": "Baylor",
+      "away": "Prairie View A&M",
+      "reconstructedMargin": 30.278375116183454,
+      "originalMargin": 30.69654429345602,
+      "forecastAsOf": "2026-09-12T23:36:22.112768+00:00"
+    },
+    {
+      "gameId": 401864504,
+      "home": "San Jos\u00e9 State",
+      "away": "Cal Poly",
+      "reconstructedMargin": 24.899982188474837,
+      "originalMargin": 25.722291862525246,
+      "forecastAsOf": "2026-09-13T00:46:16.597938+00:00"
+    },
+    {
+      "gameId": 401864505,
+      "home": "UTEP",
+      "away": "Texas Southern",
+      "reconstructedMargin": 30.85944025780978,
+      "originalMargin": 31.011722341644663,
+      "forecastAsOf": "2026-09-13T00:46:16.597938+00:00"
+    },
+    {
+      "gameId": 401864502,
+      "home": "Air Force",
+      "away": "North Dakota State",
+      "reconstructedMargin": -7.3659886298341775,
+      "originalMargin": -8.19671904578385,
+      "forecastAsOf": "2026-09-13T01:52:23.327352+00:00"
+    },
+    {
+      "gameId": 401856670,
+      "home": "Utah",
+      "away": "Arkansas",
+      "reconstructedMargin": 9.861714580754079,
+      "originalMargin": 9.689056263827528,
+      "forecastAsOf": "2026-09-13T01:52:23.327352+00:00"
+    },
+    {
+      "gameId": 401860883,
+      "home": "Fresno State",
+      "away": "Sacramento State",
+      "reconstructedMargin": 6.090230514617434,
+      "originalMargin": 6.757688567667218,
+      "forecastAsOf": "2026-09-13T02:21:17.139860+00:00"
+    },
+    {
+      "gameId": 401864500,
+      "home": "Nevada",
+      "away": "Montana State",
+      "reconstructedMargin": 4.031892761820767,
+      "originalMargin": 4.643880270519913,
+      "forecastAsOf": "2026-09-13T02:21:17.139860+00:00"
+    },
+    {
+      "gameId": 401858445,
+      "home": "USC",
+      "away": "Louisiana",
+      "reconstructedMargin": 33.677844022520254,
+      "originalMargin": 33.03272801349251,
+      "forecastAsOf": "2026-09-13T02:42:36.768440+00:00"
+    }
+  ]
+}

@@ -28,6 +28,7 @@ export default function ApPollPredictor() {
   const [data, setData] = useState(null), [error, setError] = useState('');
   const [custom, setCustom] = useState(null), [draft, setDraft] = useState(null);
   const [view, setView] = useState('outlook'), [basis, setBasis] = useState('projected');
+  const [latestBasis, setLatestBasis] = useState('official');
   const [year, setYear] = useState(''), [pollId, setPollId] = useState(''), [search, setSearch] = useState(''), [bubble, setBubble] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
@@ -76,7 +77,13 @@ export default function ApPollPredictor() {
     {view === 'latest' && <>
       <h4 className="cfb-schedule-title">{data.season} · {data.latest.label} AP poll</h4>
       <p className="cfb-footnote ap-note">{data.latest.forecastSource}. The prediction excludes this poll’s rankings. Earlier reconstructions are not forecasts published before release.</p>
-      <div className="overflow-x-auto"><table className="cfb-table"><thead><tr><th scope="col">Actual AP</th><th scope="col">Team</th><th scope="col">Predicted</th><th scope="col">Rank error</th></tr></thead><tbody>{data.latest.official.map(t => { const prediction = data.latest.rows.find(r => String(r.teamId) === String(t.teamId)); const rank = prediction?.rank; return <tr key={t.teamId}><td className="cfb-rank">{t.rank}</td><td><LogoTeam team={t.school} id={t.teamId} /></td><td>{rank && rank <= 25 ? rank : 'NR'}</td><td>{Math.abs(Math.min(rank || 26, 26) - t.rank)}</td></tr>; })}</tbody></table></div>
+      <div className="ap-view-controls" role="group" aria-label="Latest poll ranking view">{[['official', 'Official Top 25'], ['model', 'Model Top 25']].map(([key, label]) => <button key={key} className={latestBasis === key ? 'ap-view active' : 'ap-view'} aria-pressed={latestBasis === key} onClick={() => setLatestBasis(key)}>{label}</button>)}</div>
+      <p className="cfb-footnote ap-note">{latestBasis === 'model' ? 'The model’s Top 25 for this release, including picks that were unranked in the official poll.' : 'The official AP Top 25, compared with the model’s prediction for this release.'} NR means outside the Top 25 and counts as 26 for rank error.</p>
+      <div className="overflow-x-auto"><table className="cfb-table"><caption className="sr-only">{latestBasis === 'model' ? 'Model' : 'Official'} Top 25 · {data.latest.label}</caption><thead><tr><th scope="col">{latestBasis === 'model' ? 'Predicted' : 'Actual AP'}</th><th scope="col">Team</th><th scope="col">{latestBasis === 'model' ? 'Actual AP' : 'Predicted'}</th><th scope="col">Rank error</th></tr></thead><tbody>{[...(latestBasis === 'model' ? data.latest.rows : data.latest.official)].filter(t => t.rank <= 25).sort((a, b) => a.rank - b.rank).map(t => {
+        const comparison = (latestBasis === 'model' ? data.latest.official : data.latest.rows).find(r => String(r.teamId) === String(t.teamId));
+        const rank = comparison?.rank;
+        return <tr key={t.teamId}><td className="cfb-rank">{t.rank}</td><td><LogoTeam team={t.team || t.school} id={t.teamId} /></td><td>{rank && rank <= 25 ? rank : 'NR'}</td><td>{Math.abs(Math.min(rank || 26, 26) - t.rank)}</td></tr>;
+      })}</tbody></table></div>
     </>}
     {view === 'history' && <>
       <div className="cfb-controls"><label>AP season<select value={selectedYear} onChange={e => { setYear(e.target.value); setPollId(''); }}>{years.map(y => <option key={y}>{y}</option>)}</select></label><label>AP poll<select value={historical?.id || ''} onChange={e => setPollId(e.target.value)}>{polls.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}</select></label></div>

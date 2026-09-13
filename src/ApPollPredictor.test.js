@@ -35,3 +35,19 @@ test('movement model labels inputs and its regression baseline accurately',async
  open();await screen.findByText('Next release outlook');fireEvent.click(screen.getByText('Why this rank?'));expect(screen.getByText('Starting poll position')).toBeInTheDocument();
  fireEvent.click(screen.getByRole('button',{name:'Model & accuracy'}));expect(screen.getByText('AP + Vegas regression: 2.30')).toBeInTheDocument();expect(screen.queryByText('Largest fitted effects per one historical standard deviation.')).not.toBeInTheDocument();expect(screen.getByText(/detected 3 of 11/)).toBeInTheDocument();
 });
+
+test('latest model view includes false positives and uses the saved forecast rather than next outlook', async () => {
+ const latest={...data.latest,forecastSource:'Archived forecast · ap-movement-v3',official:[{school:'Texas',teamId:251,rank:1},{school:'Michigan',teamId:130,rank:25}],rows:[{...row,rank:3},{...row,team:'Washington',teamId:264,rank:25},{...row,team:'Michigan',teamId:130,rank:28}]};
+ global.fetch.mockResolvedValue({ok:true,json:async()=>({...data,latest})});
+ open();await screen.findByText('Next release outlook');fireEvent.click(screen.getByRole('button',{name:'Latest poll check'}));
+ expect(screen.getByRole('button',{name:'Official Top 25'})).toHaveAttribute('aria-pressed','true');
+ expect(screen.queryByText('Washington')).not.toBeInTheDocument();expect(screen.getByText('Michigan')).toBeInTheDocument();
+ fireEvent.click(screen.getByRole('button',{name:'Model Top 25'}));
+ expect(screen.getByRole('button',{name:'Model Top 25'})).toHaveAttribute('aria-pressed','true');
+ const table=screen.getByRole('table',{name:'Model Top 25 · September 8'});
+ expect(within(table).getByRole('row',{name:'25 Washington NR 1'})).toBeInTheDocument();
+ expect(within(table).getByRole('row',{name:'3 Texas 1 2'})).toBeInTheDocument();
+ expect(within(table).queryByText('Michigan')).not.toBeInTheDocument();
+ fireEvent.click(screen.getByRole('button',{name:'Official Top 25'}));
+ expect(screen.getByRole('row',{name:'25 Michigan NR 1'})).toBeInTheDocument();expect(screen.queryByText('Washington')).not.toBeInTheDocument();
+});

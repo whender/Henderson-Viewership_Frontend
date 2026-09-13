@@ -26,7 +26,7 @@ test('orders weeks by season then week and opens only the newest season', async 
   }
 });
 
-test('shows revisions separately and explains original-forecast accuracy metrics', async () => {
+test('shows only the latest saved prediction', async () => {
   const originalFetch = global.fetch;
   global.fetch = jest.fn().mockResolvedValue({ json: async () => ({
     weeks: [{ year: 2026, week: 0, games: [{
@@ -35,9 +35,9 @@ test('shows revisions separately and explains original-forecast accuracy metrics
   }) });
   try {
     render(<WeeklyPredictions />);
-    expect(await screen.findByText('Original: 2.94M')).toBeInTheDocument();
-    expect(screen.getByText('Revised: 3.78M')).toBeInTheDocument();
-    expect(screen.getByText(/Accuracy metrics use the original forecasts/)).toBeInTheDocument();
+    expect(await screen.findByText('3.78M')).toBeInTheDocument();
+    expect(screen.queryByText(/2.94M/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/original forecasts/)).not.toBeInTheDocument();
   } finally {
     global.fetch = originalFetch;
   }

@@ -1,0 +1,39 @@
+.viewership-weekly .home-panel-header h2 { font-size: clamp(26px, 3vw, 36px); margin: 0; }
+.viewership-weekly .home-panel { min-width: 0; }
+.vw-overall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 24px 0 32px; }
+.vw-stats.cfb-week-stats { margin-top: 0; }
+.vw-stats .cfb-week-stats-heading h3 { margin: 0; font-size: 15px; letter-spacing: -.01em; }
+.vw-stats .cfb-week-metrics > div { padding: 18px 14px; }
+.vw-stats .cfb-week-metrics strong { font-size: clamp(22px, 2.1vw, 30px); }
+.vw-weeks { border-top: 1px solid var(--border); }
+.vw-week { border-bottom: 1px solid var(--border); }
+.vw-week > h3 { margin: 0; }
+.vw-week-toggle { display: flex; justify-content: space-between; align-items: center; gap: 16px; width: 100%; padding: 20px 0; border: 0; background: transparent; color: var(--text-primary, #111); font: inherit; font-size: 18px; text-align: left; cursor: pointer; }
+.vw-week-toggle:hover { color: var(--accent); }
+.vw-week-meta { display: inline-flex; align-items: center; gap: 18px; font-size: 12px; font-weight: 400; color: var(--text-secondary); }
+.vw-chevron { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.vw-chevron.expanded { transform: rotate(180deg); }
+.vw-table-scroll { margin-bottom: 20px; }
+.vw-table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.vw-table { min-width: 1060px; }
+.vw-table th { white-space: nowrap; }
+.vw-table td { vertical-align: middle; }
+.vw-table th:nth-child(n+5), .vw-table td:nth-child(n+5) { text-align: right; }
+.vw-matchup { display: grid; gap: 8px; min-width: 180px; }
+.vw-matchup .cfb-team { display: flex; gap: 10px; white-space: nowrap; font-size: 13px; }
+.vw-matchup .cfb-team img { width: 28px; height: 28px; }
+.vw-date { white-space: nowrap; font-size: 12px; }
+.vw-date small,.vw-forecast small { display: block; margin-top: 5px; font-size: 11px; color: var(--text-secondary); white-space: nowrap; }
+.vw-number { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; font-size: 13px; white-space: nowrap; }
+.vw-forecast strong { font-weight: 600; }
+.vw-forecast .vw-timing { font-size: 10px; }
+.vw-spread { font-size: 12px; min-width: 90px; }
+.vw-network { font-size: 11px; font-weight: 700; letter-spacing: .03em; }
+.vw-error { display: inline-block; font-size: 12px; font-variant-numeric: tabular-nums; font-weight: 600; }
+.vw-error-low { color: #15803d; }
+.vw-error-moderate { color: #92400e; }
+.vw-error-high { color: #b91c1c; }
+.vw-error-pending,.vw-muted,.vw-message { color: var(--text-secondary); }
+.vw-message { padding: 24px 0; }
+@media(max-width: 1100px) { .vw-overall { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
+@media(max-width: 640px) { .vw-stats .cfb-week-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vw-stats .cfb-week-metrics > div:nth-child(3) { border-left: 0; } .vw-stats .cfb-week-metrics > div:nth-child(n+3) { border-top: 1px solid var(--border); } .vw-week-toggle { font-size: 16px; } .vw-overall { margin-top: 16px; } }

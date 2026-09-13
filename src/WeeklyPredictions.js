@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import BACKEND_BASE from "./config";
 import { getTeamLogoUrl, parseMatchupTeams } from "./teamLogos";
+import "./FootballModel.css";
+import "./WeeklyPredictions.css";
 
-const weekKey = (week) => `${week.year}-${week.week}`;
+const weekKey = week => `${week.year}-${week.week}`;
+const percent = value => Number.isFinite(value) ? `${value.toFixed(1)}%` : "—";
 
 export default function WeeklyPredictions() {
   const [loading, setLoading] = useState(true);
@@ -11,183 +14,96 @@ export default function WeeklyPredictions() {
   const [metrics, setMetrics] = useState(null);
   const [openWeek, setOpenWeek] = useState(null);
 
-  async function loadWeekly() {
-    try {
-      setLoading(true);
-      const res = await fetch(`${BACKEND_BASE}/weekly-predictions`);
-      const data = await res.json();
-
-      const orderedWeeks = [...(data.weeks || [])].sort(
-        (a, b) => Number(b.year || 0) - Number(a.year || 0) || Number(b.week) - Number(a.week)
-      );
-      setWeeks(orderedWeeks);
-      setMetrics(data.metrics || null);
-
-      setOpenWeek(orderedWeeks.length > 0 ? weekKey(orderedWeeks[0]) : null);
-    } catch (e) {
-      console.error(e);
-      setError("Failed to load weekly predictions.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    loadWeekly();
+    let active = true;
+    async function load() {
+      try {
+        const response = await fetch(`${BACKEND_BASE}/weekly-predictions`);
+        if (response.ok === false) throw new Error("Request failed");
+        const data = await response.json();
+        if (data.error) throw new Error(data.error);
+        if (!active) return;
+        const ordered = [...(data.weeks || [])].sort((a, b) => Number(b.year || 0) - Number(a.year || 0) || Number(b.week) - Number(a.week));
+        setWeeks(ordered);
+        setMetrics(data.metrics || null);
+        setOpenWeek(ordered.length ? weekKey(ordered[0]) : null);
+      } catch {
+        if (active) setError("Unable to load weekly predictions. Please refresh to try again.");
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+    load();
+    return () => { active = false; };
   }, []);
 
-  if (loading) return <p>Loading weekly predictions…</p>;
-  if (error) return <p className="text-red-600">{error}</p>;
-
-  return (
-    <div>
-      <h2 className="text-3xl font-semibold mb-4">Weekly Predictions</h2>
-      {/* === Summary Metrics (Pregame + Postgame) === */}
-      {metrics && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
-
-          {/* Pregame */}
-          <div className="w-full">
-            <h3 className="text-xl font-semibold mb-3">Pregame Model</h3>
-
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Metric label="Median % Error" value={`${metrics.pregame.median_error.toFixed(1)}%`} />
-              <Metric label="Mean % Error" value={`${metrics.pregame.mean_error.toFixed(1)}%`} />
-              <Metric label="Within 10%" value={`${metrics.pregame.pct_within_10}%`} />
-              <Metric label="Within 25%" value={`${metrics.pregame.pct_within_25}%`} />
-            </div>
-          </div>
-
-          {/* Postgame */}
-          <div className="w-full">
-            <h3 className="text-xl font-semibold mb-3">Postgame Model</h3>
-
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Metric label="Median % Error" value={`${metrics.postgame.median_error.toFixed(1)}%`} />
-              <Metric label="Mean % Error" value={`${metrics.postgame.mean_error.toFixed(1)}%`} />
-              <Metric label="Within 10%" value={`${metrics.postgame.pct_within_10}%`} />
-              <Metric label="Within 25%" value={`${metrics.postgame.pct_within_25}%`} />
-            </div>
-          </div>
-
-        </div>
-      )}
-
-      {/* === Week Sections === */}
-      {weeks.map((week) => (
-        <div key={weekKey(week)} className="mb-6 border rounded overflow-hidden">
-
-          {/* Week Header */}
-          <button
-            onClick={() =>
-              setOpenWeek(openWeek === weekKey(week) ? null : weekKey(week))
-            }
-            className="w-full text-left p-4 bg-gray-100 hover:bg-gray-200 font-semibold"
-          >
-            Week {week.week} {week.year ? `(${week.year})` : ""}
-          </button>
-
-          {openWeek === weekKey(week) && (
-            <div className="overflow-x-auto">
-              <table className="min-w-max w-full text-sm">
-                <thead>
-                  <tr className="border-b bg-gray-50">
-                    <th className="p-2 text-left">Date</th>
-                    <th className="p-2 text-left">Time</th>
-                    <th className="p-2 text-left">Matchup</th>
-                    <th className="p-2 text-left">Spread</th>
-                    <th className="p-2 text-left">Network</th>
-                    <th className="p-2 text-left">Pregame Pred</th>
-                    <th className="p-2 text-left">Postgame Pred</th>
-                    <th className="p-2 text-left">Actual</th>
-                    <th className="p-2 text-left">% Error (Pre)</th>
-                    <th className="p-2 text-left">Accuracy (Pre)</th>
-                    <th className="p-2 text-left">% Error (Post)</th>
-                    <th className="p-2 text-left">Accuracy (Post)</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {week.games.map((g, i) => (
-                    <tr key={i} className="border-b">
-                      <td className="p-2">{g.date}</td>
-                      <td className="p-2">{g.time_slot}</td>
-                      <td className="p-2">
-                        <MatchupCell matchup={g.matchup} />
-                      </td>
-                      <td className="p-2">{g.spread}</td>
-                      <td className="p-2">{g.network}</td>
-                      <td className="p-2">
-                        {g.revised_predicted || g.predicted}
-                      </td>
-                      <td className="p-2">{g.post_predicted || ""}</td>
-                      <td className="p-2">{g.actual || ""}</td>
-                      <td className={`p-2 ${colorClass(g.percent_error)}`}>
-                        {g.percent_error != null ? `${g.percent_error.toFixed(1)}%` : ""}
-                      </td>
-                      <td className="p-2">{g.accuracy}</td>
-                      <td className={`p-2 ${colorClass(g.post_percent_error)}`}>
-                        {g.post_percent_error != null
-                          ? `${g.post_percent_error.toFixed(1)}%`
-                          : ""}
-                      </td>
-                      <td className="p-2">{g.post_accuracy}</td>
-                    </tr>
-                  ))}
-                </tbody>
+  return <section className="cfb-model viewership-weekly">
+    <div className="home-panel">
+      <header className="home-panel-header"><div><p className="home-kicker">Football viewership</p><h2>Weekly Predictions</h2></div></header>
+      {loading ? <p role="status" className="vw-message">Loading weekly predictions…</p> : error ? <p role="alert" className="cfb-notice">{error}</p> : <>
+        {metrics && <div className="vw-overall" aria-label="Overall accuracy">
+          <MetricGroup title="Pregame Model" stats={metrics.pregame} />
+          <MetricGroup title="Postgame Model" stats={metrics.postgame} />
+        </div>}
+        {!weeks.length && <p role="status" className="vw-message">No weekly predictions available yet.</p>}
+        <div className="vw-weeks">{weeks.map(week => {
+          const key = weekKey(week), expanded = openWeek === key;
+          return <section key={key} className="vw-week">
+            <h3><button className="vw-week-toggle" onClick={() => setOpenWeek(expanded ? null : key)} aria-expanded={expanded} aria-controls={`games-${key}`}>
+              <span>Week {week.week}{week.year ? ` (${week.year})` : ""}</span>
+              <span className="vw-week-meta" aria-hidden="true">{week.games.length} games<svg viewBox="0 0 20 20" className={expanded ? "vw-chevron expanded" : "vw-chevron"}><path d="m5 7.5 5 5 5-5" /></svg></span>
+            </button></h3>
+            {expanded && <div id={`games-${key}`} className="overflow-x-auto vw-table-scroll" role="region" aria-label={`Week ${week.week} ${week.year || ""} predictions`} tabIndex={0}>
+              <table className="cfb-table vw-table">
+                <thead><tr>{["Date / Time", "Matchup", "Spread", "Network", "Pregame", "Postgame", "Actual", "Error (Pre)", "Error (Post)"].map(label => <th key={label} scope="col">{label}</th>)}</tr></thead>
+                <tbody>{week.games.map((game, i) => <tr key={game.cfbd_game_id || i}>
+                  <td className="vw-date">{game.date}<small>{game.time_slot}</small></td>
+                  <td><MatchupCell matchup={game.matchup} /></td>
+                  <td className="vw-spread">{game.spread || "—"}</td>
+                  <td><span className="vw-network">{game.network || "—"}</span></td>
+                  <td><Forecast value={game.revised_predicted || game.predicted} /></td>
+                  <td><Forecast value={game.post_predicted} /></td>
+                  <td className="vw-number vw-actual">{game.actual || "—"}</td>
+                  <td><ErrorValue value={game.percent_error} /></td>
+                  <td><ErrorValue value={game.post_percent_error} /></td>
+                </tr>)}</tbody>
               </table>
-            </div>
-          )}
-        </div>
-      ))}
+            </div>}
+          </section>;
+        })}</div>
+      </>}
     </div>
-  );
+  </section>;
+}
+
+function MetricGroup({ title, stats }) {
+  return <section className="cfb-week-stats vw-stats">
+    <div className="cfb-week-stats-heading"><h3>{title}</h3><span>Overall accuracy</span></div>
+    <div className="cfb-week-metrics">{[
+      ["Median % Error", percent(stats?.median_error)], ["Mean % Error", percent(stats?.mean_error)],
+      ["Within 10%", Number.isFinite(stats?.pct_within_10) ? `${stats.pct_within_10}%` : "—"],
+      ["Within 25%", Number.isFinite(stats?.pct_within_25) ? `${stats.pct_within_25}%` : "—"],
+    ].map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong></div>)}</div>
+  </section>;
 }
 
 function MatchupCell({ matchup }) {
   const teams = parseMatchupTeams(matchup);
-
-  return (
-    <div className="matchup-cell">
-      {teams.length > 0 && (
-        <div className="matchup-logos">
-          {teams.map((team) => {
-            const logoUrl = getTeamLogoUrl(team);
-
-            if (!logoUrl) {
-              return null;
-            }
-
-            return (
-              <img
-                key={team}
-                src={logoUrl}
-                alt={`${team} logo`}
-                className="team-logo"
-              />
-            );
-          })}
-        </div>
-      )}
-      <span>{matchup}</span>
-    </div>
-  );
+  const labels = String(matchup || "").split(/\s+(?:at|vs\.?|v\.)\s+/i);
+  return <div className="vw-matchup">{teams.length ? teams.map((team, i) => {
+    const logo = getTeamLogoUrl(team);
+    return <div key={`${team}-${i}`} className="cfb-team">{logo && <img src={logo} alt={`${team} logo`} loading="lazy" />}<span>{labels[i] || team}</span></div>;
+  }) : matchup || "—"}</div>;
 }
 
-/* ================== Helper Components ================== */
-
-function Metric({ label, value }) {
-  return (
-    <div className="border rounded p-4 bg-gray-50 text-center">
-      <p className="text-sm text-gray-600">{label}</p>
-      <p className="text-2xl font-semibold mt-1">{value}</p>
-    </div>
-  );
+function Forecast({ value }) {
+  if (!value) return <span className="vw-muted">—</span>;
+  const parts = String(value).match(/^([^()[]+?)\s*(\([^)]*\))?\s*(\[retrospective\])?$/i);
+  if (!parts) return <span className="vw-number">{value}</span>;
+  return <div className="vw-forecast"><strong className="vw-number">{parts[1].trim()}</strong>{parts[2] && <small>{parts[2]}</small>}{parts[3] && <small className="vw-timing">Retrospective</small>}</div>;
 }
 
-function colorClass(e) {
-  if (e == null) return "";
-  if (e >= 35) return "bg-red-100";
-  if (e >= 25) return "bg-yellow-100";
-  return "bg-green-100";
+function ErrorValue({ value }) {
+  const tone = !Number.isFinite(value) ? "pending" : value >= 35 ? "high" : value >= 25 ? "moderate" : "low";
+  return <span className={`vw-error vw-error-${tone}`}>{percent(value)}</span>;
 }

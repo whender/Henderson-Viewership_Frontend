@@ -545,7 +545,7 @@ const TEAM_COLOR_THEMES = {
 };
 
 const MATCHUP_SEPARATORS = /\s+(?:at|vs\.?|v\.)\s+/i;
-const RANKING_PREFIX = /^(?:No\.\s*)?\d+\s+/i;
+const RANKING_PREFIX = /^\s*(?:(?:No\.?|#)\s*)?\d+\s+/i;
 
 function cleanTeamName(name) {
   if (!name) {

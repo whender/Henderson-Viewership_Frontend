@@ -37,3 +37,23 @@
 .vw-message { padding: 24px 0; }
 @media(max-width: 1100px) { .vw-overall { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
 @media(max-width: 640px) { .vw-stats .cfb-week-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vw-stats .cfb-week-metrics > div:nth-child(3) { border-left: 0; } .vw-stats .cfb-week-metrics > div:nth-child(n+3) { border-top: 1px solid var(--border); } .vw-week-toggle { font-size: 16px; } .vw-overall { margin-top: 16px; } }
+
+/* Weekly accuracy stays visible when the game table is collapsed. */
+.vw-week-toggle > span:first-child { flex-shrink: 0; }
+.vw-week-summary { display: flex; align-items: center; justify-content: flex-end; gap: 24px; margin-left: auto; font-size: 11px; font-weight: 400; color: var(--text-secondary); }
+.vw-week-stat, .vw-week-sample { display: grid; gap: 5px; white-space: nowrap; }
+.vw-week-stat strong { color: var(--text-primary); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.vw-week-sample { font-size: 12px; }
+.vw-week-sample > span { font-size: 11px; }
+.vw-week-toggle .vw-chevron { flex-shrink: 0; }
+@media (max-width: 1000px) {
+  .vw-week-toggle { flex-wrap: wrap; }
+  .vw-week-summary { order: 3; flex-basis: 100%; justify-content: flex-start; margin: 0; gap: 20px; }
+  .vw-week-meta { margin-left: auto; }
+}
+@media (max-width: 480px) {
+  .vw-week-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 8px; }
+  .vw-week-sample { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; }
+  .vw-week-stat { font-size: 10px; }
+  .vw-week-pending { display: block; }
+}

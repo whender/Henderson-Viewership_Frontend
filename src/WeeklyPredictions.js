@@ -49,9 +49,10 @@ export default function WeeklyPredictions() {
         <div className="vw-weeks">{weeks.map(week => {
           const key = weekKey(week), expanded = openWeek === key;
           return <section key={key} className="vw-week">
-            <h3><button className="vw-week-toggle" onClick={() => setOpenWeek(expanded ? null : key)} aria-expanded={expanded} aria-controls={`games-${key}`}>
+            <h3><button className="vw-week-toggle" onClick={() => setOpenWeek(expanded ? null : key)} aria-label={`Week ${week.week}${week.year ? ` (${week.year})` : ""}`} aria-describedby={`summary-${key}`} aria-expanded={expanded} aria-controls={`games-${key}`}>
               <span>Week {week.week}{week.year ? ` (${week.year})` : ""}</span>
-              <span className="vw-week-meta" aria-hidden="true">{week.games.length} games<svg viewBox="0 0 20 20" className={expanded ? "vw-chevron expanded" : "vw-chevron"}><path d="m5 7.5 5 5 5-5" /></svg></span>
+              <WeekSummary games={week.games} id={`summary-${key}`} />
+              <span className="vw-week-meta" aria-hidden="true"><svg viewBox="0 0 20 20" className={expanded ? "vw-chevron expanded" : "vw-chevron"}><path d="m5 7.5 5 5 5-5" /></svg></span>
             </button></h3>
             {expanded && <div id={`games-${key}`} className="overflow-x-auto vw-table-scroll" role="region" aria-label={`Week ${week.week} ${week.year || ""} predictions`} tabIndex={0}>
               <table className="cfb-table vw-table">
@@ -74,6 +75,25 @@ export default function WeeklyPredictions() {
       </>}
     </div>
   </section>;
+}
+
+function WeekSummary({ games, id }) {
+  // The API supplies errors for the latest saved forecasts, as in the table.
+  const errors = games.map(game => game.percent_error).filter(Number.isFinite).map(Math.abs).sort((a, b) => a - b);
+  const count = errors.length;
+  if (!count) return <span id={id} className="vw-week-summary vw-week-pending">{games.length} games · Awaiting ratings</span>;
+  const middle = Math.floor(count / 2);
+  const median = count % 2 ? errors[middle] : (errors[middle - 1] + errors[middle]) / 2;
+  const values = [
+    ["Median error", median],
+    ["Mean error", errors.reduce((sum, error) => sum + error, 0) / count],
+    ["Within 10%", errors.filter(error => error <= 10).length / count * 100],
+    ["Within 25%", errors.filter(error => error <= 25).length / count * 100],
+  ];
+  return <span id={id} className="vw-week-summary">
+    <span className="vw-week-sample">Pregame<span>{count}/{games.length} games scored</span></span>
+    {values.map(([label, value]) => <span className="vw-week-stat" key={label}><span>{label}</span><strong>{percent(value)}</strong></span>)}
+  </span>;
 }
 
 function MetricGroup({ title, stats }) {

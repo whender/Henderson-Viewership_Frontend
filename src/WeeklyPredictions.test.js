@@ -61,3 +61,29 @@ test('ranked matchups keep both logos and missing stats render safely', async ()
     expect(screen.getByRole('button', { name: 'Week 2 (2026)' })).toHaveAttribute('aria-expanded', 'true');
   } finally { global.fetch = originalFetch; }
 });
+
+test('summarizes latest pregame errors in collapsed weeks and excludes pending games', async () => {
+  const originalFetch = global.fetch;
+  global.fetch = jest.fn().mockResolvedValue({ json: async () => ({ weeks: [
+    { year: 2026, week: 2, games: [{ matchup: 'Pending', percent_error: null }] },
+    { year: 2026, week: 1, games: [
+      { percent_error: 0, post_percent_error: 90 },
+      { percent_error: 10 }, { percent_error: 25 }, { percent_error: 45 },
+      { percent_error: null }, { percent_error: undefined },
+    ] },
+  ] }) });
+  try {
+    render(<WeeklyPredictions />);
+    const week = await screen.findByRole('button', { name: 'Week 1 (2026)' });
+    expect(week).toHaveAttribute('aria-expanded', 'false');
+    expect(week).toHaveTextContent('4/6 games scored');
+    expect(week).toHaveTextContent('Median error17.5%');
+    expect(week).toHaveTextContent('Mean error20.0%');
+    expect(week).toHaveTextContent('Within 10%50.0%');
+    expect(week).toHaveTextContent('Within 25%75.0%');
+    expect(screen.getByRole('button', { name: 'Week 2 (2026)' })).toHaveTextContent('Awaiting ratings');
+    fireEvent.click(week);
+    expect(week).toHaveAttribute('aria-expanded', 'true');
+    expect(week).toHaveTextContent('Median error17.5%');
+  } finally { global.fetch = originalFetch; }
+});

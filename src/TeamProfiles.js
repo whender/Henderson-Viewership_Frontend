@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useLocation } from "react-router-dom";
+import "./TeamProfiles.css";
 import BACKEND_BASE from "./config";
 import { getTeamLogoUrl, getTeamTheme } from "./teamLogos";
 
@@ -589,23 +590,26 @@ export default function TeamProfiles({ teams, comparisonOnly = false, initialTea
     : [];
 
   return (
-    <div className={comparisonOnly ? "comparison-page" : ""}>
+    <div className={comparisonOnly ? "comparison-page" : "viewership-team-page"}>
+      <header className="viewership-team-heading">
       <h2 className="text-3xl font-semibold mb-4">
-        {comparisonOnly ? "Team Comparison" : profile?.team ? `${profile.team} Profile` : "Team Profile"}
+        {comparisonOnly ? "Team Comparison" : "Team Viewership"}
       </h2>
       <p className="text-gray-600 mb-3 max-w-4xl">
         {comparisonOnly
           ? "Compare two programs under the same TV conditions, then drill into shared opponents and direct matchups."
-          : "A dedicated team page for viewership history, brand pull, and actual-versus-expected performance."}
+          : "Audience history and brand performance."}
       </p>
       <p className="text-gray-500 text-sm mb-6 max-w-4xl">
-        Data excludes postseason games.
+        Data excludes bowl and playoff games.
       </p>
+
+      </header>
 
       {!comparisonOnly && !profileOnly && (
       <div className="mb-6">
-        <label className="mr-2">Select Team</label>
-        <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
+        <label className="mr-2" htmlFor="viewership-profile-team">Select Team</label>
+        <select id="viewership-profile-team" value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
           <option value="">Select a team</option>
           {teams.map((team) => (
             <option key={team.value} value={team.value}>
@@ -642,7 +646,7 @@ export default function TeamProfiles({ teams, comparisonOnly = false, initialTea
                 />
               )}
               <div>
-                <div className="profile-hero-kicker">{comparisonOnly ? "Primary Team" : "Team Profile"}</div>
+                {comparisonOnly && <div className="profile-hero-kicker">Primary Team</div>}
                 <h3 className="profile-hero-title">{profile.team}</h3>
                 <p className="profile-hero-subtitle">
                   {view.summary.games} tracked games across {view.summary.years_available.length} seasons
@@ -658,7 +662,7 @@ export default function TeamProfiles({ teams, comparisonOnly = false, initialTea
                 }
               />
               <MetricCard
-                label="Lift %"
+                label="Brand Lift"
                 value={formatPercent(profile.summary.viewership_lift_pct)}
               />
               <MetricCard
@@ -698,7 +702,7 @@ export default function TeamProfiles({ teams, comparisonOnly = false, initialTea
               <div className="profile-yearly-trend-section">
                 <div className="profile-yearly-trend-header">
                   <div>
-                    <div className="profile-hero-kicker">Yearly Actual Vs Typical FBS Expected</div>
+                    <h3 className="viewership-trend-title">Actual vs. Expected by Season</h3>
                     <p className="profile-yearly-trend-copy">
                       For each season, this compares the team's actual average viewership to the
                       average viewership expected for those same games if that team were replaced by
@@ -716,7 +720,7 @@ export default function TeamProfiles({ teams, comparisonOnly = false, initialTea
             )}
           </div>
 
-          <div className="card mb-8">
+          <div className="card profile-peak mb-8">
             <p className="text-gray-600 mb-2">Largest audience on record</p>
             <p className="text-xl font-semibold">
               {view.summary.peak_matchup || "N/A"} · {formatMillions(view.summary.peak_viewers)}
@@ -1096,8 +1100,8 @@ export default function TeamProfiles({ teams, comparisonOnly = false, initialTea
               <div className="team-profile-filter-row">
                 <h3 className="text-2xl font-semibold">Games By Year</h3>
                 <div className="team-profile-year-filter">
-                  <label className="mr-2">Year</label>
-                  <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
+                  <label className="mr-2" htmlFor="viewership-profile-year">Year</label>
+                  <select id="viewership-profile-year" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
                     <option value="all">All Years</option>
                     {view.summary.years_available
                       .slice()
@@ -1225,10 +1229,11 @@ function DifferenceBubble({ value }) {
 }
 
 function ScenarioSelect({ label, value, onChange, options }) {
+  const id = useId();
   return (
     <div className="scenario-select-block">
-      <label className="scenario-select-label">{label}</label>
-      <select value={value} onChange={(e) => onChange(e.target.value)}>
+      <label className="scenario-select-label" htmlFor={id}>{label}</label>
+      <select id={id} value={value} onChange={(e) => onChange(e.target.value)}>
         {options.map((option) => (
           <option key={option} value={option}>
             {option === "all" ? "All" : option}

@@ -1,6 +1,7 @@
 import { useEffect, useId, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./TeamProfiles.css";
+import "./ViewershipComparison.css";
 import BACKEND_BASE from "./config";
 import { getTeamLogoUrl, getTeamTheme } from "./teamLogos";
 
@@ -731,8 +732,8 @@ export default function TeamProfiles({ teams, comparisonOnly = false, initialTea
           <div className="scenario-shell scenario-shell-premium mb-8">
             <div className="scenario-header">
               <div className="comparison-select-card scenario-corner-select">
-                <label className="comparison-select-label">Team 1</label>
-                <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
+                <label className="comparison-select-label" htmlFor="comparison-team-one">Team 1</label>
+                <select id="comparison-team-one" value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)}>
                   <option value="">Select a team</option>
                   {teams
                     .filter((team) => team.value !== compareTeam)
@@ -744,12 +745,11 @@ export default function TeamProfiles({ teams, comparisonOnly = false, initialTea
                 </select>
               </div>
               <div className="scenario-title-block">
-                <div className="profile-hero-kicker">Comparison</div>
-                <h3 className="text-2xl font-semibold mb-1">Scenario Simulator</h3>
+                <h3 className="text-2xl font-semibold mb-1">Compare Audiences</h3>
               </div>
               <div className="comparison-select-card scenario-corner-select">
-                <label className="comparison-select-label">Team 2</label>
-                <select value={compareTeam} onChange={(e) => setCompareTeam(e.target.value)}>
+                <label className="comparison-select-label" htmlFor="comparison-team-two">Team 2</label>
+                <select id="comparison-team-two" value={compareTeam} onChange={(e) => setCompareTeam(e.target.value)}>
                   <option value="">Select a team</option>
                   {teams
                     .filter((team) => team.value !== selectedTeam)

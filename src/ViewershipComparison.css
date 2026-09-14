@@ -1,0 +1,68 @@
+/* Comparison follows the football model's flat panels and statistical grid. */
+.comparison-page { margin-top: 36px; min-width: 0; }
+.comparison-page .viewership-team-heading { padding: 16px 0 24px; }
+.comparison-page .viewership-team-heading h2 { margin: 0 0 12px; font-size: clamp(28px, 3vw, 36px); }
+.comparison-page .viewership-team-heading p { margin: 0 0 6px; }
+.comparison-page .team-profile-toggle { font-size: 13px; margin-bottom: 20px; }
+.comparison-page .scenario-shell {
+  padding: 24px 0 0; margin: 0; gap: 24px; min-width: 0;
+  border: 0; border-top: 1px solid var(--border); border-radius: 0;
+  background: #fff; box-shadow: none;
+}
+.comparison-page .scenario-header { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: end; }
+.comparison-page .scenario-title-block { grid-column: 1 / -1; order: -1; text-align: left; }
+.comparison-page .scenario-title-block h3 { font-size: 20px; margin: 0; }
+.comparison-page .comparison-select-card,
+.comparison-page .scenario-select-block { padding: 0; border: 0; border-radius: 0; background: transparent; backdrop-filter: none; box-shadow: none; min-width: 0; }
+.comparison-page .comparison-select-label,
+.comparison-page .scenario-select-label { display: block; margin-bottom: 8px; color: var(--text-secondary); font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.comparison-page .scenario-select-label { margin: 0; }
+.comparison-page select { width: 100%; max-width: 100%; min-width: 0; font-size: 14px; }
+.comparison-page .simulator-showcase { padding: 24px 0; border: 0; border-radius: 0; background: #fff; gap: 20px; }
+.comparison-page .simulator-showcase-logo { width: 76px; height: 76px; }
+.comparison-page .simulator-showcase-name { font-size: clamp(20px, 2.5vw, 28px); line-height: 1.2; }
+.comparison-page .simulator-versus-badge { width: auto; height: auto; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: var(--text-secondary); font: inherit; font-size: 14px; }
+.comparison-page .scenario-controls { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; padding: 20px 0; border-top: 1px solid var(--border); }
+.comparison-page .scenario-stat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 1px solid var(--border); }
+.comparison-page .metric-card-modern { padding: 20px 16px; border: 0; border-radius: 0; background: #fff; text-align: left; min-width: 0; }
+.comparison-page .metric-card-modern + .metric-card-modern { border-left: 1px solid var(--border); }
+.comparison-page .metric-card-label { justify-content: flex-start; font-size: 12px; line-height: 1.5; min-height: 28px; }
+.comparison-page .metric-team-label { justify-content: flex-start; }
+.comparison-page .metric-team-logo { width: 24px; height: 24px; }
+.comparison-page .metric-card-value { margin: 8px 0 0; font-size: clamp(24px, 2.5vw, 32px); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.comparison-page .scenario-summary-card { padding: 20px 0; border: 0; border-top: 1px solid var(--border); border-radius: 0; background: #fff; box-shadow: none; }
+.comparison-page .scenario-expected-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.comparison-page .scenario-expected-grid > div { padding: 12px 0; }
+.comparison-page .scenario-expected-grid > div + div { padding-left: 24px; border-left: 1px solid var(--border); }
+.comparison-page .scenario-summary-card > p:last-child { margin-bottom: 0; }
+.comparison-page .scenario-subsection { min-width: 0; }
+.comparison-page .scenario-subsection h4 { margin: 0 0 16px; font-size: 20px; }
+.comparison-page .scenario-table-wrap { padding: 0; border: 0; border-radius: 0; background: transparent; }
+.comparison-page table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.comparison-page th { background: #f7f7f8; padding: 14px 16px; color: var(--text-secondary); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.comparison-page td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+.comparison-page tbody tr:hover td { background: #fafafa; }
+.comparison-page .difference-bubble { padding: 0; border: 0; border-radius: 0; background: transparent; white-space: nowrap; }
+.comparison-page select:focus-visible,
+.comparison-page input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 900px) {
+  .comparison-page .scenario-controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .comparison-page .scenario-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .comparison-page .metric-card-modern:nth-child(3) { border-left: 0; }
+  .comparison-page .metric-card-modern:nth-child(n+3) { border-top: 1px solid var(--border); }
+}
+@media (max-width: 640px) {
+  .comparison-page { margin-top: 20px; }
+  .comparison-page .viewership-team-heading { padding-top: 0; }
+  .comparison-page .scenario-shell { gap: 20px; }
+  .comparison-page .scenario-header { gap: 16px 12px; }
+  .comparison-page .scenario-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; padding-bottom: 0; }
+  .comparison-page .simulator-showcase-logo { width: 56px; height: 56px; }
+  .comparison-page .simulator-showcase-name { font-size: 20px; }
+  .comparison-page .simulator-showcase { gap: 12px; padding: 16px 0; }
+  .comparison-page .metric-card-modern { padding: 16px 12px; }
+  .comparison-page .metric-card-value { font-size: 25px; }
+  .comparison-page .scenario-expected-grid { gap: 12px; }
+  .comparison-page .scenario-expected-grid > div + div { padding-left: 12px; }
+  .comparison-page th, .comparison-page td { padding: 12px 8px; }
+}

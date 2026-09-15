@@ -1,5 +1,5 @@
 """Publish committee-rank predictions, historical results and backtests."""
-import argparse,gzip,json
+import argparse,gzip,json,subprocess
 from dataclasses import replace
 from datetime import datetime,timezone,timedelta
 from pathlib import Path
@@ -10,6 +10,7 @@ from cfbpredict.committee import CommitteeModel
 from cfbpredict.committee_history import build_resume_state,_team_token
 from cfbpredict.model import InsufficientDataError
 from cfp_data import HISTORY_URL,import_new_polls
+from cfp_scenarios import scenario_payload
 ROOT=Path(__file__).parent
 LABELS={'wins':'Wins','losses':'Losses','win_percentage':'Winning percentage','record_strength':'Record strength',
     'schedule_strength':'Schedule strength','average_opponent_quality':'Opponent quality','strong_schedule_rate':'Strong opponents faced',
@@ -117,15 +118,13 @@ def main():
     target=datetime.fromisoformat((next_date or dates[-1])+'T12:00:00+00:00')
     season_games=[g for g in games if g.season==year]
     today=rankings(model,season_games,min(now,datetime.fromisoformat(dates[-1]+'T12:00:00+00:00')),ids)
-    projected,assumptions,missing=scenario_games(season_games,{g['id']:g for g in football['games']},now,target)
-    outlook=rankings(model,projected,target,ids)
-    variants=[];seen={json.dumps([(r['teamId'],r['wins'],r['losses']) for r in outlook])}
-    for selection in range(1,25):
-        alternative,choices,_=scenario_games(season_games,{g['id']:g for g in football['games']},now,target,selection)
-        rows=rankings(model,alternative,target,ids)
-        signature=json.dumps([(r['teamId'],r['wins'],r['losses']) for r in rows])
-        if signature not in seen:
-            variants.append({'rows':rows,'assumptions':choices});seen.add(signature)
+    engine=scenario_payload(season_games,{g['id']:g for g in football['games']},target,model)
+    if engine:
+        generated=subprocess.run(['node',str(ROOT/'generate_cfp_scenarios.cjs')],input=json.dumps(engine),capture_output=True,text=True,check=True)
+        scenarios=json.loads(generated.stdout)
+        outlook=scenarios['main']['rows'][:40];assumptions=scenarios['main']['assumptions'];variants=scenarios['alternatives'];missing=engine['missingGames']
+    else:
+        scenarios={'eligibleTeams':[]};outlook=today;assumptions=[];variants=[];missing=[]
     output_path=ROOT.parent/'public/football/cfp.json';old=json.loads(output_path.read_text()) if output_path.exists() else {}
     saved=old.get('publishedForecasts',{})
     old_next=old.get('next',{})
@@ -148,7 +147,7 @@ def main():
     stats={k:sum(e[k]*e['historical_poll_count'] for e in evaluation)/count for k in keys};stats['polls']=int(count)
     stats['baselineRankError']=sum(e['baseline']['historical_mean_absolute_rank_error']*e['historical_poll_count'] for e in evaluation)/count
     out={'schemaVersion':1,'asOf':now.isoformat(),'season':year,'firstRelease':dates[0],'schedule':dates,'trainingThrough':validation['trainingThrough'],
-        'trainingPolls':validation['trainingPolls'],'archivePolls':len(polls),'next':{'releaseDate':next_date,'rows':outlook,'alternatives':variants,'assumptions':assumptions,'unprojectedGames':len(missing),'simulation':{'count':SIMULATIONS,'seed':SIMULATION_SEED,'method':'Representative simulation nearest rounded average team wins; ties favor more probable game results'}},
+        'trainingPolls':validation['trainingPolls'],'archivePolls':len(polls),'next':{'releaseDate':next_date,'rows':outlook,'alternatives':variants,'assumptions':assumptions,'unprojectedGames':len(missing),'scenarioEngine':engine,'eligibleTeams':scenarios['eligibleTeams'],'simulation':{'count':1000,'projections':25,'seed':SIMULATION_SEED,'method':'Most likely slate picks each game favorite; 25 seeded independent outcome projections. Override eligibility uses next-release Top 25 frequency across 1,000 simulations.'}},
         'today':today,'latest':next((p for p in history if p['season']==year),None),'history':history,'evaluation':evaluation,'overallEvaluation':stats,'publishedForecasts':saved,
         'methodology':['Predicts committee Top 25 order, not playoff seeds or qualification probabilities.',
             'Trained on CFP rankings starting in 2014; AP polls are not training targets or inputs.',
@@ -157,7 +156,7 @@ def main():
             'Team resumes capture record and schedule strength, quality wins, bad losses, conference championships and opponent-adjusted strength. Head-to-head and common opponents modify comparable-team comparisons.',
             'Quality-win thresholds use model-rated opponents, not official committee top-25 membership. Scoring margins enter the underlying strength rating, not a direct committee resume feature.',
             'Rank error uses full predicted ranks without capping at 26. Top 12 membership is a ranking metric, not playoff-field accuracy.',
-            'Run 10,000 independent game-outcome simulations using current football-model win probabilities. Select a coherent slate nearest rounded average team wins, breaking ties by slate probability, then rank its resumes. Whole-number records can differ from independent rounding to keep opponents consistent. Model margin magnitudes supply hypothetical scoring margins. This is a representative scenario, not an average CFP rank or a guaranteed outcome.'],
+            'The main scenario selects each game favorite: the most likely complete outcome slate under independent game outcomes. Browse 25 seeded projections using current football-model probabilities. Overrides are restricted to games involving the 25 teams most frequently ranked in the next-release Top 25 across 1,000 unmodified simulations. Every scenario rebuilds opponent-adjusted strength and committee resumes with whole-number records. Hypothetical margin magnitudes come from the football model; in-progress games use the saved pregame probability, not live win odds.'],
         'sources':[{'title':'Official CFP rankings history','url':HISTORY_URL},{'title':'CFP release schedule','url':calendar['source']},{'title':'Committee selection protocol','url':'https://collegefootballplayoff.com/sports/2016/10/24/selection-committee-protocol'}]}
     temp=output_path.with_suffix('.tmp');temp.write_text(json.dumps(out,separators=(',',':'),allow_nan=False));temp.replace(output_path)
     if args.refresh:(ROOT/'cfp/polls.json').write_text(json.dumps({'schema_version':1,'polls':polls},indent=2)+'\n')

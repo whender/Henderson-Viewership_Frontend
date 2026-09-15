@@ -150,32 +150,37 @@ rejects an AP artifact whose training season does not match that boundary.
 
 ## CFP next-release simulations
 
-“Project to next release” uses 10,000 seeded simulations of the eligible remaining
-games, sampling each outcome from its current football-model win probability.
-Completed games stay fixed. Only games whose kickoff plus four hours precedes the
-release cutoff are included. Probabilities remain fixed through each simulation;
-future injuries and rating changes are not modeled.
+“Project to next release” defaults to the most likely complete outcome slate:
+the favored winner in each game, under independent game outcomes. Left/right
+controls browse 25 seeded projections and return to that main scenario.
+Completed games stay fixed. Only games whose kickoff plus four hours is at or
+before the release cutoff are included, including unfinished in-progress games.
+These use saved pregame probabilities, not live win odds. Future injuries and
+changes in the game win probabilities are not simulated.
 
-The exporter rounds simulated mean remaining wins to whole numbers, then selects
-the sampled result slate with the smallest total squared deviation from those
-team targets. Ties favor the more probable slate. A single consistent slate is
-necessary for head-to-head results, quality wins, opponent records and losses;
-individual records may differ from independently rounded means. The CFP model
-ranks that slate's resumes, not averaged rankings. Scoring-margin magnitudes use
-the football model estimates, rounded to at least one point, with the sampled
-winner determining the sign. These are hypothetical margins, not predicted final
-scores. The selected results remain inspectable under Game assumptions.
+Users can override individual game winners for the 25 teams most frequently in
+the next-release Top 25 across 1,000 unmodified simulations. Ties use average rank,
+then team name. Eligibility stays fixed while editing. A game has one shared
+winner override even when both opponents are eligible. Overrides apply across
+all projections and can be cleared individually or together. A new published
+snapshot resets local edits and selection. This frequency is not playoff odds.
 
-The seed and simulation count are published in `next.simulation`. Refreshes
-regenerate the projection as actual results and game probabilities change.
+The shared `src/cfpScenario.mjs` engine rebuilds power ratings, opponent records,
+schedule/record strength, quality wins, losses, head-to-head and common-opponent
+comparisons. `cfp_scenarios.py` exports the linear response of the Python ridge
+fit so browser edits reproduce the same power fit without solving a matrix in
+the browser. Cross-language tests check rankings, records, strengths and logos
+against the original Python implementation, including forced upsets.
 
-The projected CFP table exposes up to 25 distinct representative outcomes from
-that simulation pool. “Refresh simulation” randomly selects a different saved
-outcome, updating rankings, whole-number records, game assumptions, and opponent
-logos together. It does not contact an API or generate a fresh pool on each click.
-The pool is regenerated during normal model publication. Duplicate Top 40
-rank/record combinations are removed; if only one outcome exists, the button is
-hidden. Completed-only rankings remain independent of this selection.
+Every scenario uses coherent whole-number records. Hypothetical margin
+magnitudes use the football-model estimates rounded to at least one point; the
+winner determines the sign. These are not predicted final scores. Game assumptions
+remain inspectable. The main scenario is not an average ranking or an expected
+win total, and sampled projections may coincide when few uncertain games remain.
+
+`export_cfp.py` now requires Node.js (22 in CI) as well as Python. It invokes
+`generate_cfp_scenarios.cjs` to publish the same results and eligibility rules
+used in the browser. Model publications regenerate the pool automatically.
 
 Best-win logos show up to three strongest opponents beaten; worst-loss logos
 show up to three weakest opponents lost to. Ordering uses opponent-adjusted

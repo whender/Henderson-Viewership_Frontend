@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { eligibleGames, projectScenario } from './cfpScenario.mjs';
 
 const pct = n => `${(n * 100).toFixed(1)}%`;
 function Team({ row }) {
@@ -12,6 +13,8 @@ function Comparison({ poll }) {
 }
 export default function CfpPollPredictor() {
   const [data, setData] = useState(null), [error, setError] = useState('');
+  const [forced, setForced] = useState({asOf:null, outcomes:{}});
+  const [editingTeam, setEditingTeam] = useState('');
   const [simulation, setSimulation] = useState({asOf:null,index:0});
   const [view, setView] = useState('outlook'), [basis, setBasis] = useState('today');
   const [search, setSearch] = useState(''), [bubble, setBubble] = useState(false), [year, setYear] = useState(''), [date, setDate] = useState('');
@@ -29,16 +32,25 @@ export default function CfpPollPredictor() {
     load(); const timer = setInterval(load, 300000);
     return () => { controller.abort(); clearInterval(timer); };
   }, []);
+  const simulationIndex = data && simulation.asOf === data.asOf ? simulation.index % (1 + (data.next.alternatives || []).length) : 0;
+  const outcomes = useMemo(() => forced.asOf === data?.asOf ? forced.outcomes : {}, [forced, data?.asOf]);
+  const projected = useMemo(() => {
+    if (!data) return null;
+    const saved = [data.next, ...(data.next.alternatives || [])][simulationIndex];
+    return data.next.scenarioEngine && Object.keys(outcomes).length ? projectScenario(data.next.scenarioEngine, simulationIndex, outcomes, data.next.eligibleTeams || []) : saved;
+  }, [data, simulationIndex, outcomes]);
   if (!data) return <p role={error ? 'alert' : 'status'}>{error || 'Loading CFP predictor…'}</p>;
   const years = [...new Set(data.history.map(p => p.season))].sort((a, b) => b - a);
   const selectedYear = Number(year || years[0]);
   const polls = data.history.filter(p => p.season === selectedYear);
   const poll = polls.find(p => p.releaseDate === date) || polls[0];
   const scenarios = [data.next, ...(data.next.alternatives || [])];
-  const simulationIndex = simulation.asOf === data.asOf ? simulation.index % scenarios.length : 0;
-  const projected = scenarios[simulationIndex];
-  const refreshSimulation = () => setSimulation({asOf:data.asOf,index:(simulationIndex + 1 + Math.floor(Math.random() * (scenarios.length - 1))) % scenarios.length});
-  const rows = (basis === 'today' ? data.today : projected.rows).filter(t => (bubble || t.rank <= 25) && t.team.toLowerCase().includes(search.toLowerCase()));
+  const contenders = data.next.eligibleTeams || [];
+  const selectedTeam = contenders.some(t => t.key === editingTeam) ? editingTeam : contenders[0]?.key || '';
+  const editable = data.next.scenarioEngine ? eligibleGames(data.next.scenarioEngine, contenders).filter(g => g.homeKey === selectedTeam || g.awayKey === selectedTeam) : [];
+  const selectSimulation = index => setSimulation({asOf:data.asOf,index:(index + scenarios.length) % scenarios.length});
+  const forceOutcome = (id, winner) => setForced({asOf:data.asOf,outcomes:Object.fromEntries(Object.entries({...outcomes,[id]:winner}).filter(([,value]) => value))});
+  const rows = (basis === 'today' ? data.today : projected.rows).filter(t => (t.rank <= (bubble ? 40 : 25)) && t.team.toLowerCase().includes(search.toLowerCase()));
   const stats = data.overallEvaluation;
   return <section className="home-panel ap-predictor">
     <div className="home-panel-header"><div><p className="home-kicker">Selection committee model</p><h3>CFP Rankings Predictor</h3><p className="ap-subtitle">Predicting the committee’s Top 25.</p></div><div className="ap-timestamp">Updated {new Date(data.asOf).toLocaleString()}</div></div>
@@ -49,12 +61,26 @@ export default function CfpPollPredictor() {
       <div className="ap-outlook-heading"><h4>{basis === 'today' ? 'Resume rankings today' : 'Next release scenario'}</h4><span>{data.next.releaseDate ? `Next CFP release: ${data.next.releaseDate}` : 'Final CFP release complete'}</span></div>
       {!data.latest && <p className="cfb-footnote ap-note">The {data.season} committee rankings have not started. First release: {data.firstRelease}. Early-season estimates have limited results to work with.</p>}
       <div className="cfb-controls"><label>Ranking basis<select value={basis} onChange={e => setBasis(e.target.value)}><option value="today">Completed results only</option><option value="projected">Project to next release</option></select></label><label>Find a team<input type="search" placeholder="Search teams" value={search} onChange={e => setSearch(e.target.value)} /></label><label className="cfb-checkbox"><input type="checkbox" checked={bubble} onChange={e => setBubble(e.target.checked)} />Include bubble teams (26–40)</label></div>
-      <p className="cfb-notice">{basis === 'today' ? 'Uses completed games available now, through the final CFP release. Rankings will change as teams build their resumes.' : `Uses ${data.next.simulation?.count?.toLocaleString() || "10,000"} simulations of ${projected.assumptions.length} remaining games. The model ranks one consistent set of results closest to rounded average win totals. Records include projected wins and losses; these are hypothetical resumes. Refresh simulation selects another representative outcome from the saved simulation pool.`}</p>
-      {basis === 'projected' && scenarios.length > 1 && <div className="ap-scenario-actions"><button type="button" onClick={refreshSimulation}>Refresh simulation</button><span role="status">Scenario {simulationIndex + 1} of {scenarios.length}</span></div>}
+      <p className="cfb-notice">{basis === 'today' ? 'Uses completed games available now, through the final CFP release. Rankings will change as teams build their resumes.' : `${simulationIndex === 0 ? 'Most likely selects the favored winner in each game.' : 'Each projection samples game winners using the football model’s probabilities.'} Records and rankings use one consistent set of results for ${projected.assumptions.length} remaining games. Forced outcomes apply to every projection. In-progress games use saved pregame probabilities.`}</p>
+      {basis === 'projected' && <>
+        <div className="ap-scenario-actions cfp-projection-controls">
+          <button type="button" className={simulationIndex === 0 ? 'active' : ''} aria-pressed={simulationIndex === 0} onClick={() => selectSimulation(0)}>Most likely</button>
+          <div className="cfp-projection-stepper">
+            <button type="button" aria-label="Previous projection" disabled={scenarios.length < 2} onClick={() => selectSimulation(simulationIndex - 1)}><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" fill="none" stroke="currentColor" strokeWidth="2" /></svg></button>
+            <span role="status" aria-live="polite">{simulationIndex === 0 ? 'Most likely scenario' : `Projection ${simulationIndex} of ${scenarios.length - 1}`}{Object.keys(outcomes).length > 0 ? ' · Custom outcomes' : ''}</span>
+            <button type="button" aria-label="Next projection" disabled={scenarios.length < 2} onClick={() => selectSimulation(simulationIndex + 1)}><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" strokeWidth="2" /></svg></button>
+          </div>
+        </div>
+        {contenders.length > 0 && <details className="ap-details cfp-outcome-editor"><summary>Force team outcomes{Object.keys(outcomes).length ? ` (${Object.keys(outcomes).length})` : ''}</summary>
+          <p className="cfb-footnote">Choose from the 25 teams most often in the projected Top 25 across {data.next.simulation.count.toLocaleString()} simulations of the next release. Eligibility stays fixed as you edit; percentages are Top 25 frequency, not playoff odds.</p>
+          <div className="cfb-controls"><label>Team to customize<select value={selectedTeam} onChange={e => setEditingTeam(e.target.value)}>{contenders.map(t => <option key={t.key} value={t.key}>{t.team} · {pct(t.probability)}</option>)}</select></label><button type="button" disabled={!Object.keys(outcomes).length} onClick={() => setForced({asOf:data.asOf,outcomes:{}})}>Clear all outcomes</button></div>
+          {editable.length ? editable.map(g => <div className="cfp-outcome-game" key={g.id}><div><Team row={{team:g.away,teamId:g.awayId}} /><span>{g.neutral ? 'vs' : 'at'}</span><Team row={{team:g.home,teamId:g.homeId}} /><small>{new Date(g.date).toLocaleDateString(undefined,{month:'short',day:'numeric'})}</small></div><label>Winner<select aria-label={`Winner: ${g.away} ${g.neutral ? 'vs' : 'at'} ${g.home}`} value={outcomes[g.id] || ''} onChange={e => forceOutcome(g.id,e.target.value)}><option value="">Use projection</option><option value={g.homeKey}>{g.home}</option><option value={g.awayKey}>{g.away}</option></select></label></div>) : <p>No remaining games before this release.</p>}
+        </details>}
+      </>}
       {basis === 'projected' && data.next.unprojectedGames > 0 && <p role="alert" className="cfb-notice">{data.next.unprojectedGames} scheduled games have no available prediction and are excluded from this scenario.</p>}
       {rows.length ? <div className="overflow-x-auto"><table className="cfb-table ap-table"><thead><tr><th>Predicted</th><th>Team</th><th>Record</th><th>Quality wins</th><th>Best wins</th><th>Worst losses</th></tr></thead><tbody>{rows.map(t => <tr key={t.key}><td className="cfb-rank">{t.rank}</td><td><Team row={t} /></td><td className="cfb-number">{t.wins}–{t.losses}</td><td>{t.qualityWins}</td><td><Opponents teams={t.bestWins} label={`${t.team} best wins`} /></td><td><Opponents teams={t.worstLosses} label={`${t.team} worst losses`} /></td></tr>)}</tbody></table></div> : <p role="status">No rankings available for this selection.</p>}
       <p className="cfb-footnote">Quality wins are wins over model-rated Top 25 opponents. Logos show up to three strongest opponents beaten and three weakest opponents lost to, ordered by opponent-adjusted strength in the selected resume. Projected mode includes simulated results.</p>
-      {basis === 'projected' && <details className="ap-details"><summary>Game assumptions ({projected.assumptions.length})</summary><div className="ap-assumptions">{projected.assumptions.map(g => <div key={g.id}><span>{g.away} at {g.home}</span><strong>{g.winner} by {g.margin.toFixed(1)}</strong></div>)}</div></details>}
+      {basis === 'projected' && <details className="ap-details"><summary>Game assumptions ({projected.assumptions.length})</summary><div className="ap-assumptions">{projected.assumptions.map(g => <div key={g.id}><span>{g.away} at {g.home}</span><strong>{g.winner} by {g.margin.toFixed(1)}{g.forced ? ' · Forced' : ''}</strong></div>)}</div></details>}
     </>}
     {view === 'latest' && (data.latest ? <><h4 className="cfb-schedule-title">CFP rankings · {data.latest.releaseDate}</h4><Comparison poll={data.latest} /></> : <p className="cfb-notice">No official {data.season} CFP rankings yet. The first release is {data.firstRelease}.</p>)}
     {view === 'history' && <><div className="cfb-controls"><label>CFP season<select value={selectedYear} onChange={e => { setYear(e.target.value); setDate(''); }}>{years.map(y => <option key={y}>{y}</option>)}</select></label><label>Release date<select value={poll?.releaseDate || ''} onChange={e => setDate(e.target.value)}>{polls.map(p => <option key={p.releaseDate}>{p.releaseDate}</option>)}</select></label></div>{poll && <Comparison poll={poll} />}</>}

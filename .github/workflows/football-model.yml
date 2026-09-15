@@ -32,6 +32,9 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python football-model/export_ap.py --refresh
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Publish CFP rankings outlook
         run: python football-model/export_cfp.py --refresh
       - name: Verify model snapshot

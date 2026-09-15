@@ -178,3 +178,17 @@ a.cfb-team:hover { color: var(--accent); }
   .cfb-standings tbody th { font-size: 12px; }
   .cfb-standings .cfb-rank { font-size: 15px; }
 }
+
+.cfp-projection-controls { justify-content: space-between; flex-wrap: wrap; }
+.cfp-projection-stepper { display: flex; align-items: center; gap: 12px; }
+.cfp-projection-stepper button { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+.cfp-projection-stepper [role="status"] { text-align: center; font-variant-numeric: tabular-nums; }
+.cfp-projection-controls button[aria-pressed="true"] { background: var(--accent); color: white; }
+.cfp-outcome-game { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.cfp-outcome-game > div { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.cfp-outcome-game label { display: grid; gap: 4px; font-size: 13px; }
+.cfp-outcome-game select { max-width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; background: white; color: var(--text-primary); }
+@media (max-width: 640px) {
+  .cfp-projection-stepper { width: 100%; justify-content: space-between; }
+  .cfp-outcome-game { align-items: stretch; flex-direction: column; gap: 10px; }
+}

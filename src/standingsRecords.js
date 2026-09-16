@@ -1,5 +1,5 @@
 const independent = c => !c || /independent/i.test(c);
-export const recordText = r => `${r.wins}–${r.losses}${r.ties ? `–${r.ties}` : ''}`;
+export const recordText = (r, projected = false) => `${projected ? r.wins.toFixed(1) : r.wins}–${projected ? r.losses.toFixed(1) : r.losses}${r.ties ? `–${r.ties}` : ''}`;
 const empty = () => ({ wins: 0, losses: 0, ties: 0 });
 const percentage = r => { const n = r.wins + r.losses + r.ties; return n ? (r.wins + r.ties / 2) / n : 0; };
 export function buildStandings(data, projected = false) {
@@ -17,8 +17,12 @@ export function buildStandings(data, projected = false) {
   else if (projected && !g.completed) {
    const p = g.prediction?.home_win_probability;
    if (Number.isFinite(p) && p >= 0 && p <= 1) {
-    result = p > .5 ? 1 : p < .5 ? -1 : Math.sign(g.prediction?.predicted_margin || 0);
-    if (!result) result = g.home.localeCompare(g.away) < 0 ? 1 : -1;
+    for (const [t, wins] of [[home,p],[away,1-p]]) {
+     if (!t) continue;
+     t.overall.wins += wins; t.overall.losses += 1-wins;
+     if (league) { t.league.wins += wins; t.league.losses += 1-wins; }
+    }
+    continue;
    }
   }
   if (result === undefined) { if (projected) for (const t of [home,away]) if (t) t.unprojected++; continue; }

@@ -87,4 +87,22 @@ function contenderPool(engine, count = 1000) {
   for (let i = 1; i <= count; i++) projectScenario(engine, i).rows.forEach(r => { stats[r.key].top25 += Number(r.rank <= 25); stats[r.key].rankSum += r.rank; });
   return Object.values(stats).sort((a, b) => b.top25 - a.top25 || a.rankSum - b.rankSum || compareNames(a, b)).slice(0, 25).map(({power, top25, rankSum, ...t}) => ({...t, probability: top25 / count}));
 }
-export {projectScenario, contenderPool, eligibleGames};
+// Average the same 25 projections available in the browser, including overrides.
+function averageScenarios(engine, overrides = {}, eligibleTeams = [], count = 25) {
+  const totals = new Map(), gameTotals = new Map();
+  for (let i = 1; i <= count; i++) {
+    const scenario = projectScenario(engine, i, overrides, eligibleTeams);
+    scenario.rows.forEach(r => {
+      if (!totals.has(r.key)) totals.set(r.key, {key:r.key, team:r.team, teamId:r.teamId, conference:r.conference, wins:0, losses:0, qualityWins:0, averageRank:0, bestWins:[], worstLosses:[]});
+      const t = totals.get(r.key);
+      t.wins += r.wins / count; t.losses += r.losses / count; t.qualityWins += r.qualityWins / count; t.averageRank += r.rank / count;
+    });
+    scenario.assumptions.forEach(g => {
+      if (!gameTotals.has(g.id)) gameTotals.set(g.id, {id:g.id, home:g.home, away:g.away, homeWinFrequency:0, forced:g.forced});
+      gameTotals.get(g.id).homeWinFrequency += Number(g.homeWin) / count;
+    });
+  }
+  const rows = [...totals.values()].sort((a,b) => a.averageRank - b.averageRank || compareNames(a,b)).map((r,i) => ({...r, rank:i+1}));
+  return {rows, assumptions:[...gameTotals.values()], averaged:true, count};
+}
+export {projectScenario, averageScenarios, contenderPool, eligibleGames};

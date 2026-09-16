@@ -150,9 +150,11 @@ rejects an AP artifact whose training season does not match that boundary.
 
 ## CFP next-release simulations
 
-“Project to next release” defaults to the most likely complete outcome slate:
-the favored winner in each game, under independent game outcomes. Left/right
-controls browse 25 seeded projections and return to that main scenario.
+“Project to next release” defaults to an average of 25 seeded projections. Wins,
+losses and quality wins are averaged and displayed to one decimal; ordering uses
+average simulated rank. Left/right controls browse those same 25 individual
+projections with whole-number records. Overrides apply before averaging. The
+average view omits win/loss logos because opponents beaten vary by scenario.
 Completed games stay fixed. Only games whose kickoff plus four hours is at or
 before the release cutoff are included, including unfinished in-progress games.
 These use saved pregame probabilities, not live win odds. Future injuries and
@@ -172,11 +174,11 @@ fit so browser edits reproduce the same power fit without solving a matrix in
 the browser. Cross-language tests check rankings, records, strengths and logos
 against the original Python implementation, including forced upsets.
 
-Every scenario uses coherent whole-number records. Hypothetical margin
+Every underlying scenario uses coherent whole-number records before averaging. Hypothetical margin
 magnitudes use the football-model estimates rounded to at least one point; the
 winner determines the sign. These are not predicted final scores. Game assumptions
-remain inspectable. The main scenario is not an average ranking or an expected
-win total, and sampled projections may coincide when few uncertain games remain.
+remain inspectable. The default records and ranks are sample averages, not a single outcome slate.
+Sampled projections may coincide when few uncertain games remain.
 
 `export_cfp.py` now requires Node.js (22 in CI) as well as Python. It invokes
 `generate_cfp_scenarios.cjs` to publish the same results and eligibility rules
@@ -232,3 +234,8 @@ after both versions and pointers succeed. The exporter can restore historical
 lines directly from the queue while Firebase is unavailable. The September 13
 backfill hit Firebase's quota; increasing Firebase capacity may be necessary
 for every-half-hour archiving of the full future schedule.
+
+Projected conference standings sum remaining-game win probabilities, added to
+completed results. This is the exact expected win/loss record under the game
+model (the limit of simulation averages), displayed to one decimal. Conference
+and overall calculations retain the same game exclusions and missing-data flags.

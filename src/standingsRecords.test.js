@@ -8,7 +8,7 @@ test('finals only, distinguish league games, exclude postseason and championship
 });
 test('projected records conserve wins and losses and include in-progress games',()=>{
  const data={teams,games:[game(1,'A','B',{date:'2020-01-01',homePoints:0,awayPoints:14}),game(2,'B','C',{prediction:{home_win_probability:.2}})]};
- const rows=buildStandings(data,true)[0].rows;expect(rows.reduce((s,t)=>s+t.league.wins,0)).toBe(2);expect(rows.reduce((s,t)=>s+t.league.losses,0)).toBe(2);expect(recordText(row(data,'A',true).league)).toBe('1–0');
+ const rows=buildStandings(data,true)[0].rows;expect(rows.reduce((s,t)=>s+t.league.wins,0)).toBe(2);expect(rows.reduce((s,t)=>s+t.league.losses,0)).toBe(2);expect(recordText(row(data,'A',true).league,true)).toBe('0.6–0.4');
 });
 test('missing predictions, duplicate games, shared positions',()=>{
  const g=game(1,'A','B',{completed:true,homePoints:7,awayPoints:7}), data={teams,games:[g,g,game(2,'A','C',{prediction:null})]};
@@ -16,5 +16,5 @@ test('missing predictions, duplicate games, shared positions',()=>{
 });
 test('Army Navy and FCS wins count overall only',()=>{
  const data={teams:[{team:'Army',conference:'American'},{team:'Navy',conference:'American'},{team:'Notre Dame',conference:'FBS Independents'}],games:[game(1,'Army','Navy'),game(2,'Notre Dame','FCS')]};
- expect(recordText(row(data,'Army',true).league)).toBe('0–0');expect(recordText(row(data,'Army',true).overall)).toBe('1–0');expect(recordText(row(data,'Notre Dame',true).overall)).toBe('1–0');
+ expect(recordText(row(data,'Army',true).league)).toBe('0–0');expect(recordText(row(data,'Army',true).overall,true)).toBe('0.6–0.4');expect(recordText(row(data,'Notre Dame',true).overall,true)).toBe('0.6–0.4');
 });

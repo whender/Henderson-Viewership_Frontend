@@ -88,6 +88,7 @@ def saved_pregame(previous, game, snapshot_as_of):
 
 
 def export(model, records, output, advanced, archive=None):
+    export_time = datetime.now(UTC)
     history = normalize_games(records)
     games = [g for g in history if g.season == model.season]
     previous_snapshot = json.loads(output.read_text()) if output.exists() else {}
@@ -106,7 +107,7 @@ def export(model, records, output, advanced, archive=None):
             continue
         source, cutoff = 'current', model.as_of.isoformat()
         archived_row = (archive or {}).get(game.id)
-        if game.completed or game.start_date <= datetime.now(UTC):
+        if game.completed or game.start_date <= export_time:
             candidates = [saved_pregame(archived_row, game, None), saved_pregame(previous_games.get(game.id), game, previous_snapshot.get('generatedAt') or previous_snapshot.get('asOf'))]
             valid = [p for p in candidates if p]
             saved = max(valid, key=lambda p: (p[1] == 'archived', datetime.fromisoformat(p[2]))) if valid else None
@@ -141,6 +142,7 @@ def export(model, records, output, advanced, archive=None):
                 matchups[f"{home['team_id']}:{away['team_id']}:{int(neutral)}"] = [
                     round(p.predicted_margin, 6), round(p.home_win_probability, 8)]
     scheduled_matchups = {}
+    published_games = {row['id']: row for row in scheduled}
     # Earliest remaining meeting supplies the date/rest context for this pair.
     for game in sorted(games, key=lambda g: (g.start_date, g.id)):
         if game.completed or game.home_team not in fbs_names or game.away_team not in fbs_names:
@@ -154,10 +156,18 @@ def export(model, records, output, advanced, archive=None):
                 key = f"{oriented.home_id}:{oriented.away_id}:{int(neutral)}"
                 if key in scheduled_matchups:
                     continue
-                p = model.predict_game(replace(oriented, neutral_site=neutral), games)
+                # Actual scheduled meetings must use the same frozen pregame
+                # forecast as the schedule, including unfinished games after kickoff.
+                saved = published_games[game.id]['prediction']
+                if neutral == game.neutral_site and (not swapped or neutral):
+                    margin = -saved['predicted_margin'] if swapped else saved['predicted_margin']
+                    probability = 1 - saved['home_win_probability'] if swapped else saved['home_win_probability']
+                else:
+                    p = model.predict_game(replace(oriented, neutral_site=neutral), games)
+                    margin, probability = p.predicted_margin, p.home_win_probability
                 scheduled_matchups[key] = dict(
                     gameId=game.id, date=game.start_date.isoformat(),
-                    margin=p.predicted_margin, probability=p.home_win_probability,
+                    margin=margin, probability=probability,
                     actualHome=game.home_team, actualAway=game.away_team,
                     actualNeutral=game.neutral_site,
                 )

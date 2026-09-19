@@ -61,4 +61,7 @@ class ScenarioTests(unittest.TestCase):
     def test_future_scores_do_not_enter_payload(self):
         football=json.loads((ROOT.parent/'public/football/model.json').read_text());predictions={g['id']:g for g in football['games']}
         changed=[replace(g,home_points=99,away_points=0) if not g.completed else g for g in self.games]
-        self.assertEqual(scenario_payload(changed,predictions,self.cutoff,self.model),self.engine)
+        # Compare two fits on the same runtime; saved Linux and local BLAS
+        # builds can differ at machine precision even for identical inputs.
+        baseline=scenario_payload(self.games,predictions,self.cutoff,self.model)
+        self.assertEqual(scenario_payload(changed,predictions,self.cutoff,self.model),baseline)
